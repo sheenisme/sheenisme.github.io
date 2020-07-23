@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+
+
+<html lang="cn">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    [学习笔记]-python爬虫基础学习 |  未央的Hexo博客
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-学习笔记-python爬虫基础学习"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  [学习笔记]-python爬虫基础学习
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/04/13/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time datetime="2020-04-13T11:24:52.000Z" itemprop="datePublished">2020-04-13</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">3.3k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">12 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="一、合法性"><a href="#一、合法性" class="headerlink" title="一、合法性"></a>一、合法性</h3><p>几乎每一个网站都有一个名为robots.txt的文档，当然也有部分网站没有设定robots.txt。对于没有设定robots.txt的网站可以通过网络爬虫获取没有口令加密的数据，也就是该网站所有页面数据都可以爬取。如果网站有robots.txt文档，就要判断是否有禁止访客获取的数据。</p>
+<h3 id="二、网页结构"><a href="#二、网页结构" class="headerlink" title="二、网页结构"></a>二、网页结构</h3><p>网页一般由三部分组成，分别是HTML（超文本标记语言）、CSS（层叠样式表）和JScript（活动脚本语言）。</p>
+<blockquote>
+<p>如果用人体来比喻，HTML是人的骨架，并且定义了人的嘴巴、眼睛、耳朵等要长在哪里。CSS是人的外观细节，如嘴巴长什么样子，眼睛是双眼皮还是单眼皮，是大眼睛还是小眼睛，皮肤是黑色的还是白色的等。JScript表示人的技能，例如跳舞、唱歌或者演奏乐器等。</p>
+</blockquote>
+<p>HTML是整个网页的结构，相当于整个网站的框架。带“&lt;”、“&gt;”符号的都是属于HTML的标签，并且标签都是成对出现的。</p>
+<p>CSS表示样式，<style type="text/css"> 表示下面引用一个CSS，在CSS中定义了外观。</p>
+<p>JScript表示功能。交互的内容和各种特效都在JScript中，JScript描述了网站中的各种功能。</p>
+<h3 id="三、使用requests库"><a href="#三、使用requests库" class="headerlink" title="三、使用requests库"></a>三、使用requests库</h3><h4 id="1-爬虫的基本原理"><a href="#1-爬虫的基本原理" class="headerlink" title="1.爬虫的基本原理"></a>1.爬虫的基本原理</h4><h5 id="（1）网页请求的过程"><a href="#（1）网页请求的过程" class="headerlink" title="（1）网页请求的过程"></a>（1）网页请求的过程</h5><h6 id="●-Request（请求）"><a href="#●-Request（请求）" class="headerlink" title="● Request（请求）"></a>● Request（请求）</h6><p>一个展示在用户面前的网页都必须经过这一步，也就是向服务器发送访问请求。</p>
+<h6 id="●-Response（响应）"><a href="#●-Response（响应）" class="headerlink" title="● Response（响应）"></a>● Response（响应）</h6><p>服务器在接收到用户的请求后，会验证请求的有效性，然后向用户（客户端）发送响应的内容，客户端接收服务器响应的内容，将内容展示出来，就是我们所熟悉的网页请求。</p>
+<h5 id="（2）网页请求的方式"><a href="#（2）网页请求的方式" class="headerlink" title="（2）网页请求的方式"></a>（2）网页请求的方式</h5><p>GET：最常见的方式，一般用于获取或者查询资源信息，也是大多数网站使用的方式，响应速度快。</p>
+<p>POST：相比GET方式，多了以表单形式上传参数的功能，因此除查询信息外，还可以修改信息。</p>
+<p>所以，在写爬虫前要先确定向谁发送请求，用什么方式发送。</p>
+<h4 id="2-使用GET方式抓取数据"><a href="#2-使用GET方式抓取数据" class="headerlink" title="2.使用GET方式抓取数据"></a>2.使用GET方式抓取数据</h4><p>import requests  # 导入requests包<br>​<br>url = ‘<a href="http://www.cntour.cn/&#39;" target="_blank" rel="noopener">http://www.cntour.cn/&#39;</a><br>strhtml = requests.get(url)  # GET方式，获取网页数据<br>print(strhtml.text)</p>
+<p>这个时候strhtml是一个URL对象，它代表整个网页，但此时只需要网页中的源码，下面的语句表示网页源码。</p>
+<pre><code>strhtml.text</code></pre><h4 id="3-使用POST方式抓取数据"><a href="#3-使用POST方式抓取数据" class="headerlink" title="3.使用POST方式抓取数据"></a>3.使用POST方式抓取数据</h4><p>POST的请求获取数据的方式不同于GET, POST请求数据必须构建请求头才可以。Form Data中的请求参数如图所示，将其复制并构建一个新字典（ From_Date）。</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/image-20200412123050297-1024x722.png" alt=""></p>
+<p>利用有道翻译的接口（_<a href="http://fanyi.youdao.com/translate" target="_blank" rel="noopener">http://fanyi.youdao.com/translate</a>_）实现代码如下：</p>
+<p>import requests  # 导入requests包<br>import json<br>​<br>​<br>def get_translate_date(word=None):<br>    url = ‘<a href="http://fanyi.youdao.com/translate&#39;" target="_blank" rel="noopener">http://fanyi.youdao.com/translate&#39;</a><br>    From_Date = {‘i’: word, ‘from’: ‘AUTO’, ‘to’: ‘AUTO’, ‘smartresult’: ‘dict’, ‘client’: ‘fanyideskweb’,<br>                 ‘salt’: ‘15866624635359’, ‘sign’: ‘3e28161eb22465135ec5c5deb74077e6’, ‘ts’: ‘1586662463535’,<br>                 ‘bv’: ‘f52186f8c76a0fbf1baf7e6da04928ea’, ‘doctype’: ‘json’, ‘version’: ‘2.1’,<br>                 ‘keyfrom’: ‘fanyi.web’, ‘action’: ‘FY_BY_CLICKBUTTION’}<br>​<br>    # 将字符串格式的数据转换成JSON格式数据，并根据数据结构，提取数据，并将翻译结果打印出来,详细代码如下：<br>    # 请求表单数据<br>    response = requests.post(url, data=From_Date)<br>    # 将JSON格式字符串转字典<br>    content = json.loads(response.text)<br>    # 打印翻译后的数据<br>    print(content[‘translateResult’][0][0][‘tgt’])<br>​<br>​<br>if __name__ == ‘__main__‘:<br>    get_translate_date(‘我爱数据’)<br>​</p>
+<p>运行之后：</p>
+<p>I love the data</p>
+<h3 id="四、使用Beautiful-Soup解析网页"><a href="#四、使用Beautiful-Soup解析网页" class="headerlink" title="四、使用Beautiful Soup解析网页"></a>四、使用Beautiful Soup解析网页</h3><blockquote>
+<p>Beautiful Soup是python的一个库，其最主要的功能是从网页中抓取数据。Beautiful Soup目前已经被移植到bs4库中，也就是说在导入Beautiful Soup时需要先安装bs4库。安装好bs4库以后，还需安装lxml库。如果我们不安装lxml库，就会使用Python默认的解析器。尽管Beautiful Soup既支持Python标准库中的HTML解析器又支持一些第三方解析器，但是lxml库具有功能更加强大、速度更快的特点，因此推荐安装lxml库。</p>
+</blockquote>
+<p>安装Python第三方库后，输入下面的代码，即可开启Beautiful Soup之旅。</p>
+<p>首先，HTML文档将被转换成Unicode编码格式，然后Beautiful Soup选择最合适的解析器来解析这段文档，此处指定lxml解析器进行解析。解析后便将复杂的HTML文档转换成树形结构，并且每个节点都是Python对象。这里将解析后的文档存储到新建的变量soup中，代码如下：</p>
+<p>soup = BeautifulSoup(strhtml.text, ‘lxml’) </p>
+<p>接下来用select（选择器）定位数据，定位数据时需要使用浏览器的开发者模式，将鼠标光标停留在对应的数据位置并右击，然后在快捷菜单中选择“检查”命令。随后在浏览器右侧会弹出开发者界面，右侧高亮的代码对应着左侧高亮的数据文本。右击右侧高亮数据，在弹出的快捷菜单中选择“Copy”→“Copy Selector”命令，便可以自动复制路径。如下图所示：</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/image-20200412142316694-1024x617.png" alt=""></p>
+<p>将路径粘贴在文档中，代码如下：</p>
+<p>#main &gt; div &gt; div.mtop.firstMod.clearfix &gt; div.centerBox &gt; ul.newsList &gt; li:nth-child(1) &gt; a</p>
+<p>由于这条路径是选中的第一条的路径，而我们需要获取所有的头条新闻，因此将li:nth-child(1)中冒号（包含冒号）后面的部分删掉，使用soup.select引用这个路径，代码如下：</p>
+<p>data = soup.select(‘#main &gt; div &gt; div.mtop.firstMod.clearfix &gt; div.centerBox &gt; ul.newsList &gt; a’) </p>
+<h3 id="五、清洗和组织数据"><a href="#五、清洗和组织数据" class="headerlink" title="五、清洗和组织数据"></a>五、清洗和组织数据</h3><p>至此，获得了一段目标的HTML代码，但还没有把数据提取出来，接下来在PyCharm中输入以下代码：</p>
+<p>for item in data:  # soup匹配到的有多个数据，用for循环取出<br>    result = {<br>        ‘title’: item.get_text(),<br>        ‘link’: item.get(‘href’)<br>    }<br>    print(result)</p>
+<p>代码运行结果如下：</p>
+<p>{‘title’: ‘政策加码提振市场 生活消费加速回暖’, ‘link’: ‘<a href="http://www.cntour.cn/news/13800/&#39;}" target="_blank" rel="noopener">http://www.cntour.cn/news/13800/&#39;}</a><br>{‘title’: ‘国家23部门联合发文促文旅消费’, ‘link’: ‘<a href="http://www.cntour.cn/news/13795/&#39;}" target="_blank" rel="noopener">http://www.cntour.cn/news/13795/&#39;}</a><br>{‘title’: ‘景区“重启”，准备好了吗’, ‘link’: ‘<a href="http://www.cntour.cn/news/13791/&#39;}" target="_blank" rel="noopener">http://www.cntour.cn/news/13791/&#39;}</a><br>{‘title’: ‘美丽中国建设有了评估体系’, ‘link’: ‘<a href="http://www.cntour.cn/news/13789/&#39;}" target="_blank" rel="noopener">http://www.cntour.cn/news/13789/&#39;}</a><br>{‘title’: ‘[文创行业线上发力]‘, ‘link’: ‘<a href="http://www.cntour.cn/news/13802/&#39;}" target="_blank" rel="noopener">http://www.cntour.cn/news/13802/&#39;}</a><br>{‘title’: ‘[“无接触商业”加速到来]‘, ‘link’: ‘<a href="http://www.cntour.cn/news/13792/&#39;}" target="_blank" rel="noopener">http://www.cntour.cn/news/13792/&#39;}</a><br>{‘title’: ‘[主动迎接旅游转型]‘, ‘link’: ‘<a href="http://www.cntour.cn/news/13790/&#39;}" target="_blank" rel="noopener">http://www.cntour.cn/news/13790/&#39;}</a><br>{‘title’: ‘[文旅魅力 “云”端绽放]‘, ‘link’: ‘<a href="http://www.cntour.cn/news/13779/&#39;}" target="_blank" rel="noopener">http://www.cntour.cn/news/13779/&#39;}</a><br>{‘title’: ‘[景点开放要安全有序]‘, ‘link’: ‘<a href="http://www.cntour.cn/news/13768/&#39;}" target="_blank" rel="noopener">http://www.cntour.cn/news/13768/&#39;}</a><br>{‘title’: ‘[图解：10年旅游让生活更]‘, ‘link’: ‘<a href="http://www.cntour.cn/news/13747/&#39;}" target="_blank" rel="noopener">http://www.cntour.cn/news/13747/&#39;}</a><br>{‘title’: ‘[发展旅游产业要有大格局]‘, ‘link’: ‘<a href="http://www.cntour.cn/news/12718/&#39;}" target="_blank" rel="noopener">http://www.cntour.cn/news/12718/&#39;}</a><br>{‘title’: ‘[科技改变旅游]‘, ‘link’: ‘<a href="http://www.cntour.cn/news/12716/&#39;}" target="_blank" rel="noopener">http://www.cntour.cn/news/12716/&#39;}</a></p>
+<p>首先明确要提取的数据是标题和链接，标题在<a>标签中，提取标签的正文用get_text()方法。链接在<a>标签的href属性中，提取标签中的href属性用get()方法，在括号中指定要提取的属性数据，即get(‘href’)。</p>
+<p>每一篇文章的链接中都有一个数字ID。下面用正则表达式提取这个ID。</p>
+<p>需要使用的正则符号如下：</p>
+<p><code>\d</code>匹配数字</p>
+<p><code>+</code> 匹配前一个字符1次或多次</p>
+<p>在Python中调用正则表达式时使用re库，这个库不用安装，可以直接调用，在上述代码中添加以下代码：</p>
+<p>import re<br>​<br>‘ID’: re.findall(‘\d+’, item.get(‘href’))</p>
+<h3 id="六、全部代码："><a href="#六、全部代码：" class="headerlink" title="六、全部代码："></a>六、全部代码：</h3><p>import re<br>import requests<br>from bs4 import BeautifulSoup<br>​<br>url = ‘<a href="http://www.cntour.cn/&#39;" target="_blank" rel="noopener">http://www.cntour.cn/&#39;</a><br>strhtml = requests.get(url)  # GET方式，获取网页数据<br>​<br># HTML文档将被转换成Unicode编码格式，然后Beautiful Soup选择最合适的解析器来解析这段文档，此处指定lxml解析器进行解析。<br># 解析后便将复杂的HTML文档转换成树形结构，并且每个节点都是Python对象。这里将解析后的文档存储到新建的变量soup中，代码如下。<br>soup = BeautifulSoup(strhtml.text, ‘lxml’)  # lxml解析网页文档<br>​<br># 用select（选择器）定位数据，定位数据时需要使用浏览器的开发者模式，将鼠标光标停留在对应的数据位置并右击，然后在快捷菜单中选择“检查”命令<br># 随后在浏览器右侧会弹出开发者界面，右侧高亮的代码会对应着左侧高亮的数据文本。右击右侧高亮数据，在弹出的快捷菜单中选择“Copy”→“Copy Selector”命令，便可以自动复制路径。<br>​<br>data = soup.select(‘#main &gt; div &gt; div.mtop.firstMod.clearfix &gt; div.centerBox &gt; ul.newsList &gt;li &gt; a’)  # 获取数据<br># print(data)<br>​<br>for item in data:   # soup匹配到的有多个数据，用for循环取出<br>    result = {<br>        ‘title’: item.get_text(),<br>        ‘link’: item.get(‘href’),<br>        ‘ID’: re.findall(‘\d+’, item.get(‘href’))  #使用re库的findall方法，第一个参数表示正则表达式，第二个参数表示要提取的文本。<br>    }<br>    print(result)</p>
+<p>运行结果如下：</p>
+<p>{‘title’: ‘政策加码提振市场 生活消费加速回暖’, ‘link’: ‘<a href="http://www.cntour.cn/news/13800/&#39;" target="_blank" rel="noopener">http://www.cntour.cn/news/13800/&#39;</a>, ‘ID’: [‘13800’]}<br>{‘title’: ‘国家23部门联合发文促文旅消费’, ‘link’: ‘<a href="http://www.cntour.cn/news/13795/&#39;" target="_blank" rel="noopener">http://www.cntour.cn/news/13795/&#39;</a>, ‘ID’: [‘13795’]}<br>{‘title’: ‘景区“重启”，准备好了吗’, ‘link’: ‘<a href="http://www.cntour.cn/news/13791/&#39;" target="_blank" rel="noopener">http://www.cntour.cn/news/13791/&#39;</a>, ‘ID’: [‘13791’]}<br>{‘title’: ‘美丽中国建设有了评估体系’, ‘link’: ‘<a href="http://www.cntour.cn/news/13789/&#39;" target="_blank" rel="noopener">http://www.cntour.cn/news/13789/&#39;</a>, ‘ID’: [‘13789’]}<br>{‘title’: ‘[文创行业线上发力]‘, ‘link’: ‘<a href="http://www.cntour.cn/news/13802/&#39;" target="_blank" rel="noopener">http://www.cntour.cn/news/13802/&#39;</a>, ‘ID’: [‘13802’]}<br>{‘title’: ‘[“无接触商业”加速到来]‘, ‘link’: ‘<a href="http://www.cntour.cn/news/13792/&#39;" target="_blank" rel="noopener">http://www.cntour.cn/news/13792/&#39;</a>, ‘ID’: [‘13792’]}<br>{‘title’: ‘[主动迎接旅游转型]‘, ‘link’: ‘<a href="http://www.cntour.cn/news/13790/&#39;" target="_blank" rel="noopener">http://www.cntour.cn/news/13790/&#39;</a>, ‘ID’: [‘13790’]}<br>{‘title’: ‘[文旅魅力 “云”端绽放]‘, ‘link’: ‘<a href="http://www.cntour.cn/news/13779/&#39;" target="_blank" rel="noopener">http://www.cntour.cn/news/13779/&#39;</a>, ‘ID’: [‘13779’]}<br>{‘title’: ‘[景点开放要安全有序]‘, ‘link’: ‘<a href="http://www.cntour.cn/news/13768/&#39;" target="_blank" rel="noopener">http://www.cntour.cn/news/13768/&#39;</a>, ‘ID’: [‘13768’]}<br>{‘title’: ‘[图解：10年旅游让生活更]‘, ‘link’: ‘<a href="http://www.cntour.cn/news/13747/&#39;" target="_blank" rel="noopener">http://www.cntour.cn/news/13747/&#39;</a>, ‘ID’: [‘13747’]}<br>{‘title’: ‘[发展旅游产业要有大格局]‘, ‘link’: ‘<a href="http://www.cntour.cn/news/12718/&#39;" target="_blank" rel="noopener">http://www.cntour.cn/news/12718/&#39;</a>, ‘ID’: [‘12718’]}<br>{‘title’: ‘[科技改变旅游]‘, ‘link’: ‘<a href="http://www.cntour.cn/news/12716/&#39;" target="_blank" rel="noopener">http://www.cntour.cn/news/12716/&#39;</a>, ‘ID’: [‘12716’]}</p>
+<h3 id="七、爬虫攻防战"><a href="#七、爬虫攻防战" class="headerlink" title="七、爬虫攻防战"></a>七、爬虫攻防战</h3><blockquote>
+<p>爬虫是模拟人的浏览访问行为，进行数据的批量抓取。当抓取的数据量逐渐增大时，会给被访问的服务器造成很大的压力，甚至有可能崩溃。换句话就是说，服务器是不喜欢有人抓取自己的数据的。那么，网站方面就会针对这些爬虫者，采取一些反爬策略。</p>
+</blockquote>
+<p>服务器第一种识别爬虫的方式就是通过检查连接的useragent来识别到底是浏览器访问，还是代码访问的。如果是代码访问的话，访问量增大时，服务器会直接封掉来访IP。</p>
+<h6 id="那么应对这种初级的反爬机制，我们应该采取何种举措？"><a href="#那么应对这种初级的反爬机制，我们应该采取何种举措？" class="headerlink" title="那么应对这种初级的反爬机制，我们应该采取何种举措？"></a>那么应对这种初级的反爬机制，我们应该采取何种举措？</h6><p>在进行访问时，我们在开发者环境下不仅可以找到URL、Form Data，还可以在Request headers中构造浏览器的请求头，封装自己。服务器识别浏览器访问的方法就是判断keywor是否为Request headers下的User-Agent，如下图所示。</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/image-20200412145400158.png" alt=""></p>
+<p>因此，我们只需要构造这个请求头的参数。创建请求头部信息即可，代码如下：</p>
+<p># 构建请求头，伪装成浏览器访问<br>headers = {‘User-Agent’: ‘Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36’}<br>response = requests.get(url, headers=headers)</p>
+<p>修改User－Agent确实很简单，但是正常人1秒看一个图，而个爬虫1秒可以抓取好多张图，比如1秒抓取上百张图，那么服务器的压力必然会增大。也就是说<strong>，如果在一个IP下批量访问下载图片，这个行为不符合正常人类的行为，肯定要被封IP</strong>。其原理也很简单，就是统计每个IP的访问频率，该频率超过阈值，就会返回一个验证码，如果真的是用户访问的话，用户就会填写，然后继续访问，如果是代码访问的话，就会被封IP。</p>
+<p>这个问题的解决方案有两个，第一个就是常用的增设延时，每3秒钟抓取一次，代码如下：</p>
+<p>import time<br>time.sleep(3)  # 设置延迟，防止被封IP</p>
+<p>我们写爬虫的目的是为了高效批量抓取数据，这里设置3秒钟抓取一次，效率未免太低。其实，还有一个更重要的解决办法，那就是从本质上解决问题。</p>
+<p>不管如何访问，服务器的目的就是查出哪些为代码访问，然后封锁IP<strong>。解决办法：为避免被封IP，在数据采集时经常会使用代理。</strong>当然，requests也有相应的proxies属性。</p>
+<p>首先，构建自己的代理IP池，将其以字典的形式赋值给proxies，然后传输给requests，代码如下：</p>
+<p>proxies = {   # 设置IP代理池，将其以字典的形式赋值给proxies，然后传输给requests解决被封IP问题<br>    “http”: “<a href="http://10.10.1.10:3128&quot;">http://10.10.1.10:3128&quot;</a>,<br>    “https”: “<a href="http://10.10.1.10:1080&quot;">http://10.10.1.10:1080&quot;</a>,<br>}<br>response = requests.get(url, proxies=proxies)</p>
+<p>Write by sheen</p>
+ 
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        Donate
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/04/13/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/" rel="tag">网络爬虫</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020/04/16/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E7%88%AC%E8%99%AB%E8%BF%9B%E9%98%B6%EF%BC%88scrapy%E5%AD%A6%E4%B9%A0/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            [学习笔记]-Python爬虫进阶（Scrapy)学习
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/04/11/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91-pytorch%E5%AE%9E%E6%88%98%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">[学习笔记]-PyTorch实战手写数字识别</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "",
+    app_key: "",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2015-2020
+        <i class="ri-heart-fill heart_icon"></i> sheen song
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="未央的Hexo博客"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://shenyu-vip.lofter.com" target="_blank" rel="noopener">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+  </div>
+</body>
+
+</html>

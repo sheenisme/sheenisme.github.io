@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+
+
+<html lang="cn">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+     未央的Hexo博客
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      
+<section class="cover">
+    
+      
+      <a class="forkMe" href="https://github.com/Shen-Yu/hexo-theme-ayer"
+        target="_blank"><img width="149" height="149" src="/images/forkme.png"
+          class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    
+  <div class="cover-frame">
+    <div class="bg-box">
+      <img src="/images/cover1.jpg" alt="image frame" />
+    </div>
+    <div class="cover-inner text-center text-white">
+      <h1><a href="/">未央的Hexo博客</a></h1>
+      <div id="subtitle-box">
+        
+        <span id="subtitle"></span>
+        
+      </div>
+      <div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="cover-learn-more">
+    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
+  </div>
+</section>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
+
+
+<!-- Subtitle -->
+
+  <script>
+    try {
+      var typed = new Typed("#subtitle", {
+        strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+        startDelay: 0,
+        typeSpeed: 200,
+        loop: true,
+        backSpeed: 100,
+        showCursor: true
+      });
+    } catch (err) {
+      console.log(err)
+    }
+  </script>
+  
+<div id="main">
+  <section class="outer">
+  <article class="articles">
+    
+    
+    
+    
+    <article
+  id="post-学习笔记-pytorch安装笔记"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/04/01/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-pytorch%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/"
+    >[学习笔记]-PyTorch安装笔记</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/04/01/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-pytorch%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time datetime="2020-04-01T03:39:19.000Z" itemprop="datePublished">2020-04-01</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h4 id="安装学到的教训："><a href="#安装学到的教训：" class="headerlink" title="安装学到的教训："></a>安装学到的教训：</h4><h5 id="※anaconda尽量安装到非系统盘，后期大小可能会超过10G！一定注意修改安装路径！一定注意修改安装路径！一定注意修改安装路径！"><a href="#※anaconda尽量安装到非系统盘，后期大小可能会超过10G！一定注意修改安装路径！一定注意修改安装路径！一定注意修改安装路径！" class="headerlink" title="※anaconda尽量安装到非系统盘，后期大小可能会超过10G！一定注意修改安装路径！一定注意修改安装路径！一定注意修改安装路径！"></a>※anaconda尽量安装到非系统盘，后期大小可能会超过10G！一定注意修改安装路径！一定注意修改安装路径！一定注意修改安装路径！</h5><h5 id="※安装完anaconda后要先切换镜像源"><a href="#※安装完anaconda后要先切换镜像源" class="headerlink" title="※安装完anaconda后要先切换镜像源"></a>※安装完anaconda后要先切换镜像源</h5><p>切换镜像源的命令：</p>
+<p>（1）添加镜像：</p>
+<p>conda config –add channels <a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</a> conda config –add channels <a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/</a> conda config –add channels <a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/</a></p>
+<p>（2）切换镜像（设置搜索时显示通道地址）：</p>
+<p>conda config –set show_channel_urls yes</p>
+<p>（3）查看镜像源（用来确认）：</p>
+<p>conda config –show channels</p>
+<h5 id="1-安装前的准备：先安装显卡驱动-CUDA-CUDNN，然后安装anaconda，注意勾选添加到环境变量"><a href="#1-安装前的准备：先安装显卡驱动-CUDA-CUDNN，然后安装anaconda，注意勾选添加到环境变量" class="headerlink" title="1.安装前的准备：先安装显卡驱动+CUDA+CUDNN，然后安装anaconda，注意勾选添加到环境变量"></a>1.安装前的准备：先安装显卡驱动+CUDA+CUDNN，然后安装anaconda，注意勾选添加到环境变量</h5><h5 id="2-安装：先创建环境，然后激活环境，再去pytorch-org查找安装命令，再运行命令即可安装成功"><a href="#2-安装：先创建环境，然后激活环境，再去pytorch-org查找安装命令，再运行命令即可安装成功" class="headerlink" title="2.安装：先创建环境，然后激活环境，再去pytorch.org查找安装命令，再运行命令即可安装成功"></a>2.安装：先创建环境，然后激活环境，再去pytorch.org查找安装命令，再运行命令即可安装成功</h5><h6 id="1-创建环境：conda-create-n-pytorch-gpu-pip-python-3-7"><a href="#1-创建环境：conda-create-n-pytorch-gpu-pip-python-3-7" class="headerlink" title="1)创建环境：conda create -n pytorch_gpu pip python=3.7"></a>1)创建环境：conda create -n pytorch_gpu pip python=3.7</h6><h6 id="2-激活和关闭pytorch-gpu环境的命令"><a href="#2-激活和关闭pytorch-gpu环境的命令" class="headerlink" title="2)激活和关闭pytorch_gpu环境的命令"></a>2)激活和关闭pytorch_gpu环境的命令</h6><h6 id="To-activate-this-environment-use"><a href="#To-activate-this-environment-use" class="headerlink" title="To activate this environment, use"></a>To activate this environment, use</h6><p>conda activate pytorch_gpu</p>
+<h6 id="To-deactivate-an-active-environment-use"><a href="#To-deactivate-an-active-environment-use" class="headerlink" title="To deactivate an active environment, use"></a>To deactivate an active environment, use</h6><p>conda deactivate</p>
+<h6 id="3-我的安装命令"><a href="#3-我的安装命令" class="headerlink" title="3)我的安装命令"></a>3)我的安装命令</h6><p>conda install pytorch torchvision cudatoolkit=10.1 -c pytorch</p>
+<h5 id="3-将Pytorch设置到PyCharm中去"><a href="#3-将Pytorch设置到PyCharm中去" class="headerlink" title="3.将Pytorch设置到PyCharm中去"></a>3.将Pytorch设置到PyCharm中去</h5><p>file–setting–Project Interpreter–设置按钮–add–conda environment–existing environment–inetrpreter那里找到anaconda安装目录的envs，再找到之前安装环境的那个名字的文件夹（pytorch_gpu）找到下面的python.exe</p>
+<h5 id="4-测试安装是否成功"><a href="#4-测试安装是否成功" class="headerlink" title="4.测试安装是否成功"></a>4.测试安装是否成功</h5><p>import torch<br>import torchvision<br>​<br>#显示PyTorch的版本<br>print(“hello PyTorch! 您的版本是：{}”.format(torch.__version__))<br>#测试CUDA是否可用<br>print(“CUDA的可用状态：”)<br>print(torch.cuda.is_available())</p>
+<p>大功告成！！！坚持不懈是成功的唯一捷径。</p>
+<h5 id="5-参考资料："><a href="#5-参考资料：" class="headerlink" title="5.参考资料："></a>5.参考资料：</h5><p><a href="https://blog.csdn.net/SpadgerZ/article/details/89468756" target="_blank" rel="noopener">https://blog.csdn.net/SpadgerZ/article/details/89468756</a></p>
+<p><a href="https://blog.csdn.net/baidu\_26646129/article/details/88380598" target="_blank" rel="noopener">https://blog.csdn.net/baidu\_26646129/article/details/88380598</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PyTorch/" rel="tag">PyTorch</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-【读书笔记】哈佛情商提升课-微信读书"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/11/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E5%93%88%E4%BD%9B%E6%83%85%E5%95%86%E6%8F%90%E5%8D%87%E8%AF%BE-%E5%BE%AE%E4%BF%A1%E8%AF%BB%E4%B9%A6/"
+    >[读书笔记]-哈佛情商提升课–微信读书（更新ing）</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/03/11/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E5%93%88%E4%BD%9B%E6%83%85%E5%95%86%E6%8F%90%E5%8D%87%E8%AF%BE-%E5%BE%AE%E4%BF%A1%E8%AF%BB%E4%B9%A6/" class="article-date">
+  <time datetime="2020-03-11T07:24:51.000Z" itemprop="datePublished">2020-03-11</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>一、走进情商的世界</p>
+<p>情商是一种能力，是一种准确觉察、评价和表达情绪的能力；一种接近并产生感情，以促进思维的能力；一种调节情绪，以帮助情绪和智力发展的能力。</p>
+<p>《牛津英语词典》上说：“情绪是心灵、感觉、情感的激动或骚动，泛指任何激动或兴奋的心理状态。”简单来说，情绪是一个人对所接触到的世界相应的行为反应，就是快乐、生气、悲伤等心情，它不只会影响我们的想法和决定，还会激起一连串的生理反应。</p>
+<p>情商就是一种情绪管理的能力。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%83%85%E5%95%86/" rel="tag">情商</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-学习心得-神经网络与深度学习-吴岸城"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/25/%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%90%B4%E5%B2%B8%E5%9F%8E/"
+    >[学习心得]-神经网络与深度学习–吴岸城</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/02/25/%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%90%B4%E5%B2%B8%E5%9F%8E/" class="article-date">
+  <time datetime="2020-02-25T14:23:31.000Z" itemprop="datePublished">2020-02-25</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>一、神经网络</p>
+<p>模拟生物神经网络的数学模型统称为人工神经网络模型，简称为人工神经网络或者神经网络。</p>
+<p>感知机是最简单的神经网络，模型为：s=f(s)，例如：s=p1In1+p2In2+p3In3+bx1。p1,p2,p3是权值，In1,In2,In3是输入，b是偏置。</p>
+<p>感知机的学习规则就是修改神经网络的权值和偏置。</p>
+<p>二、深度学习</p>
+<p>机器学习中大部分的学习算法都是基于统计学原理的,所以机器学习也被称为统计学习方法。</p>
+<p><em>深度神经网络是一种具备至少一个隐层的神经网络，与浅层神经网络类似，深度神经网络也能为复杂非线性系统提供建模，但多出的层次为模型提供了更高的抽象层次，因而提高了模型的能力。深度神经网络是前馈神经网络，但也有语言建模等方面的研究将其拓展到了循环（递归）神经网络。卷积神经网络（CNN）在计算机视觉领域取得了成功的应用。（注意：深度神经网络是一种结构而不是一种算法！）</em></p>
+<p>机器学习的两种解释：一：机器学习算法是一类从数据中自动分析获得规律，并利用规律对未知数据进行预测的算法。二：机器学习就是通过算法使得机器能从大量历史数据中学习规律，从而对新的样本做智能识别或对未来做预测。</p>
+<p>机器学习按照学习方式可以分为：监督学习，非监督学习，强化学习。</p>
+<p>人工神经网络和深度学习都属于机器学习的一种，深度学习是神经网络的一个大分支，深度学习的基本结构是深度神经网络。</p>
+<p>深度学习包含监督学习和非监督学习等, 机器学习的学习方式有监督式和非监督式， 但监督和非监督广泛存在于机器学习中，而不是只有深度学习才有这两个概念。深度学习的地位如下图所示。</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/02/IMG_20200225_221606.jpg" alt=""></p>
+<p>图1 深度学习所处位置图</p>
+<p>三、深度学习的常用方法</p>
+<p>自编码器： 自编码器是一种可以进行无监督学习的神经网络模型。</p>
+<p>快速感知：稀疏编码</p>
+<p>📕<em>所谓稀疏性，就是对一对输入图像，隐藏节点中被激活的节点数（输出接近于1）远远小于被抑制的节点数目（输出接近于0）。那么使神经元大部分的时间都是被抑制的限制被称作稀疏性限制。</em></p>
+<p>栈式自编码器：是一个由多层稀疏自编码器组成的神经网络。</p>
+<p>解决概率分布问题：限制波尔兹曼机</p>
+<p>📕 <em>监督学习方法有分生成方法和判别方法，所学到的模型分别称为生成模型和判别模型。</em></p>
+<p>📕<em>假设一个二部图，每一层的节点之间没有链接，一层是可视层，即输入层（v)，一层是隐藏层（h），如果假设所有的节点都是随机二进制变量节点（只能取值0或1），同时假设概率分布p(v,h)满足Boltzmann分布，我们称这个模型为RBN。RBN的主要有四种用途：一种是对数据进行编码，然后交给监督学习方法进行分类或者回归；二是得到了权重矩阵和偏移量，供BP神经网络初始化训练；三是RBN可以估计联合概率p(v,h)，即RBN可以作为一个生成模型使用；四是RBN可以直接计算条件概率p(h,v)，即RBN可以 可以作为一个判别模型使用。</em></p>
+<p>DBN：将RBN像砖块一样叠加起来构建一个网络，就叫做DBN。DBN由多个RBN层组成。</p>
+<p>CNN（卷积神经网络）：是人工神经网络的一种，它是一种特殊的对图像识别的方式，属于非常有效的带有前向反馈的网络。</p>
+<p>RNN（循环神经网络）：是指一个随着时间推移，重复发生的结构。递归神经网络是广义化的循环神经网络。</p>
+<p>LSTN网络：LSTN网络是一种特殊的循环神经网络，具有能够学习的长期依赖的能力。</p>
+<p>四、其他</p>
+<p>１.迁移学习</p>
+<p>２.概率图模型</p>
+<p>３.大规模学习</p>
+<p>４.并行计算</p>
+<p>以上全部内容,源自于&lt;&lt;神经网络与深度学习–吴岸城&gt;&gt;</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-学习心得爱的五种能力-知乎摘录"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/20/%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97%E7%88%B1%E7%9A%84%E4%BA%94%E7%A7%8D%E8%83%BD%E5%8A%9B-%E7%9F%A5%E4%B9%8E%E6%91%98%E5%BD%95/"
+    >[学习心得]爱的五种能力–知乎摘录</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/02/20/%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97%E7%88%B1%E7%9A%84%E4%BA%94%E7%A7%8D%E8%83%BD%E5%8A%9B-%E7%9F%A5%E4%B9%8E%E6%91%98%E5%BD%95/" class="article-date">
+  <time datetime="2020-02-19T17:09:11.000Z" itemprop="datePublished">2020-02-20</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>百度搜索 爱的五种能力，偶得知乎网友学习心得，随手摘录，以供学习。</p>
+<p>看完这本书，感触蛮大的，如果有一个精准的机器来检测爱的能力，我相信绝对是不合格，并不是自我否定，而是现在有个明确的认知，五种能力除了情绪管理跟影响，述情，共情，允许这三种能力都欠缺，不管是倔强还是脾性不佳，亦或是没有过度的精力与心境，这都是一种不完美的爱，能够自我感知，但说服不了沉默后的倔强。</p>
+<p>这本书的主题很明确，当你拥有了爱的能力，不管与谁在一起都很幸福，但人往往都是按照太多的要求来选择跟自己相处的人，能够接纳很多优点，比如自律，爱笑，乐观,乐于助人，但接受不了一个缺点，比如放屁。人与人之间默认的关系似乎成了一种交换，不打紧的缺点却被看成致命缺陷，于是一边爱着，一边寻找着爱，如果不是背叛成本太低，谁还不是祝英台跟梁山伯。</p>
+<p>第1种能力：情绪管理。</p>
+<p>人的情绪复杂多变，不同情绪有不同的应对方式，如果你一生只保持一种情绪不是傻就是癫，出现情绪去觉察，去引导，去解析，不要一味的压抑，情绪过度会沦为强迫症，焦虑症的奴隶，这里作者利用了很多案例跟小练习来协助你如果处理情绪，让其通过正确的方式排泄，才能更加理性的看待生活，客观的验证会让你的情绪通过穿越平和的看待对方迟到，愤怒，悲观…不会只用对错，黑白来评判，人是情感动物，学会感受别人的情感，别一味的用自己的臆想跟标准去要求，客观的情绪管理，让你跟任何人的相处都是愉悦开心的。</p>
+<p>第2种能力：述情。</p>
+<p>说白了就是要学会表达自己的感受，不管你开心了，难过了，都要说出来！说出来！别留在心里，隔着肚皮谁知道？但是大多数臣妾做不到，明明生气了，偏不说，让对方猜，明明想要个布娃娃，偏不说，让对方猜…但对方不是蛔虫也没有特异功能啊。不会表达自己情绪的人被称为述情障碍，我就是，能做的不求人，想要的自己给，独立又不展现自己情绪，我知道这些都是来自于原生家庭跟自我情绪的控制力，这里作者给出了很多生活案例，让我们能够区分什么是假设跟事实，比如你以为有人喜欢跟有人告诉你是两回事，一个能够准确描述自己感受的人是简单又幸福的，恰当的提出自己的要求能够让对方感觉到你是个真实存在的人，而不是冷冰冰的，纵使内心万般火热，表面从未表达过你开心，幸福，快乐的感受，对方不会懂。学会把想要说的感谢，快乐，想念表达出来，一直的隐忍会错失更多感受美好的瞬间。</p>
+<p>第3种能力：共情。</p>
+<p>这个就是我懂你，我懂你的难受，懂你的怀才不遇，懂你的兴高采烈，也懂你的追求跟自我要求，对方找你诉苦，你直接打击，对方找你分享乐趣，你直接不理睬，对方给你小心翼翼的礼物，你视而不见…对方的情绪你没去关注，没去接纳，没去包容，你认为对方还会把心思放你身上吗？情绪没有释放是痛苦的，如果在你这里得不到安慰，他会找个让自己舒适的地方或人，很多人的问题都是“情”没得到解决，所以“事”自然不会得到妥善安放。感同身受的去理解别人的感受，并且照顾对方心情，让对方知道你在乎他的感受，共情的时候我们要在理解的基础上去启发对方，而不是建议或者指导，才能真正的帮助对方，解决遇见的问题。这才是完美的共情。</p>
+<p>第4种能力：允许。</p>
+<p>我允许你有很多优点，但不允许你有任何缺点…这是缺爱的能力导致的，也就是允许的能力。看待周遭的一切，或者周围的人都会缺陷，肆意的去判断对错，这其实就是杜绝了这件事本来的面貌存在，你讨厌或者喜欢，它就是如此，为何要加入过多的妄想？你不允许便见不到更多事情本来的样貌，也没更多的能量去传递最真实的感受。允许是一辈子的功课，要允许与自己不一样的人存在，允许对方的差异化，这不仅是一种能力，心境，更是一种态度，允许没有模板跟句型去练习，只有去不断接触后的自我感悟跟接纳，允许过去的事，允许当下的事，允许自己的缺陷，才能在允许中找回纯天然的自我。</p>
+<p>第5种能力：影响。</p>
+<p>影响的奥秘就是对方会因你而改变，但影响是允许的，改变是不允许的，我们希望跟我们在一起的人变得更好，去学会成长，如果对方乐意改变的情况，我们便有信心继续前行，如果对方坚守自己的安逸状态，就允许即可，不要产生情绪，也不要被对方去影响，继续去影响跟你同频率的人，当对方做了你喜欢他做的事情的时候，要及时表达自己的心情，让他感觉到自己行为的价值得到回馈，进而达到强化影响的目的。</p>
+<p>情绪管理是为了让你成为一个更加平和，好相处的人。</p>
+<p>述情可以让对方知道你的感受与想法，让对方容易懂你，也让你成为一个易爱的人。</p>
+<p>共情是在对方需要的时候去理解去支持，让对方感受到你的爱，也让你成为一个会爱的人。</p>
+<p>允许是接纳彼此差异，给对方一个成长机会。</p>
+<p>影响能力是对方跟你在一起趋向于一个更完美的方向成长，成为一个人格更完善的人，也成为一个更加理想的爱人。</p>
+<p>现在强烈的感觉到，性格互补是好，但也要频率相同，有强烈的信仰跟自律精神，不会对生活妥协，不会安逸于当下，而是在学会努力工作的时候，也做个努力爱生活的人，懂得自我精进，能够温暖他人，善良又平和，用不同的视角去接纳那些浑身长满刺的人，学会表达自己的感受，不用幻想跟妄想制造虚拟的念头让自我当傀儡，理性客观的分析，用自信心燃气生活的热情，挥洒所有的乐观，用至精至诚的心去探索，去学习，才有可能窥得冰山一角。</p>
+<p>总而言之，这本书不错，至少打开了我对感受的表达欲。</p>
+<p>当别人用威胁的语气说你再这样，我就怎样的时候…内心的怒火会被彻底燃烧，当下立马我的语气会特别的坚定的说不用等你就这样，现在就这样，坚决不给对方说第二次的机会，也不给自己第二次受威胁下的机会，性格不够柔和，某些话别人说出口的时候，冷或热就在一瞬间，爱或恨就在一个行为跟一句话，明辨是非的界限特别明显，对事不对人的态度也没改多少，整体而言，对于这些情绪，我还是个小学生，在探索中成长，毕竟没有什么可以难倒一个终生学习者。</p>
+<p>摘自:知乎</p>
+<p>原文链接:<a href="https://zhuanlan.zhihu.com/p/57558585" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/57558585</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB%E6%9D%82%E8%B0%88/" rel="tag">生活杂谈</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-学习笔记爱的五种能力-听书笔记"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/20/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%88%B1%E7%9A%84%E4%BA%94%E7%A7%8D%E8%83%BD%E5%8A%9B-%E5%90%AC%E4%B9%A6%E7%AC%94%E8%AE%B0/"
+    >[学习笔记]-爱的五种能力–听书笔记</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/02/20/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%88%B1%E7%9A%84%E4%BA%94%E7%A7%8D%E8%83%BD%E5%8A%9B-%E5%90%AC%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time datetime="2020-02-19T16:52:33.000Z" itemprop="datePublished">2020-02-20</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>《爱的五种能力》–爱的五种能力，可爱，会爱，容易爱。</p>
+<p>一、情绪管理，冷静和智慧。保持客观，穿越情绪按钮，放下对和错，为了快乐。</p>
+<p>1、怎样觉察情绪 （1）、及时发现自己的情绪，然后在备忘录里，把时间，地点，事情记下来。</p>
+<p>2、保持客观心态 （1）、全面了解实事的真相。 （2）、穿越情绪按钮 @面对有阴影的事，改写内心的立体，勇敢面对。</p>
+<p>3、不要试图去寻找对错（要多去寻找原因）。</p>
+<p>二、述情，准确表达情绪，真实清晰描述。想象度量单位。</p>
+<p>句型1心情不好直接告诉对方</p>
+<p>句型2用事实加感受</p>
+<p>句型3需求加解决方案</p>
+<p>句型4说出喜欢的不说不喜欢</p>
+<p>句型5可以替代命令</p>
+<p>句型6希望不是应该</p>
+<p>三、共情，理解认可支持关注记录，准确描述心里波动。</p>
+<p>1接纳关注。接受对方的情绪。</p>
+<p>2分享。引导他告诉你不好的情绪（倾诉） 。</p>
+<p>3肯定。</p>
+<p>4启发，引导关注解决问题的办法。</p>
+<p>四、允许，不判断事情的对错，追求事情的本来面目，培养这种心境。</p>
+<p>五、影响，不改变对方，潜移默化。</p>
+<p>1、无为，不指责，不直接帮他做，可以可以给予适当的建议。</p>
+<p>2、强化。在正确的行为下给予奖励。</p>
+<p>源自: 微信读书评论区</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB%E6%9D%82%E8%B0%88/" rel="tag">生活杂谈</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-英语口语3"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/11/%E8%8B%B1%E8%AF%AD%E5%8F%A3%E8%AF%AD3/"
+    >英语口语3</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/02/11/%E8%8B%B1%E8%AF%AD%E5%8F%A3%E8%AF%AD3/" class="article-date">
+  <time datetime="2020-02-11T15:06:11.000Z" itemprop="datePublished">2020-02-11</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>老师问完家乡就会问家庭了。</p>
+<p>Could you tell us something about your family?What does your family usually do for the weekend?What do you think about living together with your parents?</p>
+<p>我用几个问题来作为提示，帮助大家准备这类问题：</p>
+<p>⭐Could you tell us something about your family?</p>
+<p>Sure. I have a small family of 3: my father, my mother and me. My father is very fond of classic Chinese literature and he teaches Chinese in a local high school. My mother is a warm-hearted person and she has been a nurse for more than 20 years. And I am a fresh college graduate and I am now trying to improve myself by further study in your esteemed institution.</p>
+<p>当然 我有一个3口人的小家庭：我的父亲，我的母亲和我。我的父亲非常喜欢中国古典文学，他在当地一所高中教中文。我的妈妈是一个热心人，她做护士已经20多年了。我是一名应届大学毕业生，我现在正努力通过在贵校深造来提高自己。</p>
+<p>⭐What does your family usually do for the weekend?</p>
+<p>Sometimes we went to the park together on weekends, walking and talking. We enjoy sharing our stories and interesting anecdotes with each other and it’s a great opportunity for us to know each other better. While we are the family, the communication is very important. Sometimes, we would go on our separate ways and spend time on hobbies or with friends. We have both shared and different interests. The diversity is the feature of our family.</p>
+<p>有时我们在周末一起去公园散步和聊天。我们喜欢彼此分享我们的故事和有趣的轶事，这对我们增进彼此了解是一个很好的机会，虽然我们是一家人，但是交流也是很有必要的。有时，我们会走自己的路，花时间在兴趣爱好或与朋友上。我们有共同的兴趣，也有不同的兴趣。多样性真的是我们家庭的特色。</p>
+<p>🎁今天的问题：</p>
+<p>Do you have any hobbies?How did you become interested in the hobbies?</p>
+<p>我给大家一个参考答案：</p>
+<p>⭐Do you have any hobbies?</p>
+<p>Yes,I love reading books. Watching movies and playing basketball. It motivates me when I am depressed. It comforts me when I am distressed.It makes me happy when I am sad.It gives me directions when I am confused and lost.It gives me courage when I am scared.</p>
+<p>你有什么爱好吗？</p>
+<p>是的，我喜欢读书。看电影和打篮球。它激励着我，当我沮丧的时候。在我痛苦的时候，它安慰我。当我难过的时候，它让我快乐。当我困惑和迷失时，它给我方向。当我害怕时，它给我勇气。</p>
+<p>⭐How did you become interested in the hobbies?</p>
+<p>I love to do sports in my spare time, long-distance running in particular. I began running at the advice of a doctor, who says that my back pain can never be cured unless I use my muscles. The beginning is difficult, but after I had run my first 10 km, I become literally addicted to the feeling of constantly pushing limits, no matter how small the progress might be.</p>
+<p>你是如何开始对爱好感兴趣的？</p>
+<p>我喜欢在业馀时间做运动，尤其是长跑。我听从医生的建议开始跑步，医生说我的背痛除非锻炼我的肌肉，否则无法治愈。开始是困难的，但在我跑完我的第一个10公里之后，我真的开始沉迷于不断挑战极限的感觉，不管进步有多小。</p>
+<p>摘自:何凯文考研英语</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%80%83%E7%A0%94/" rel="tag">考研</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-英语口语2"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/11/%E8%8B%B1%E8%AF%AD%E5%8F%A3%E8%AF%AD2/"
+    >英语口语2</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/02/11/%E8%8B%B1%E8%AF%AD%E5%8F%A3%E8%AF%AD2/" class="article-date">
+  <time datetime="2020-02-11T14:57:41.000Z" itemprop="datePublished">2020-02-11</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>一般见面老师会问：</p>
+<p>Where are you from?How long have you lived there?How do you like it? why?Do you like this city ? What do you think are the good points about living in this city?</p>
+<p>⭐Where are you from?</p>
+<p>I’m from Emei mountain city, a tourist city located in the south of Sichuan Province, which is famous for its natural and cultural heritage.I’m from Taiyuan, the capital city of Shanxi Province, which is famous for its history and noodle.</p>
+<p>⭐What is your opinion about Beijing?</p>
+<p>Yes, Beijing, the capital city of our nation, Long and brilliant history, the traditional and modern city. These are key words that I can recall from my mind. But, it is the city of my dream as well. Just like millions of youngsters striving for their future in this city, I am pursuing my dream here. Sometimes, life is tough here. However, I still believe it is city of opportunity. It is the place where my dream begins.</p>
+<p>是的，北京，我们国家的首都，悠久灿烂的历史，传统而现代的城市。这些都是我能从脑海里回忆起的关键词。但是，它也是我梦想中的城市。就像成千上万的年轻人在这个城市为自己的未来而奋斗一样，我也在这里追寻我的梦想。有时，这里的生活很艰难。然而，我仍然相信它是一个充满机遇的城市。这是我梦想开始的地方。</p>
+<p>⭐What do you think are the good points about living in this city?</p>
+<p>This city is a big city. Living in a big city can provide us with a lot of benefits. People can receive better education, experience new things, get more job opportunities and so on. All these can lead to a better life. Besides, the basic infrastructure in big city is perfect, because there are some museums, hospitals, schools, libraries and the like. Our horizon can be broadened, and experiences can be enriched.</p>
+<p>这个城市是个大城市。住在大城市里能给我们带来很多好处。人们可以接受更好的教育，体验新事物，获得更多的工作机会等等。所有这些也许都能让你过上更好的生活。此外，大城市的基础设施也很完善，因为那里有博物馆、医院、学校、图书馆等等。我们的视野可以拓宽，经验可以丰富。</p>
+<p>摘自:何凯文考研英语</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%80%83%E7%A0%94/" rel="tag">考研</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-英语口语1"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/11/%E8%8B%B1%E8%AF%AD%E5%8F%A3%E8%AF%AD1/"
+    >英语口语1</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/02/11/%E8%8B%B1%E8%AF%AD%E5%8F%A3%E8%AF%AD1/" class="article-date">
+  <time datetime="2020-02-11T14:51:37.000Z" itemprop="datePublished">2020-02-11</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>第一个问题：</p>
+<p>Tell me something about yourself或者 How would you describe yourself? </p>
+<p>第二个问题：</p>
+<p>“What are your goals for the future?”  或者</p>
+<p>“Where do you see yourself in five years?” </p>
+<p>第三个问题：</p>
+<p>How would your boss/teacher describe you? </p>
+<p>第四个问题：</p>
+<p>What do you enjoy most about what you do now? </p>
+<p>第五个问题：</p>
+<p>How has your college experience prepared you for a business career?</p>
+<p>Do you like watching movies? What qualities do you think are important for a successful or good movie?Yes, I like watching movie.</p>
+<p>第一句：There are many good movies impress me a lot, such as “Gone with the Wind”, “Sound of Music”. “Shawshank Redemption” and “Forrest Gump”. 有许多好电影，给我留下很深的印象，比如《飘》、《音乐之声》，《肖申克的救赎》和《阿甘正传》。</p>
+<p>第二句：These films are successful because the ideas and sentiments are really able to touch the audience and they can establish the connection with the audience. 这些电影之所以成功，是因为这些理念和情绪确实能够打动观众并能建立起和观众的链接。</p>
+<p>第三句：Specifically speaking, for a good movie, the plot, the skill of the director, the performance of actors and actresses are all critical. 具体的讲，对于一部好的电影来而言，情节、导演的手法、演员的演技都很关键。</p>
+<p>第四句：In addition to the talent of a director and a movie star, a film’s social message is of great importance, too. 除了导演和电影明星的天赋，电影的社会信息也很重要。</p>
+<p>第五句：Such as struggle，justice，the pursuit of happiness, marriage, children and even money, they are always true to life. 比如拼搏，正义，幸福的追求，婚姻，孩子甚至是金钱，这些都是总是忠于生活的元素。</p>
+<p>第六句：Besides, I think the script plays a big part of a film. 此外，我认为剧本在一部电影中扮演了重要的角色。</p>
+<p>第七句：Without a good script, even if the director, the leading actor and actress are first-rate, the film can’t possibly be the good one. 没有好的剧本，即使导演、男女主角都是一流的，这部电影也不可能是好电影。</p>
+<p>第八句：If a story is too shallow, the film stars won’t have any chance to show their talent.如果故事过于浅显，影星们也没有机会展示他们的才华。</p>
+<p>第九句：Also, people such as supporting actors and actresses, cameramen and composers are important, too.另外，配角演员、摄影师和作曲也很重要。</p>
+<p>完整答案:Yes, I like watch movie. There are many good movies impress me a lot, such as “Gone with the Wind”, “Sound of Music”. “Shawshank Redemption” and “Forrest Gump”. These films are successful because the ideas and sentiments are really able to touch the audience and they can establish the connection with the audience. Specifically speaking, for a good movie, the plot, the skill of the director, the performance of actors and actresses are all critical. In addition to the talent of a director and a movie star, a film’s social message is of great importance, too. Such as struggle，justice，the pursuit of happiness, marriage, children and even money, they are always true to life. Besides, I think the script plays a big part of a film. Without a good script, even if the director, the leading actor and actress are first-rate, the film can’t possibly be the good one. If a story is too shallow, the film stars won’t have any chance to show their talent. Also, people such as supporting actors and actresses, cameramen and composers are important, too.</p>
+<p>源自:何凯文考研英语。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%80%83%E7%A0%94/" rel="tag">考研</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-【学习笔记】-数据库原理与设计：sql查询语句"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/10/%E3%80%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E8%AE%BE%E8%AE%A1%EF%BC%9Asql%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5/"
+    >[学习笔记]-数据库原理与设计：SQL查询语句</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/02/10/%E3%80%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E8%AE%BE%E8%AE%A1%EF%BC%9Asql%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5/" class="article-date">
+  <time datetime="2020-02-10T02:35:12.000Z" itemprop="datePublished">2020-02-10</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>1.什么是SQL语句？ 结构化查询语句（structured query language,SQL）是关系数据库的标准语言，现已成为国际标准。它具有以下优点：综合统一、高度非过程化、面向集合的操作方式、同一种语法结构提供两种使用方式、语句简介，易学易用。 <img src="http://www.sheensong.top/wordpress/wp-content/uploads/2018/10/SQL%E8%AF%AD%E5%8F%A5.png" alt=""> 2.SQL基本概念 SQL语言支持关系数据库管理系统的三级模式结构，其中外模式对应试图和部分基本表，模式对应基本表，内模式对应存储文件，如图所示： <img src="http://www.sheensong.top/wordpress/wp-content/uploads/2018/10/SQL%E5%AF%B9%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%94%AF%E6%8C%81.png" alt=""> 基本表：独立存储于数据库中的数据表（关系），可有若干个索引。 查询表：查询结果对应的表。 索引：对表中的属性组进行逻辑上排序，可以加快检索速度。 视图：由基表导出的虚表，数据库中只保存视图的定义。 存储文件：以OS文件的形式保存数据库的表、视图、索引等数据库对象。 突然发现之前写的，没写完。算了先发上去吧，后期再补</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-新年伊始"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/01/01/%E6%96%B0%E5%B9%B4%E4%BC%8A%E5%A7%8B/"
+    >新年伊始</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/01/01/%E6%96%B0%E5%B9%B4%E4%BC%8A%E5%A7%8B/" class="article-date">
+  <time datetime="2020-01-01T14:23:35.000Z" itemprop="datePublished">2020-01-01</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>我的 2019年的时光</p>
+<p>消失在了日复一日的学习里</p>
+<p>充实、进步充满了每一天</p>
+<p>停留在了图书馆的座位上</p>
+<p>笔记、试卷占满了所有空间</p>
+<p>固化成了那规律的生物钟</p>
+<p>早起、晚归是不变的旋律</p>
+<p>记录在了每日的问候里</p>
+<p>早、晚安都不曾缺席</p>
+<p>感谢臭（xiao)女（bao)人（bei)的鼓励和陪伴。</p>
+<p>如果情诗只有三行，</p>
+<p>那么我们的故事，</p>
+<p>余生慢慢讲。</p>
+<ul>
+<li><p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/01/april_2020-01-01-21-15-43-032-1024x1024.jpg" alt=""></p>
+</li>
+<li><p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/01/april_2020-01-01-21-20-13-451-1024x1024.jpg" alt=""></p>
+</li>
+<li><p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/01/april_2020-01-01-21-28-03-850-768x1024.jpg" alt=""></p>
+</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%88%91%E7%9A%84%E7%88%B1%E6%83%85%E6%95%85%E4%BA%8B/" rel="tag">我的爱情故事</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+  </article>
+  
+
+  
+  <nav class="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/2/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">下一页</a>
+  </nav>
+  
+</section>
+</div>
+
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2015-2020
+        <i class="ri-heart-fill heart_icon"></i> sheen song
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="未央的Hexo博客"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://shenyu-vip.lofter.com" target="_blank" rel="noopener">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+  </div>
+</body>
+
+</html>
