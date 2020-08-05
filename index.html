@@ -44,6 +44,9 @@
   <div id="app">
     
       
+      <canvas width="1777" height="841"
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999; pointer-events: none;"></canvas>
+      
     <main class="content on">
       
 <section class="cover">
@@ -122,7 +125,19 @@
   <time datetime="2020-07-07T15:52:59.000Z" itemprop="datePublished">2020-07-07</time>
 </a>    
     </div>
+      
+    <div class="article-entry" itemprop="articleBody">
        
+  <p>一、前言</p>
+<p>下面都是个人的一些考研经验，给各位读者做个参考，不喜勿喷，谢谢。</p> 
+      <a class="article-more-link" href="/2020/07/07/2020%E8%80%83%E7%A0%94-%E4%B8%AA%E4%BA%BA%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
 
     <!-- copyright -->
     
@@ -163,7 +178,21 @@
   <time datetime="2020-07-04T14:18:13.000Z" itemprop="datePublished">2020-07-04</time>
 </a>    
     </div>
+      
+    <div class="article-entry" itemprop="articleBody">
        
+  <blockquote>
+<p>从3月疫情期间开始，我就开始追这部剧，直到今日21：00才看完前三部，共计100余集，期间无论是远程办公，亦或是准备研究生复试，再或者上班兼职期间，得空仍旧是追这部剧。所以在此郑重和大家推荐这部剧。</p>
+<p>-- sheen</p>
+</blockquote> 
+      <a class="article-more-link" href="/2020/07/04/%E5%A4%A7%E7%A7%A6%E5%B8%9D%E5%9B%BD-%E4%B8%AA%E4%BA%BA%E7%94%B5%E8%A7%86%E5%89%A7%E6%8E%A8%E8%8D%90/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
 
     <!-- copyright -->
     
@@ -204,7 +233,68 @@
   <time datetime="2020-06-29T13:15:53.000Z" itemprop="datePublished">2020-06-29</time>
 </a>    
     </div>
+      
+    <div class="article-entry" itemprop="articleBody">
        
+  <blockquote>
+<p>Redis是有名的NoSql数据库，一般Linux都会默认支持。但在Windows环境中，可能需要手动安装设置才能有效使用。这里就简单介绍一下Windows下Redis服务的安装方法，希望能够帮到你。</p>
+</blockquote>
+<p>1、要安装Redis，首先要获取安装包。Windows的Redis安装包需要到以下GitHub链接找到。链接：<a href="https://github.com/MSOpenTech/redis" target="_blank" rel="noopener">https://github.com/MSOpenTech/redis</a>。打开网站后，找到Release，点击前往下载页面。</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/o_1.png" alt=""></p>
+<p>2、在下载网页中，找到最后发行的版本（此处是3.2.100）。找到Redis-x64-3.2.100.msi和Redis-x64-3.2.100.zip，点击下载。这里说明一下，第一个是msi微软格式的安装包，第二个是压缩包。</p>
+<blockquote>
+<p>PS：_上面的这个链接貌似不可用的，读者百度可以直接找到最新链接。_这里推荐<a href="https://github.com/tporadowski/redis/releases" target="_blank" rel="noopener">https://github.com/tporadowski/redis/releases</a></p>
+</blockquote>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/o_2.png" alt=""></p>
+<p>3、双击刚下载好的msi格式的安装包（Redis-x64-3.2.100.msi）开始安装。</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/o_3.png" alt=""></p>
+<p>4、选择“同意协议”，点击下一步继续。</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/o_4.png" alt=""></p>
+<p>5、选择“添加Redis目录到环境变量PATH中”，这样方便系统自动识别Redis执行文件在哪里。</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/o_5.png" alt=""></p>
+<p>6、端口号可保持默认的6379，并选择防火墙例外，从而保证外部可以正常访问Redis服务。</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/o_6.png" alt=""></p>
+<p>7、设定最大值为100M。作为实验和学习，100M足够了。</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/o_7.png" alt=""></p>
+<p>8、点击安装后，正式的安装过程开始。稍等一会即可完成。</p>
+<p>9、安装完毕后，需要先做一些设定工作，以便服务启动后能正常运行。使用文本编辑器，这里使用Notepad++，打开Redis服务配置文件。<strong>注意：不要找错了，通常为redis.windows-service.conf，而不是redis.windows.conf。后者是以非系统服务方式启动程序使用的配置文件。</strong></p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/o_9.png" alt=""></p>
+<p>10、找到含有requirepass字样的地方，追加一行，输入requirepass 12345。这是访问Redis时所需的密码，一般测试情况下可以不用设定密码。不过，即使是作为本地访问，也建议设定一个密码。此处以简单的12345来演示。</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/o_10.png" alt=""></p>
+<p>11、点击“开始”&gt;右击“计算机”&gt;选择“管理”。在左侧栏中依次找到并点击“计算机管理（本地）”&gt;服务和应用程序&gt;服务。再在右侧找到Redis名称的服务，查看启动情况。如未启动，则手动启动之。正常情况下，服务应该正常启动并运行了。</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/o_11.png" alt=""></p>
+<p>12、最后来测试一下Redis是否正常提供服务。进入Redis的目录，cd C:\Program Files\Redis。输入redis-cli并回车。（redis-cli是客户端程序）如图正常提示进入，并显示正确端口号，则表示服务已经启动。</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/o_12.png" alt=""></p>
+<p>13、使用服务前需要先通过密码验证。输入“auth 12345”并回车（12345是之前设定的密码）。返回提示OK表示验证通过。</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/o_13.png" alt=""></p>
+<p>14、实际测试一下读写。输入set mykey1 “I love you all!”并回车，用来保存一个键值。再输入get mykey1，获取刚才保存的键值。</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/o_14.png" alt=""></p>
+<h5 id="15、注意事项"><a href="#15、注意事项" class="headerlink" title="15、注意事项"></a>15、注意事项</h5><ul>
+<li>1.Windows使用的这个Redis是64位版本的，32位操作系统的同学就不要折腾了。</li>
+<li>2.<strong>作为服务运行的Redis配置文件，通常为redis.windows-service.conf，而不是redis.windows.conf。小心不要选错了。</strong></li>
+</ul>
+<h5 id="16、修改密码："><a href="#16、修改密码：" class="headerlink" title="16、修改密码："></a>16、修改密码：</h5><h6 id="（1）命令行方式设置"><a href="#（1）命令行方式设置" class="headerlink" title="（1）命令行方式设置"></a>（1）命令行方式设置</h6><p>1.使用命令行设置的基本语法。</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/8a17b3042e6817e9599a304cd356d53da924ced2.png" alt=""></p>
+<p>2.在命令行模式输入，redis-cli 连接到redis</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/a965c6e9ccd2bb664122bbf49b2a04e23fa2c6d2.png" alt=""></p>
+<p>3. 使用config set requirepass 命令设置密码<a href="http://jingyan.baidu.com/album/ff42efa9501763819e2202e4.html?picindex=3" target="_blank" rel="noopener"></a></p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/116b1ae23ea23a42b6019ea43733ec3835bbc0d2.png" alt=""></p>
+<p>我的尝试截图：</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/image-20200624224934922.png" alt=""></p>
+<h6 id="（2）通过配置文件设置密码"><a href="#（2）通过配置文件设置密码" class="headerlink" title="（2）通过配置文件设置密码"></a>（2）通过配置文件设置密码</h6><p>1.打开redis的配置文件</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/image-20200624225425662.png" alt=""></p>
+<p>2.在配置文件中设置密码的格式参考</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/image-20200624225319989.png" alt=""></p>
+<p>3.通过配置文件设置密码，重启redis服务即可生效</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/efb861bd4c7c34b31b3a0d0e5841037de03731d3.png" alt=""></p>
+<h5 id="17、Redis常用的指令"><a href="#17、Redis常用的指令" class="headerlink" title="17、Redis常用的指令"></a>17、Redis常用的指令</h5><p>卸载服务：redis-server –service-uninstall 开启服务：redis-server –service-start 停止服务：redis-server –service-stop</p>
+<p>原文链接：<a href="https://www.cnblogs.com/jaign/articles/7920588.html" target="_blank" rel="noopener">https://www.cnblogs.com/jaign/articles/7920588.html</a> （本文增加了密码修改）</p>
+<p>Write by sheen</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
 
     <!-- copyright -->
     
@@ -245,7 +335,67 @@
   <time datetime="2020-06-24T14:05:52.000Z" itemprop="datePublished">2020-06-24</time>
 </a>    
     </div>
+      
+    <div class="article-entry" itemprop="articleBody">
        
+  <h2 id="Node-js安装及环境配置之Windows篇"><a href="#Node-js安装及环境配置之Windows篇" class="headerlink" title="Node.js安装及环境配置之Windows篇"></a>Node.js安装及环境配置之Windows篇</h2><h5 id="一、安装环境"><a href="#一、安装环境" class="headerlink" title="一、安装环境"></a>一、安装环境</h5><p>1、本机系统：Windows 10 Pro（64位）</p>
+<p>2、Node.js：v6.9.2 LTS（64位）</p>
+<h5 id="二、安装Node-js步骤"><a href="#二、安装Node-js步骤" class="headerlink" title="二、安装Node.js步骤"></a>二、安装Node.js步骤</h5><p>1、下载对应你系统的Node.js版本:<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">https://nodejs.org/en/download/</a></p>
+<p>2、选安装目录进行安装</p>
+<p>3、环境配置</p>
+<p>4、测试</p>
+<h5 id="三、前期准备"><a href="#三、前期准备" class="headerlink" title="三、前期准备"></a>三、前期准备</h5><h6 id="1、Node-js简介"><a href="#1、Node-js简介" class="headerlink" title="1、Node.js简介"></a>1、Node.js简介</h6><p>简单的说 Node.js 就是运行在服务端的 JavaScript。Node.js 是一个基于 <a href="https://developers.google.com/v8/" target="_blank" rel="noopener">Chrome V8</a> 引擎的 JavaScript 运行环境。Node.js 使用了一个事件驱动、非阻塞式 I/O 的模型，使其轻量又高效。Node.js 的包管理器 <a href="https://www.npmjs.com/" target="_blank" rel="noopener">npm</a>，是全球最大的开源库生态系统。</p>
+<h6 id="2、下载Node-js"><a href="#2、下载Node-js" class="headerlink" title="2、下载Node.js"></a>2、下载Node.js</h6><p>打开官网下载链接:<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">https://nodejs.org/en/download/</a> 我这里下载的是node-v6.9.2-x64.msi,如下图：</p>
+<blockquote>
+<p>PS：nodejs中文网下面直接有阿里镜像源，可以点进那个里面下载，速度提升好几倍。</p>
+</blockquote>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/2267589-bb1555667d5355af.png" alt=""></p>
+<h5 id="四、开始安装"><a href="#四、开始安装" class="headerlink" title="四、开始安装"></a>四、开始安装</h5><p>1、下载完成后，双击“node-v6.9.2-x64.msi”，开始安装Node.js</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/2267589-131af95ee6ebc811.png" alt=""></p>
+<p>点击【Next】按钮</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/2267589-69648c7b8aa496fe.png" alt=""></p>
+<p>勾选复选框，点击【Next】按钮</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/2267589-b87cc08121e1c880.png" alt=""></p>
+<p>修改好目录后，点击【Next】按钮</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/2267589-f40b21a6ccbebefa.png" alt=""></p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/2267589-3a9b3706c81fb5fa.png" alt=""></p>
+<p>安装完后点击【Finish】按钮完成安装</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/2267589-adca4baa7f0d7190.png" alt=""></p>
+<p>至此Node.js已经安装完成，可以先进行下简单的测试安装是否成功了，后面还要进行环境配置 在键盘按下【win+R】键，输入cmd，然后回车，打开cmd窗口</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/2267589-19531194e378a38a.png" alt=""></p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/2267589-2c9ced41baca7c1e.png" alt=""></p>
+<p>安装完后的目录如下图所示：</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/2267589-261e36d32bc47133.png" alt=""></p>
+<p>此处说明下：新版的Node.js已自带npm，安装Node.js时会一起安装，npm的作用就是对Node.js依赖的包进行管理，也可以理解为用来安装/卸载Node.js需要装的东西</p>
+<h5 id="五、环境配置"><a href="#五、环境配置" class="headerlink" title="五、环境配置"></a>五、环境配置</h5><p><strong>说明：这里的环境配置主要配置的是npm安装的全局模块所在的路径，以及缓存cache的路径，之所以要配置，是因为以后在执行类似：npm install express [-g] （后面的可选参数-g，g代表global全局安装的意思）的安装语句时，会将安装的模块安装到【C:\Users\用户名\AppData\Roaming\npm】路径中，占C盘空间。</strong> <strong>例如：我希望将全模块所在路径和缓存路径放在我node.js安装的文件夹中，则在我安装的文件夹【D:\Develop\nodejs】下创建两个文件夹【node_global】及【node_cache】如下图：</strong></p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/2267589-51ed23771f3a86e2.png" alt=""></p>
+<p>创建完两个空文件夹之后，打开cmd命令窗口，输入</p>
+<p>npm config set prefix “D:\Develop\nodejs\node_global”<br>npm config set cache “D:\Develop\nodejs\node_cache”</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/2267589-e22cf1b878275757.png" alt=""></p>
+<p>接下来设置环境变量，关闭cmd窗口，“我的电脑”-右键-“属性”-“高级系统设置”-“高级”-“环境变量”</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/2267589-7fd332c898799325.png" alt=""></p>
+<p>进入环境变量对话框，在【系统变量】下新建【NODE_PATH】，输入【D:\Develop\nodejs\node_global\node_modules】，将【用户变量】下的【Path】修改为【D:\Develop\nodejs\node_global】</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/2267589-ca94af8646fab0b4.png" alt=""></p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/2267589-d469f4d79081582a.png" alt=""></p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/2267589-f46d2598f3d53958.png" alt=""></p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/2267589-3c48768a577428f5.png" alt=""></p>
+<h5 id="六、更换阿里镜像源"><a href="#六、更换阿里镜像源" class="headerlink" title="六、更换阿里镜像源"></a>六、更换阿里镜像源</h5><p>Node 的官方模块仓库网速太慢，模块仓库需要切换到阿里的源。</p>
+<p>不安装 c<a href="https://www.baidu.com/s?wd=npm&tn=24004469_oem_dg&rsv_dl=gh_pl_sl_csd" target="_blank" rel="noopener">npm</a> 只用<a href="https://www.baidu.com/s?wd=%E6%B7%98%E5%AE%9D&tn=24004469_oem_dg&rsv_dl=gh_pl_sl_csd" target="_blank" rel="noopener">淘宝</a>镜像，设置 npm 的镜像：</p>
+<p>npm config set registry <a href="https://registry.npm.taobao.org/" target="_blank" rel="noopener">https://registry.npm.taobao.org/</a></p>
+<p>执行下面的命令，确认是否切换成功。</p>
+<p>npm config get registry</p>
+<p>切换成功后，显示结果如下：</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/image-20200624215523139-1.png" alt=""></p>
+<h5 id="七、测试"><a href="#七、测试" class="headerlink" title="七、测试"></a>七、测试</h5><p>配置完后，安装个module测试下，我们就安装最常用的express模块，打开cmd窗口， 输入如下命令进行模块的全局安装：</p>
+<p>npm install express -g     # -g是全局安装的意思</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/2267589-fb7a6e61c1b99541.png" alt=""></p>
+<p>原文链接（本文加了换源）：<a href="https://www.cnblogs.com/zhouyu2017/p/6485265.html" target="_blank" rel="noopener">https://www.cnblogs.com/zhouyu2017/p/6485265.html</a></p>
+<p>Write by sheen</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
 
     <!-- copyright -->
     
@@ -286,7 +436,246 @@
   <time datetime="2020-06-23T13:52:19.000Z" itemprop="datePublished">2020-06-23</time>
 </a>    
     </div>
+      
+    <div class="article-entry" itemprop="articleBody">
        
+  <blockquote>
+<p>由于这次是直接观看的youtube上国外大佬的英文原视频，虽然通过插件配上了字幕，可是还是要靠理解英文字幕来加以学习，故没来得及做笔记，只记下了代码。</p>
+</blockquote>
+<pre><code>//变量命名原则：驼峰命名法：第一个字母小写，之后每个单词首字母都大写
+//方法（函数）命名原则：
+//JS中原始数据类型有：String、number、boolean、undefined、null、Symbol(ES6新增)
+//JS中引用数据类型有：Object、array、function
+
+//下面是我的第一个JS代码
+console.log(&quot;hello world&quot;);
+
+//ES6之后，更推荐用let而不是var来定义变量。
+//注意JS区分大小写
+let name = &apos;sheen&apos;;
+console.log(name);
+
+//const定义一个常量，不可像变量那样修改。
+const interestRate = 0.5;
+console.log(interestRate);
+
+//定义一个对象（变量）
+let person = {
+    name:&apos;sheen&apos;,
+    age:23,
+
+    getAge:function(){
+        return this.age;
+    }
+};
+person.name = &apos;sheensong&apos;;  //点标记法修改
+console.log(person);
+person[&apos;age&apos;] = &apos;22&apos;;  //括号标记法修改
+console.log(person);
+console.log(&quot;年龄是：&quot; + person.getAge());
+
+//定义一个数组
+let selectedArray = [&apos;sgh&apos;,&apos;yc&apos;];
+selectedArray[2] = 1;
+console.log(selectedArray,selectedArray.length);
+
+//定义一个函数,执行一个任务
+function showFunction(name,needless){
+    console.log(&quot;Hello &quot; + name + &apos;  &apos; + needless);
+    return true; //返回结果
+}
+console.log(showFunction(&quot;sheen and yc&quot;));
+
+//---------------------------next------------------------------------//
+//定义一个对象（常量）
+const circle={
+    radius:1,  //半径
+    Location:{
+        x:1,
+        u:1
+    },
+    draw:function(){
+        console.log(&apos;draw circle&apos;);
+    }
+};
+circle.draw()
+
+//工厂函数
+function createCircle(radius){
+    return {
+        radius,
+        draw:function(){
+            console.log(&quot;draw &quot; + radius);
+        }
+    };
+}
+const circle2 = createCircle(1);
+circle2.draw();
+
+//构造函数
+function Circle(radius){
+    console.log(&quot;this &quot;,this)
+    this.radius=radius;
+    this.draw = function(){
+        console.log(&quot;构造函数 draw &quot;+radius);
+    }
+}
+const another = new Circle(2);
+
+//不用new的方式
+Circle.call({},3,4);
+Circle.apply({},[3,4]);
+
+//---------------------------next------------------------------------//
+//值对象与引用对象的区别
+let x = 10;
+let y = x;
+x = 20;
+
+let x2 = {value:10};
+let y2 = x2;
+x2.value = 20;
+
+let number = 10;
+function increase(number){
+    number++;
+}
+increase(number);
+console.log(number);
+
+let obj = {value:10};
+function increase(obj){
+    obj.value++;
+}
+increase(obj);
+console.log(obj);
+
+//---------------------------next------------------------------------//
+function Circle(radius){
+    this.radius=radius;
+    this.draw = function(){
+        console.log(&quot;draw &quot;+radius);
+    }
+}
+//动态添加和修改属性：
+const circle3 = new Circle(2);
+circle3.location={ x:1};
+//属性名称含有特殊字符或者名字未知需要通过其他方式得知，可以利用下面这个方式动态调整属性
+const propertyName = &apos;location&apos;; 
+circle3[propertyName] = { x:1 };
+
+//动态删除某些属性
+delete circle3.location;  //或者 delete circle3[&apos;location&apos;]; 
+
+//---------------------------next------------------------------------//
+//遍历或者枚举对象的属性
+function Circle(radius){
+    this.radius=radius;
+    this.draw = function(){
+        console.log(&quot;draw &quot;+radius);
+    }
+}
+const circle4 = new Circle(10);
+
+//for in 循环
+for (let key in circle4){
+    if (typeof circle4[key] != &apos;function&apos;)
+        console.log(key,circle4[key] );
+}
+//Object自带函数
+const keys = Object.keys(circle4);
+console.log(keys);
+//判断某一个属性
+if(&apos;radius&apos; in circle4)
+    console.log(&apos;Circle has a radius&apos;);
+
+//---------------------------next------------------------------------//
+//抽象：内部是实现细节，外部是公共接口，隐藏所有不必要的细节，面向对象的要点就是这！
+function Circle(radius){
+    this.radius=radius;
+    let defaultLocation = { x:0, y:0};// let定义的都属于私有的(闭包)，不允许外界访问
+    let computerOptionLocation = function(factor){
+        //...
+    };
+    this.draw = function(){
+        computerOptionLocation(0.1)
+        //defauleLocation
+        //this.radius
+        console.log(&quot;draw &quot;+radius);
+    };
+}
+const circle5 = new Circle(10);
+Circle5.draw();
+
+//---------------------------next------------------------------------//
+//Getter和Setter方法
+function Circle(radius){
+    this.radius=radius;
+    let defaultLocation = { x:0, y:0};
+    this.draw = function(){
+        console.log(&quot;draw &quot;+radius);
+    };
+    Object.defineProperty(this,&apos;defaultLocation&apos;,{
+        get:function(){
+            return defaultLocation;
+        },
+        set:function(value){
+            if (!value.x ||!value.y)
+                throw new Error(&apos;无效的位置！&apos;);
+            defaultLocation = value;
+        }
+    });
+}
+
+const circle6 = new Circle(6);
+circle6.draw();
+circle6.defaultLocation=1;
+
+//---------------------------next------------------------------------//
+//练习是学习JS的不二法宝，秒表的JS代码如下：
+function StopWatch(){
+    let startTime,endTime,running=false,duration = 0;
+
+    this.start = function(){
+        if(running)
+            throw new Error(&quot;StopWatch已经开始了。&quot;);
+
+        running =true;
+
+        startTime = new Date();
+    };
+
+    this.stop = function(){
+        if(!running)
+            throw new Error(&apos;StopWatch已经结束了。&apos;);
+
+        running = false;
+
+        endTime = new Date();
+        const seconds = (endTime.getTime() - startTime.getTime()) / 1000;
+        duration += seconds;
+    };
+
+    this.reset = function(){
+        startTime=null;
+        endTime=null;
+        running=false;
+        duration=0;
+    };
+
+    Object.defineProperty(this,&apos;duration&apos;,{
+        get:function(){
+            return duration;
+        },
+    });
+}</code></pre><p>YouTube链接：<a href="https://www.youtube.com/watch?v=W6NZfCO5SIk" target="_blank" rel="noopener">https://www.youtube.com/watch?v=W6NZfCO5SIk</a></p>
+<p><a href="https://www.youtube.com/watch?v=PFmuCDHHpwk" target="_blank" rel="noopener">https://www.youtube.com/watch?v=PFmuCDHHpwk</a></p>
+<p>Write by sheen</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
 
     <!-- copyright -->
     
@@ -327,7 +716,37 @@
   <time datetime="2020-06-08T01:10:24.000Z" itemprop="datePublished">2020-06-08</time>
 </a>    
     </div>
+      
+    <div class="article-entry" itemprop="articleBody">
        
+  <h5 id="1、说一些你比较常用linux指令"><a href="#1、说一些你比较常用linux指令" class="headerlink" title="1、说一些你比较常用linux指令"></a>1、说一些你比较常用linux指令</h5><p>　　1.1、ls/ll、cd、mkdir、rm-rf、cp、mv、ps -ef | grep xxx、kill、free-m、tar -xvf file.tar、（说那么十几二十来个估计差不多了）</p>
+<h5 id="2、查看进程（例：如何查看所有xx进程）"><a href="#2、查看进程（例：如何查看所有xx进程）" class="headerlink" title="2、查看进程（例：如何查看所有xx进程）"></a>2、查看进程（例：如何查看所有xx进程）</h5><p>　　2.1、ps -ef | grep xxx</p>
+<p>　　2.2、ps -aux | grep xxx（-aux显示所有状态）</p>
+<h5 id="3、杀掉进程"><a href="#3、杀掉进程" class="headerlink" title="3、杀掉进程"></a>3、杀掉进程</h5><p>　　3.1、kill -9[PID] —(PID用查看进程的方式查找)</p>
+<h5 id="4、启动-停止服务"><a href="#4、启动-停止服务" class="headerlink" title="4、启动/停止服务"></a>4、启动/停止服务</h5><p>　　4.1、cd到bin目录cd/</p>
+<p>　　4.2、./startup.sh –打开（先确保有足够的权限）</p>
+<p>　　4.3、./shutdown.sh —关闭</p>
+<h5 id="5、查看日志"><a href="#5、查看日志" class="headerlink" title="5、查看日志"></a>5、查看日志</h5><p>　　5.1、cd到服务器的logs目录（里面有xx.out文件）</p>
+<p>　　5.2、tail -f xx.out –此时屏幕上实时更新日志。ctr+c停止</p>
+<p>　　5.3、查看最后100行日志 tail -100 xx.out</p>
+<p>　　5.4、查看关键字附件的日志。如：cat filename | grep -C 5 ‘关键字’（关键字前后五行。B表示前，A表示后，C表示前后） —-使用不多</p>
+<p>　　5.5、还有vi查询啥的。用的也不多。</p>
+<h5 id="6、查看端口：（如查看某个端口是否被占用）"><a href="#6、查看端口：（如查看某个端口是否被占用）" class="headerlink" title="6、查看端口：（如查看某个端口是否被占用）"></a>6、查看端口：（如查看某个端口是否被占用）</h5><p>　　6.1、netstat -anp | grep 端口号（状态为LISTEN表示被占用）</p>
+<h5 id="7、查找文件"><a href="#7、查找文件" class="headerlink" title="7、查找文件"></a>7、查找文件</h5><p>　　7.1、查找大小超过xx的文件： find . -type f -size +xxk —–(find . -type f -mtime -1 -size +100k -size-400k)–查区间大小的文件</p>
+<p>　　7.2、通过文件名：find / -name xxxx —整个硬盘查找</p>
+<p>　　其余的基本上不常用</p>
+<h5 id="8、vim（vi）编辑器"><a href="#8、vim（vi）编辑器" class="headerlink" title="8、vim（vi）编辑器　　"></a>8、vim（vi）编辑器　　</h5><p>有命令模式、输入模式、末行模式三种模式。 　　</p>
+<p>命令模式：查找内容(/abc、跳转到指定行(20gg)、跳转到尾行(G)、跳转到首行(gg)、删除行(dd)、插入行(o)、复制粘贴(yy,p) 　　</p>
+<p>输入模式：编辑文件内容 　　</p>
+<p>末行模式：保存退出(wq)、强制退出(q!)、显示文件行号(set number) 　　</p>
+<p>在命令模式下，输入a或i即可切换到输入模式，输入冒号(:)即可切换到末行模式；在输入模式和末行模式下，按esc键切换到命令模式</p>
+<p>原文链接：<a href="https://www.cnblogs.com/cbslock/p/10136220.html" target="_blank" rel="noopener">https://www.cnblogs.com/cbslock/p/10136220.html</a></p>
+<p>Write by sheen</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
 
     <!-- copyright -->
     
@@ -368,7 +787,22 @@
   <time datetime="2020-06-07T13:59:58.000Z" itemprop="datePublished">2020-06-07</time>
 </a>    
     </div>
+      
+    <div class="article-entry" itemprop="articleBody">
        
+  <p><strong>毕业心语</strong></p>
+<p>总觉得毕业遥遥无期，</p>
+<p>可是转眼间已无归期。</p>
+<p>新的旅途亦有新期许，</p>
+<p>加油努力仍是主旋律。</p>
+<p>--谨以此篇纪念毕业季</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/1591538259039.jpeg" alt=""></p>
+<p>Write by sheen</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
 
     <!-- copyright -->
     
@@ -409,7 +843,78 @@
   <time datetime="2020-05-02T04:03:12.000Z" itemprop="datePublished">2020-05-02</time>
 </a>    
     </div>
+      
+    <div class="article-entry" itemprop="articleBody">
        
+  <p>一句话：修改的核心就是把能改的关键词都替换掉，再变换句式。</p>
+<p>下面演示下如何借用PaperOK系统提供的同义词并按照修改方法进行快速的修改。</p>
+<p>例句：<strong>免除了每年向地主交纳地租粮六百亿斤的负担以及各种超经济剥削。</strong> 在我们的系统右下方有该句的同义词</p>
+<p>免除：罢黜,免去,免去</p>
+<p>每年：每一年</p>
+<p>负担：包袱,承担,承当,肩负</p>
+<p>以及：和</p>
+<p>各种：各类,种种</p>
+<p>剥削：抽剥,聚敛,克扣,盘剥,抽剥,聚敛,克扣,盘剥</p>
+<p>第一步 我们可以替换为:</p>
+<p>“_免去_了每一年向地主交纳地租粮六百亿斤的_承担<em>和</em>种种_经济盘剥。”</p>
+<p><strong>修改分析：</strong>第一步只是简单的套用我们系统提供的同义词，很多人修改的时候也只是这样简单的换几个关键词，甚至只是简单的换下词的位置，或者简单的加减几个词，这样的修改是不够的。那我们再重新看下这个句子“免除了每年向地主交纳地租粮六百亿斤的负担以及各种超经济剥削。”这句中就地主、亿、经济这几个关键词估计换不了，其他的词都要换，然后再变换句式，比如主被动，倒装等等。虽然我们系统有20多万同义词库，但也不能把所有词都给出同义词；另外当一个词用于不同文中时意思肯定是不一样的，所以难免给的词有些不适用，这时亲还可以用到百度，亲可以百度看看这个词的同义词，或者这个词的意思，再自己总结归纳下。这样认真修改之后改成“每一年都免去了种种的经济盘剥，不再需要承担向地主交粮食600亿斤。”当然还是可以再改，比如600亿斤可以是300亿公斤，300亿千克，0.3亿吨；地主改土地主等。</p>
+<p>PaperOK与知W的区别</p>
+<p>几乎所有学校的检测系统都是知W，但知W检测一次350元，一篇论文修改好平均要4次，那就要一千多元。虽如今土豪多，也许不差钱，但好多学校还禁止提前检测，提前检测知W学校会有记录，会直接取消毕业。那就需要个能完美取代知W的检测系统。我们的系统的原则就是：更准，更严，更快，更安全，更便宜。本文从各个检测系统的原理出发，全面分析哪些情况可以不测知W就可以知道必过知W。</p>
+<p>任何检测系统主要是两大指标影响重复率：检测算法和对比库。即把论文中的每个句子都拿到对比库中对比，并按检测算法给出每个句子的重复率，然后最终算出论文总的重复率。很明显存在这么一个充分条件：当两个不同系统的对比库中都有您参考过的资料，那么哪个系统检测算法较严格，检测出来的相似度就比较高。</p>
+<p>PaperOK检测系统的检测算法是最严格的，比知W也严格一点。接下来分析下我们系统和知W对比库的区别。对比库上都有互联网资源，学术期刊，学术论文，自建库，而知W还有各届大部分学生论文。大家一般参考的有网络资源，书刊，知W资料。互联网资源两个系统数据都一样；书刊有交集但互不包含；知W资料虽是独家，但这资料写的时候可能参考网络，写后也可能发布到网络，所以绝大部分可以被检测到，但不是全部。两大系统都有自建库，顾名思义就是自己建立属于自己独有的对比库。任何检测系统包括知W都不可能网罗天下所有数据。</p>
+<p>论文检测常识</p>
+<p>检测常识：任何系统（包括知W）两次检测都有少量变化，如知W早上测25%，下午一样内容再测也可能31%，所以建议修改到比学校要求的低十几才最稳妥。</p>
+<p>（1）论文的段落与格式</p>
+<p>论文检测基本都是整篇文章上传，上传后，论文检测软件首先进行部分划分，上交的最终稿件格式对抄袭率有很大影响。不同段落的划分可能造成几十个字的小段落检测不出来。因此，我们可以通过划分多的小段落来降低抄袭率。</p>
+<p>（2）数据库</p>
+<p>论文检测，多半是针对已发表的毕业论文，期刊文章，还有会议论文进行匹配的，有的数据库也包含了网络的一些文章。这里给大家透露下，很多书籍是没有包含在检测数据库中的。之前朋友从一本研究性的著作中摘抄了大量文字，也没被查出来。就能看出，这个方法还是有效果的。</p>
+<p>（3）章节变换</p>
+<p>很多同学改变了章节的顺序，或者从不同的文章中抽取不同的章节拼接而成的文章，对抄袭检测的结果影响几乎为零。所以PaperOK论文检测建议大家不要以为抄袭了几篇文章，或者几十篇文章就能过关。</p>
+<p>(4)标注参考文献</p>
+<p>参考别人的文章和抄袭别人的文章在检测软件中是如何界定的。其实很简单，我们的论文中加了参考文献的引用符号，但是在抄袭检测软件中。都是统一看待，软件的阀值一般设定为1%，例如一篇文章有5000字,文章的1%就是50字，如果抄袭了多于50，即使加了参考文献,也会被判定为抄袭。</p>
+<p>(5)字数匹配</p>
+<p>PaperOK论文检测系统相对比较严格，只要一句话有50%以上单位的字数匹配一致，就被认定为抄袭。</p>
+<p>常见的修改误区与修改方法</p>
+<p>误区一：知W是连续13个字以上重复的才算抄袭。知W是连续13个字或以上重复的才算抄袭;这两句就多了个“或”，若检多少字算抄袭也不是定数，不然上百字的长句必误判抄袭，短句必漏判。</p>
+<p>误区二：将重复的都删掉。删多了总字数也少了，重复率是抄袭字数除总字数。</p>
+<p>误区三：改变句式，改变字的顺序。无需连续也算重复。</p>
+<p>误区四：原来的字几乎没改只是加了好多字。相当于稀释重复率，20字变40字后重复也还有50%，且新加的字可能又和其他重复。</p>
+<p>正确方法：重复的字能换的都换，用同义词换，用意思换或通过换句式来换。（主被动，肯定否定，倒装等）例如一个重复的句子有十个字，换一个字有很大可能和其他句子又相似，如果换9个字那几乎不可能了。</p>
+<p>相信亲现在对论文的修改方法以及要修改到什么程度已经有了了解。另外如果看完修改秘籍后在修改中还是有不懂改的，亲可以随时联系我们的客服，我们有专业的团购为亲解答各种修改方面的问题。有同学朋友要检测也帮忙推荐哦，只要选择我们，我们定能让亲满意。祝亲和亲的小伙伴们都顺利毕业。测不出知W可以倒闭了。所以检测系统不用连续也可以检测到抄袭，且重复</p>
+<p>方法一：外文文献翻译法</p>
+<p>原理：知网论文反抄袭检测系统和万方数据的系统都不收录外文资料。查阅研究领域外文文献，特别是高水平期刊的文献，比如Science，Nature，WaterRes等，将其中的理论讲解翻译成中文，放在自己的论文中。</p>
+<p>优点：1、每个人语言习惯不同，翻译成的汉语必然不同。因此即使是同一段文字，不同人翻译了之后，也 不会出现抄袭的情况。2、外文文献的阅读，可以提升自身英语水平，拓展专业领域视野。缺点：英文不好特别是专业英文不好的同学实施起来比较费劲。</p>
+<p>方法二：变换措辞另述法(又称改写法)</p>
+<p>方法：先读懂别人的论文文字然后按照意思重写，或变换句式结构，更改主被动语态，或更换关键词。比如，将“弯弯的月亮”改变成：“天上有个弯弯的像镰刀一样的月亮”。这样改后，就是创新了，论文反抄袭检测系统就拿你没招了。 缺点：费时费力，在这个时间就是金钱的社会，大部分同学能抽出来写论文的时间也就是几天而已，这样有点太没效率了。</p>
+<p>方法三：google翻译法</p>
+<p>原理：跟方法一差不多，用翻译软件将语句多次翻译后，语句结构，表达方式大不同，就算检测系统再NB，也查不出来的。</p>
+<p>方法：将别人论文里的文字，用google翻译成英文，再翻译回来，句式和结构就会发生改变，再自行修改下语病后，即可顺利躲过查重。复杂点可将文字翻译能英文，再翻译能日文，然后再翻译回来。只要你愿意，可以随意发挥。</p>
+<p>缺点：跟技巧一差不错，需要较大的修改，有的话是一点都不通顺的，需要一句一句的修改。</p>
+<p>方法四：减头去尾，中间换语序</p>
+<p>将别人论文里的文字，头尾换掉中间留下，留下的部分改成被动句，句式和结构就会发生改变，再自行修改下语病后，即可顺利躲过查重。优点：方便快捷，可以一大段一大段的修改。缺点：中文没学好的，会很费劲，要想半天。</p>
+<p>方法五：转换图片法</p>
+<p>将别人论文里的文字，截成图片，放在自己的论文里。因为知网查重系统目前只能查文字，而不能查图片和表格，因此可以躲过查重。优点：比改句序更加方便快捷。缺点：用顺手了容易出现整页都是图片的情况，会影响整个论文的字数统计。</p>
+<p>方法六：插入文档法</p>
+<p>将某些参考引用来的文字通过word文档的形式插入到论文中。优点：此法比方法四更甚一筹，因为该方法日后还可以在所插入的文档里进行重新编辑，而图片转换法以后就不便于再修改了。</p>
+<p>方法七：插入空格法</p>
+<p>将文章中所有的字间插入空格，然后将空 格 字 间距调到最小。因为查重的根据是以词为基础的，空格切断了词语，自然略过了查重系统。优点：从查重系统的原理出发，可靠性高。缺点：工作量极大，课可以考虑通过宏完成，但宏的编制需要研究。</p>
+<p>方法八：自己原创法</p>
+<p>自己动手写论文,在写作时,要么不原文复制粘贴;要么正确的加上引用。优点：基本上绝对不会担心查重不通过，哪怕这个查重系统的阈值调的再低。缺点：如果说优缺点的话，就是写完一篇毕业论文，可能会死掉更多的脑细胞。</p>
+<p>基本修改方法</p>
+<p>（1）逐句修改，逐段修改；</p>
+<p>（2）大量转换相近词，适当填词、填句，转换因果关系，只要不背离原文意思即可；</p>
+<p>（3）字数宁多不少；</p>
+<p>（4）文章格式一般是 宋体、小四、行距1.5倍、标题加粗等，修改时注意不得改动稿件格式；</p>
+<p>（5）修改后的文章一定要校对，通读两遍，不得出现语言逻辑顺序混乱、语言不通、错别字等低级错误；</p>
+<p>（6）遇到非常难以修改的学术性内容，可以在不改变原文意思的前提下，适当删除，遇到《……报告》等较长书名、报告等，可以直接修改成“根据相关资料、根据有关文献统计，根据有关报告”等内容。</p>
+<p>注意：修改时一定要改动大，一句话里只加几个例如“的、是、或者、因为”之类的介词、关联词也不行，必须将上述修改方法全部运用起来进行修改，但是不能按照自己的意思将原文进行颠覆性修改，一定要注意逐句逐段。第一步：初稿一般重复率会比较高，可以用PaperOK去检测，然后逐句修改。这个系统是逐句检测的，也就是说你抄的任何一句话都会被检测出来。这种检测算法比较严格，从程序的角度分析这种算法比较简单。</p>
+<p>©原文链接：<a href="https://www.paperok.com/" target="_blank" rel="noopener">https://www.paperok.com</a></p>
+<p>Write by sheen</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
 
     <!-- copyright -->
     
@@ -450,7 +955,144 @@
   <time datetime="2020-04-30T00:32:06.000Z" itemprop="datePublished">2020-04-30</time>
 </a>    
     </div>
+      
+    <div class="article-entry" itemprop="articleBody">
        
+  <blockquote>
+<p>时间序列就是以时间为自变量的一系列数据。例如, 24小时的温度,各种产品一个月的价格变动, 一个公司一年的股票价格。 现在前沿深度学习模型比如LSTM能够捕捉时间序列的规律，因此可以用来预测数据未来的趋势。在这篇文章中，你可以了解到如何使用LSTM深度学习算法使用时间序列来预测未来。</p>
+</blockquote>
+<p><strong>数据集</strong></p>
+<p>我们将会使用的数据来自Python Seaborn包。首先，我们先导入必要的包：</p>
+<p>import torch<br>import torch.nn as nn<br>import warnings<br>warnings.filterwarnings(“ignore”)<br>import seaborn as sns<br>import numpy as np<br>import pandas as pd<br>import matplotlib.pyplot as plt<br>%matplotlib inline</p>
+<p>我们先print出Seaborn的所有内置数据集列表：</p>
+<p>sns.get_dataset_names()</p>
+<p>[‘anscombe’,<br> ‘attention’,<br> ‘brain_networks’,<br> ‘car_crashes’,<br> ‘diamonds’,<br> ‘dots’,<br> ‘exercise’,<br> ‘flights’,<br> ‘fmri’,<br> ‘gammas’,<br> ‘iris’,<br> ‘mpg’,<br> ‘planets’,<br> ‘tips’,<br> ‘titanic’]</p>
+<p>我们将要使用的数据集是Seaborn中的航班数据集，在jupyter notebook中加载：</p>
+<p>flight_data = sns.load_dataset(“flights”)<br>flight_data.head()</p>
+<p>序号</p>
+<p><strong>year</strong></p>
+<p><strong>month</strong></p>
+<p><strong>passengers</strong></p>
+<p>0</p>
+<p>1949</p>
+<p>January</p>
+<p>112</p>
+<p>1</p>
+<p>1949</p>
+<p>February</p>
+<p>118</p>
+<p>2</p>
+<p>1949</p>
+<p>March</p>
+<p>132</p>
+<p>3</p>
+<p>1949</p>
+<p>April</p>
+<p>129</p>
+<p>4</p>
+<p>1949</p>
+<p>May</p>
+<p>121</p>
+<p>这个数据集有个属性，分别是时间（年、月）和乘客数量。乘客数量这列包含了在一个月中乘客的总量。我们来看看数据集的大小：</p>
+<p>flight_data.shape </p>
+<p>(144, 3)</p>
+<p>你可以看到这个数据集有144行3列意味着它包含了十二年的乘客记录。</p>
+<p>我们的任务是基于十二年的132个月中旅行乘客的数量来预测往后乘客的数量。由上面的输出可以知道，我们有144个的记录，所以我们将把一开始的132个月当成训练集，最后的十二个月当成测试集。</p>
+<p>我们先画出每个月旅行乘客数量的直方图。第一步是调整图像大小：</p>
+<p>fig_size = plt.rcParams[“figure.figsize”]<br>fig_size[0]=15<br>fig_size[1]=5<br>plt.rcParams[“figure.figsize”]= fig_size</p>
+<p>下一步是画图：</p>
+<p>plt.title(‘Month vs Passenger’)<br>plt.ylabel(‘Total Passengers’)<br>plt.xlabel(‘Months’)<br>plt.grid(True)<br>plt.autoscale(axis=’x’,tight=True)<br>plt.plot(flight_data[‘passengers’])</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/F39DA562F9984E838B6C424054E6E868.png" alt="F39DA562F9984E838B6C424054E6E868"></p>
+<p>从这个输出中可以看出，这十二年的乘机旅行乘客人数在增加。还可以看出乘客数量一年中有波动，可能的原因是暑假和寒假的乘客数量相对别的时期较多。</p>
+<p><strong>数据预处理</strong></p>
+<p>我们数据集属性的类型用下面这段代码来展示：</p>
+<p>flight_data.columns<br>​<br>Index([‘year’, ‘month’, ‘passengers’], dtype=’object’)</p>
+<p>第一步我们应该把乘客数改成浮点类型：</p>
+<p>all_data = flight_data[‘passengers’].values.astype(float)</p>
+<p>现在如果你printall_data，你会发现下面的浮点类型值：</p>
+<p>print(all_data)</p>
+<p>[112. 118. 132. 129. 121. 135. 148. 148. 136. 119. 104. 118. 115. 126.<br> 141. 135. 125. 149. 170. 170. 158. 133. 114. 140. 145. 150. 178. 163.<br> 172. 178. 199. 199. 184. 162. 146. 166. 171. 180. 193. 181. 183. 218.<br> 230. 242. 209. 191. 172. 194. 196. 196. 236. 235. 229. 243. 264. 272.<br> 237. 211. 180. 201. 204. 188. 235. 227. 234. 264. 302. 293. 259. 229.<br> 203. 229. 242. 233. 267. 269. 270. 315. 364. 347. 312. 274. 237. 278.<br> 284. 277. 317. 313. 318. 374. 413. 405. 355. 306. 271. 306. 315. 301.<br> 356. 348. 355. 422. 465. 467. 404. 347. 305. 336. 340. 318. 362. 348.<br> 363. 435. 491. 505. 404. 359. 310. 337. 360. 342. 406. 396. 420. 472.<br> 548. 559. 463. 407. 362. 405. 417. 391. 419. 461. 472. 535. 622. 606.<br> 508. 461. 390. 432.]</p>
+<p>下一步，我们将要把数据集分为训练集和测试集。LSTM算法将会在训练集上训练。训练出的模型将会使用在测试集上，用来预测未来。预测结果将会和实际结果作比较。</p>
+<p>test_data_size =12<br>​<br>train_data = all_data[:-test_data_size]<br>test_data = all_data[-test_data_size:]</p>
+<p>现在我们pirnt出训练集和测试集的长度：</p>
+<p>print(len(train_data))<br>print(len(test_data))</p>
+<p>132<br>12</p>
+<p>我们的数据集还没有标准化。乘客初始的总量远少于最后几年的数量。我们将使用线性函数归一化（min/max scaling）来使所有数据的范围在0~1之间</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/gongshi.png" alt="gongshi"></p>
+<p>即x′=x−min(x)/max(x)−min(x)∗(feature_range[1]−feature_range[0])+feature_range[0]</p>
+<p>我们会使用sklearn.preprocessing模块中的MinMxaScaler类来归一化数据。</p>
+<p>from sklearn.preprocessing import MinMaxScaler<br>​<br>scaler = MinMaxScaler(feature_range=(-1,1))<br>train_data_normalized = scaler.fit_transform(train_data .reshape(-1,1))</p>
+<p>我们print出归一化的前五个元素和后五个元素：</p>
+<p>print(train_data_normalized[:5])<br>print(train_data_normalized[-5:])</p>
+<p>[[-0.96483516]<br> [-0.93846154]<br> [-0.87692308]<br> [-0.89010989]<br> [-0.92527473]]<br>[[1.        ]<br> [0.57802198]<br> [0.33186813]<br> [0.13406593]<br> [0.32307692]]</p>
+<p>你可以看到数据集的值在-1和1之间，值得注意的是归一化只能用在数据集而不能用在测试集。如果归一化用在测试集，会有信息从训练集泄露到测试集中。（个人认为此处不对）</p>
+<p>下一步是把我们的数据集转换为PyTorch的张量（tensor）：</p>
+<p>train_data_normalized = torch.FloatTensor(train_data_normalized).view(-1)<br>train_data_normalized</p>
+<p>tensor([-0.9648, -0.9385, -0.8769, -0.8901, -0.9253, -0.8637, -0.8066, -0.8066,<br>        -0.8593, -0.9341, -1.0000, -0.9385, -0.9516, -0.9033, -0.8374, -0.8637,<br>        -0.9077, -0.8022, -0.7099, -0.7099, -0.7626, -0.8725, -0.9560, -0.8418,<br>        -0.8198, -0.7978, -0.6747, -0.7407, -0.7011, -0.6747, -0.5824, -0.5824,<br>        -0.6484, -0.7451, -0.8154, -0.7275, -0.7055, -0.6659, -0.6088, -0.6615,<br>        -0.6527, -0.4989, -0.4462, -0.3934, -0.5385, -0.6176, -0.7011, -0.6044,<br>        -0.5956, -0.5956, -0.4198, -0.4242, -0.4505, -0.3890, -0.2967, -0.2615,<br>        -0.4154, -0.5297, -0.6659, -0.5736, -0.5604, -0.6308, -0.4242, -0.4593,<br>        -0.4286, -0.2967, -0.1297, -0.1692, -0.3187, -0.4505, -0.5648, -0.4505,<br>        -0.3934, -0.4330, -0.2835, -0.2747, -0.2703, -0.0725,  0.1429,  0.0681,<br>        -0.0857, -0.2527, -0.4154, -0.2352, -0.2088, -0.2396, -0.0637, -0.0813,<br>        -0.0593,  0.1868,  0.3582,  0.3231,  0.1033, -0.1121, -0.2659, -0.1121,<br>        -0.0725, -0.1341,  0.1077,  0.0725,  0.1033,  0.3978,  0.5868,  0.5956,<br>         0.3187,  0.0681, -0.1165,  0.0198,  0.0374, -0.0593,  0.1341,  0.0725,<br>         0.1385,  0.4549,  0.7011,  0.7626,  0.3187,  0.1209, -0.0945,  0.0242,<br>         0.1253,  0.0462,  0.3275,  0.2835,  0.3890,  0.6176,  0.9516,  1.0000,<br>         0.5780,  0.3319,  0.1341,  0.3231])</p>
+<p>最后一步是制作我们的训练集的对用的标签</p>
+<p>train_window =12</p>
+<p>接下来，我们要定义一个叫create_inout_sequences的函数。这个函数将会接收数据输入的行，然后将会return一个包含元组的列表。</p>
+<p>在每一个元组中，第一个元素将会包含十二个月所对应的乘客数，第二个元素包含下一个十二月所对应的乘客数量</p>
+<p>defcreate_inout_sequences(input_data, tw):<br>    inout_seq =[]<br>    L =len(input_data)<br>    for i inrange(L-tw):<br>        train_seq = input_data[i:i+tw]<br>        train_label = input_data[i+tw:i+tw+1]<br>        inout_seq.append((train_seq ,train_label))<br>    return inout_seq</p>
+<p>执行下面代码来创建数据集序列和对应的标签</p>
+<p>train_inout_seq = create_inout_sequences(train_data_normalized, train_window)</p>
+<p>如果你print train_inout_seq 列表，你会发现他包含120项。这是因为虽然训练集有132个元素，但是这个序列的长度是12，意味着第一个序列由一开始的12项和第13项组成，其中第十三项就是标签。同样，第二个序列由第二项到第十三项组成，第十四项为他的标签。</p>
+<p>train_inout_seq[:5]</p>
+<p>[(tensor([-0.9648, -0.9385, -0.8769, -0.8901, -0.9253, -0.8637, -0.8066, -0.8066,<br>          -0.8593, -0.9341, -1.0000, -0.9385]), tensor([-0.9516])),<br> (tensor([-0.9385, -0.8769, -0.8901, -0.9253, -0.8637, -0.8066, -0.8066, -0.8593,<br>          -0.9341, -1.0000, -0.9385, -0.9516]),<br>  tensor([-0.9033])),<br> (tensor([-0.8769, -0.8901, -0.9253, -0.8637, -0.8066, -0.8066, -0.8593, -0.9341,<br>          -1.0000, -0.9385, -0.9516, -0.9033]), tensor([-0.8374])),<br> (tensor([-0.8901, -0.9253, -0.8637, -0.8066, -0.8066, -0.8593, -0.9341, -1.0000,<br>          -0.9385, -0.9516, -0.9033, -0.8374]), tensor([-0.8637])),<br> (tensor([-0.9253, -0.8637, -0.8066, -0.8066, -0.8593, -0.9341, -1.0000, -0.9385,<br>          -0.9516, -0.9033, -0.8374, -0.8637]), tensor([-0.9077]))]</p>
+<p><strong>PS：这个切分不好理解，可以画图演示便于理解。</strong></p>
+<p><strong>搭建LSTM模型</strong></p>
+<p>我们已经做完数据预处理，接下来来训练我们的模型。我们首先定义一个LSTM类，他继承PyTorch的nn.Moudule类。</p>
+<p>class LSTM(nn.Module):<br>    def __init__(self, input_size=1, hidden_layer_size=100, output_size=1):<br>        super().__init__()<br>        self.hidden_layer_size = hidden_layer_size<br>​<br>        self.lstm = nn.LSTM(input_size, hidden_layer_size)<br>​<br>        self.linear = nn.Linear(hidden_layer_size, output_size)<br>​<br>        self.hidden_cell = (torch.zeros(1,1,self.hidden_layer_size),<br>                            torch.zeros(1,1,self.hidden_layer_size)) # (num_layers * num_directions, batch_size, hidden_size)<br>​<br>    def forward(self, input_seq):<br>        lstm_out, self.hidden_cell = self.lstm(input_seq.view(len(input_seq) ,1, -1), self.hidden_cell)<br>        predictions = self.linear(lstm_out.view(len(input_seq), -1))<br>        return predictions[-1]</p>
+<p>我们总结一下上面代码。LSTM的结构包括三个参数：</p>
+<p>input_size：类似于输入特征的数量。虽然我们的序列长度是12，但是对于每个月来说，我们仅仅有一个值就是每个月的总乘客量。</p>
+<p>hidden_layer_size：隐藏层单元的个数</p>
+<p>output_size：输出项的数量，由于我们想预测未来一个月的乘客数量，所以outputsize是1。</p>
+<p>接下来我们创建hidden_layer_size, lstm, linear, hidden_cell变量。LSTM算法接收三个输入：上一个隐藏状态，上一个记忆细胞状态和当前输入。hidden_cell这个变量包括上一个隐藏单元和记忆细胞的状态。lstm变量和linear layer变量是用来创建LSTM和线性层的，其中线性层是用来输出的。</p>
+<p>在forward方法里，input_seq参数是我们输入的长度为12的序列，lstm的输出结果是隐层和记忆细胞的在当前时间点的状态。lstm层的输出结果经过线性层计算出最后的结果。</p>
+<p>下一个阶段就是创建一个LSTM()类的示例，定义损失函数和优化函数。这里我们用的是交叉熵损失函数和adam优化方法。</p>
+<p>model = LSTM()<br>loss_function = nn.MSELoss()<br>optimizer = torch.optim.Adam(model.parameters(), lr=0.001)</p>
+<p>print出我们的模型！</p>
+<p>print(model)</p>
+<p>LSTM(<br>  (lstm): LSTM(1, 100)<br>  (linear): Linear(in_features=100, out_features=1, bias=True)<br>)</p>
+<p><strong>训练模型</strong></p>
+<p>我们训练150轮。你可以尝试更多的epochs。每25轮输出一次loss</p>
+<p>epochs = 150<br>​<br>for i in range(epochs):<br>    for seq, labels in train_inout_seq:<br>        optimizer.zero_grad()<br>        model.hidden_cell = (torch.zeros(1, 1, model.hidden_layer_size),<br>                        torch.zeros(1, 1, model.hidden_layer_size))<br>​<br>        y_pred = model(seq)<br>​<br>        single_loss = loss_function(y_pred, labels)<br>        single_loss.backward()<br>        optimizer.step()<br>​<br>    if i%25 == 1:<br>        print(f’epoch: {i:3} loss: {single_loss.item():10.8f}’)<br>​<br>print(f’epoch: {i:3} loss: {single_loss.item():10.10f}’)</p>
+<p>epoch:   1 loss: 0.01516276<br>epoch:  26 loss: 0.00965644<br>epoch:  51 loss: 0.00252884<br>epoch:  76 loss: 0.01772214<br>epoch: 101 loss: 0.00010952<br>epoch: 126 loss: 0.00532575<br>epoch: 149 loss: 0.0000004581</p>
+<p>你可能得到不同的值因为PyTorch神经网络的默认权重是随机的。</p>
+<p><strong>PS：此处的loss并不是本轮的平均loss，而是本轮的最后一个序列的loss，函数里的平均意思是指y_pred和labels里面所有元素的平均值！！！所有loss曲线波动很大</strong>、</p>
+<p><strong>做出预测</strong></p>
+<p>现在我们的模型已经训练完了，我们可以开始做预测。由于我们的测试集包含最后十二个月的乘客数，并且我们的模型每次训练的序列长度为12，所以我们首先筛选出训练集的最后12个值：</p>
+<p>fut_pred = 12<br>​<br>test_inputs = train_data_normalized[-train_window:].tolist()<br>print(test_inputs)</p>
+<p>[0.12527473270893097, 0.04615384712815285, 0.3274725377559662, 0.2835164964199066, 0.3890109956264496, 0.6175824403762817, 0.9516483545303345, 1.0, 0.5780220031738281, 0.33186814188957214, 0.13406594097614288, 0.32307693362236023]</p>
+<p>初始的测试集包含12项。这12项将会预测测试集的第一项，测试集第一项的数字是133.预测出的值接下来会加入到test_inputs列表的末尾。在第二次循环中，最后的12项又作为输入，一个新的预测值又会加入到test_inputs列表的末尾。这个循环将会执行12次。在循环的最后，test_inputs将会包含24项。最后的12项就是测试集的预测结果。</p>
+<p>下面的代码是用来预测的：</p>
+<p>model.eval()<br>​<br>for i in range(fut_pred):<br>    seq = torch.FloatTensor(test_inputs[-train_window:])<br>    with torch.no_grad():<br>        model.hidden = (torch.zeros(1, 1, model.hidden_layer_size),<br>                        torch.zeros(1, 1, model.hidden_layer_size))<br>        test_inputs.append(model(seq).item())</p>
+<p>如果你print test_inputs 列表，你会发现它包含24个元素。最后12个预测结果如下：</p>
+<p>test_inputs[fut_pred:]</p>
+<p>[0.8146875500679016,<br> 0.7292792201042175,<br> 0.9062390923500061,<br> 1.2367297410964966,<br> 1.3315496444702148,<br> 1.2219644784927368,<br> 1.519028663635254,<br> 1.2008862495422363,<br> 1.5351794958114624,<br> 1.496110200881958,<br> 1.5902581214904785,<br> 1.5625801086425781]</p>
+<p>由于我们一开始将数据集标准化了，所以预测值也是标准化后的数据。我们需要将标准化后的数据转换成实际预测值。我们可以使用min/max scaler实例的inverse_transform 方法来将预测值转化为实际值：</p>
+<p>actual_predictions = scaler.inverse_transform(np.array(test_inputs[train_window:] ).reshape(-1, 1))<br>print(actual_predictions)</p>
+<p>[[516.84141764]<br> [497.41102257]<br> [537.66939351]<br> [612.8560161 ]<br> [634.42754412]<br> [609.49691886]<br> [677.07902098]<br> [604.70162177]<br> [680.7533353 ]<br> [671.8650707 ]<br> [693.28372264]<br> [686.98697472]]</p>
+<p>现在我们画出图像：</p>
+<p>x = np.arange(132, 144, 1)<br>print(x)</p>
+<p>[132 133 134 135 136 137 138 139 140 141 142 143]</p>
+<p>plt.title(‘Month vs Passenger’)<br>plt.ylabel(‘Total Passengers’)<br>plt.grid(True)<br>plt.autoscale(axis=’x’, tight=True)<br>plt.plot(flight_data[‘passengers’])<br>plt.plot(x,actual_predictions)<br>plt.show()</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/20200302221915882.png" alt="20200302221915882"></p>
+<p>LSTM预测结果是橘色的曲线。你可以发现我们的算法不是很准确，很大的原因是数据集太小，但是它仍然可以捕捉到全部乘客数据最后十二个月的趋势。你可以尝试更多的epochs使结果更好。</p>
+<p>为了更好的观察输出结果，你可以用下面代码画出最后十二个月的图像：</p>
+<p>plt.title(‘Month vs Passenger’)<br>plt.ylabel(‘Total Passengers’)<br>plt.grid(True)<br>plt.autoscale(axis=’x’, tight=True)<br>​<br>plt.plot(flight_data[‘passengers’][-train_window:])<br>plt.plot(x,actual_predictions)<br>plt.show()</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/20200302221925163.png" alt=""></p>
+<p><strong>原作者总结</strong></p>
+<p>LSTM使解决序列问题用处最广的算法之一，在这篇文章中，我们可以知道怎么使用LSTM来预测时间序列。当然，这个算法还有很多提升空间，由于循环神经网络容易出现梯度爆炸的情况，我们可以加入梯度裁剪；为了减少泛化误差，我们可以使用k折交叉验证等等方法来优化模型。</p>
+<p><strong>个人总结：</strong></p>
+<p><strong>作者的整个实验流程除了少一个用训练集预测模型进行调参、动态调整学习率，其他的各个方面都很值得借鉴，一是数据的切分和处理，二是整个模型的设计，都很值得借鉴，当然这两部分也都有改进的地方；三是整个流程特别适合初学者进行实际操作，同时便于明白原理。另外他的loss处理有点问题，为了查找和排查问题，个人建议输出loss曲线，直观地观察！</strong></p>
+<p>Write by sheen</p>
+<p>©原作者文章链接：<a href="https://blog.csdn.net/qq_44315987/article/details/104621632" target="_blank" rel="noopener">https://blog.csdn.net/qq_44315987/article/details/104621632</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
 
     <!-- copyright -->
     
@@ -491,7 +1133,137 @@
   <time datetime="2020-04-22T10:08:05.000Z" itemprop="datePublished">2020-04-22</time>
 </a>    
     </div>
+      
+    <div class="article-entry" itemprop="articleBody">
        
+  <blockquote>
+<p>RNN是一类用于处理序列数据的神经网络。就像卷积网络是专门用于处理网格化数据X（如一个图像）的神经网络，RNN网络是专门用于处理序列x(1), ···,x(τ)的神经网络。正如卷积网络可以很容易地扩展到具有很大宽度和高度的图像，以及处理大小可变的图像，循环网络可以扩展到更长的序列（比不基于序列的特化网络长得多）。大多数循环网络也能处理可变长度的序列。</p>
+</blockquote>
+<h3 id="一、RNN"><a href="#一、RNN" class="headerlink" title="一、RNN"></a>一、RNN</h3><blockquote>
+<p>首先要分清楚一个概念，RNN是两种神经网络的缩写，一种是递归神经网络（RecursiveNeural Network），一种是循环神经网络（Recurrent Neural Network），虽然这两个概念有千丝万缕的联系，但这里主要讨论的是第二种，也就是循环神经网络及其变种。</p>
+</blockquote>
+<p><strong>循环神经网络是指一个随着时间的推移，重复发生的结构。</strong>例如，如果你有一个序列X = [‘H’,’E’, ‘L’, ‘L’]，该序列被送到一个神经元，而这个神经元的输出连接到它的输入上。在步骤0的这个时刻，字母“H”是作为输入传入的，在步骤2时，字母“E”被作为输入传入。随着时间的推移展开这个网络将变成如下图所示的网络结构：</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/image-20200418170031883.png" alt=""></p>
+<p>递归神经网络仅仅是广义化的循环神经网络。<strong>循环神经网络在一个序列的长度上的权重是共享的（并且维度保持不变）</strong>。因为，当遇到一个训练时间和测试时间长度不同的序列时，是不能处理位置独立权重的。递归网络的权重（与维数保持恒定）出于同样的原因在每一个节点被共享。</p>
+<p>这意味着，所有的W_xh权重是相等的（共享），以及W_hh权重也是相等的。它是单个的神经元，并且能够及时展开。</p>
+<p>递归神经网络看起来如下图所示：</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/image-20200418170128071.png" alt=""></p>
+<p>为什么被称为递归神经网络呢？因为每个父节点的子节点和另外一个节点类似。</p>
+<blockquote>
+<p>到底使用哪种神经网络取决于实际情况。在Karpathy的博客中可以看到，他的项目是生成一个个字符，而处理中不需要分层，对这种情况来说循环神经网络是不错的选择。</p>
+<p>如果你想生成一个解析树，用递归神经网络会更好些，因为它有助于创造更好的分层表示。</p>
+</blockquote>
+<h4 id="1-什么是循环神经网络？"><a href="#1-什么是循环神经网络？" class="headerlink" title="1. 什么是循环神经网络？"></a>1. 什么是循环神经网络？</h4><p>正式进入循环神经网络之前，来想一下我们的思考步骤，或者叫思考时序。</p>
+<p>我们不会每一秒钟都从头开始思考。比如，当你看一本书时，会根据以往学习的知识理解每一个词。你会从上下文中产生联想，帮助你更好地理解这篇文章。当你冒出来一个想法或问题后，会通过读本书来归纳总结，试着印证你的想法或者回答你的问题。</p>
+<p>人类的这一大特点，无法在传统的神经网络中找到类似的，这也是一般神经网络的一个缺点。例如，假设你要将电影中每个时刻发生的事按时间归类，传统的神经网络目前还无法做到，因为这需要使用之前在电影中出现的事件推理出后面发生的事情，而循环神经网络可以解决这一问题。它们可以在网络中循环，并能够维持信息，如下图所示：</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/image-20200418170731878.png" alt=""></p>
+<h6 id="1）循环神经网络有回路"><a href="#1）循环神经网络有回路" class="headerlink" title="1）循环神经网络有回路"></a>1）循环神经网络有回路</h6><p>在上图中，神经网络的单元A，它的输入值是xt，输出值是ht。信息通过回路从网络的目前状态传递到下一个状态。同一个单元不停地处理不同的输入值，而这些值是自己产生的。大家觉得循环神经网络的回路很神秘吗？如果你深入思考会发现，它们与正常的神经网络没什么不同。反复出现的神经网络可以被认为是在同一个网络中的多个副本，每个都传递消息给继承者，也就是下个时态的神经元。</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/image-20200418171339970.png" alt=""></p>
+<h6 id="2）已展开的递归神经网络"><a href="#2）已展开的递归神经网络" class="headerlink" title="2）已展开的递归神经网络"></a>2）已展开的递归神经网络</h6><p>这个链式结构揭示了与循环神经网络密切相关的序列。它们是让神经网络能使用这些数据的一种自然结构。这么好的东西肯定会被用在各个方面。</p>
+<p><em>在过去的几年里，RNN已经成功地应用在各种问题上，并取得令人难以置信的成功。例如，语音识别、语言建模、翻译、字幕、图像……不胜枚举。这个结果的关键是使用“LSTMs”（长短期记忆网络，Long Short Term MemoryNetworks），它是一种特殊的循环神经网络的变种，对于许多任务来说，这种方法比标准的RNN好得多。</em></p>
+<h6 id="3）长时间依赖的问题"><a href="#3）长时间依赖的问题" class="headerlink" title="3）长时间依赖的问题"></a>3）长时间依赖的问题</h6><p>RNN的诉求之一是，它也许能将以前的信息连接到当前任务。例如，我们有时需要使用前一个视频帧理解当前帧的内容。如果RNN能做到这一点，它们会非常有用，但它们能做到吗？视情况而定。</p>
+<p>有时候，我们只需要看最近的信息来执行现在的任务。举个例子，考虑一个语言模型试图预测基于当前的下一个词。如果我们试图预测“天空中有 ”这句话的最后一个字，那么我们不需要任何进一步的语境就可以判断下一个字是云或鸟。<strong>在这种情况下，如果相关的信息（这里指的是“天空中有”）和我们需要填词的位置之间的差距较小，那么RNN就能学会利用过去的信息。</strong></p>
+<p>但有时，我们需要更多的上下文。试着预测“我在中国长大……（省略20个字），我讲一口流利的__。”的最后一个词。最近的信息表明，下一个字可能是语言的名字，但如果我们想要缩小语言名字的范围，则需要这个词的上下文。我们发现，<strong>有时相关上下文信息和我们需要得到的词的这个位置相差很大。不幸的是，这种距离的增长将使RNN无法学习到这些信息</strong>。</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/image-20200418171135591.png" alt=""></p>
+<p>我们仔细看上图,<strong>ht+1需要x0x1位置的信息，但由于距离较长，x0x1信息无法传导过来。</strong>从模型结构上看，RNN完全能够处理这样的“长期依赖”问题。理论上讲，人们可以仔细挑选参数，为它们解决这种小问题。但在实践中，我们发现RNN似乎并不能处理好这些问题。Hochreiter和Bengio深入探讨了这一问题，发现了普通的RNN结构无法处理好这种问题。</p>
+<p>值得庆幸的是，LSTMs没有这个问题。</p>
+<h3 id="二、LSTM"><a href="#二、LSTM" class="headerlink" title="二、LSTM"></a>二、LSTM</h3><blockquote>
+<p>长短期记忆神经网络（Long Short-Term Memory,LSTM）最早由Hochreiter&amp;Schmidhuber于1997年提出，能够有效解决信息的长期依赖，避免梯度消失或爆炸。事实上，长短时记忆神经网络的设计就是专门用于解决长期依赖问题的。与传统RNN相比，它在结构上的独特之处是它精巧的设计了循环体结构。</p>
+</blockquote>
+<h4 id="1-RNN与LSTM区别"><a href="#1-RNN与LSTM区别" class="headerlink" title="1.RNN与LSTM区别"></a>1.RNN与LSTM区别</h4><p>LSTM可以学习只保留相关信息来进行预测，并忘记不相关的数据。记住长期的信息在实践中是LSTM的默认行为，而非需要付出很大代价才能获得的能力！</p>
+<p>所有RNN都具有一种重复神经网络模块的链式的形式。在标准的RNN中，这个重复的模块只有一个非常简单的结构，例如一个tanh层。</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/quesbase64155693985278218659-1024x383.png" alt=""></p>
+<p><strong>激活函数 Tanh 作用在于帮助调节流经网络的值，使得数值始终限制在 -1 和 1 之间</strong>。</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/quesbase64155697991770304386.gif" alt=""></p>
+<p>LSTM同样是这样的结构，但是重复的模块拥有一个不同的结构。具体来说，RNN是重复单一的神经网络层，LSTM中的重复模块则包含四个交互的层，三个Sigmoid 和一个tanh层，并以一种非常特殊的方式进行交互。</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/quesbase64155693990149080320-1024x385.png" alt=""></p>
+<p>上图中，<strong>σ表示的Sigmoid 激活函数与 tanh 函数类似，不同之处在于 sigmoid 是把值压缩到0<del>1 之间而不是 -1</del>1 之间。这样的设置有助于更新或忘记信息</strong>：</p>
+<ul>
+<li>因为任何数乘以 0 都得 0，这部分信息就会剔除掉；</li>
+<li>同样的，任何数乘以 1 都得到它本身，这部分信息就会完美地保存下来。</li>
+</ul>
+<p>相当于要么是1则记住，要么是0则忘掉，所以原则就是：<strong>因记忆能力有限，记住重要的，忘记无关紧要的</strong>。</p>
+<p>此外，对于图中使用的各种元素的图标中，每一条黑线传输着一整个向量，从一个节点的输出到其他节点的输入。粉色的圈代表pointwise的操作，诸如向量的和，而黄色的矩阵就是学习到的神经网络层。合在一起的线表示向量的连接，分开的线表示内容被复制，然后分发到不同的位置。</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/quesbase64155693992516615190.png" alt=""></p>
+<p>LSTM的关键就是细胞状态，水平线在图上方贯穿运行。细胞状态类似于传送带。直接在整个链上运行，只有一些少量的线性交互。信息在上面流传保持不变会很容易。</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/quesbase64155694016793619292-1024x316.png" alt=""></p>
+<p><strong>LSTM有通过精心设计的称作为“门”的结构来去除或者增加信息到细胞状态的能力。门是一种让信息选择式通过的方法。他们包含一个sigmoid神经网络层和一个pointwise乘法的非线性操作。</strong></p>
+<p>如此，0代表“不许任何量通过”，1就指“允许任意量通过”！从而使得网络就能了解哪些数据是需要遗忘，哪些数据是需要保存。</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/quesbase64155694019862092190.png" alt=""></p>
+<p>LSTM拥有三种类型的门结构：遗忘门/忘记门(forget gate)、输入门(update gate)和输出门(output gate)，来保护和控制细胞状态。在介绍这三个门之前，我们先看一下吴恩达教授关于LSTM的介绍图：</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/image-20200420122819273-1024x402.png" alt=""></p>
+<h4 id="2-LSTM详细介绍"><a href="#2-LSTM详细介绍" class="headerlink" title="2.LSTM详细介绍"></a>2.LSTM详细介绍</h4><h5 id="1）遗忘门-forget-gate"><a href="#1）遗忘门-forget-gate" class="headerlink" title="1）遗忘门(forget gate)"></a>1）遗忘门(forget gate)</h5><p>LSTM中的第一步是决定我们会从细胞状态中丢弃什么信息。这个决定通过一个称为“遗忘门”的结构完成。该遗忘门会读取上一个输出和当前输入，做一个Sigmoid 的非线性映射，然后输出一个向量（该向量每一个维度的值都在0到1之间，1表示完全保留，0表示完全舍弃，相当于记住了重要的，忘记了无关紧要的），最后与细胞状态相乘。过程如下图所示：</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/quesbase64155698137271488143.gif" alt=""></p>
+<h5 id="2）输入门-update-gate"><a href="#2）输入门-update-gate" class="headerlink" title="2）输入门(update gate)"></a>2）输入门(update gate)</h5><p>LSTM中的下一步就是确定什么样的新信息被存放在细胞状态中。这里包含两个部分：</p>
+<p>第一，sigmoid层称“输入门层”决定什么值我们将要更新；</p>
+<p>第二，一个tanh层创建一个新的候选值向量~Ct，会被加入到状态中。</p>
+<p>这两个信息来产生对状态的更新。过程如下图所示（_红圈表示Sigmoid 激活函数，篮圈表示tanh 函数_）：</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/quesbase641556981402794253.gif" alt=""></p>
+<h5 id="3）细胞状态："><a href="#3）细胞状态：" class="headerlink" title="3）细胞状态："></a>3）细胞状态：</h5><p>现在是更新旧细胞状态的时间了，Ct-1更新为Ct。前面的步骤已经决定了将会做什么，我们现在就是实际去完成。我们把旧状态与相乘，丢弃掉我们确定需要丢弃的信息。接着加上。这就是新的候选值，根据我们决定更新每个状态的程度进行变化。 在语言模型的例子中，这就是我们实际根据前面确定的目标，丢弃旧代词的性别信息并添加新的信息的地方，类似更新细胞状态。过程如下图所示：</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/quesbase64155698143296475738.gif" alt=""></p>
+<h5 id="4）输出门"><a href="#4）输出门" class="headerlink" title="4）输出门"></a>4）输出门</h5><p>最终，我们需要确定输出什么值。这个输出将会基于我们的细胞状态，但是也是一个过滤后的版本。</p>
+<p>首先，我们运行一个sigmoid层来确定细胞状态的哪个部分将输出出去。接着，我们把细胞状态通过tanh进行处理（得到一个在-1到1之间的值）并将它和sigmoid门的输出相乘，最终我们仅仅会输出我们确定输出的那部分。过程如下图所示：</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/quesbase6415569814619904217.gif" alt=""></p>
+<p><strong>小结：LSTM的循环体结构如下图所示：</strong></p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/image-20200418204736145.png" alt=""></p>
+<h4 id="3-LSTM变体"><a href="#3-LSTM变体" class="headerlink" title="3.LSTM变体"></a>3.LSTM变体</h4><p>一个改动较大的变体是 Gated Recurrent Unit (GRU)，这是由 <a href="https://links.jianshu.com/go?to=http%3A%2F%2Farxiv.org%2Fpdf%2F1406.1078v3.pdf" target="_blank" rel="noopener">Cho, et al. (2014)</a> 提出。它将忘记门和输入门合成了一个单一的 更新门。同样还混合了细胞状态和隐藏状态，和其他一些改动。<strong>最终的模型比标准的 LSTM 模型要简单，也是非常流行的变体</strong>。其他的变体限于篇幅就不再介绍了。</p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/42741-dd3d241fa44a71c0-1024x316.png" alt=""></p>
+<blockquote>
+<p>比较推荐的博客：<a href="https://blog.csdn.net/v_JULY_v/article/details/89894058" target="_blank" rel="noopener">https://blog.csdn.net/v_JULY_v/article/details/89894058</a></p>
+<p><a href="https://www.julyedu.com/question/big/kp_id/26/ques_id/1851" target="_blank" rel="noopener">https://www.julyedu.com/question/big/kp_id/26/ques_id/1851</a></p>
+<p>吴恩达教授网易云课堂关于深度学习的课程：<a href="https://mooc.study.163.com/smartSpec/detail/1001319001.htm" target="_blank" rel="noopener">https://mooc.study.163.com/smartSpec/detail/1001319001.htm</a></p>
+</blockquote>
+<h3 id="三、LSTM的pytorch实现"><a href="#三、LSTM的pytorch实现" class="headerlink" title="三、LSTM的pytorch实现"></a>三、LSTM的pytorch实现</h3><h4 id="1-相关函数介绍"><a href="#1-相关函数介绍" class="headerlink" title="1.相关函数介绍"></a>1.相关函数介绍</h4><h4 id="class-torch-nn-LSTM-args-kwargs"><a href="#class-torch-nn-LSTM-args-kwargs" class="headerlink" title="class torch.nn.LSTM(args,*kwargs)"></a>class torch.nn.LSTM(args,*kwargs)</h4><p>lstm = nn.LSTM(input_size=10, hidden_size=20,num_layers= 2, bidirectional=False)</p>
+<ul>
+<li>参数说明：<ul>
+<li>input_size: 输入的特征维度</li>
+<li>output_size: 输出的特征维度</li>
+<li>num_layers: 层数（注意与时序展开区分）</li>
+<li>bidirectional: 如果为<code>True</code>，为双向LSTM。默认为<code>False</code></li>
+</ul>
+</li>
+<li>LSTM的输入：input,(h0,c0)<ul>
+<li>input(seq_len,batch,input_size): 包含输入特征的<code>tensor</code>,注意输入是<code>tensor</code>。</li>
+<li>h0(num_layers ⋅ num_directions,batch,hidden_size): 保存初始化隐藏层状态的<code>tensor</code></li>
+<li>c0(num_layers ⋅ num_directions,batch,hidden_size): 保存初始化细胞状态的<code>tensor</code></li>
+</ul>
+</li>
+<li>LSTM的输出： output,(hn,cn)<ul>
+<li>output(seq_len, batch, hidden_size * num_directions): 保存<code>RNN</code>最后一层输出的<code>tensor</code></li>
+<li>hn(num_layers * num_directions,batch,hidden_size): 保存<code>RNN</code>最后一个时间步隐藏状态的<code>tensor</code></li>
+<li>cn(num_layers * num_directions,batch,hidden_size): 保存<code>RNN</code>最后一个时间步细胞状态的<code>tensor</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="class-torch-nn-Linear"><a href="#class-torch-nn-Linear" class="headerlink" title="class torch.nn.Linear()"></a>class torch.nn.Linear()</h4><p>class torch.nn.Linear(in_features,out_features,bias = True)</p>
+<ul>
+<li>作用：对输入数据做线性变换。y=Ax+by=Ax+b</li>
+<li>参数：<ul>
+<li>in_features：每个输入样本的大小</li>
+<li>out_features: 每个输出样本的大小</li>
+<li>bias: 默认值为True。是否学习偏置。</li>
+</ul>
+</li>
+<li>形状：<ul>
+<li>输入： (N,in_features)</li>
+<li>输出： (N,out_features)</li>
+</ul>
+</li>
+<li>变量：<ul>
+<li>weights: 可学习的权重，形状为(in_features,out_features)</li>
+<li>bias: 可学习的偏置，形状为(out_features)</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-简单的小例子"><a href="#2-简单的小例子" class="headerlink" title="2.简单的小例子"></a>2.简单的小例子</h4><p># _*_ coding:utf-8 _*_<br># 开发人员:未央<br># 开发时间:2020/4/21 10:31<br># 文件名:lstm_test1.py<br># 开发工具:PyCharm<br># <a href="https://pytorch.org/tutorials/beginner/nlp/sequence\_models\_tutorial.html#lstm-s-in-pytorch" target="_blank" rel="noopener">https://pytorch.org/tutorials/beginner/nlp/sequence\_models\_tutorial.html#lstm-s-in-pytorch</a><br># Author: Robert Guthrie<br>​<br>import torch<br>import torch.nn as nn<br>import torch.nn.functional as F<br>import torch.optim as optim<br>​<br>torch.manual_seed(1)<br>​<br>​<br>lstm = nn.LSTM(3, 3)  # Input dim is 3, output dim is 3<br>inputs = [torch.randn(1, 3) for _ in range(5)]  # make a sequence of length 5<br>​<br># initialize the hidden state.<br>hidden = (torch.randn(1, 1, 3),<br>          torch.randn(1, 1, 3))<br>for i in inputs:<br>    # Step through the sequence one element at a time.<br>    # after each step, hidden contains the hidden state.<br>    out, hidden = lstm(i.view(1, 1, -1), hidden)<br>​<br># alternatively, we can do the entire sequence all at once.<br># the first value returned by LSTM is all of the hidden states throughout<br># the sequence. the second is just the most recent hidden state<br># (compare the last slice of “out” with “hidden” below, they are the same)<br># The reason for this is that:<br># “out” will give you access to all hidden states in the sequence<br># “hidden” will allow you to continue the sequence and backpropagate,<br># by passing it as an argument  to the lstm at a later time<br># Add the extra 2nd dimension<br>inputs = torch.cat(inputs).view(len(inputs), 1, -1)<br>hidden = (torch.randn(1, 1, 3), torch.randn(1, 1, 3))  # clean out hidden state<br>out, hidden = lstm(inputs, hidden)<br>print(out)<br>print(“*“*20)<br>print(hidden)</p>
+<p>运行后输出如下：</p>
+<p>tensor([[[-0.0187,  0.1713, -0.2944]],<br>        [[-0.3521,  0.1026, -0.2971]],<br>        [[-0.3191,  0.0781, -0.1957]],<br>        [[-0.1634,  0.0941, -0.1637]],<br>        [[-0.3368,  0.0959, -0.0538]]], grad_fn=<StackBackward>)<br>********************<br>(tensor([[[-0.3368,  0.0959, -0.0538]]], grad_fn=<StackBackward>), tensor([[[-0.9825,  0.4715, -0.0633]]], grad_fn=<StackBackward>))<br>​</p>
+<p>Write by sheen</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
 
     <!-- copyright -->
     
@@ -603,7 +1375,7 @@
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/photo">图床</a>
+      <a class="nav-item-link" href="/photo">图集</a>
     </li>
     
     <li class="nav-item">
@@ -611,7 +1383,7 @@
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/%E5%85%B6%E4%BB%96">其他</a>
+      <a class="nav-item-link" href="/others">其他</a>
     </li>
     
   </ul>
@@ -801,13 +1573,13 @@
 
 <!-- ClickLove -->
 
-
-<script src="/js/clickLove.js"></script>
-
-
 <!-- ClickBoom1 -->
 
 <!-- ClickBoom2 -->
+
+
+<script src="/js/clickBoom2.js"></script>
+
 
 <!-- CodeCopy -->
 
@@ -873,17 +1645,13 @@
 <!-- CanvasBackground -->
 
 
-<script src="/js/dz.js"></script>
-
-
-
     
     <div id="music">
     
     
     
-    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="86"
-        src="//music.163.com/outchain/player?type=2&id=22707008&auto=1&height=66"></iframe>
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=526668900&auto=0&height=32"></iframe>
 </div>
 
 <style>
