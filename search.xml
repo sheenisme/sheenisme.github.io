@@ -607,6 +607,8 @@ function StopWatch(){
     <url>/2020/06/24/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-node-js%E5%AE%89%E8%A3%85%E5%8F%8A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%EF%BC%88win%EF%BC%89/</url>
     <content><![CDATA[<h2 id="Node-js安装及环境配置之Windows篇"><a href="#Node-js安装及环境配置之Windows篇" class="headerlink" title="Node.js安装及环境配置之Windows篇"></a>Node.js安装及环境配置之Windows篇</h2><h5 id="一、安装环境"><a href="#一、安装环境" class="headerlink" title="一、安装环境"></a>一、安装环境</h5><p>1、本机系统：Windows 10 Pro（64位）</p>
 <p>2、Node.js：v6.9.2 LTS（64位）</p>
+<a id="more"></a>
+
 <h5 id="二、安装Node-js步骤"><a href="#二、安装Node-js步骤" class="headerlink" title="二、安装Node.js步骤"></a>二、安装Node.js步骤</h5><p>1、下载对应你系统的Node.js版本:<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">https://nodejs.org/en/download/</a></p>
 <p>2、选安装目录进行安装</p>
 <p>3、环境配置</p>
@@ -1330,6 +1332,8 @@ output\_data =10  </code></pre><p>​<br>    x =Variable(torch.randn(batch_n, in
     <content><![CDATA[<blockquote>
 <p>Redis是有名的NoSql数据库，一般Linux都会默认支持。但在Windows环境中，可能需要手动安装设置才能有效使用。这里就简单介绍一下Windows下Redis服务的安装方法，希望能够帮到你。</p>
 </blockquote>
+<a id="more"></a>
+
 <p>1、要安装Redis，首先要获取安装包。Windows的Redis安装包需要到以下GitHub链接找到。链接：<a href="https://github.com/MSOpenTech/redis" target="_blank" rel="noopener">https://github.com/MSOpenTech/redis</a>。打开网站后，找到Release，点击前往下载页面。</p>
 <p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/06/o_1.png" alt=""></p>
 <p>2、在下载网页中，找到最后发行的版本（此处是3.2.100）。找到Redis-x64-3.2.100.msi和Redis-x64-3.2.100.zip，点击下载。这里说明一下，第一个是msi微软格式的安装包，第二个是压缩包。</p>
