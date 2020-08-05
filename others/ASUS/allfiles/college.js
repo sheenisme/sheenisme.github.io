@@ -1,4 +1,4 @@
-// 大类可无限增加
+﻿// 大类可无限增加
 function BigCategoryList(){
     this.length=17;
     this[0] = new Option("请选择地区","");

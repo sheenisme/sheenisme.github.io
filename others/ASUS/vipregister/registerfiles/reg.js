@@ -1,4 +1,4 @@
-// JavaScript Document
+﻿// JavaScript Document
 function checkPassword(str)
 {
 	var reg = /^(w|[u4E00-u9FA5])*$/;
