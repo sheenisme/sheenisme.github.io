@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="欢迎来到IT届文艺小青年的博客" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    [学习笔记]-PyTorch基础学习笔记 |  未央的Hexo博客
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="未央的Hexo博客" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+      <canvas width="1777" height="841"
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999; pointer-events: none;"></canvas>
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-学习笔记-pytorch基础学习笔记/学习笔记-pytorch基础学习笔记"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  [学习笔记]-PyTorch基础学习笔记
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020-04-06/" class="article-date">
+  <time datetime="2020-04-06T02:55:54.000Z" itemprop="datePublished">2020-04-06</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">4.5k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">17 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <blockquote>
+<p>PyTorch是美国互联网巨头Facebook在深度学习框架Torch的基础上使用Python重写的一个全新的深度学习框架，它更像NumPy的替代产物，不仅继承了NumPy的众多优点，还支持GPUs计算，在计算效率上要比NumPy有更明显的优势；不仅如此，PyTorch还有许多高级功能，比如拥有丰富的API，可以快速完成深度神经网络模型的搭建和训练。</p>
+</blockquote>
+<h4 id="一、Tensor（张量）"><a href="#一、Tensor（张量）" class="headerlink" title="一、Tensor（张量）"></a>一、Tensor（张量）</h4><blockquote>
+<p>Tensor在PyTorch中负责存储基本数据，PyTorch针对Tensor也提供了丰富的函数和方法，所以PyTorch中的Tensor与NumPy的数组具有极高的相似性。Tensor是一种高级的API，我们在使用Tensor时并不用了解PyTorch中的高层次架构，也不用明白什么是深度学习、什么是后向传播、如何对模型进行优化、什么是计算图等技术细节。更重要的是，在PyTorch中定义的Tensor数据类型的变量还可以在GPUs上进行运算，而且只需对变量做一些简单的类型转换就能够轻易实现。</p>
+</blockquote>
+<h5 id="1-Tensor的数据类型"><a href="#1-Tensor的数据类型" class="headerlink" title="1. Tensor的数据类型"></a>1. Tensor的数据类型</h5><h6 id="（1）torch-FloatTensor：用于生成数据类型为浮点型的Tensor，传递给torch-FloatTensor的参数可以是一个列表，也可以是一个维度值。"><a href="#（1）torch-FloatTensor：用于生成数据类型为浮点型的Tensor，传递给torch-FloatTensor的参数可以是一个列表，也可以是一个维度值。" class="headerlink" title="（1）torch.FloatTensor：用于生成数据类型为浮点型的Tensor，传递给torch.FloatTensor的参数可以是一个列表，也可以是一个维度值。"></a>（1）torch.FloatTensor：用于生成数据类型为浮点型的Tensor，传递给torch.FloatTensor的参数可以是一个列表，也可以是一个维度值。</h6><p>import torch<br>​<br>a = torch.FloatTensor(2, 3)<br>b = torch.FloatTensor([2, 3, 4, 5])<br>​<br>print(a)<br>print(b)</p>
+<p>在运行后，输出的内容如下：</p>
+<p>tensor([[6.3369e-10, 2.5038e-12, 4.0046e-11],<br>        [6.8997e-07, 1.1704e-19, 1.3563e-19]])<br>tensor([2., 3., 4., 5.])</p>
+<p>打印输出的两组变量数据类型都显示为浮点型，不同的是，前面的一组是按照我们指定的维度随机生成的浮点型Tensor，而另外一组是按我们给定的列表生成的浮点型Tensor。</p>
+<h6 id="（2）torch-IntTensor：用于生成数据类型为整型的Tensor，传递给torch-IntTensor的参数可以是一个列表，也可以是一个维度值。"><a href="#（2）torch-IntTensor：用于生成数据类型为整型的Tensor，传递给torch-IntTensor的参数可以是一个列表，也可以是一个维度值。" class="headerlink" title="（2）torch.IntTensor：用于生成数据类型为整型的Tensor，传递给torch.IntTensor的参数可以是一个列表，也可以是一个维度值。"></a>（2）torch.IntTensor：用于生成数据类型为整型的Tensor，传递给torch.IntTensor的参数可以是一个列表，也可以是一个维度值。</h6><h6 id="（3）torch-rand：用于生成数据类型为浮点型且维度指定的随机Tensor，和在NumPy中使用numpy-rand生成随机数的方法类似，随机生成的浮点数据在0～1区间均匀分布。"><a href="#（3）torch-rand：用于生成数据类型为浮点型且维度指定的随机Tensor，和在NumPy中使用numpy-rand生成随机数的方法类似，随机生成的浮点数据在0～1区间均匀分布。" class="headerlink" title="（3）torch.rand：用于生成数据类型为浮点型且维度指定的随机Tensor，和在NumPy中使用numpy.rand生成随机数的方法类似，随机生成的浮点数据在0～1区间均匀分布。"></a>（3）torch.rand：用于生成数据类型为浮点型且维度指定的随机Tensor，和在NumPy中使用numpy.rand生成随机数的方法类似，随机生成的浮点数据在0～1区间均匀分布。</h6><h6 id="（4）torch-randn：用于生成数据类型为浮点型且维度指定的随机Tensor，和在NumPy中使用numpy-randn生成随机数的方法类似，随机生成的浮点数的取值满足均值为0、方差为1的正太分布。"><a href="#（4）torch-randn：用于生成数据类型为浮点型且维度指定的随机Tensor，和在NumPy中使用numpy-randn生成随机数的方法类似，随机生成的浮点数的取值满足均值为0、方差为1的正太分布。" class="headerlink" title="（4）torch.randn：用于生成数据类型为浮点型且维度指定的随机Tensor，和在NumPy中使用numpy.randn生成随机数的方法类似，随机生成的浮点数的取值满足均值为0、方差为1的正太分布。"></a>（4）torch.randn：用于生成数据类型为浮点型且维度指定的随机Tensor，和在NumPy中使用numpy.randn生成随机数的方法类似，随机生成的浮点数的取值满足均值为0、方差为1的正太分布。</h6><h6 id="（5）torch-range：用于生成数据类型为浮点型且自定义起始范围和结束范围的Tensor，所以传递给torch-range的参数有三个，分别是范围的起始值、范围的结束值和步长，其中，步长用于指定从起始值到结束值的每步的数据间隔。"><a href="#（5）torch-range：用于生成数据类型为浮点型且自定义起始范围和结束范围的Tensor，所以传递给torch-range的参数有三个，分别是范围的起始值、范围的结束值和步长，其中，步长用于指定从起始值到结束值的每步的数据间隔。" class="headerlink" title="（5）torch.range：用于生成数据类型为浮点型且自定义起始范围和结束范围的Tensor，所以传递给torch.range的参数有三个，分别是范围的起始值、范围的结束值和步长，其中，步长用于指定从起始值到结束值的每步的数据间隔。"></a>（5）torch.range：用于生成数据类型为浮点型且自定义起始范围和结束范围的Tensor，所以传递给torch.range的参数有三个，分别是范围的起始值、范围的结束值和步长，其中，步长用于指定从起始值到结束值的每步的数据间隔。</h6><p>PS：运行出现：torch.range is deprecated in favor of torch.arange and will be removed in 0.5. Note that arange generates values in [start; end), not [start; end].</p>
+<p>改成torch.arange就好，但是注意区间会变。</p>
+<p>import torch<br>a =torch.arange(1,20,1)<br>print(a)</p>
+<p>在运行后，输出的内容如下：</p>
+<p>tensor([ 1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17, 18,<br>        19])</p>
+<h6 id="（6）torch-zeros：用于生成数据类型为浮点型且维度指定的Tensor，不过这个浮点型的Tensor中的元素值全部为0。"><a href="#（6）torch-zeros：用于生成数据类型为浮点型且维度指定的Tensor，不过这个浮点型的Tensor中的元素值全部为0。" class="headerlink" title="（6）torch.zeros：用于生成数据类型为浮点型且维度指定的Tensor，不过这个浮点型的Tensor中的元素值全部为0。"></a>（6）torch.zeros：用于生成数据类型为浮点型且维度指定的Tensor，不过这个浮点型的Tensor中的元素值全部为0。</h6><h5 id="2-Tensor的运算"><a href="#2-Tensor的运算" class="headerlink" title="2. Tensor的运算"></a>2. Tensor的运算</h5><h6 id="（1）torch-abs：将参数传递到torch-abs后返回输入参数的绝对值作为输出，输入参数必须是一个Tensor数据类型的变量。"><a href="#（1）torch-abs：将参数传递到torch-abs后返回输入参数的绝对值作为输出，输入参数必须是一个Tensor数据类型的变量。" class="headerlink" title="（1）torch.abs：将参数传递到torch.abs后返回输入参数的绝对值作为输出，输入参数必须是一个Tensor数据类型的变量。"></a>（1）torch.abs：将参数传递到torch.abs后返回输入参数的绝对值作为输出，输入参数必须是一个Tensor数据类型的变量。</h6><h6 id="（2）torch-add：将参数传递到torch-add后返回输入参数的求和结果作为输出，输入参数既可以全部是Tensor数据类型的变量，也可以一个是Tensor数据类型的变量，另一个是标量。"><a href="#（2）torch-add：将参数传递到torch-add后返回输入参数的求和结果作为输出，输入参数既可以全部是Tensor数据类型的变量，也可以一个是Tensor数据类型的变量，另一个是标量。" class="headerlink" title="（2）torch.add：将参数传递到torch.add后返回输入参数的求和结果作为输出，输入参数既可以全部是Tensor数据类型的变量，也可以一个是Tensor数据类型的变量，另一个是标量。"></a>（2）torch.add：将参数传递到torch.add后返回输入参数的求和结果作为输出，输入参数既可以全部是Tensor数据类型的变量，也可以一个是Tensor数据类型的变量，另一个是标量。</h6><p>无论是调用torch.add对两个Tensor数据类型的变量进行计算，还是完成Tensor数据类型的变量和标量的计算，计算方式都和NumPy中的数组的加法运算如出一辙。</p>
+<h6 id="（3）torch-clamp：对输入参数按照自定义的范围进行裁剪，最后将参数裁剪的结果作为输出。"><a href="#（3）torch-clamp：对输入参数按照自定义的范围进行裁剪，最后将参数裁剪的结果作为输出。" class="headerlink" title="（3）torch.clamp：对输入参数按照自定义的范围进行裁剪，最后将参数裁剪的结果作为输出。"></a>（3）torch.clamp：对输入参数按照自定义的范围进行裁剪，最后将参数裁剪的结果作为输出。</h6><p>所以输入参数一共有三个，<strong>分别是需要进行裁剪的Tensor数据类型的变量、裁剪的上边界和裁剪的下边界</strong>，具体的裁剪过程是：<em>使用变量中的每个元素分别和裁剪的上边界及裁剪的下边界的值进行比较，如果元素的值小于裁剪的下边界的值，该元素就被重写成裁剪的下边界的值；同理，如果元素的值大于裁剪的上边界的值，该元素就被重写成裁剪的上边界的值。</em></p>
+<p>import torch<br>​<br>a = torch.randn(2, 3)<br>print(a)<br>​<br>b = torch.clamp(a, -0.1, 0.1)<br>print(b)</p>
+<p>在运行后，输出的内容如下：</p>
+<p>tensor([[-0.0423, -0.1678, -0.3539],<br>        [-0.4776,  0.2040, -0.8480]])<br>tensor([[-0.0423, -0.1000, -0.1000],<br>        [-0.1000,  0.1000, -0.1000]])</p>
+<h6 id="（4）torch-div：将参数传递到torch-div后返回输入参数的求商结果作为输出，同样，参与运算的参数可以全部是Tensor数据类型的变量，也可以是Tensor数据类型的变量和标量的组合。"><a href="#（4）torch-div：将参数传递到torch-div后返回输入参数的求商结果作为输出，同样，参与运算的参数可以全部是Tensor数据类型的变量，也可以是Tensor数据类型的变量和标量的组合。" class="headerlink" title="（4）torch.div：将参数传递到torch.div后返回输入参数的求商结果作为输出，同样，参与运算的参数可以全部是Tensor数据类型的变量，也可以是Tensor数据类型的变量和标量的组合。"></a>（4）torch.div：将参数传递到torch.div后返回输入参数的求商结果作为输出，同样，参与运算的参数可以全部是Tensor数据类型的变量，也可以是Tensor数据类型的变量和标量的组合。</h6><h6 id="（5）torch-mul：将参数传递到torch-mul后返回输入参数求积的结果作为输出，参与运算的参数可以全部是Tensor数据类型的变量，也可以是Tensor数据类型的变量和标量的组合。"><a href="#（5）torch-mul：将参数传递到torch-mul后返回输入参数求积的结果作为输出，参与运算的参数可以全部是Tensor数据类型的变量，也可以是Tensor数据类型的变量和标量的组合。" class="headerlink" title="（5）torch.mul：将参数传递到torch.mul后返回输入参数求积的结果作为输出，参与运算的参数可以全部是Tensor数据类型的变量，也可以是Tensor数据类型的变量和标量的组合。"></a>（5）torch.mul：将参数传递到torch.mul后返回输入参数求积的结果作为输出，参与运算的参数可以全部是Tensor数据类型的变量，也可以是Tensor数据类型的变量和标量的组合。</h6><h6 id="（6）torch-pow：将参数传递到torch-pow后返回输入参数的求幂结果作为输出，参与运算的参数可以全部是Tensor数据类型的变量，也可以是Tensor数据类型的变量和标量的组合。"><a href="#（6）torch-pow：将参数传递到torch-pow后返回输入参数的求幂结果作为输出，参与运算的参数可以全部是Tensor数据类型的变量，也可以是Tensor数据类型的变量和标量的组合。" class="headerlink" title="（6）torch.pow：将参数传递到torch.pow后返回输入参数的求幂结果作为输出，参与运算的参数可以全部是Tensor数据类型的变量，也可以是Tensor数据类型的变量和标量的组合。"></a>（6）torch.pow：将参数传递到torch.pow后返回输入参数的求幂结果作为输出，参与运算的参数可以全部是Tensor数据类型的变量，也可以是Tensor数据类型的变量和标量的组合。</h6><h6 id="（7）torch-mm：将参数传递到torch-mm后返回输入参数的求积结果作为输出，不过这个求积的方式和之前的torch-mul运算方式不太一样。"><a href="#（7）torch-mm：将参数传递到torch-mm后返回输入参数的求积结果作为输出，不过这个求积的方式和之前的torch-mul运算方式不太一样。" class="headerlink" title="（7）torch.mm：将参数传递到torch.mm后返回输入参数的求积结果作为输出，不过这个求积的方式和之前的torch.mul运算方式不太一样。"></a>（7）torch.mm：将参数传递到torch.mm后返回输入参数的求积结果作为输出，不过这个求积的方式和之前的torch.mul运算方式不太一样。</h6><p><strong>torch.mm运用矩阵之间的乘法规则进行计算</strong>，被传入的参数会被当作矩阵进行处理，参数的维度自然也要满足矩阵乘法的前提条件，即前一个矩阵的行数必须和后一个矩阵的列数相等，否则不能进行计算。</p>
+<h6 id="（8）torch-mv：将参数传递到torch-mv后返回输入参数的求积结果作为输出。"><a href="#（8）torch-mv：将参数传递到torch-mv后返回输入参数的求积结果作为输出。" class="headerlink" title="（8）torch.mv：将参数传递到torch.mv后返回输入参数的求积结果作为输出。"></a>（8）torch.mv：将参数传递到torch.mv后返回输入参数的求积结果作为输出。</h6><p><strong>torch.mv运用矩阵与向量之间的乘法规则进行计算</strong>，被传入的参数中的第1个参数代表矩阵，第2个参数代表向量，顺序不能颠倒。</p>
+<h4 id="二、搭建一个简易神经网络"><a href="#二、搭建一个简易神经网络" class="headerlink" title="二、搭建一个简易神经网络"></a>二、搭建一个简易神经网络</h4><p>import torch  # 导入包<br>​<br># 定义四个整形变量<br>batch_n = 100  # batch_n是在一个批次中输入数据的数量，值是100，这意味着我们在一个批次中输入100个数据<br>hidden_layer = 100  # hidden_layer用于定义经过隐藏层后保留的数据特征的个数，这里有100个，因为我们的模型只考虑一层隐藏层，所以在代码中仅定义了一个隐藏层的参数；<br>input_data = 1000  # 每个数据包含的数据特征有input_data个，因为input_data的值是1000，所以每个数据的数据特征就是1000个<br>output_data = 10  # output_data是输出的数据，值是10，我们可以将输出的数据看作一个分类结果值的数量，个数10表示我们最后要得到10个分类结果值。<br>​<br>“一个批次的数据从输入到输出的完整过程是：”<br>“  先输入100个具有1000个特征的数据，经过隐藏层后变成100个具有100个特征的数据，”<br>“  再经过输出层后输出100个具有10个分类结果值的数据，在得到输出结果之后计算损失并进行后向传播，”<br>“  这样一次模型的训练就完成了，然后循环这个流程就可以完成指定次数的训练，并达到优化模型参数的目的”<br>​<br>x = torch.randn(batch_n, input_data)  # 输入层维度为（100,1000)<br>y = torch.randn(batch_n, output_data)  # 输出层维度为（100,10）<br>​<br>“由于我们现在并没有好的权重参数的初始化方法，所以选择通过torch.randn来生成指定维度的随机参数作为其初始化参数，尽管这并不是一个好主意”<br>​<br>w1 = torch.randn(input_data, hidden_layer)  # 从输入层到隐藏层的权重参数维度为（1000,100）<br>w2 = torch.randn(hidden_layer, output_data)  # 从隐藏层到输出层的权重参数维度为（100,10）<br>​<br>“权重参数的维度是怎么定义下来的呢? 其实，只要我们把整个过程看作矩阵连续的乘法运算，就自然能够很快明白了”<br>“（100,1000）X（1000,100）=（100，100）  、（100,100)X(100,10)=(100,10)”<br>​<br># 接下来会使用梯度下降的方法来优化神经网络的参数，所以必须定义后向传播的次数和梯度下降使用的学习速率。<br>epoch_n = 20  # 训练的总次数<br>learning_rate = 1e-6  # 学习速率 learning_rate的值为1e-6，表示1×10-6，即0.000001<br>​<br># 通过循环的方式让程序进行20次训练，来完成对初始化权重参数的优化和调整。<br># 循环内的是神经网络模型具体的前向传播和后向传播代码，参数的优化和更新使用梯度下降来完成<br>for epoch in range(epoch_n):<br>    “在这个神经网络的前向传播中，通过两个连续的矩阵乘法计算出预测结果，在计算的过程中还对矩阵乘积的结果使用clamp方法进行裁剪，”<br>    “将小于零的值全部重新赋值为0，这就像加上了一个ReLU激活函数的功能。前向传播得到的预测结果通过y_pred来表示.”<br>    h1 = x.mm(w1)  # 100＊1000<br>    h1 = h1.clamp(min=0)<br>    y_pred = h1.mm(w2)  # 100＊10<br>​<br>    “在得到了预测值后就可以使用预测值和真实值来计算误差值了。我们用loss来表示误差值，对误差值的计算使用了均方误差函数。”<br>    loss = (y_pred - y).pow(2).sum()<br>    print(“Epoch:{}, Loss:{:.4f}”.format(epoch, loss))<br>​<br>    “之后的代码部分就是通过实现后向传播来对权重参数进行优化了，为了计算方便，我们的代码实现使用的是每个节点的链式求导结果，”<br>    “在通过计算之后，就能够得到每个权重参数对应的梯度分别是grad_w1和grad_w2。”<br>    grad_y_pred = 2 * (y_pred - y)<br>    grad_w2 = h1.t().mm(grad_y_pred)   # tensor.t()是实现转置<br>​<br>    grad_h = grad_y_pred.clone()       # tensor.clone()返回一个张量的副本，其与原张量的尺寸和数据类型相同<br>    grad_h = grad_h.mm(w2.t())<br>    grad_h.clamp_(min=0)<br>    grad_w1 = x.t().mm(grad_h)<br>​<br>    “在得到参数的梯度值之后，按照之前定义好的学习速率对w1和w2的权重参数进行更新，在代码中每次训练时，我们都会对loss的值进行打印输出”<br>    w1 -= learning_rate * grad_w1<br>    w2 -= learning_rate * grad_w2</p>
+<p>在运行后，输出的内容如下：</p>
+<p>Epoch:0, Loss:49054628.0000<br>Epoch:1, Loss:94610104.0000<br>Epoch:2, Loss:301032448.0000<br>Epoch:3, Loss:542303616.0000<br>Epoch:4, Loss:94321856.0000<br>Epoch:5, Loss:14120633.0000<br>Epoch:6, Loss:6071595.5000<br>Epoch:7, Loss:3444106.7500<br>Epoch:8, Loss:2400539.0000<br>Epoch:9, Loss:1919369.3750<br>Epoch:10, Loss:1656904.8750<br>Epoch:11, Loss:1486809.1250<br>Epoch:12, Loss:1359978.6250<br>Epoch:13, Loss:1256496.5000<br>Epoch:14, Loss:1167784.3750<br>Epoch:15, Loss:1089764.7500<br>Epoch:16, Loss:1020094.2500<br>Epoch:17, Loss:957429.0625<br>Epoch:18, Loss:900682.0625<br>Epoch:19, Loss:849140.9375</p>
+<p>loss值从之前的巨大误差逐渐缩减，这说明我们的模型经过20次训练和权重参数优化之后，得到的预测的值和真实值之间的差距越来越小了。</p>
+<h4 id="三、自动梯度（torch-autograd）"><a href="#三、自动梯度（torch-autograd）" class="headerlink" title="三、自动梯度（torch.autograd）"></a>三、自动梯度（torch.autograd）</h4><blockquote>
+<p>对于深度的神经网络模型的前向传播使用简单的代码就能实现，但是很难实现涉及该模型中后向传播梯度计算部分的代码，其中最困难的就是对模型计算逻辑的梳理。</p>
+<p>通过使用torch.autograd包，可以使模型参数自动计算在优化过程中需要用到的梯度值，在很大程度上帮助降低了实现后向传播代码的复杂度。</p>
+</blockquote>
+<p>torch.autograd包的主要功能是完成神经网络后向传播中的链式求导，手动实现链式求导的代码会给我们带来很大的困扰，而torch.autograd包中丰富的类减少了这些不必要的麻烦。<strong>实现自动梯度功能的过程大致为：先通过输入的Tensor数据类型的变量在神经网络的前向传播过程中生成一张计算图，然后根据这个计算图和输出结果准确计算出每个参数需要更新的梯度，并通过完成后向传播完成对参数的梯度更新。</strong></p>
+<p>在实践中完成自动梯度需要用到torch.autograd包中的Variable类对我们定义的Tensor数据类型变量进行封装，在封装后，计算图中的各个节点就是一个Variable对象，这样才能应用自动梯度的功能。</p>
+<p>如果已经按照如上方式完成了相关操作，则在选中了计算图中的某个节点时，这个节点必定会是一个Variable对象，用X来代表我们选中的节点，那么X.data代表Tensor数据类型的变量，X.grad也是一个Variable对象，不过它表示的是X的梯度，在想访问梯度值时需要使用X.grad.data。</p>
+<p>我们下面也搭建一个二层结构的神经网络模型，便于和上面对比：</p>
+<p>import torch<br>from torch.autograd import Variable<br>​<br>batch_n = 100<br>hidden_layer = 100<br>input_data = 1000<br>output_data = 10<br>​<br>x = Variable(torch.randn(batch_n, input_data), requires_grad=False)<br>y = Variable(torch.randn(batch_n, output_data), requires_grad=False)<br>​<br>w1 = Variable(torch.randn(input_data, hidden_layer), requires_grad=True)<br>w2 = Variable(torch.randn(hidden_layer, output_data), requires_grad=True)<br>“Variable(torch.randn(batch_n, input_data), requires_grad=False) 这段代码就是之前讲到的用Variable类对Tensor数据类型变量进行封装的操作。”<br>“在以上代码中还使用了一个requires_grad参数，这个参数的赋值类型是布尔型，如果requires_grad的值是False，那么表示该变量在进行自动梯度计算的过程中不会保留梯度值。”<br>“我们将输入的数据x和输出的数据y的requires_grad参数均设置为False，这是因为这两个变量并不是我们的模型需要优化的参数，而两个权重w1和w2的requires_grad参数的值为True。”<br>​<br>epoch_n = 20<br>learning_rate = 1e-6<br>​<br>for epoch in range(epoch_n):<br>    y_pred = x.mm(w1).clamp(min=0).mm(w2)<br>    loss = (y_pred - y).pow(2).sum()<br>    print(“Epoch:{}, Loss:{:.4f}”.format(epoch, loss.data))<br>​<br>    loss.backward()<br>​<br>    w1.data -= learning_rate*w1.grad.data<br>    w2.data -= learning_rate*w2.grad.data<br>​<br>    w1.grad.data.zero_()<br>    w2.grad.data.zero_()<br>​</p>
+<p><em>之前代码中的后向传播计算部分变成了新代码中的loss.backward()，这个函数的功能在于让模型根据计算图自动计算每个节点的梯度值并根据需求进行保留，有了这一步，我们的权重参数w1.data和w2.data就可以直接使用在自动梯度过程中求得的梯度值w1.data.grad和w2.data.grad，并结合学习速率来对现有的参数进行更新、优化了。</em></p>
+<p><em>在代码的最后还要将本次计算得到的各个参数节点的梯度值通过grad.data.zero\</em>()全部置零，如果不置零，则计算的梯度值会被一直累加，这样就会影响到后续的计算。_</p>
+<p>在运行后，输出的内容如下：</p>
+<p>Epoch:0, Loss:47338116.0000<br>Epoch:1, Loss:97949408.0000<br>Epoch:2, Loss:374966656.0000<br>Epoch:3, Loss:746421376.0000<br>Epoch:4, Loss:56399544.0000<br>Epoch:5, Loss:20339994.0000<br>Epoch:6, Loss:11709585.0000<br>Epoch:7, Loss:7755887.0000<br>Epoch:8, Loss:5540422.5000<br>Epoch:9, Loss:4160533.2500<br>Epoch:10, Loss:3238873.2500<br>Epoch:11, Loss:2592523.7500<br>Epoch:12, Loss:2122478.2500<br>Epoch:13, Loss:1771840.0000<br>Epoch:14, Loss:1504529.2500<br>Epoch:15, Loss:1296778.1250<br>Epoch:16, Loss:1132661.2500<br>Epoch:17, Loss:1001148.3125<br>Epoch:18, Loss:894226.1250<br>Epoch:19, Loss:806185.3125</p>
+<p>从结果来看，对参数的优化在顺利进行，因为loss值也越来越低了。</p>
+<h4 id="四、自定义传播函数"><a href="#四、自定义传播函数" class="headerlink" title="四、自定义传播函数"></a>四、自定义传播函数</h4><blockquote>
+<p>除了可以采用自动梯度方法，我们还可以通过构建一个继承了torch.nn.Module的新类，来完成对前向传播函数和后向传播函数的重写。在这个新类中，我们使用forward作为前向传播函数的关键字，使用backward作为后向传播函数的关键字。</p>
+</blockquote>
+<p>import torch<br>from torch.autograd import Variable<br>​<br>batch_n = 64<br>hidden_layer = 100<br>input_data = 1000<br>output_data = 10<br>​<br>“首先通过classModel(torch.nn. Module)完成了类继承的操作，之后分别是类的初始化，以及forward函数和backward函数。”<br>“forward函数实现了模型的前向传播中的矩阵运算，backward实现了模型的后向传播中的自动梯度计算，”<br>“后向传播如果没有特别的需求，则在一般情况下不用进行调整。在定义好类之后，我们就可以对其进行调用了”<br>​<br>class Model(torch.nn.Module):<br>    def __init__(self):<br>        super(Model, self).__init__()<br>​<br>    def forward(self, input, w1, w2):<br>        x = torch.mm(input, w1)<br>        x = torch.clamp(x, min=0)<br>        x = torch.mm(x, w2)<br>        return x<br>​<br>    def backward(self):<br>        pass<br>        return<br>​<br>​<br>model = Model()<br>​<br>x = Variable(torch.randn(batch_n, input_data), requires_grad=False)<br>y = Variable(torch.randn(batch_n, output_data), requires_grad=False)<br>​<br>w1 = Variable(torch.randn(input_data, hidden_layer), requires_grad=True)<br>w2 = Variable(torch.randn(hidden_layer, output_data), requires_grad=True)<br>​<br>epoch_n = 30<br>learning_rate = 1e-6<br>​<br>for epoch in range(epoch_n):<br>    # 模型通过“y_pred = model(x, w1, w2)”来完成对模型预测值的输出，并且整个训练部分的代码被简化了<br>    y_pred = model(x, w1, w2)<br>​<br>    loss = (y_pred - y).pow(2).sum()<br>    print(“Epoch:{}, Loss:{:.4f}”.format(epoch, loss.data))<br>    loss.backward()<br>​<br>    w1.data -= learning_rate * w1.grad.data<br>    w2.data -= learning_rate * w2.grad.data<br>​<br>    w1.grad.data.zero_()<br>    w2.grad.data.zero_()</p>
+<p>在运行后，输出的内容如下：</p>
+<p>Epoch:0, Loss:28151866.0000<br>Epoch:1, Loss:24739038.0000<br>Epoch:2, Loss:25950180.0000<br>Epoch:3, Loss:27835844.0000<br>Epoch:4, Loss:27276116.0000<br>Epoch:5, Loss:22496930.0000<br>Epoch:6, Loss:15407659.0000<br>Epoch:7, Loss:8983852.0000<br>Epoch:8, Loss:4875907.5000<br>Epoch:9, Loss:2690179.0000<br>Epoch:10, Loss:1615441.5000<br>Epoch:11, Loss:1082076.7500<br>Epoch:12, Loss:798210.6250<br>Epoch:13, Loss:630277.8750<br>Epoch:14, Loss:519263.3438<br>Epoch:15, Loss:438640.0938<br>Epoch:16, Loss:376149.4688<br>Epoch:17, Loss:325793.0312<br>Epoch:18, Loss:284095.4375<br>Epoch:19, Loss:249010.8906<br>Epoch:20, Loss:219174.5469<br>Epoch:21, Loss:193616.3125<br>Epoch:22, Loss:171656.0625<br>Epoch:23, Loss:152690.8281<br>Epoch:24, Loss:136200.7969<br>Epoch:25, Loss:121802.2422<br>Epoch:26, Loss:109181.9062<br>Epoch:27, Loss:98082.3125<br>Epoch:28, Loss:88291.6172<br>Epoch:29, Loss:79632.8047</p>
+<p>从结果来看，对参数的优化同样在顺利进行，每次输出的loss值也在逐渐减小。</p>
+<p>Write by sheen</p>
+ 
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          版权所有属于未央。商业转载，请联系作者（微信：sheenisme）以获取授权。 非商业转载，请注明出处并附上原文链接，谢谢配合。
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://www.sheensong.top/2020-04-06/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PyTorch/" rel="tag">PyTorch</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020-04-08/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            [学习笔记]-PyTorch进阶学习笔记
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020-04-04/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">哀悼英雄们！</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "KcIJTNpqW3ezIo8i9fvIFNxw-gzGzoHsz",
+    app_key: "yP7Tv2csrP5SRTJp68Wr7HAv",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "欢迎给我的文章评论，留下您的宝贵意见吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2020
+        <i class="ri-heart-fill heart_icon"></i> sheen
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="未央的Hexo博客"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/photo">图集</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/%E5%85%B3%E4%BA%8E%E6%88%91">关于我</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/others">其他</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+
+<script src="/js/clickBoom2.js"></script>
+
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=526668900&auto=0&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+  </div>
+</body>
+
+</html>

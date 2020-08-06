@@ -102,7 +102,7 @@
     
     
     <article
-  id="post-学习笔记-python爬虫实战-爬取农产品数据"
+  id="post-学习笔记-python爬虫实战-爬取农产品数据/学习笔记-python爬虫实战-爬取农产品数据"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -113,7 +113,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/04/18/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E7%88%AC%E8%99%AB%E5%AE%9E%E6%88%98-%E7%88%AC%E5%8F%96%E5%86%9C%E4%BA%A7%E5%93%81%E6%95%B0%E6%8D%AE/"
+  <a class="article-title" href="/2020-04-18/"
     >[学习笔记]-Python爬虫实战-爬取农产品数据</a> 
 </h2>
  
@@ -121,7 +121,7 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2020/04/18/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E7%88%AC%E8%99%AB%E5%AE%9E%E6%88%98-%E7%88%AC%E5%8F%96%E5%86%9C%E4%BA%A7%E5%93%81%E6%95%B0%E6%8D%AE/" class="article-date">
+      <a href="/2020-04-18/" class="article-date">
   <time datetime="2020-04-18T10:35:09.000Z" itemprop="datePublished">2020-04-18</time>
 </a>    
     </div>
@@ -134,21 +134,21 @@
 </blockquote>
 <h4 id="一、使用request爬取数据"><a href="#一、使用request爬取数据" class="headerlink" title="一、使用request爬取数据"></a>一、使用request爬取数据</h4><p># _*_ coding:utf-8 _*_<br># 开发人员:未央<br># 开发时间:2020/4/12 16:03<br># 文件名:Scrapy_lab1.py<br># 开发工具:PyCharm<br>import csv<br>import codecs<br>import requests  # 导入requests包<br>from bs4 import BeautifulSoup  # 导入bs4包<br>from datetime import datetime<br>​<br>​<br>class Produce:<br>    price_data = []  # 农产品的价格数据列表<br>    item_name = “”  # 农产品的类别名<br>​<br>    def __init__(self, category):<br>        self.item_name = category<br>        self.price_data = []<br>​<br>    # 读取某一页的数据，默认是第一页<br>    def get_price_page_data(self, page_index=1):<br>        url = ‘<a href="http://www.wbncp.com/PriceQuery.aspx?PageNo=&#39;" target="_blank" rel="noopener">http://www.wbncp.com/PriceQuery.aspx?PageNo=&#39;</a> + str(<br>            page_index) + ‘&amp;ItemName=’ + self.item_name + ‘&amp;DateStart=2017/10/1&amp;DateEnd=2020/3/31 ‘<br>        strhtml = requests.get(url)  # GET方式，获取网页数据<br>        # print(strhtml.text)<br>        soup = BeautifulSoup(strhtml.text, ‘html.parser’)  # 解析网页文档<br>        # print(soup)<br>​<br>        table_node = soup.find_all(‘table’)<br>        # number = 0<br>        # for table in table_node:<br>        #     number += 1<br>        #     print(number, table)<br>        all_price_table = table_node[21]  # 获取含有农产品价钱的table的数据<br>        # print(all_price_table)<br>        for tr in all_price_table.find_all(‘tr’):<br>            number = 0<br>            price_line = []<br>            for td in tr.find_all(‘td’):<br>                number += 1<br>                # print(number, td)<br>                if number == 1:<br>                    price_line.append(td.get_text().split())  # 获取品名<br>                elif number == 2:<br>                    price_line.append(td.get_text().split())  # 获取产地<br>                elif number == 3:<br>                    price_line.append(td.get_text().split())  # 获取规格<br>                elif number == 4:<br>                    price_line.append(td.get_text().split())  # 获取单位<br>                elif number == 5:<br>                    price_line.append(td.get_text().split())  # 获取最高价<br>                elif number == 6:<br>                    price_line.append(td.get_text().split())  # 获取最低价<br>                elif number == 7:<br>                    price_line.append(td.get_text().split())  # 获取均价<br>                elif number == 8:<br>                    price_line.append(datetime.strptime(td.get_text().replace(‘/‘, ‘-‘), ‘%Y-%m-%d’))  # 获取日期<br>            self.price_data.append(price_line)<br>        return<br>​<br>    # 获取全部页面的数据<br>    def get_price_data(self):<br>        for i in range(33):<br>            self.get_price_page_data(str(i))<br>        return<br>​<br>    # 讲爬虫的数据写入到CSV文件，路径为：D:\Data_pytorch\名字.csv<br>    def data_write_csv(self):  # file_address为写入CSV文件的路径，self.price_data为要写入数据列表<br>        self.get_price_data()<br>        file_address = “D:\Data_pytorch\\“ + self.item_name.__str__() + “.csv”<br>        file_csv = codecs.open(file_address, ‘w+’, ‘utf-8’)  # 追加<br>        writer = csv.writer(file_csv, delimiter=’ ‘, quotechar=’ ‘, quoting=csv.QUOTE_MINIMAL)<br>        for temp_data in self.price_data:<br>            writer.writerow(temp_data)<br>        print(self.item_name + “爬虫数据保存到文件成功！”)<br>​<br>    # 以字典类型读取csv文件,读取路径为：D:\Data_pytorch\名字.csv<br>    def data_reader_csv(self):<br>        file_address = “D:\Data_pytorch\\“ + self.item_name.__str__() + “.csv”<br>        with open(file_address, ‘r’, encoding=’utf8’)as fp:<br>            # 使用列表推导式，将读取到的数据装进列表<br>            data_list = [i for i in csv.DictReader(fp, fieldnames=None)]  # csv.DictReader 读取到的数据是list类型<br>        print(self.item_name + “数据如下：”)<br>        print(data_list)<br>        return data_list<br>​<br>​<br>list = [“白菜”, “包菜”, “土豆”, “菠菜”, “蒜苔”]<br>for temp_name in list:<br>    produce = Produce(temp_name)<br>    produce.data_write_csv()<br>    data = produce.data_reader_csv()</p>
 <p>运行之后，文件显示内容如下：</p>
-<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/image-20200416211956378.png" alt=""></p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/image-20200416211956378.png" alt></p>
 <h4 id="二、使用Scrapy爬取数据"><a href="#二、使用Scrapy爬取数据" class="headerlink" title="二、使用Scrapy爬取数据"></a>二、使用Scrapy爬取数据</h4><p>类似之前的学习案例，这里不再一步一步的介绍，直接上代码：</p>
 <p><strong>items.py代码如下：</strong></p>
 <p># -*- coding: utf-8 -*-<br>​<br># Define here the models for your scraped items  </p>
-<h1 id=""><a href="#" class="headerlink" title=""></a></h1><p># See documentation in:<br># <a href="https://doc.scrapy.org/en/latest/topics/items.html" target="_blank" rel="noopener">https://doc.scrapy.org/en/latest/topics/items.html</a><br>import scrapy<br>from scrapy.loader import ItemLoader<br>from scrapy.loader.processors import TakeFirst<br>​<br>​<br>class PriceSpiderItemLoader(ItemLoader):<br>    # 自定义itemloader，用于存储爬虫所抓取的字段内容的<br>    default_output_processor = TakeFirst()<br>​<br>​<br>class PriceSpiderItem(scrapy.Item):<br>    # define the fields for your item here like:<br>    # name = scrapy.Field()<br>    name = scrapy.Field()  # 品名<br>    address = scrapy.Field()  # 产地<br>    norms = scrapy.Field()  # 规格<br>    unit = scrapy.Field()  # 单位<br>    high = scrapy.Field()  # 最高价<br>    low = scrapy.Field()  # 最低价<br>    price_ave = scrapy.Field()  # 均价<br>    price_date = scrapy.Field()  # 日期</p>
+<h1 id><a href="#" class="headerlink" title></a></h1><p># See documentation in:<br># <a href="https://doc.scrapy.org/en/latest/topics/items.html" target="_blank" rel="noopener">https://doc.scrapy.org/en/latest/topics/items.html</a><br>import scrapy<br>from scrapy.loader import ItemLoader<br>from scrapy.loader.processors import TakeFirst<br>​<br>​<br>class PriceSpiderItemLoader(ItemLoader):<br>    # 自定义itemloader，用于存储爬虫所抓取的字段内容的<br>    default_output_processor = TakeFirst()<br>​<br>​<br>class PriceSpiderItem(scrapy.Item):<br>    # define the fields for your item here like:<br>    # name = scrapy.Field()<br>    name = scrapy.Field()  # 品名<br>    address = scrapy.Field()  # 产地<br>    norms = scrapy.Field()  # 规格<br>    unit = scrapy.Field()  # 单位<br>    high = scrapy.Field()  # 最高价<br>    low = scrapy.Field()  # 最低价<br>    price_ave = scrapy.Field()  # 均价<br>    price_date = scrapy.Field()  # 日期</p>
 <p><strong>setting.py代码如下：</strong></p>
 <p># -*- coding: utf-8 -*-<br>​<br># Scrapy settings for price_spider project  </p>
-<h1 id="-1"><a href="#-1" class="headerlink" title=""></a></h1><p># For simplicity, this file contains only settings considered important or<br># commonly used. You can find more settings consulting the documentation:  </p>
-<h1 id="-2"><a href="#-2" class="headerlink" title=""></a></h1><p>#     <a href="https://doc.scrapy.org/en/latest/topics/settings.html" target="_blank" rel="noopener">https://doc.scrapy.org/en/latest/topics/settings.html</a><br>#     <a href="https://doc.scrapy.org/en/latest/topics/downloader-middleware.html" target="_blank" rel="noopener">https://doc.scrapy.org/en/latest/topics/downloader-middleware.html</a><br>#     <a href="https://doc.scrapy.org/en/latest/topics/spider-middleware.html" target="_blank" rel="noopener">https://doc.scrapy.org/en/latest/topics/spider-middleware.html</a><br>from scrapy.exporters import JsonLinesItemExporter<br>​<br>​<br># 默认显示的中文是阅读性较差的Unicode字符<br># 需要定义子类显示出原来的字符集(将父类的ensure_ascii属性设置为False即可)<br>class CustomJsonLinesItemExporter(JsonLinesItemExporter):<br>    def __init__(self, file, **kwargs):<br>        super(CustomJsonLinesItemExporter, self).__init__(file, ensure_ascii=False, **kwargs)<br>​<br>​<br># 启用新定义的Exporter类<br>FEED_EXPORTERS = {<br>    ‘json’: ‘price_spider.settings.CustomJsonLinesItemExporter’,<br>}<br>​<br>BOT_NAME = ‘price_spider’<br>​<br>SPIDER_MODULES = [‘price_spider.spiders’]<br>NEWSPIDER_MODULE = ‘price_spider.spiders’<br>​<br># Crawl responsibly by identifying yourself (and your website) on the user-agent<br># USER_AGENT = ‘price_spider (+<a href="http://www.yourdomain.com)&#39;" target="_blank" rel="noopener">http://www.yourdomain.com)&#39;</a><br>​<br># Obey robots.txt rules<br>ROBOTSTXT_OBEY = False<br>​<br># Configure maximum concurrent requests performed by Scrapy (default: 16)<br># CONCURRENT_REQUESTS = 32<br>​<br># Configure a delay for requests for the same website (default: 0)<br># See <a href="https://doc.scrapy.org/en/latest/topics/settings.html#download-delay" target="_blank" rel="noopener">https://doc.scrapy.org/en/latest/topics/settings.html#download-delay</a><br># See also autothrottle settings and docs<br>DOWNLOAD_DELAY = 3</p>
+<h1 id="-1"><a href="#-1" class="headerlink" title></a></h1><p># For simplicity, this file contains only settings considered important or<br># commonly used. You can find more settings consulting the documentation:  </p>
+<h1 id="-2"><a href="#-2" class="headerlink" title></a></h1><p>#     <a href="https://doc.scrapy.org/en/latest/topics/settings.html" target="_blank" rel="noopener">https://doc.scrapy.org/en/latest/topics/settings.html</a><br>#     <a href="https://doc.scrapy.org/en/latest/topics/downloader-middleware.html" target="_blank" rel="noopener">https://doc.scrapy.org/en/latest/topics/downloader-middleware.html</a><br>#     <a href="https://doc.scrapy.org/en/latest/topics/spider-middleware.html" target="_blank" rel="noopener">https://doc.scrapy.org/en/latest/topics/spider-middleware.html</a><br>from scrapy.exporters import JsonLinesItemExporter<br>​<br>​<br># 默认显示的中文是阅读性较差的Unicode字符<br># 需要定义子类显示出原来的字符集(将父类的ensure_ascii属性设置为False即可)<br>class CustomJsonLinesItemExporter(JsonLinesItemExporter):<br>    def __init__(self, file, **kwargs):<br>        super(CustomJsonLinesItemExporter, self).__init__(file, ensure_ascii=False, **kwargs)<br>​<br>​<br># 启用新定义的Exporter类<br>FEED_EXPORTERS = {<br>    ‘json’: ‘price_spider.settings.CustomJsonLinesItemExporter’,<br>}<br>​<br>BOT_NAME = ‘price_spider’<br>​<br>SPIDER_MODULES = [‘price_spider.spiders’]<br>NEWSPIDER_MODULE = ‘price_spider.spiders’<br>​<br># Crawl responsibly by identifying yourself (and your website) on the user-agent<br># USER_AGENT = ‘price_spider (+<a href="http://www.yourdomain.com)&#39;" target="_blank" rel="noopener">http://www.yourdomain.com)&#39;</a><br>​<br># Obey robots.txt rules<br>ROBOTSTXT_OBEY = False<br>​<br># Configure maximum concurrent requests performed by Scrapy (default: 16)<br># CONCURRENT_REQUESTS = 32<br>​<br># Configure a delay for requests for the same website (default: 0)<br># See <a href="https://doc.scrapy.org/en/latest/topics/settings.html#download-delay" target="_blank" rel="noopener">https://doc.scrapy.org/en/latest/topics/settings.html#download-delay</a><br># See also autothrottle settings and docs<br>DOWNLOAD_DELAY = 3</p>
 <p><strong>爬虫逻辑（spider.py)代码如下：</strong></p>
 <p># _*_ coding:utf-8 _*_<br># 开发人员:未央<br># 开发时间:2020/4/16 14:55<br># 文件名:spider.py<br># 开发工具:PyCharm<br>import scrapy<br>from price_spider.items import PriceSpiderItemLoader, PriceSpiderItem<br>​<br>​<br>class SpiderSpider(scrapy.Spider):<br>    name = ‘spider’<br>    allowed_domains = [‘<a href="http://www.wbncp.com&#39;\]" target="_blank" rel="noopener">www.wbncp.com&#39;\]</a><br>    start_urls = [‘<a href="http://www.wbncp.com/PriceQuery.aspx?PageNo=1&amp;ItemName=%e7%99%bd%e8%8f%9c&amp;DateStart=2017/10/1&#39;" target="_blank" rel="noopener">http://www.wbncp.com/PriceQuery.aspx?PageNo=1&amp;ItemName=%e7%99%bd%e8%8f%9c&amp;DateStart=2017/10/1&#39;</a><br>                  ‘&amp;DateEnd=2020/3/31’, ‘<a href="http://www.wbncp.com/PriceQuery.aspx?PageNo=1&amp;ItemName=土豆&amp;DateStart=2017/10/1&#39;" target="_blank" rel="noopener">http://www.wbncp.com/PriceQuery.aspx?PageNo=1&amp;ItemName=土豆&amp;DateStart=2017/10/1&#39;</a><br>                                        ‘&amp;DateEnd=2020/3/31’, ‘<a href="http://www.wbncp.com/PriceQuery.aspx?PageNo=1&amp;ItemName&#39;" target="_blank" rel="noopener">http://www.wbncp.com/PriceQuery.aspx?PageNo=1&amp;ItemName&#39;</a><br>                                                              ‘=芹菜&amp;DateStart=2017/10/1 &amp;DateEnd=2020/3/31’]<br>​<br>    def parse(self, response):<br>        item_nodes = response.xpath(“//tr[@class=’Center’ or @class=’Center Gray’]“)<br>        for item_node in item_nodes:<br>            item_loader = PriceSpiderItemLoader(item=PriceSpiderItem(), selector=item_node)<br>            item_loader.add_css(“name”, “td:nth-child(1) ::text”)<br>            item_loader.add_css(“address”, “td:nth-child(2) ::text”)<br>            item_loader.add_css(“norms”, “td:nth-child(3) ::text”)<br>            item_loader.add_css(“unit”, “td:nth-child(4) ::text”)<br>            item_loader.add_css(“high”, “td:nth-child(5) ::text”)<br>            item_loader.add_css(“low”, “td:nth-child(6) ::text”)<br>            item_loader.add_css(“price_ave”, “td:nth-child(7)::text”)<br>            item_loader.add_css(“price_date”, “td:nth-child(8)::text”)<br>            price_item = item_loader.load_item()<br>            yield price_item<br>​<br>        next_page = response.xpath(“//*[@id=’cphRight_lblPage’]/div/a[10]/@href”).extract_first()<br>        if next_page is not None:<br>            next_page = response.urljoin(next_page)<br>            yield scrapy.Request(next_page, callback=self.parse)</p>
 <p><strong>替代运行命令（price_scrapy_main.py）的代码如下：</strong></p>
 <p># _*_ coding:utf-8 _*_<br># 开发人员:未央<br># 开发时间:2020/4/16 14:55<br># 文件名:price_scrapy_main.py<br># 开发工具:PyCharm<br>from scrapy.cmdline import execute<br>​<br>execute([“scrapy”, “crawl”, “spider”, “-o”, “price_data.csv”])</p>
 <p>运作后，将csv数据导入excel中，结果如下：</p>
-<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/image-20200416212730748.png" alt=""></p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/image-20200416212730748.png" alt></p>
 <p>三、经验总结：</p>
 <p>1.使用request确实比较灵活，但是如果爬取数据多很不方便，代码也会很长，还是使用scrapy方便。特别是爬取多个页面，scrapy 的横向和纵向爬取，超级腻害！</p>
 <p>2.Scrapy主要是设置文件（setting.py）的各种设置以及爬虫文件（本文是spider.py）的爬虫逻辑，其中主要是选择器部分比较麻烦，但是通过最近的学习，基本可以通过搜索+阅读官方文档得以解决，主要是不常用可能耗时会比较长一些罢了。</p>
@@ -176,7 +176,7 @@
 
     
     <article
-  id="post-学习笔记-python爬虫进阶（scrapy学习）"
+  id="post-学习笔记-python爬虫进阶（scrapy学习）/学习笔记-python爬虫进阶（scrapy学习）"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -187,7 +187,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/04/16/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E7%88%AC%E8%99%AB%E8%BF%9B%E9%98%B6%EF%BC%88scrapy%E5%AD%A6%E4%B9%A0%EF%BC%89/"
+  <a class="article-title" href="/2020-04-16/"
     >[学习笔记]-Python爬虫进阶（Scrapy)学习</a> 
 </h2>
  
@@ -195,7 +195,7 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2020/04/16/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E7%88%AC%E8%99%AB%E8%BF%9B%E9%98%B6%EF%BC%88scrapy%E5%AD%A6%E4%B9%A0%EF%BC%89/" class="article-date">
+      <a href="/2020-04-16/" class="article-date">
   <time datetime="2020-04-16T06:18:24.000Z" itemprop="datePublished">2020-04-16</time>
 </a>    
     </div>
@@ -206,9 +206,9 @@
 <p>谈起爬虫必然要提起Scrapy框架，因为它能够帮助提升爬虫的效率，从而更好地实现爬虫。Scrapy是一个为了抓取网页数据、提取结构性数据而编写的应用框架，该框架是封装的，包含request（异步调度和处理）、下载器（多线程的Downloader）、解析器（selector）和twisted（异步处理）等。对于网站的内容爬取，其速度非常快捷。</p>
 </blockquote>
 <h4 id="一、在PyCharm中安装Scrapy"><a href="#一、在PyCharm中安装Scrapy" class="headerlink" title="一、在PyCharm中安装Scrapy"></a>一、在PyCharm中安装Scrapy</h4><p>第一步，选择Anaconda 3作为编译环境。在PyCharm中单击左上角File选项，单击“Settings”按钮，弹出如图所示界面，然后展开ProjectInterpreter的下拉菜单，选择Anaconda 3的下拉菜单。</p>
-<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/image-20200413104350236-1024x737.png" alt=""></p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/image-20200413104350236-1024x737.png" alt></p>
 <p>第二步，安装Scrapy。单击如图的界面右上角的加号按钮，弹出如下所示的界面。输入并搜索“scrapy”，然后单击“Install Package”按钮。等待，直至出现“Pakage‘scrapy’ installed successfully”。</p>
-<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/image-20200413104528696-1024x573.png" alt=""></p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/image-20200413104528696-1024x573.png" alt></p>
 <h4 id="二、用实例学习-用Scrapy抓取股票行情"><a href="#二、用实例学习-用Scrapy抓取股票行情" class="headerlink" title="二、用实例学习-用Scrapy抓取股票行情"></a>二、用实例学习-用Scrapy抓取股票行情</h4><p><strong>爬取过程分为以下五步：</strong></p>
 <p><strong>第一步，创建Scrapy爬虫项目；</strong></p>
 <p><strong>第二步，定义一个item容器；</strong></p>
@@ -223,7 +223,7 @@
 <p><strong>项目的pipelines文件pipelines.py（核心处理器）。</strong></p>
 <p><strong>项目的设置文件settings.py。</strong></p>
 <p><strong>项目的配置文件scrapy.cfg。</strong></p>
-<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/image-20200413180816967.png" alt=""></p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/image-20200413180816967.png" alt></p>
 <p>创建scrapy项目以后，在settings文件中有这样的一条默认开启的语句。</p>
 <pre><code>ROBOTSTXT\_OBEY = True</code></pre><p>robots.txt是遵循Robot协议的一个文件，在Scrapy启动后，首先会访问网站的robots.txt文件，然后决定该网站的爬取范围。有时我们需要将此配置项设置为False。</p>
 <p><strong>在settings.py文件中，修改文件属性的方法如下</strong>。</p>
@@ -238,7 +238,7 @@
 <p>首先在CMD中输入代码，并生成spider代码，如下所示：</p>
 <pre><code>cd stockstar  
 scrapy genspider stock quote.stockstar.com</code></pre><p><strong>此时spider文件夹下面会创建后缀名为stock.py的文件，该文件会生成start_url，即爬虫的起始地址，并且创建名为parse的自定义函数，之后的爬虫逻辑将在parse函数中书写。</strong>文件详情和代码如下图如图：</p>
-<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/image-20200413181550620-1024x215.png" alt=""></p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/image-20200413181550620-1024x215.png" alt></p>
 <p><strong>后在spiders/stock.py文件下，定义爬虫逻辑</strong>，详细代码如下：</p>
 <p># -*- coding: utf-8 -*-<br>import scrapy<br>from items import StockstarItem, StockstarItemLoader<br>​<br>​<br>class StockSpider(scrapy.Spider):<br>    name = ‘stock’<br>    allowed_domains = [‘quote.stockstar.com’]<br>    start_urls = [‘<a href="http://quote.stockstar.com/stock/ranklist\_a\_3\_1\_1.html&#39;\]" target="_blank" rel="noopener">http://quote.stockstar.com/stock/ranklist\_a\_3\_1\_1.html&#39;\]</a><br>​<br>    def parse(self, response):<br>        page = int(response.url.split(“_“)[-1].split(“.”)[0])  # 抓取页码<br>        item_nodes = response.css(‘#datalist tr’)<br>        for item_node in item_nodes:<br>            # 根据item文件所定义的字段内容，进行字段内容的抓取<br>            item_loader = StockstarItemLoader(item=StockstarItem(), selector=item_node)<br>            item_loader.add_css(“code”, “td:nth-child(1) a::text”)<br>            item_loader.add_css(“abbr”, “td:nth-child(2) a::text”)<br>            item_loader.add_css(“market_equity”, “td:nth-child(3) ::text”)<br>            item_loader.add_css(“all_equity”, “td:nth-child(4) ::text”)<br>            item_loader.add_css(“flow_stock”, “td:nth-child(5) ::text”)<br>            item_loader.add_css(“all_stock”, “td:nth-child(6) ::text”)<br>            stock_item = item_loader.load_item()<br>            yield stock_item<br>        if item_nodes:<br>            next_page = page + 1<br>            next_url = response.url.replace(“{0}.html”.format(page), “{0}.html”.format(next_page))<br>            yield scrapy.Request(url=next_url, callback=self.parse)</p>
 <h5 id="5．代码调试"><a href="#5．代码调试" class="headerlink" title="5．代码调试"></a>5．代码调试</h5><p>为了调试方便，在stockstar下新建一个main.py，调试代码如下：</p>
@@ -247,9 +247,9 @@ execute(\[&quot;scrapy&quot;, &quot;crawl&quot;, &quot;stock&quot;, &quot;-o&quo
 <p><strong>其等价于在stockstar下执行命令“scrapy crawl stock -o items.json”，意为：将爬取的数据导出到items.json文件</strong></p>
 <pre><code>XXXX\\stockstar&gt;scrapy crawl stock -o items.json</code></pre><p>在代码里可设置断点（如在spiders/stock.py内），然后单击“Run”选项按钮→在弹出的菜单中选择“Debug‘main’”命令，进行调试。</p>
 <p>最后在PyCharm中运行Run ‘main’，运行界面如下图：</p>
-<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/image-20200413182331925-1024x659.png" alt=""></p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/image-20200413182331925-1024x659.png" alt></p>
 <p>将所抓取的数据以JSON格式保存在item容器中，如下图：</p>
-<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/image-20200413182418168-1024x359.png" alt=""></p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/image-20200413182418168-1024x359.png" alt></p>
 <h4 id="三、scrapy-其他"><a href="#三、scrapy-其他" class="headerlink" title="三、scrapy 其他"></a>三、scrapy 其他</h4><h5 id="1-start-url（初始链接）简写"><a href="#1-start-url（初始链接）简写" class="headerlink" title="1.start_url（初始链接）简写"></a>1.start_url（初始链接）简写</h5><p>用简化的方法，我们必须定义一个方法为：def parse(self, response)，方法名一定是：parse。</p>
 <p>“””<br>    scrapy初始Url的两种写法，<br>    一种是常量start_urls，并且需要定义一个方法parse（）<br>    另一种是直接定义一个方法：star_requests()<br>“””<br>import scrapy<br>class simpleUrl(scrapy.Spider):<br>    name = “simpleUrl”<br>    start_urls = [  #另外一种写法，无需定义start_requests方法<br>        ‘<a href="http://lab.scrapyd.cn/page/1/&#39;" target="_blank" rel="noopener">http://lab.scrapyd.cn/page/1/&#39;</a>,<br>        ‘<a href="http://lab.scrapyd.cn/page/2/&#39;" target="_blank" rel="noopener">http://lab.scrapyd.cn/page/2/&#39;</a>,<br>    ]<br>​<br>    # 另外一种初始链接写法<br>    # def start_requests(self):<br>    #     urls = [ #爬取的链接由此方法通过下面链接爬取页面<br>    #         ‘<a href="http://lab.scrapyd.cn/page/1/&#39;" target="_blank" rel="noopener">http://lab.scrapyd.cn/page/1/&#39;</a>,<br>    #         ‘<a href="http://lab.scrapyd.cn/page/2/&#39;" target="_blank" rel="noopener">http://lab.scrapyd.cn/page/2/&#39;</a>,<br>    #     ]<br>    #     for url in urls:<br>    #         yield scrapy.Request(url=url, callback=self.parse)<br>    # 如果是简写初始url，此方法名必须为：parse<br>​<br>    def parse(self, response):<br>        page = response.url.split(“/“)[-2]<br>        filename = ‘mingyan-%s.html’ % page<br>        with open(filename, ‘wb’) as f:<br>            f.write(response.body)<br>        self.log(‘保存文件: %s’ % filename)</p>
 <h5 id="2-Scrapy数据提取"><a href="#2-Scrapy数据提取" class="headerlink" title="2.Scrapy数据提取"></a>2.Scrapy数据提取</h5><blockquote>
@@ -283,7 +283,7 @@ execute(\[&quot;scrapy&quot;, &quot;crawl&quot;, &quot;stock&quot;, &quot;-o&quo
     movie\[&apos;movie\_name&apos;\] = n  
     movie\[&apos;movie\_core&apos;\] = c  
     yield movie</code></pre><h5 id="4-使用Chrome获取XPath表达式"><a href="#4-使用Chrome获取XPath表达式" class="headerlink" title="4.使用Chrome获取XPath表达式"></a>4.使用Chrome获取XPath表达式</h5><p>Chrome通过向我们提供一些基本的XPath表达式，从而对开发者更加友好。从检查元素开始：右键单击想要选取的元素，然后选择Inspect Element。该操作将会打开Developer Tools，并且在树表示法中高亮显示这个HTML元素。现在右键单击这里，在菜单中选择Copy XPath，此时XPath表达式将会被复制到剪贴板中。上述过程如图：</p>
-<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/image-20200413185400612-1024x895.png" alt=""></p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/image-20200413185400612-1024x895.png" alt></p>
 <p><strong>另外，XPath的contains()函数可以让你选择包含有指定类的所有元素。</strong></p>
 <p>● 选择class属性值为”infobox”的表格中第一张图片的URL。</p>
 <pre><code>//table\[@class=&quot;infobox&quot;\]//img\[1\]/@src</code></pre><p>● 选择class属性以”reflist”开头的div标签中所有链接的URL。</p>
@@ -310,7 +310,7 @@ execute(\[&quot;scrapy&quot;, &quot;crawl&quot;, &quot;stock&quot;, &quot;-o&quo
 <p>● 纵向——从一个索引页到房源页并抽取Item</p>
 <p>我们将前者称为水平爬取，因为这种情况下是在同一层级下爬取页面（比如索引页）；而将后者称为垂直爬取，因为该方式是从一个更高的层级（比如索引页）到一个更低的层级（比如房源页）。</p>
 <p>实际上，它比听起来更加容易。我们所有需要做的事情就是<strong>再增加两个XPath表达式。对于第一个表达式，右键单击Next Page按钮，可以注意到URL包含在一个链接中，而该链接又是在一个拥有类名next的标签内，如图下图所示。因此，我们只需使用一个实用的XPath表达式//＊[contains (@class, “next”)]//@href，就可以完美运行了。</strong></p>
-<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/image-20200413191042564-1024x512.png" alt=""></p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/image-20200413191042564-1024x512.png" alt></p>
 <p>对于第二个表达式，右键单击页面中的列表标题，并选择检查。如上图所示，请注意，URL中包含我们感兴趣的itemprop=”url”属性。</p>
 <blockquote>
 <p>另外，Scrapy在处理请求时使用的是后入先出（LIFO）策略（即深度优先爬取）。用户提交的最后一个请求会被首先处理。在大多数情况下，这种默认的方式非常方便。比如，我们想要在移动到下一个索引页之前处理每一个房源页时。否则，我们将会填充一个包含待爬取房源页URL的巨大队列，无谓地消耗内存。</p>
@@ -339,7 +339,7 @@ execute(\[&quot;scrapy&quot;, &quot;crawl&quot;, &quot;stock&quot;, &quot;-o&quo
 
     
     <article
-  id="post-学习笔记-python爬虫基础学习"
+  id="post-学习笔记-python爬虫基础学习/学习笔记-python爬虫基础学习"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -350,7 +350,7 @@ execute(\[&quot;scrapy&quot;, &quot;crawl&quot;, &quot;stock&quot;, &quot;-o&quo
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/04/13/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/"
+  <a class="article-title" href="/2020-04-13/"
     >[学习笔记]-python爬虫基础学习</a> 
 </h2>
  
@@ -358,7 +358,7 @@ execute(\[&quot;scrapy&quot;, &quot;crawl&quot;, &quot;stock&quot;, &quot;-o&quo
     </header>
      
     <div class="article-meta">
-      <a href="/2020/04/13/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/" class="article-date">
+      <a href="/2020-04-13/" class="article-date">
   <time datetime="2020-04-13T11:24:52.000Z" itemprop="datePublished">2020-04-13</time>
 </a>    
     </div>
@@ -428,7 +428,7 @@ execute(\[&quot;scrapy&quot;, &quot;crawl&quot;, &quot;stock&quot;, &quot;-o&quo
 <p>首先，构建自己的代理IP池，将其以字典的形式赋值给proxies，然后传输给requests，代码如下：</p>
 <p>proxies = {   # 设置IP代理池，将其以字典的形式赋值给proxies，然后传输给requests解决被封IP问题<br>    “http”: “<a href="http://10.10.1.10:3128&quot;">http://10.10.1.10:3128&quot;</a>,<br>    “https”: “<a href="http://10.10.1.10:1080&quot;">http://10.10.1.10:1080&quot;</a>,<br>}<br>response = requests.get(url, proxies=proxies)</p>
 <p>Write by sheen</p>
- 
+</style></p> 
       <!-- reward -->
       
     </div>
@@ -450,7 +450,7 @@ execute(\[&quot;scrapy&quot;, &quot;crawl&quot;, &quot;stock&quot;, &quot;-o&quo
 
     
     <article
-  id="post-【学习笔记】-pytorch实战手写数字识别"
+  id="post-【学习笔记】-pytorch实战手写数字识别/【学习笔记】-pytorch实战手写数字识别"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -461,7 +461,7 @@ execute(\[&quot;scrapy&quot;, &quot;crawl&quot;, &quot;stock&quot;, &quot;-o&quo
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/04/11/%E3%80%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91-pytorch%E5%AE%9E%E6%88%98%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/"
+  <a class="article-title" href="/2020-04-11/"
     >[学习笔记]-PyTorch实战手写数字识别</a> 
 </h2>
  
@@ -469,7 +469,7 @@ execute(\[&quot;scrapy&quot;, &quot;crawl&quot;, &quot;stock&quot;, &quot;-o&quo
     </header>
      
     <div class="article-meta">
-      <a href="/2020/04/11/%E3%80%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91-pytorch%E5%AE%9E%E6%88%98%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/" class="article-date">
+      <a href="/2020-04-11/" class="article-date">
   <time datetime="2020-04-11T06:52:43.000Z" itemprop="datePublished">2020-04-11</time>
 </a>    
     </div>
@@ -492,7 +492,7 @@ execute(\[&quot;scrapy&quot;, &quot;crawl&quot;, &quot;stock&quot;, &quot;-o&quo
 <p># 需要提前定义的对载入的数据进行变换操作<br>transform = transforms.Compose([transforms.ToTensor(),<br>                                transforms.Normalize(mean=[0.1307], std=[0.3081])])<br>​</p>
 <p>我们可以将以上代码中的<strong>torchvision.transforms.Compose类看作一种容器</strong>，它能够同时对多种数据变换进行组合。<strong>传入的参数是一个列表，列表中的元素就是对载入的数据进行的各种变换操作</strong>。</p>
 <p>在以上代码中，<strong>在torchvision.transforms.Compose中只使用了一个类型的转换变换transforms.ToTensor和一个数据标准化变换transforms.Normalize</strong>。这里使用的_标准化变换也叫作标准差变换法，这种方法需要使用原始数据的均值（Mean）和标准差（StandardDeviation）来进行数据的标准化，在经过标准化变换之后，数据全部符合均值为0、标准差为1的标准正态分布_。计算公式如下：</p>
-<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/epub_23914630_212-1586067253572.jpg" alt=""></p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/epub_23914630_212-1586067253572.jpg" alt></p>
 <p>不过我们在这里偷了一个懒，均值和标准差的值并非来自原始数据的，而是自行定义了一个，不过仍然能够达到我们的目的。</p>
 <h5 id="1-在torchvision-transforms中常用的数据变换操作。"><a href="#1-在torchvision-transforms中常用的数据变换操作。" class="headerlink" title="1. 在torchvision.transforms中常用的数据变换操作。"></a>1. 在torchvision.transforms中常用的数据变换操作。</h5><h6 id="（1）torchvision-transforms-Resize：用于对载入的图片数据按我们需求的大小进行缩放。"><a href="#（1）torchvision-transforms-Resize：用于对载入的图片数据按我们需求的大小进行缩放。" class="headerlink" title="（1）torchvision.transforms.Resize：用于对载入的图片数据按我们需求的大小进行缩放。"></a>（1）torchvision.transforms.Resize：用于对载入的图片数据按我们需求的大小进行缩放。</h6><p>传递给这个类的参数可以是一个整型数据，也可以是一个类似于（h,w）的序列，其中，h代表高度，w代表宽度，但是如果使用的是一个整型数据，那么表示缩放的宽度和高度都是这个整型数据的值。</p>
 <h6 id="（2）torchvision-transforms-Scale：用于对载入的图片数据按我们需求的大小进行缩放，用法和torchvision-transforms-Resize类似。"><a href="#（2）torchvision-transforms-Scale：用于对载入的图片数据按我们需求的大小进行缩放，用法和torchvision-transforms-Resize类似。" class="headerlink" title="（2）torchvision.transforms.Scale：用于对载入的图片数据按我们需求的大小进行缩放，用法和torchvision.transforms.Resize类似。"></a>（2）torchvision.transforms.Scale：用于对载入的图片数据按我们需求的大小进行缩放，用法和torchvision.transforms.Resize类似。</h6><h6 id="（3）torchvision-transforms-CenterCrop：用于对载入的图片以图片中心为参考点，按我们需要的大小进行裁剪。"><a href="#（3）torchvision-transforms-CenterCrop：用于对载入的图片以图片中心为参考点，按我们需要的大小进行裁剪。" class="headerlink" title="（3）torchvision.transforms.CenterCrop：用于对载入的图片以图片中心为参考点，按我们需要的大小进行裁剪。"></a>（3）torchvision.transforms.CenterCrop：用于对载入的图片以图片中心为参考点，按我们需要的大小进行裁剪。</h6><p>传递给这个类的参数可以是一个整型数据，也可以是一个类似于（h,w）的序列。</p>
@@ -513,7 +513,7 @@ execute(\[&quot;scrapy&quot;, &quot;crawl&quot;, &quot;stock&quot;, &quot;-o&quo
 <p>在完成数据预览的代码中，我们先打印输出了这个批次中的数据的全部标签，然后才对这个批次中的所有图片数据进行显示，代码如下：</p>
 <p>[tensor(5), tensor(3), tensor(9), tensor(5), tensor(0), tensor(0), tensor(4), tensor(4), tensor(3), tensor(3), tensor(3), tensor(0), tensor(7), tensor(3), tensor(3), tensor(8), tensor(1), tensor(1), tensor(4), tensor(9), tensor(4), tensor(5), tensor(3), tensor(5), tensor(7), tensor(0), tensor(4), tensor(7), tensor(2), tensor(8), tensor(7), tensor(5), tensor(4), tensor(7), tensor(9), tensor(7), tensor(2), tensor(6), tensor(9), tensor(9), tensor(6), tensor(2), tensor(5), tensor(8), tensor(5), tensor(6), tensor(0), tensor(1), tensor(4), tensor(8), tensor(0), tensor(0), tensor(7), tensor(5), tensor(5), tensor(9), tensor(1), tensor(7), tensor(0), tensor(4), tensor(3), tensor(2), tensor(7), tensor(7)]</p>
 <p>可以看到，打印输出的首先是64张图片对应的标签，然后是64张图片的预览结果:</p>
-<p><img src="%E3%80%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91-pytorch%E5%AE%9E%E6%88%98%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/Figure_8.png" alt=""></p>
+<p><img src="/2020-04-11/Figure_8.png" alt></p>
 <h4 id="四、模型搭建和参数优化"><a href="#四、模型搭建和参数优化" class="headerlink" title="四、模型搭建和参数优化"></a>四、模型搭建和参数优化</h4><blockquote>
 <p>在顺利完成数据装载后，我们就可以开始编写卷积神经网络模型的搭建和参数优化的代码了。</p>
 </blockquote>
@@ -523,7 +523,7 @@ execute(\[&quot;scrapy&quot;, &quot;crawl&quot;, &quot;stock&quot;, &quot;-o&quo
 <h6 id="（1）torch-nn-Conv2d：用于搭建卷积神经网络的卷积层，主要的输入参数有输入通道数、输出通道数、卷积核大小、卷积核移动步长和Paddingde值。"><a href="#（1）torch-nn-Conv2d：用于搭建卷积神经网络的卷积层，主要的输入参数有输入通道数、输出通道数、卷积核大小、卷积核移动步长和Paddingde值。" class="headerlink" title="（1）torch.nn.Conv2d：用于搭建卷积神经网络的卷积层，主要的输入参数有输入通道数、输出通道数、卷积核大小、卷积核移动步长和Paddingde值。"></a>（1）torch.nn.Conv2d：用于搭建卷积神经网络的卷积层，主要的输入参数有输入通道数、输出通道数、卷积核大小、卷积核移动步长和Paddingde值。</h6><p>其中，输入通道数的数据类型是整型，用于确定输入数据的层数；输出通道数的数据类型也是整型，用于确定输出数据的层数；卷积核大小的数据类型是整型，用于确定卷积核的大小；卷积核移动步长的数据类型是整型，用于确定卷积核每次滑动的步长；Paddingde的数据类型是整型，值为0时表示不进行边界像素的填充，如果值大于0，那么增加数字所对应的边界像素层数。</p>
 <h6 id="（2）torch-nn-MaxPool2d：用于实现卷积神经网络中的最大池化层，主要的输入参数是池化窗口大小、池化窗口移动步长和Paddingde值。"><a href="#（2）torch-nn-MaxPool2d：用于实现卷积神经网络中的最大池化层，主要的输入参数是池化窗口大小、池化窗口移动步长和Paddingde值。" class="headerlink" title="（2）torch.nn.MaxPool2d：用于实现卷积神经网络中的最大池化层，主要的输入参数是池化窗口大小、池化窗口移动步长和Paddingde值。"></a>（2）torch.nn.MaxPool2d：用于实现卷积神经网络中的最大池化层，主要的输入参数是池化窗口大小、池化窗口移动步长和Paddingde值。</h6><p>同样，池化窗口大小的数据类型是整型，用于确定池化窗口的大小。池化窗口步长的数据类型也是整型，用于确定池化窗口每次移动的步长。Paddingde值和在torch.nn.Conv2d中定义的Paddingde值的用法和意义是一样的。</p>
 <h6 id="（3）torch-nn-Dropout-torch-nn-Dropout类用于防止卷积神经网络在训练的过程中发生过拟合。"><a href="#（3）torch-nn-Dropout-torch-nn-Dropout类用于防止卷积神经网络在训练的过程中发生过拟合。" class="headerlink" title="（3）torch.nn.Dropout: torch.nn.Dropout类用于防止卷积神经网络在训练的过程中发生过拟合。"></a>（3）torch.nn.Dropout: torch.nn.Dropout类用于防止卷积神经网络在训练的过程中发生过拟合。</h6><p>其工作原理简单来说就是在模型训练的过程中，以一定的随机概率将卷积神经网络模型的部分参数归零，以达到减少相邻两层神经连接的目的。下图显示了Dropout方法的效果：</p>
-<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/image-20200407112822849.png" alt=""></p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/image-20200407112822849.png" alt></p>
 <p>在图中打叉的神经节点就是被随机抽中并丢弃的神经连接，正是因为选取方式的随机性，所以在模型的每轮训练中选择丢弃的神经连接也是不同的，<strong>这样做是为了让我们最后训练出来的模型对各部分的权重参数不产生过度依赖，从而防止过拟合。</strong>对于torch.nn.Dropout类，我们可以对随机概率值的大小进行设置，如果不做任何设置，就使用默认的概率值0.5。</p>
 <p>前向传播forward函数中的内容：首先，<strong>经过self.conv1进行卷积处理</strong>；然后<strong>进行x.view(-1, 14_14_128)，对参数实现扁平化</strong>，因为之后紧接着的就是全连接层，所以如果不进行扁平化，则全连接层的实际输出的参数维度和其定义输入的维度将不匹配，程序会报错；最后，<strong>通过self.dense定义的全连接进行最后的分类</strong>。</p>
 <blockquote>
@@ -567,7 +567,7 @@ print(&quot;Loss is:{:.4f}, Train Accuracy is:{:.4f}%, Test Accuracy is:{:.4f}&q
 <p>用于测试的数据标签结果输出的结果如下：</p>
 <p>Predict Label is: [tensor(3), tensor(6), tensor(2), tensor(1)]<br>Real Label is: [tensor(3), tensor(6), tensor(2), tensor(1)]</p>
 <p>在输出结果中，第1个结果是我们训练好的模型的预测值，第2个结果是这4个测试数据的真实值。对测试数据进行可视化，如下图所示：</p>
-<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/Figure_10.png" alt=""></p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/Figure_10.png" alt></p>
 <p>可以看到，在图中可视化的这部分测试集图片，模型的预测结果和真实的结果是完全一致的。当然，如果想选取更多的测试集进行可视化，则只需将batch_size的值设置得更大。</p>
 <p>Write by sheen</p>
  
@@ -592,7 +592,7 @@ print(&quot;Loss is:{:.4f}, Train Accuracy is:{:.4f}%, Test Accuracy is:{:.4f}&q
 
     
     <article
-  id="post-学习笔记-pytorch进阶学习笔记"
+  id="post-学习笔记-pytorch进阶学习笔记/学习笔记-pytorch进阶学习笔记"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -603,7 +603,7 @@ print(&quot;Loss is:{:.4f}, Train Accuracy is:{:.4f}%, Test Accuracy is:{:.4f}&q
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/04/08/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-pytorch%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+  <a class="article-title" href="/2020-04-08/"
     >[学习笔记]-PyTorch进阶学习笔记</a> 
 </h2>
  
@@ -611,7 +611,7 @@ print(&quot;Loss is:{:.4f}, Train Accuracy is:{:.4f}%, Test Accuracy is:{:.4f}&q
     </header>
      
     <div class="article-meta">
-      <a href="/2020/04/08/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-pytorch%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+      <a href="/2020-04-08/" class="article-date">
   <time datetime="2020-04-08T12:05:17.000Z" itemprop="datePublished">2020-04-08</time>
 </a>    
     </div>
@@ -713,7 +713,7 @@ output\_data =10  </code></pre><p>​<br>    x =Variable(torch.randn(batch_n, in
 
     
     <article
-  id="post-学习笔记-pytorch基础学习笔记"
+  id="post-学习笔记-pytorch基础学习笔记/学习笔记-pytorch基础学习笔记"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -724,7 +724,7 @@ output\_data =10  </code></pre><p>​<br>    x =Variable(torch.randn(batch_n, in
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/04/06/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-pytorch%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+  <a class="article-title" href="/2020-04-06/"
     >[学习笔记]-PyTorch基础学习笔记</a> 
 </h2>
  
@@ -732,7 +732,7 @@ output\_data =10  </code></pre><p>​<br>    x =Variable(torch.randn(batch_n, in
     </header>
      
     <div class="article-meta">
-      <a href="/2020/04/06/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-pytorch%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+      <a href="/2020-04-06/" class="article-date">
   <time datetime="2020-04-06T02:55:54.000Z" itemprop="datePublished">2020-04-06</time>
 </a>    
     </div>
@@ -809,7 +809,7 @@ output\_data =10  </code></pre><p>​<br>    x =Variable(torch.randn(batch_n, in
 
     
     <article
-  id="post-缅怀英雄们！"
+  id="post-缅怀英雄们！/缅怀英雄们！"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -820,7 +820,7 @@ output\_data =10  </code></pre><p>​<br>    x =Variable(torch.randn(batch_n, in
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/04/04/%E7%BC%85%E6%80%80%E8%8B%B1%E9%9B%84%E4%BB%AC%EF%BC%81/"
+  <a class="article-title" href="/2020-04-04/"
     >哀悼英雄们！</a> 
 </h2>
  
@@ -828,7 +828,7 @@ output\_data =10  </code></pre><p>​<br>    x =Variable(torch.randn(batch_n, in
     </header>
      
     <div class="article-meta">
-      <a href="/2020/04/04/%E7%BC%85%E6%80%80%E8%8B%B1%E9%9B%84%E4%BB%AC%EF%BC%81/" class="article-date">
+      <a href="/2020-04-04/" class="article-date">
   <time datetime="2020-04-04T01:14:36.000Z" itemprop="datePublished">2020-04-04</time>
 </a>    
     </div>
@@ -840,7 +840,7 @@ output\_data =10  </code></pre><p>​<br>    x =Variable(torch.randn(batch_n, in
 <p>无花无酒过清明，兴味萧然似野僧。</p>
 <p>昨日邻家乞新火，晓窗分与读书灯。</p>
 <p>谨以此篇表达对抗击新冠肺炎疫情斗争牺牲烈士和逝世同胞的深切哀悼！</p>
-<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/05/20200417-scaled.jpg" alt=""></p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/05/20200417-scaled.jpg" alt></p>
  
       <!-- reward -->
       
@@ -863,7 +863,7 @@ output\_data =10  </code></pre><p>​<br>    x =Variable(torch.randn(batch_n, in
 
     
     <article
-  id="post-学习笔记-python中的matplotlib基础"
+  id="post-学习笔记-python中的matplotlib基础/学习笔记-python中的matplotlib基础"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -874,7 +874,7 @@ output\_data =10  </code></pre><p>​<br>    x =Variable(torch.randn(batch_n, in
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/04/04/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E4%B8%AD%E7%9A%84matplotlib%E5%9F%BA%E7%A1%80/"
+  <a class="article-title" href="/2020-04-04/"
     >[学习笔记]-Python中的Matplotlib基础</a> 
 </h2>
  
@@ -882,7 +882,7 @@ output\_data =10  </code></pre><p>​<br>    x =Variable(torch.randn(batch_n, in
     </header>
      
     <div class="article-meta">
-      <a href="/2020/04/04/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E4%B8%AD%E7%9A%84matplotlib%E5%9F%BA%E7%A1%80/" class="article-date">
+      <a href="/2020-04-04/" class="article-date">
   <time datetime="2020-04-04T00:58:25.000Z" itemprop="datePublished">2020-04-04</time>
 </a>    
     </div>
@@ -894,7 +894,7 @@ output\_data =10  </code></pre><p>​<br>    x =Variable(torch.randn(batch_n, in
 </blockquote>
 <h5 id="1-创建图"><a href="#1-创建图" class="headerlink" title="1. 创建图"></a>1. 创建图</h5><p>import matplotlib.pyplot as plt<br>import numpy as np<br>​<br>np.random.seed(42)<br>x = np.random.randn(30)<br>plt.plot(x, “r–o”)<br>plt.show()</p>
 <p>在运行后，输出的内容如下：</p>
-<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/Figure_1.png" alt=""></p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/Figure_1.png" alt></p>
 <p>这段代码通过np.random.seed(42)设置了随机种子，以方便我们之后的结果复现；接着通过np.random.randn(30)生成30个随机参数并赋值给变量x；最后，绘图的核心代码通过plt.plot(x,”r–o”)将这30个随机参数以点的方式绘制出来并用线条进行连接，传递给plot的参数r–o用于在线型图中标记每个参数点使用的形状、连接参数点使用的线条颜色和线型，而且线型图的横轴和纵轴也是有区别的，纵轴生成的是30个随机数的值，横轴生成的是这30个点的索引值，同样是30个。</p>
 <h5 id="2．线条颜色、标记形状和线型"><a href="#2．线条颜色、标记形状和线型" class="headerlink" title="2．线条颜色、标记形状和线型"></a>2．线条颜色、标记形状和线型</h5><h6 id="用于设置线型图中线条颜色的常用参数如下。"><a href="#用于设置线型图中线条颜色的常用参数如下。" class="headerlink" title="用于设置线型图中线条颜色的常用参数如下。"></a>用于设置线型图中线条颜色的常用参数如下。</h6><p>（1）“b”：指定绘制的线条颜色为蓝色。</p>
 <p>（2）“g”：指定绘制的线条颜色为绿色。</p>
@@ -915,21 +915,21 @@ output\_data =10  </code></pre><p>​<br>    x =Variable(torch.randn(batch_n, in
 <p>下面来看一个使用不同的线条颜色、形状和标记参数点形状的实例。</p>
 <p>import matplotlib.pyplot as plt<br>import numpy as np<br>​<br>a = np.random.randn(30)<br>b = np.random.randn(30)<br>c = np.random.randn(30)<br>d = np.random.randn(30)<br>plt.plot(a, “r–o”, b, “b-*“, c, “g-.+”, d, “m:x”)<br>plt.show()</p>
 <p>在运行后，输出的内容如图：</p>
-<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/Figure_2.png" alt=""></p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/Figure_2.png" alt></p>
 <h5 id="3．标签和图例"><a href="#3．标签和图例" class="headerlink" title="3．标签和图例"></a>3．标签和图例</h5><p>为了让我们绘制的图像更易理解，我们可以增加一些绘制图像的说明，一般是添加图像的轴标签和图例，如下所示：</p>
 <p>import matplotlib.pyplot as plt<br>import numpy as np<br>​<br>np.random.seed(42)<br>x = np.random.randn(30)<br>y = np.random.randn(30)<br>​<br>plt.title(“Example”)<br>plt.xlabel(“X”)<br>plt.ylabel(“Y”)<br>X, = plt.plot(x, “r–o”)<br>Y, = plt.plot(y, “b-*“)<br>plt.legend([X, Y], [“X”, “Y”])<br>plt.show()</p>
 <p>在运行后，输出的内容如图：</p>
-<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/Figure_3.png" alt=""></p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/Figure_3.png" alt></p>
 <p>我们在图中看到了图标签和图例，这是因为在以上代码中增加了标签的显示代码plt.xlabel(“Y”)、plt.ylabel(“Y”)和图例的显示代码plt.legend([X, Y], [“X”, “Y”])，传递给plt.legend的是两个列表参数，第1个列表参数是在图中实际使用的标记和线形，第2个列表参数是对应图例的文字描述。</p>
 <h5 id="4．子图"><a href="#4．子图" class="headerlink" title="4．子图"></a>4．子图</h5><p>若我们需要将多个图像同时在不同的位置显示，则需要用到子图（Subplot）的功能。</p>
 <p>import matplotlib.pyplot as plt<br>import numpy as np<br>​<br>a = np.random.randn(30)<br>b = np.random.randn(30)<br>c = np.random.randn(30)<br>d = np.random.randn(30)<br>​<br>fig = plt.figure()<br>ax1 = fig.add_subplot(2, 2, 1)<br>ax2 = fig.add_subplot(2, 2, 2)<br>ax3 = fig.add_subplot(2, 2, 3)<br>ax4 = fig.add_subplot(2, 2, 4)<br>​<br>A, = ax1.plot(a, “r–o”)<br>ax1.legend([A], [“A”])<br>B, = ax2.plot(b, “b-*“)<br>ax2.legend([B], [“B”])<br>C, = ax3.plot(c, “g-.+”)<br>ax3.legend([C], [“C”])<br>D, = ax4.plot(d, “m:x”)<br>ax4.legend([D], [“D”])<br>plt.show()</p>
 <p>在运行后，输出的内容如图：</p>
-<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/Figure_4.png" alt=""></p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/Figure_4.png" alt></p>
 <p>在绘制子图时，我们首先需要通过fig =plt.figure()定义一个实例，然后通过fig.add_subplot方法向fig实例中添加我们需要的子图。在代码中传递给fig.add_subplot方法的参数是1组数字，拿第1组数字（2,2,1）来说，前两个数字表示把整块图划分成了两行两列，一共4张子图，最后1个数字表示具体使用哪一张子图进行绘制。</p>
 <h5 id="5．散点图"><a href="#5．散点图" class="headerlink" title="5．散点图"></a>5．散点图</h5><p>如果我们获取的是一些散点数据，则可以通过绘制散点图（Scatter）更清晰地展示所有数据的分布和布局。</p>
 <p>import matplotlib.pyplot as plt<br>import numpy as np<br>​<br>np.random.seed(42)<br>x = np.random.randn(30)<br>y = np.random.randn(30)<br>​<br>plt.scatter(x, y, c=”g”, marker=”o”, label=”(X, Y)”)<br>plt.title(“Example”)<br>plt.xlabel(“X”)<br>plt.ylabel(“Y”)<br>plt.legend(loc=1)<br>plt.show()<br>plt.show()</p>
 <p>在运行后，输出的内容如图：</p>
-<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/Figure_5.png" alt=""></p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/Figure_5.png" alt></p>
 <p>绘制散点图的核心代码是plt.scatter(x, y, c=”g”, marker=”o”, label=”(X,Y)”)，其中有三个我们需要特别留意的参数，如下所述。</p>
 <p>（1）“c”：指定散点图中绘制的参数点使用哪种颜色，可设置的颜色参数可参考之前绘制线型图时对线条颜色选择的参数范围，这里使用“g”表示设置为绿色。</p>
 <p>（2）“marker”：指定散点图中绘制的参数点使用哪种形状，和之前线型图中的设置一样，这里使用“o”表示设置为圆形。</p>
@@ -944,12 +944,12 @@ output\_data =10  </code></pre><p>​<br>    x =Variable(torch.randn(batch_n, in
 <h5 id="6．直方图"><a href="#6．直方图" class="headerlink" title="6．直方图"></a>6．直方图</h5><p>直方图（Histogram）又称质量分布图，是一种统计报告图，通过使用一系列高度不等的纵向条纹或直方表示数据分布的情况，一般用横轴表示数据类型，用纵轴表示分布情况，下面看看具体的实例：</p>
 <p>import matplotlib.pyplot as plt<br>import numpy as np<br>​<br>np.random.seed(42)<br>x = np.random.randn(1000)<br>plt.hist(x, bins=20, color=”g”)<br>plt.title(“Example”)<br>plt.xlabel(“X”)<br>plt.ylabel(“Y”)<br>plt.show()</p>
 <p>在运行后，输出的内容如图：</p>
-<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/Figure_6.png" alt=""></p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/Figure_6.png" alt></p>
 <p>绘制直方图的核心代码是plt.hist(x, bins=20, color=”g”)，其中color的功能和散点图中的c是一样的，bins用于指定我们绘制的直方图条纹的数量。</p>
 <h5 id="7．饼图"><a href="#7．饼图" class="headerlink" title="7．饼图"></a>7．饼图</h5><p>饼图用于显示一个数据系列，我们可以将一个数据系列理解为一类数据，而每个数据系列都应当拥有自己唯一的颜色。在同一个饼图中可以绘制多个系列的数据，并根据每个系列的数据量的不同来分配它们在饼图中的占比。下面看看具体的实例：</p>
 <p>import matplotlib.pyplot as plt<br>​<br>labels =[‘Dos’, ‘Cats’, ‘Birds’]<br>sizes =[15, 50, 35]<br>plt.pie(sizes, explode=(0, 0, 0.1), labels=labels, autopct=’%1.1f%%’,startangle=90)<br>plt.axis(‘equal’)<br>​<br>plt.show()</p>
 <p>在运行后，输出的内容如图：</p>
-<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/Figure_7.png" alt=""></p>
+<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/Figure_7.png" alt></p>
 <p>绘制饼图的核心代码为plt.pie(sizes, explode=(0, 0, 0.1), labels=labels,autopct=’%1.1f%%’, startangle=60)，<strong>其中sizes=[15, 50, 35]的三个数字确定了每部分数据系列在整个圆形中的占比；explode定义每部分数据系列之间的间隔，如果设置两个0和一个0.1，就能突出第3部分；autopct其实就是将sizes中的数据以所定义的浮点精度进行显示；startangle是绘制第1块饼图时该饼图与X轴正方向的夹角度数，这里设置为90，默认为0</strong>;plt.axis(‘equal’)是必不可少的，用于使X轴和Y轴的刻度保持一致，只有这样，最后得到饼图才是圆形的。</p>
 <p>Write by sheen</p>
  
@@ -974,7 +974,7 @@ output\_data =10  </code></pre><p>​<br>    x =Variable(torch.randn(batch_n, in
 
     
     <article
-  id="post-学习笔记-python中numpy基础"
+  id="post-学习笔记-python中numpy基础/学习笔记-python中numpy基础"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -985,7 +985,7 @@ output\_data =10  </code></pre><p>​<br>    x =Variable(torch.randn(batch_n, in
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/04/02/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E4%B8%ADnumpy%E5%9F%BA%E7%A1%80/"
+  <a class="article-title" href="/2020-04-02/"
     >[学习笔记]-Python中NumPy基础</a> 
 </h2>
  
@@ -993,7 +993,7 @@ output\_data =10  </code></pre><p>​<br>    x =Variable(torch.randn(batch_n, in
     </header>
      
     <div class="article-meta">
-      <a href="/2020/04/02/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E4%B8%ADnumpy%E5%9F%BA%E7%A1%80/" class="article-date">
+      <a href="/2020-04-02/" class="article-date">
   <time datetime="2020-04-02T12:43:46.000Z" itemprop="datePublished">2020-04-02</time>
 </a>    
     </div>
@@ -1200,7 +1200,7 @@ for i in a:
 
     
     <article
-  id="post-学习笔记python基础学习笔记"
+  id="post-学习笔记python基础学习笔记/学习笔记python基础学习笔记"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -1211,7 +1211,7 @@ for i in a:
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/04/02/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0python%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+  <a class="article-title" href="/2020-04-02/"
     >[学习笔记]-Python基础学习笔记</a> 
 </h2>
  
@@ -1219,7 +1219,7 @@ for i in a:
     </header>
      
     <div class="article-meta">
-      <a href="/2020/04/02/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0python%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+      <a href="/2020-04-02/" class="article-date">
   <time datetime="2020-04-02T03:33:31.000Z" itemprop="datePublished">2020-04-02</time>
 </a>    
     </div>
