@@ -1,4 +1,4 @@
-// 大类可无限增加
+﻿// 大类可无限增加
 function BigCategoryList(){
     this.length=17;
     this[0] = new Option("请选择地区","");
@@ -959,4 +959,48 @@ smallCategoryOp = new SmallCategoryList();
 // 移除小类显示
 function delSmallCategoryList(smallOption){
     var len = smallOption.length;
-    for(i=0; i
+    for(i=0; i<len; i++){
+        smallOption.remove(0);
+    }
+}
+
+// 添加小类显示
+function addSmallCategoryList(bigOption, smallOption){
+    var index = bigOption.selectedIndex;
+    for(j=0; j<smallCategoryOp[index].length; j++){
+        smallOption.options.add(smallCategoryOp[index][j]);
+    }
+}
+
+// 当大类 onchange 函数
+function changeBigCategory(bigCategoryObj, smallOptionObj){
+    delSmallCategoryList(smallOptionObj);
+    addSmallCategoryList(bigCategoryObj,smallOptionObj);
+}
+
+// 初始化大类函数
+function initialize(bigCategoryObj, smallOptionObj, bigOpitonID, smallOptionID){
+    // 初始化大类列表
+    for(i=0; i<bigCategoryOP.length; i++){
+        bigCategoryObj.options.add(bigCategoryOP[i]);
+    }
+    for(j=0; j<bigCategoryObj.options.length; j++){
+        if(bigCategoryObj.options[j].value == bigOpitonID){
+            bigCategoryObj.options[j].selected = true;
+        }
+    }
+    addSmallCategoryList(bigCategoryObj, smallOptionObj);
+    for(k=0; k<smallOptionObj.options.length; k++){
+        if(smallOptionObj.options[k].value == smallOptionID){
+            smallOptionObj.options[k].value = true;
+        }
+    }
+}
+
+// 这个东东 你应该懂吧？
+$(document).ready(function(){
+    initialize($("#select1")[0],$("#select2")[0],'${select1}','${select2}');
+    $("#select1").change(function(){
+        changeBigCategory($("#select1")[0],$("#select2")[0]);
+    });
+});

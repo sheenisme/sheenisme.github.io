@@ -329,9 +329,9 @@
     
       <category term="学习笔记" scheme="http://www.sheensong.top/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
-      <category term="网络爬虫" scheme="http://www.sheensong.top/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/"/>
-    
       <category term="Scrapy" scheme="http://www.sheensong.top/tags/Scrapy/"/>
+    
+      <category term="网络爬虫" scheme="http://www.sheensong.top/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
@@ -358,9 +358,9 @@
     
       <category term="学习笔记" scheme="http://www.sheensong.top/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
-      <category term="网络爬虫" scheme="http://www.sheensong.top/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/"/>
-    
       <category term="Scrapy" scheme="http://www.sheensong.top/tags/Scrapy/"/>
+    
+      <category term="网络爬虫" scheme="http://www.sheensong.top/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
@@ -527,9 +527,9 @@
     
       <category term="学习笔记" scheme="http://www.sheensong.top/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
-      <category term="python" scheme="http://www.sheensong.top/tags/python/"/>
-    
       <category term="Matplotlib" scheme="http://www.sheensong.top/tags/Matplotlib/"/>
+    
+      <category term="python" scheme="http://www.sheensong.top/tags/python/"/>
     
   </entry>
   
@@ -558,9 +558,9 @@
     
       <category term="学习笔记" scheme="http://www.sheensong.top/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
-      <category term="Numpy" scheme="http://www.sheensong.top/tags/Numpy/"/>
-    
       <category term="python" scheme="http://www.sheensong.top/tags/python/"/>
+    
+      <category term="Numpy" scheme="http://www.sheensong.top/tags/Numpy/"/>
     
   </entry>
   
