@@ -1,7 +1,7 @@
-﻿// JavaScript Document
+// JavaScript Document
 function checkPassword(str)
 {
-	var reg = /^(w|[u4E00-u9FA5])*$/;
+	var reg = /^(\w|[\u4E00-\u9FA5])*$/;
 	if(arr=str.match(reg) &&!bChinese(str))
 	{
 		return true;
@@ -14,13 +14,25 @@ function checkPassword(str)
 function bChinese(str)
 {
 	var l=str.length;
-	for (var i=0;i<l;i++)
-	{
-		if (str.charCodeAt(i)<0||str.charCodeAt(i)>255)
+	for (var i=0;i<l;i++) { if (str.charcodeat(i)<0||str.charcodeat(i)>255)
 			return true;
 	}
 	return false;
 }
+
+function checkTel(str)
+{
+
+var tel =str;
+ var reg = /^0?1[3|4|5|7|8][0-9]\d{8}$/;
+ if (reg.test(tel)) {
+      return true;
+ }else{
+     return false;
+ };
+}
+
+
 function Jtrim(str)  //去空格函数
 {
 	//alert(str);
@@ -62,7 +74,20 @@ function Jtrim(str)  //去空格函数
         trimstr = str.substring(i,j+1);
         return trimstr;
 }			  
+
+//检查链接输入正确性
 			  
+function isLink(mlink){ 
+	str = mlink; 
+	str = str.match(/http:\/\/.+/); 
+	if (str == null){ 
+	return false; 
+}
+else{ 
+	return true; 
+} 
+} 
+
 //检查EMAIL正确性
 function isEmail(email) 
 { 
@@ -71,16 +96,6 @@ function isEmail(email)
 		alert("email地址长度不能超过100位!"); 
 		return false; 
 	} 
-	if (email.length < 11) 
-	{ 
-		mEmail.value = mEmail.value+"@qq.com";
-		mail.value = email.value+"@qq.com";
-	}
-	if (email.length == 11) 
-	{ 
-		mEmail.value = mEmail.value+"@163.com";
-		mail.value = email.value+"@163.com";
-	}
 	var regu = "^(([0-9a-zA-Z]+)|([0-9a-zA-Z]+[_.0-9a-zA-Z-]*[0-9a-zA-Z]+))@([a-zA-Z0-9-]+[.])+([a-zA-Z]{2}|net|NET|com|COM|gov|GOV|mil|MIL|org|ORG|edu|EDU|int|INT)$";
 	var re = new RegExp(regu); 
 	if (email.search(re) != -1)
@@ -97,22 +112,11 @@ function isEmail(email)
 //是否被选中验证有选中的return true,否return false
 function mycheckbox() {
 var falg = 0;
-var checkBoxs = document.getElementsByName("mSort");
-for (var i = 0; i < checkBoxs .length; i++) {
-  if (checkBoxs[i].checked){
-	falg += 1; 
-  }
+ $('input:checkbox').each(function() {
+if ($(this).attr("checked")) {
+falg += 1;
 }
-
-
-
-
-//var falg = 0;
-// $('input:checkbox').each(function() {
-//if ($(this).attr("checked")) {
-//falg += 1;
-//}
-//})
+})
 if (falg > 0)
 return true;
 else
@@ -123,57 +127,208 @@ function check_submit()
 {
 	with(form1)
 	{
-		if(Jtrim(mWXname.value)=="")
+		
+		if(Jtrim(select1.value)=="")
 		{
-			alert("请填写微信昵称");
-			mWXname.focus();
-			return false;
+			alert("请选择城市");
+			select1.focus();
+			return;
+		}
+		if(Jtrim(select2.value)=="")
+		{
+			alert("请选择学校");
+			select2.focus();
+			return;
 		}
 		if(Jtrim(mUsername.value)=="")
 		{
 			alert("请填写姓名");
 			mUsername.focus();
-			return false;
+			return;
 		}
 		if(Jtrim(mTel.value)=="")
 		{
-			alert("请填写联系电话");
+			alert("请填写手机号");
 			mTel.focus();
-			return false;
+			return;
+		}
+		else
+		{
+			if (!checkTel(mTel.value))
+			{
+				alert("电话号码只能为1开头的11位的数字");
+				mTel.focus();
+				return;
+			}
+		}
+		if(Jtrim(mfaultDesc.value)=="")
+		{
+			alert("请填写故障描述");
+			mfaultDesc.focus();
+			return;
+		}
+		else
+		{
+			if (Jtrim(mfaultDesc.value).length > 200) 
+			{ 
+				alert("故障描述长度不能超过200字!"); 
+				mfaultDesc.focus();
+				return; 
+			} 
+		}
+ 		submit();
+	}
+}
+
+function check_permSubmit()
+{
+	with(form1)
+	{
+		
+		if(Jtrim(select1.value)=="")
+		{
+			alert("请选择城市");
+			select1.focus();
+			return;
+		}
+		if(Jtrim(select2.value)=="")
+		{
+			alert("请选择学校");
+			select2.focus();
+			return;
+		}
+		if(Jtrim(mUsername.value)=="")
+		{
+			alert("请填写姓名");
+			mUsername.focus();
+			return;
+		}
+		if(Jtrim(mTel.value)=="")
+		{
+			alert("请填写手机号");
+			mTel.focus();
+			return;
+		}
+		else
+		{
+			if (!checkTel(mTel.value))
+			{
+				alert("电话号码只能为1开头的11位的数字");
+				mTel.focus();
+				return;
+			}
 		}
 		if(!isEmail(mEmail.value))
 		{
 			alert("请正确填写Email地址");
 			mEmail.focus();
-			return false;
+			return;
 		}
-		if(Jtrim(mCollege.value)=="")
+
+ 		submit();
+	}
+}
+
+function check_loginSubmit()
+{
+	with(form1)
+	{
+		
+		if(Jtrim(mPWD.value)=="")
 		{
-			alert("请填写高校名称");
-			mCollege.focus();
-			return false;
+			alert("请填写管理账号");
+			mPWD.focus();
+			return;
 		}
-		if(Jtrim(mIdentity.value)=="" || Jtrim(mIdentity.value)=="blank")
+ 		submit();
+	}
+}
+
+
+function check_worksSubmit()
+{
+	with(form1)
+	{
+		if(Jtrim(mUsername.value)=="")
 		{
-			alert("请选择身份类别");
-			mIdentity.focus();
-			return false;
+			alert("请填写姓名");
+			mUsername.focus();
+			return;
 		}
-		if(!mycheckbox())
+		if(Jtrim(mTel.value)=="")
 		{
-			alert("请选择特长");
-			mSort[0].focus();
-			return false;
+			alert("请填写手机号");
+			mTel.focus();
+			return;
+		}
+		if(!isEmail(mEmail.value))
+		{
+			alert("请正确填写Email地址");
+			mEmail.focus();
+			return;
+		}
+		if(Jtrim(select1.value)=="")
+		{
+			alert("请选择地区");
+			select1.focus();
+			return;
+		}
+		if(Jtrim(select2.value)=="")
+		{
+			alert("请选择学校");
+			select2.focus();
+			return;
+		}
+		if(Jtrim(mworks.value)=="")
+		{
+			alert("请填写作品名称");
+			mworks.focus();
+			return;
+		}
+
+		if(Jtrim(mworksDesc.value)=="")
+		{
+			alert("请填写作品简介");
+			mworksDesc.focus();
+			return;
 		}
 		else
 		{
-			return true;
-			}
+			if (Jtrim(mworksDesc.value).length > 300) 
+			{ 
+				alert("作品简介长度不能超过300字!"); 
+				mworksDesc.focus();
+				return; 
+			} 
+		}		
+		if(Jtrim(mworksLink.value)=="")
+		{
+			alert("请填写作品链接");
+			mworksLink.focus();
+			return;
+		}
+		//else
+		//{
+			//if(!isLink(Jtrim(mworksLink.value)));
+			//{
+				//alert("您输入的URL无效"); 
+				//mworksLink.focus();
+				//return;
+			//}
 
+		//}
 
- 		//submit();
+		//if(Jtrim(xdPicture1.value)=="")
+		//{
+			//alert("请上传作品二维码");
+			//xdPicture1.focus();
+			//return;
+		//}
+ 		submit();
 	}
 }
+
+
 
 function changeVcode()
 {
@@ -365,4 +520,4 @@ function check_share()
 		}
 		submit();
 	}
-}
+}</l;i++)>

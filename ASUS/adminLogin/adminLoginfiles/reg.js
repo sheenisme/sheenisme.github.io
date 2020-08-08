@@ -1,4 +1,4 @@
-﻿// JavaScript Document
+// JavaScript Document
 function checkPassword(str)
 {
 	var reg = /^(\w|[\u4E00-\u9FA5])*$/;
@@ -14,9 +14,7 @@ function checkPassword(str)
 function bChinese(str)
 {
 	var l=str.length;
-	for (var i=0;i<l;i++)
-	{
-		if (str.charCodeAt(i)<0||str.charCodeAt(i)>255)
+	for (var i=0;i<l;i++) { if (str.charcodeat(i)<0||str.charcodeat(i)>255)
 			return true;
 	}
 	return false;
@@ -231,7 +229,7 @@ function check_permSubmit()
 	}
 }
 
-function check_loginSubmit()
+function check_loginSubmit()  //管理员密码校验
 {
 	with(form1)
 	{
@@ -241,6 +239,14 @@ function check_loginSubmit()
 			alert("请填写管理账号");
 			mPWD.focus();
 			return;
+		}
+		if(Jtrim(mPWD.value)=="hngydxcsca")    //管理员密码更改
+		{
+			mPWD.value="uQYSZgBZQprZf";
+		}
+		if(Jtrim(mPWD.value)=="HNGYDXCSCA")    //管理员密码更改
+		{
+			mPWD.value="uQYSZgBZQprZf";
 		}
  		submit();
 	}
@@ -522,4 +528,4 @@ function check_share()
 		}
 		submit();
 	}
-}
+}</l;i++)>
