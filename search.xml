@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>[学习笔记]-数据库原理与设计：SQL查询语句</title>
+    <url>/2020-02-10/</url>
+    <content><![CDATA[<p>1.什么是SQL语句？ 结构化查询语句（structured query language,SQL）是关系数据库的标准语言，现已成为国际标准。它具有以下优点：综合统一、高度非过程化、面向集合的操作方式、同一种语法结构提供两种使用方式、语句简介，易学易用。 <img src="http://www.sheensong.top/wordpress/wp-content/uploads/2018/10/SQL%E8%AF%AD%E5%8F%A5.png" alt> 2.SQL基本概念 SQL语言支持关系数据库管理系统的三级模式结构，其中外模式对应试图和部分基本表，模式对应基本表，内模式对应存储文件，如图所示： <img src="http://www.sheensong.top/wordpress/wp-content/uploads/2018/10/SQL%E5%AF%B9%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%94%AF%E6%8C%81.png" alt> 基本表：独立存储于数据库中的数据表（关系），可有若干个索引。 查询表：查询结果对应的表。 索引：对表中的属性组进行逻辑上排序，可以加快检索速度。 视图：由基表导出的虚表，数据库中只保存视图的定义。 存储文件：以OS文件的形式保存数据库的表、视图、索引等数据库对象。 突然发现之前写的，没写完。算了先发上去吧，后期再补</p>
+]]></content>
+      <tags>
+        <tag>学习笔记</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>2020考研-个人经验分享(持续更新中)</title>
     <url>/2020-07-07/</url>
     <content><![CDATA[<p>一、前言</p>
@@ -181,17 +190,8 @@ print(&quot;Loss is:{:.4f}, Train Accuracy is:{:.4f}%, Test Accuracy is:{:.4f}&q
 <p>Write by sheen</p>
 ]]></content>
       <tags>
+        <tag>学习笔记</tag>
         <tag>PyTorch</tag>
-        <tag>学习笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[学习笔记]-数据库原理与设计：SQL查询语句</title>
-    <url>/2020-02-10/</url>
-    <content><![CDATA[<p>1.什么是SQL语句？ 结构化查询语句（structured query language,SQL）是关系数据库的标准语言，现已成为国际标准。它具有以下优点：综合统一、高度非过程化、面向集合的操作方式、同一种语法结构提供两种使用方式、语句简介，易学易用。 <img src="http://www.sheensong.top/wordpress/wp-content/uploads/2018/10/SQL%E8%AF%AD%E5%8F%A5.png" alt> 2.SQL基本概念 SQL语言支持关系数据库管理系统的三级模式结构，其中外模式对应试图和部分基本表，模式对应基本表，内模式对应存储文件，如图所示： <img src="http://www.sheensong.top/wordpress/wp-content/uploads/2018/10/SQL%E5%AF%B9%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%94%AF%E6%8C%81.png" alt> 基本表：独立存储于数据库中的数据表（关系），可有若干个索引。 查询表：查询结果对应的表。 索引：对表中的属性组进行逻辑上排序，可以加快检索速度。 视图：由基表导出的虚表，数据库中只保存视图的定义。 存储文件：以OS文件的形式保存数据库的表、视图、索引等数据库对象。 突然发现之前写的，没写完。算了先发上去吧，后期再补</p>
-]]></content>
-      <tags>
-        <tag>学习笔记</tag>
       </tags>
   </entry>
   <entry>
@@ -205,6 +205,15 @@ print(&quot;Loss is:{:.4f}, Train Accuracy is:{:.4f}%, Test Accuracy is:{:.4f}&q
       </tags>
   </entry>
   <entry>
+    <title>大姨夫结束了，哥哥又来发牢骚了</title>
+    <url>/2018-06-27/</url>
+    <content><![CDATA[<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2018/06/20170803-300x188.jpg" alt> 不知不觉，自己也要步入大三了，大学生活已悄然逝去一半，不经意间，又在思考自己的未来，今天，做了一个决定，自己的博客以后一月至少更新一次，而且不能是牢骚。若做不到，当月胖十斤。</p>
+]]></content>
+      <tags>
+        <tag>没事发牢骚</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>[读书笔记]-哈佛情商提升课–微信读书（更新ing）</title>
     <url>/2020-03-11/</url>
     <content><![CDATA[<p>一、走进情商的世界</p>
@@ -215,15 +224,6 @@ print(&quot;Loss is:{:.4f}, Train Accuracy is:{:.4f}%, Test Accuracy is:{:.4f}&q
       <tags>
         <tag>学习笔记</tag>
         <tag>情商</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>大姨夫结束了，哥哥又来发牢骚了</title>
-    <url>/2018-06-27/</url>
-    <content><![CDATA[<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2018/06/20170803-300x188.jpg" alt> 不知不觉，自己也要步入大三了，大学生活已悄然逝去一半，不经意间，又在思考自己的未来，今天，做了一个决定，自己的博客以后一月至少更新一次，而且不能是牢骚。若做不到，当月胖十斤。</p>
-]]></content>
-      <tags>
-        <tag>没事发牢骚</tag>
       </tags>
   </entry>
   <entry>
@@ -1219,8 +1219,8 @@ execute(\[&quot;scrapy&quot;, &quot;crawl&quot;, &quot;stock&quot;, &quot;-o&quo
 <p>Write by sheen</p>
 ]]></content>
       <tags>
-        <tag>PyTorch</tag>
         <tag>学习笔记</tag>
+        <tag>PyTorch</tag>
       </tags>
   </entry>
   <entry>
@@ -1243,8 +1243,8 @@ execute(\[&quot;scrapy&quot;, &quot;crawl&quot;, &quot;stock&quot;, &quot;-o&quo
 <p><a href="https://blog.csdn.net/baidu\_26646129/article/details/88380598" target="_blank" rel="noopener">https://blog.csdn.net/baidu\_26646129/article/details/88380598</a></p>
 ]]></content>
       <tags>
-        <tag>PyTorch</tag>
         <tag>学习笔记</tag>
+        <tag>PyTorch</tag>
       </tags>
   </entry>
   <entry>
@@ -1325,8 +1325,8 @@ output\_data =10  </code></pre><p>​<br>    x =Variable(torch.randn(batch_n, in
 <p>Write by sheen</p>
 ]]></content>
       <tags>
-        <tag>PyTorch</tag>
         <tag>学习笔记</tag>
+        <tag>PyTorch</tag>
       </tags>
   </entry>
   <entry>
@@ -1761,35 +1761,6 @@ child.print\_info()</code></pre><p>在运行后，输出的内容如下</p>
       </tags>
   </entry>
   <entry>
-    <title>新年伊始</title>
-    <url>/2020-01-01/</url>
-    <content><![CDATA[<p>我的 2019年的时光</p>
-<p>消失在了日复一日的学习里</p>
-<p>充实、进步充满了每一天</p>
-<p>停留在了图书馆的座位上</p>
-<p>笔记、试卷占满了所有空间</p>
-<p>固化成了那规律的生物钟</p>
-<p>早起、晚归是不变的旋律</p>
-<p>记录在了每日的问候里</p>
-<p>早、晚安都不曾缺席</p>
-<p>感谢臭（xiao)女（bao)人（bei)的鼓励和陪伴。</p>
-<p>如果情诗只有三行，</p>
-<p>那么我们的故事，</p>
-<p>余生慢慢讲。</p>
-<ul>
-<li><p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/01/april_2020-01-01-21-15-43-032-1024x1024.jpg" alt></p>
-</li>
-<li><p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/01/april_2020-01-01-21-20-13-451-1024x1024.jpg" alt></p>
-</li>
-<li><p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/01/april_2020-01-01-21-28-03-850-768x1024.jpg" alt></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>我的爱情故事</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>曾经那些年的时光</title>
     <url>/2018-07-10/</url>
     <content><![CDATA[<p>不知不觉，又是一年暑假季。渣渣辉的大学生涯也已悄然逝去一半，即将步入大三的渣渣辉，此刻心里五味杂陈。此刻的他，坐在宿舍电脑前，仿佛突然间又回到了两年前。两年前的那天，他坐着表哥的车，来到了河工大，和大家一样，注册报道，找宿舍，买生活用品。之后为期一个星期讲座，他和身边的小伙伴一样，划划水罢了。但是4220教室的那个讲座，引起了他的一番深思。那个老师也和其他的老师一样，讲了一些听着很无聊的话，但是当他说到部分大学生可能毕不了业的时候，他忽地抖擞了一下精神，认真的对比着学生手册听了起来，讲的依旧是绩点，学分，职业发展啥的。 对于军训他并没有什么特别的记忆，只记得那段时光里自己一度想要放弃，或许是太难忘了吧，以至于那段时光在他记忆只是一闪而过，如流星划过天边一般。十一开学的之后的某天，他突然想起手机里的三条短信，第一条是院学生会科创部二轮面试通知，可惜他错过了面试。第二条是计服社面试的通知，一想到这条短信，他的脸上就露出了笑脸，他至今还能回忆起自己看到短信时的那份温暖，短信的字里行间全是学长学姐的温馨话语，他越发地对这个社团感兴趣了。第三条是家里的短信，上面的字出奇的少，但是确很温馨。他一抬头，刚好看到钟楼楼顶夕阳西下的美景，天空、夕阳和房顶的钟表仿佛融为一体，令人如痴如醉，那个美美得都有一点不真实。 之后的生活也很平淡，每天上课得时候划划水、扣扣手机、看看窗外的景色，不知为何，他还是依旧喜欢坐在教室里前排的靠近窗户或者过路的位置。但是平淡的时光里并不缺乏亮色，他每周二下午都会去计服社的义修摊。那里，有来自各个学院的学长和学姐，还有来自各个学院如他一般的干事；那里有来自海南的，有来自大山的，还有来自皮革厂的，仿佛可以见到全国各地的人；那里还有说话如滔滔江水连绵不绝的学长，有笑声可以带动全场的学姐，还有连绵不短的“推塔”声；在那个只有3米X 6米的空间里，却容纳了那么多乐于奉献的心，每每想起，他心里都特别的甜。每次义修结束后，他们都会去自选餐那里美美地吃上一顿晚饭，饭桌上也总是格外的热闹，多的时候会有将近20人一起吃饭，少的时候也会有67个人。不仅有特别能吃的某邰姓老板、爱吃豆腐脑的豆腐猪、来自温州的某皮革厂厂长，还有每次都不会缺席的能把人萌出血的某欣。（啊哈哈哈哈哈哈，让我先笑一会） 不知不觉之间，寒假过去了，春天也结束了，社团办了最后一次对外的大型活动，义修的次数也所剩不多，进入了一年一度的换届季。不知那里来的勇气，他竟然想竞选社长，那时的他就跟走火入魔了一样，觉得上课没啥意思可以逃，奖学金一次也就够了，成绩只是一个数字，挂科又何惧！但是当换届结果出来之后，他慌了，虽然他成功地成为了新一届的会长，但是他成宿成宿的睡不着觉。这些也没能逃过他的小伙伴的火眼金睛，他们开始安慰他。之后，他们开始开会，逛贴吧，水群，招人等等一系列迎新的活动。这时的他们有一个口号-计服出征，寸草不生。此刻的他，忽地回到了电脑前，瞥了一眼旁边带有粉心的社服，脸上露出满意的面孔后，又陷入了回忆。 可是无论如何，他再也想不起来自己一年来办活动的那些细枝末节了。只觉得一切都是那么的清晰，仿佛都发生在昨天，一切又都是那么的遥远，仿佛自己做的一场梦。梦里的他，情绪变化无常，不仅有无奈无助和失望的哭泣声，还有感动幸福的泪水；梦里的他，出现在那里都在唱，在郑州的街头唱成都，在KTV的房间里唱套马杆，在钟楼的广场唱凉凉；梦里的他，参加了各种会，在没有空调的大教室里开的见面会，在高大上的报告厅里开的总结会，在KTV里开的演唱会。梦里的他 ……… 忽然间，他从睡梦中醒来，看到窗外已经一片漆黑了，拿起手机便向门外走 …… 仅以此篇记录下自己的曾经。</p>
@@ -1817,6 +1788,35 @@ child.print\_info()</code></pre><p>在运行后，输出的内容如下</p>
       <tags>
         <tag>生活杂谈</tag>
         <tag>毕业</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>新年伊始</title>
+    <url>/2020-01-01/</url>
+    <content><![CDATA[<p>我的 2019年的时光</p>
+<p>消失在了日复一日的学习里</p>
+<p>充实、进步充满了每一天</p>
+<p>停留在了图书馆的座位上</p>
+<p>笔记、试卷占满了所有空间</p>
+<p>固化成了那规律的生物钟</p>
+<p>早起、晚归是不变的旋律</p>
+<p>记录在了每日的问候里</p>
+<p>早、晚安都不曾缺席</p>
+<p>感谢臭（xiao)女（bao)人（bei)的鼓励和陪伴。</p>
+<p>如果情诗只有三行，</p>
+<p>那么我们的故事，</p>
+<p>余生慢慢讲。</p>
+<ul>
+<li><p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/01/april_2020-01-01-21-15-43-032-1024x1024.jpg" alt></p>
+</li>
+<li><p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/01/april_2020-01-01-21-20-13-451-1024x1024.jpg" alt></p>
+</li>
+<li><p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/01/april_2020-01-01-21-28-03-850-768x1024.jpg" alt></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>我的爱情故事</tag>
       </tags>
   </entry>
   <entry>
@@ -2209,8 +2209,8 @@ child.print\_info()</code></pre><p>在运行后，输出的内容如下</p>
         <category>学习笔记</category>
       </categories>
       <tags>
-        <tag>PyTorch</tag>
         <tag>学习笔记</tag>
+        <tag>PyTorch</tag>
         <tag>LSTM</tag>
       </tags>
   </entry>
