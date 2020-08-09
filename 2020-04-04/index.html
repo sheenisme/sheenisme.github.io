@@ -69,13 +69,17 @@
     <div class="article-meta">
       <a href="/2020-04-04/" class="article-date">
   <time datetime="2020-04-04T00:58:25.000Z" itemprop="datePublished">2020-04-04</time>
-</a>   
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+  </div>
+  
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">2k</span>
+            <span class="post-count">2.1k</span>
         </span>
     </span>
 
@@ -102,9 +106,12 @@
   <blockquote>
 <p>Matplotlib是Python的绘图库，不仅具备强大的绘图功能，还能够在很多平台上使用，和Jupyter Notebook有极强的兼容性。</p>
 </blockquote>
-<h5 id="1-创建图"><a href="#1-创建图" class="headerlink" title="1. 创建图"></a>1. 创建图</h5><p>import matplotlib.pyplot as plt<br>import numpy as np<br>​<br>np.random.seed(42)<br>x = np.random.randn(30)<br>plt.plot(x, “r–o”)<br>plt.show()</p>
+<a id="more"></a>
+
+<h5 id="1-创建图"><a href="#1-创建图" class="headerlink" title="1.  创建图"></a>1.  创建图</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">np.random.seed(42)</span><br><span class="line">x &#x3D; np.random.randn(30)</span><br><span class="line">plt.plot(x, &quot;r--o&quot;)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
 <p>在运行后，输出的内容如下：</p>
-<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/Figure_1.png" alt></p>
+<p><img src="/2020-04-04/Figure_1.png" alt="Figure_1"></p>
 <p>这段代码通过np.random.seed(42)设置了随机种子，以方便我们之后的结果复现；接着通过np.random.randn(30)生成30个随机参数并赋值给变量x；最后，绘图的核心代码通过plt.plot(x,”r–o”)将这30个随机参数以点的方式绘制出来并用线条进行连接，传递给plot的参数r–o用于在线型图中标记每个参数点使用的形状、连接参数点使用的线条颜色和线型，而且线型图的横轴和纵轴也是有区别的，纵轴生成的是30个随机数的值，横轴生成的是这30个点的索引值，同样是30个。</p>
 <h5 id="2．线条颜色、标记形状和线型"><a href="#2．线条颜色、标记形状和线型" class="headerlink" title="2．线条颜色、标记形状和线型"></a>2．线条颜色、标记形状和线型</h5><h6 id="用于设置线型图中线条颜色的常用参数如下。"><a href="#用于设置线型图中线条颜色的常用参数如下。" class="headerlink" title="用于设置线型图中线条颜色的常用参数如下。"></a>用于设置线型图中线条颜色的常用参数如下。</h6><p>（1）“b”：指定绘制的线条颜色为蓝色。</p>
 <p>（2）“g”：指定绘制的线条颜色为绿色。</p>
@@ -123,23 +130,27 @@
 <p>（3）“-.”：指定线条形状为点实线。</p>
 <p>（4）“:”：指定线条形状为点线。</p>
 <p>下面来看一个使用不同的线条颜色、形状和标记参数点形状的实例。</p>
-<p>import matplotlib.pyplot as plt<br>import numpy as np<br>​<br>a = np.random.randn(30)<br>b = np.random.randn(30)<br>c = np.random.randn(30)<br>d = np.random.randn(30)<br>plt.plot(a, “r–o”, b, “b-*“, c, “g-.+”, d, “m:x”)<br>plt.show()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">a &#x3D; np.random.randn(30)</span><br><span class="line">b &#x3D; np.random.randn(30)</span><br><span class="line">c &#x3D; np.random.randn(30)</span><br><span class="line">d &#x3D; np.random.randn(30)</span><br><span class="line">plt.plot(a, &quot;r--o&quot;, b, &quot;b-*&quot;, c, &quot;g-.+&quot;, d, &quot;m:x&quot;)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
 <p>在运行后，输出的内容如图：</p>
-<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/Figure_2.png" alt></p>
+<p><img src="/2020-04-04/Figure_2.png" alt="Figure_2"></p>
 <h5 id="3．标签和图例"><a href="#3．标签和图例" class="headerlink" title="3．标签和图例"></a>3．标签和图例</h5><p>为了让我们绘制的图像更易理解，我们可以增加一些绘制图像的说明，一般是添加图像的轴标签和图例，如下所示：</p>
-<p>import matplotlib.pyplot as plt<br>import numpy as np<br>​<br>np.random.seed(42)<br>x = np.random.randn(30)<br>y = np.random.randn(30)<br>​<br>plt.title(“Example”)<br>plt.xlabel(“X”)<br>plt.ylabel(“Y”)<br>X, = plt.plot(x, “r–o”)<br>Y, = plt.plot(y, “b-*“)<br>plt.legend([X, Y], [“X”, “Y”])<br>plt.show()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">np.random.seed(42)</span><br><span class="line">x &#x3D; np.random.randn(30)</span><br><span class="line">y &#x3D; np.random.randn(30)</span><br><span class="line"></span><br><span class="line">plt.title(&quot;Example&quot;)</span><br><span class="line">plt.xlabel(&quot;X&quot;)</span><br><span class="line">plt.ylabel(&quot;Y&quot;)</span><br><span class="line">X, &#x3D; plt.plot(x, &quot;r--o&quot;)</span><br><span class="line">Y, &#x3D; plt.plot(y, &quot;b-*&quot;)</span><br><span class="line">plt.legend([X, Y], [&quot;X&quot;, &quot;Y&quot;])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
 <p>在运行后，输出的内容如图：</p>
-<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/Figure_3.png" alt></p>
+<p><img src="/2020-04-04/Figure_3.png" alt="Figure_3"></p>
 <p>我们在图中看到了图标签和图例，这是因为在以上代码中增加了标签的显示代码plt.xlabel(“Y”)、plt.ylabel(“Y”)和图例的显示代码plt.legend([X, Y], [“X”, “Y”])，传递给plt.legend的是两个列表参数，第1个列表参数是在图中实际使用的标记和线形，第2个列表参数是对应图例的文字描述。</p>
 <h5 id="4．子图"><a href="#4．子图" class="headerlink" title="4．子图"></a>4．子图</h5><p>若我们需要将多个图像同时在不同的位置显示，则需要用到子图（Subplot）的功能。</p>
-<p>import matplotlib.pyplot as plt<br>import numpy as np<br>​<br>a = np.random.randn(30)<br>b = np.random.randn(30)<br>c = np.random.randn(30)<br>d = np.random.randn(30)<br>​<br>fig = plt.figure()<br>ax1 = fig.add_subplot(2, 2, 1)<br>ax2 = fig.add_subplot(2, 2, 2)<br>ax3 = fig.add_subplot(2, 2, 3)<br>ax4 = fig.add_subplot(2, 2, 4)<br>​<br>A, = ax1.plot(a, “r–o”)<br>ax1.legend([A], [“A”])<br>B, = ax2.plot(b, “b-*“)<br>ax2.legend([B], [“B”])<br>C, = ax3.plot(c, “g-.+”)<br>ax3.legend([C], [“C”])<br>D, = ax4.plot(d, “m:x”)<br>ax4.legend([D], [“D”])<br>plt.show()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">a &#x3D; np.random.randn(30)</span><br><span class="line">b &#x3D; np.random.randn(30)</span><br><span class="line">c &#x3D; np.random.randn(30)</span><br><span class="line">d &#x3D; np.random.randn(30)</span><br><span class="line"></span><br><span class="line">fig &#x3D; plt.figure()</span><br><span class="line">ax1 &#x3D; fig.add_subplot(2, 2, 1)</span><br><span class="line">ax2 &#x3D; fig.add_subplot(2, 2, 2)</span><br><span class="line">ax3 &#x3D; fig.add_subplot(2, 2, 3)</span><br><span class="line">ax4 &#x3D; fig.add_subplot(2, 2, 4)</span><br><span class="line"></span><br><span class="line">A, &#x3D; ax1.plot(a, &quot;r--o&quot;)</span><br><span class="line">ax1.legend([A], [&quot;A&quot;])</span><br><span class="line">B, &#x3D; ax2.plot(b, &quot;b-*&quot;)</span><br><span class="line">ax2.legend([B], [&quot;B&quot;])</span><br><span class="line">C, &#x3D; ax3.plot(c, &quot;g-.+&quot;)</span><br><span class="line">ax3.legend([C], [&quot;C&quot;])</span><br><span class="line">D, &#x3D; ax4.plot(d, &quot;m:x&quot;)</span><br><span class="line">ax4.legend([D], [&quot;D&quot;])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
 <p>在运行后，输出的内容如图：</p>
-<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/Figure_4.png" alt></p>
+<p><img src="/2020-04-04/Figure_4.png" alt="Figure_4"></p>
 <p>在绘制子图时，我们首先需要通过fig =plt.figure()定义一个实例，然后通过fig.add_subplot方法向fig实例中添加我们需要的子图。在代码中传递给fig.add_subplot方法的参数是1组数字，拿第1组数字（2,2,1）来说，前两个数字表示把整块图划分成了两行两列，一共4张子图，最后1个数字表示具体使用哪一张子图进行绘制。</p>
 <h5 id="5．散点图"><a href="#5．散点图" class="headerlink" title="5．散点图"></a>5．散点图</h5><p>如果我们获取的是一些散点数据，则可以通过绘制散点图（Scatter）更清晰地展示所有数据的分布和布局。</p>
-<p>import matplotlib.pyplot as plt<br>import numpy as np<br>​<br>np.random.seed(42)<br>x = np.random.randn(30)<br>y = np.random.randn(30)<br>​<br>plt.scatter(x, y, c=”g”, marker=”o”, label=”(X, Y)”)<br>plt.title(“Example”)<br>plt.xlabel(“X”)<br>plt.ylabel(“Y”)<br>plt.legend(loc=1)<br>plt.show()<br>plt.show()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">np.random.seed(42)</span><br><span class="line">x &#x3D; np.random.randn(30)</span><br><span class="line">y &#x3D; np.random.randn(30)</span><br><span class="line"></span><br><span class="line">plt.scatter(x, y, c&#x3D;&quot;g&quot;, marker&#x3D;&quot;o&quot;, label&#x3D;&quot;(X, Y)&quot;)</span><br><span class="line">plt.title(&quot;Example&quot;)</span><br><span class="line">plt.xlabel(&quot;X&quot;)</span><br><span class="line">plt.ylabel(&quot;Y&quot;)</span><br><span class="line">plt.legend(loc&#x3D;1)</span><br><span class="line">plt.show()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
 <p>在运行后，输出的内容如图：</p>
-<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/Figure_5.png" alt></p>
+<p><img src="/2020-04-04/Figure_5.png" alt="Figure_5"></p>
 <p>绘制散点图的核心代码是plt.scatter(x, y, c=”g”, marker=”o”, label=”(X,Y)”)，其中有三个我们需要特别留意的参数，如下所述。</p>
 <p>（1）“c”：指定散点图中绘制的参数点使用哪种颜色，可设置的颜色参数可参考之前绘制线型图时对线条颜色选择的参数范围，这里使用“g”表示设置为绿色。</p>
 <p>（2）“marker”：指定散点图中绘制的参数点使用哪种形状，和之前线型图中的设置一样，这里使用“o”表示设置为圆形。</p>
@@ -152,14 +163,16 @@
 <p>（5）“loc=4”：强制图例使用图中右上角的位置。</p>
 <p>当然还有其他位置可供选择。</p>
 <h5 id="6．直方图"><a href="#6．直方图" class="headerlink" title="6．直方图"></a>6．直方图</h5><p>直方图（Histogram）又称质量分布图，是一种统计报告图，通过使用一系列高度不等的纵向条纹或直方表示数据分布的情况，一般用横轴表示数据类型，用纵轴表示分布情况，下面看看具体的实例：</p>
-<p>import matplotlib.pyplot as plt<br>import numpy as np<br>​<br>np.random.seed(42)<br>x = np.random.randn(1000)<br>plt.hist(x, bins=20, color=”g”)<br>plt.title(“Example”)<br>plt.xlabel(“X”)<br>plt.ylabel(“Y”)<br>plt.show()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">np.random.seed(42)</span><br><span class="line">x &#x3D; np.random.randn(1000)</span><br><span class="line">plt.hist(x, bins&#x3D;20, color&#x3D;&quot;g&quot;)</span><br><span class="line">plt.title(&quot;Example&quot;)</span><br><span class="line">plt.xlabel(&quot;X&quot;)</span><br><span class="line">plt.ylabel(&quot;Y&quot;)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
 <p>在运行后，输出的内容如图：</p>
-<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/Figure_6.png" alt></p>
+<p><img src="/2020-04-04/Figure_6.png" alt="Figure_6"></p>
 <p>绘制直方图的核心代码是plt.hist(x, bins=20, color=”g”)，其中color的功能和散点图中的c是一样的，bins用于指定我们绘制的直方图条纹的数量。</p>
 <h5 id="7．饼图"><a href="#7．饼图" class="headerlink" title="7．饼图"></a>7．饼图</h5><p>饼图用于显示一个数据系列，我们可以将一个数据系列理解为一类数据，而每个数据系列都应当拥有自己唯一的颜色。在同一个饼图中可以绘制多个系列的数据，并根据每个系列的数据量的不同来分配它们在饼图中的占比。下面看看具体的实例：</p>
-<p>import matplotlib.pyplot as plt<br>​<br>labels =[‘Dos’, ‘Cats’, ‘Birds’]<br>sizes =[15, 50, 35]<br>plt.pie(sizes, explode=(0, 0, 0.1), labels=labels, autopct=’%1.1f%%’,startangle=90)<br>plt.axis(‘equal’)<br>​<br>plt.show()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"></span><br><span class="line">labels &#x3D;[&#39;Dos&#39;, &#39;Cats&#39;, &#39;Birds&#39;]</span><br><span class="line">sizes &#x3D;[15, 50, 35]</span><br><span class="line">plt.pie(sizes, explode&#x3D;(0, 0, 0.1), labels&#x3D;labels, autopct&#x3D;&#39;%1.1f%%&#39;,startangle&#x3D;90)</span><br><span class="line">plt.axis(&#39;equal&#39;)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
 <p>在运行后，输出的内容如图：</p>
-<p><img src="http://www.sheensong.top/wordpress/wp-content/uploads/2020/04/Figure_7.png" alt></p>
+<p><img src="/2020-04-04/Figure_7.png" alt="Figure_7"></p>
 <p>绘制饼图的核心代码为plt.pie(sizes, explode=(0, 0, 0.1), labels=labels,autopct=’%1.1f%%’, startangle=60)，<strong>其中sizes=[15, 50, 35]的三个数字确定了每部分数据系列在整个圆形中的占比；explode定义每部分数据系列之间的间隔，如果设置两个0和一个0.1，就能突出第3部分；autopct其实就是将sizes中的数据以所定义的浮点精度进行显示；startangle是绘制第1块饼图时该饼图与X轴正方向的夹角度数，这里设置为90，默认为0</strong>;plt.axis(‘equal’)是必不可少的，用于使X轴和Y轴的刻度保持一致，只有这样，最后得到饼图才是圆形的。</p>
 <p>Write by sheen</p>
  
@@ -228,12 +241,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://blog.sheensong.top/2020-04-04/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://blog.sheensong.top/2020-04-04/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Matplotlib/" rel="tag">Matplotlib</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Matplotlib/" rel="tag">Matplotlib</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
 
     </footer>
   </div>
