@@ -124,7 +124,7 @@
 
 <p>我们可以将以上代码中的<strong>torchvision.transforms.Compose类看作一种容器</strong>，它能够同时对多种数据变换进行组合。<strong>传入的参数是一个列表，列表中的元素就是对载入的数据进行的各种变换操作</strong>。</p>
 <p>在以上代码中，<strong>在torchvision.transforms.Compose中只使用了一个类型的转换变换transforms.ToTensor和一个数据标准化变换transforms.Normalize</strong>。这里使用的<em>标准化变换也叫作标准差变换法，这种方法需要使用原始数据的均值（Mean）和标准差（StandardDeviation）来进行数据的标准化，在经过标准化变换之后，数据全部符合均值为0、标准差为1的标准正态分布</em>。计算公式如下：</p>
-<p><img src="/2020-04-11/epub_23914630_212-1586067253572-1596961168193.jpg" alt="img"></p>
+<p><img src="/2020/04/11/%E3%80%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91-pytorch%E5%AE%9E%E6%88%98%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/epub_23914630_212-1586067253572-1596961168193.jpg" alt="img"></p>
 <p>不过我们在这里偷了一个懒，均值和标准差的值并非来自原始数据的，而是自行定义了一个，不过仍然能够达到我们的目的。</p>
 <h5 id="1-在torchvision-transforms中常用的数据变换操作。"><a href="#1-在torchvision-transforms中常用的数据变换操作。" class="headerlink" title="1.  在torchvision.transforms中常用的数据变换操作。"></a>1.  在torchvision.transforms中常用的数据变换操作。</h5><h6 id="（1）torchvision-transforms-Resize：用于对载入的图片数据按我们需求的大小进行缩放。"><a href="#（1）torchvision-transforms-Resize：用于对载入的图片数据按我们需求的大小进行缩放。" class="headerlink" title="（1）torchvision.transforms.Resize：用于对载入的图片数据按我们需求的大小进行缩放。"></a>（1）torchvision.transforms.Resize：用于对载入的图片数据按我们需求的大小进行缩放。</h6><p>传递给这个类的参数可以是一个整型数据，也可以是一个类似于（h,w）的序列，其中，h代表高度，w代表宽度，但是如果使用的是一个整型数据，那么表示缩放的宽度和高度都是这个整型数据的值。</p>
 <h6 id="（2）torchvision-transforms-Scale：用于对载入的图片数据按我们需求的大小进行缩放，用法和torchvision-transforms-Resize类似。"><a href="#（2）torchvision-transforms-Scale：用于对载入的图片数据按我们需求的大小进行缩放，用法和torchvision-transforms-Resize类似。" class="headerlink" title="（2）torchvision.transforms.Scale：用于对载入的图片数据按我们需求的大小进行缩放，用法和torchvision.transforms.Resize类似。"></a>（2）torchvision.transforms.Scale：用于对载入的图片数据按我们需求的大小进行缩放，用法和torchvision.transforms.Resize类似。</h6><h6 id="（3）torchvision-transforms-CenterCrop：用于对载入的图片以图片中心为参考点，按我们需要的大小进行裁剪。"><a href="#（3）torchvision-transforms-CenterCrop：用于对载入的图片以图片中心为参考点，按我们需要的大小进行裁剪。" class="headerlink" title="（3）torchvision.transforms.CenterCrop：用于对载入的图片以图片中心为参考点，按我们需要的大小进行裁剪。"></a>（3）torchvision.transforms.CenterCrop：用于对载入的图片以图片中心为参考点，按我们需要的大小进行裁剪。</h6><p>传递给这个类的参数可以是一个整型数据，也可以是一个类似于（h,w）的序列。</p>
@@ -148,7 +148,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[tensor(5), tensor(3), tensor(9), tensor(5), tensor(0), tensor(0), tensor(4), tensor(4), tensor(3), tensor(3), tensor(3), tensor(0), tensor(7), tensor(3), tensor(3), tensor(8), tensor(1), tensor(1), tensor(4), tensor(9), tensor(4), tensor(5), tensor(3), tensor(5), tensor(7), tensor(0), tensor(4), tensor(7), tensor(2), tensor(8), tensor(7), tensor(5), tensor(4), tensor(7), tensor(9), tensor(7), tensor(2), tensor(6), tensor(9), tensor(9), tensor(6), tensor(2), tensor(5), tensor(8), tensor(5), tensor(6), tensor(0), tensor(1), tensor(4), tensor(8), tensor(0), tensor(0), tensor(7), tensor(5), tensor(5), tensor(9), tensor(1), tensor(7), tensor(0), tensor(4), tensor(3), tensor(2), tensor(7), tensor(7)]</span><br></pre></td></tr></table></figure>
 
 <p>可以看到，打印输出的首先是64张图片对应的标签，然后是64张图片的预览结果:</p>
-<p><img src="/2020-04-11/Figure_8-1596961168194.png" alt="Figure_8"></p>
+<p><img src="/2020/04/11/%E3%80%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91-pytorch%E5%AE%9E%E6%88%98%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/Figure_8-1596961168194.png" alt="Figure_8"></p>
 <h4 id="四、模型搭建和参数优化"><a href="#四、模型搭建和参数优化" class="headerlink" title="四、模型搭建和参数优化"></a>四、模型搭建和参数优化</h4><blockquote>
 <p>在顺利完成数据装载后，我们就可以开始编写卷积神经网络模型的搭建和参数优化的代码了。</p>
 </blockquote>
@@ -159,7 +159,7 @@
 <h6 id="（1）torch-nn-Conv2d：用于搭建卷积神经网络的卷积层，主要的输入参数有输入通道数、输出通道数、卷积核大小、卷积核移动步长和Paddingde值。"><a href="#（1）torch-nn-Conv2d：用于搭建卷积神经网络的卷积层，主要的输入参数有输入通道数、输出通道数、卷积核大小、卷积核移动步长和Paddingde值。" class="headerlink" title="（1）torch.nn.Conv2d：用于搭建卷积神经网络的卷积层，主要的输入参数有输入通道数、输出通道数、卷积核大小、卷积核移动步长和Paddingde值。"></a>（1）torch.nn.Conv2d：用于搭建卷积神经网络的卷积层，主要的输入参数有输入通道数、输出通道数、卷积核大小、卷积核移动步长和Paddingde值。</h6><p>其中，输入通道数的数据类型是整型，用于确定输入数据的层数；输出通道数的数据类型也是整型，用于确定输出数据的层数；卷积核大小的数据类型是整型，用于确定卷积核的大小；卷积核移动步长的数据类型是整型，用于确定卷积核每次滑动的步长；Paddingde的数据类型是整型，值为0时表示不进行边界像素的填充，如果值大于0，那么增加数字所对应的边界像素层数。</p>
 <h6 id="（2）torch-nn-MaxPool2d：用于实现卷积神经网络中的最大池化层，主要的输入参数是池化窗口大小、池化窗口移动步长和Paddingde值。"><a href="#（2）torch-nn-MaxPool2d：用于实现卷积神经网络中的最大池化层，主要的输入参数是池化窗口大小、池化窗口移动步长和Paddingde值。" class="headerlink" title="（2）torch.nn.MaxPool2d：用于实现卷积神经网络中的最大池化层，主要的输入参数是池化窗口大小、池化窗口移动步长和Paddingde值。"></a>（2）torch.nn.MaxPool2d：用于实现卷积神经网络中的最大池化层，主要的输入参数是池化窗口大小、池化窗口移动步长和Paddingde值。</h6><p>同样，池化窗口大小的数据类型是整型，用于确定池化窗口的大小。池化窗口步长的数据类型也是整型，用于确定池化窗口每次移动的步长。Paddingde值和在torch.nn.Conv2d中定义的Paddingde值的用法和意义是一样的。</p>
 <h6 id="（3）torch-nn-Dropout-torch-nn-Dropout类用于防止卷积神经网络在训练的过程中发生过拟合。"><a href="#（3）torch-nn-Dropout-torch-nn-Dropout类用于防止卷积神经网络在训练的过程中发生过拟合。" class="headerlink" title="（3）torch.nn.Dropout: torch.nn.Dropout类用于防止卷积神经网络在训练的过程中发生过拟合。"></a>（3）torch.nn.Dropout: torch.nn.Dropout类用于防止卷积神经网络在训练的过程中发生过拟合。</h6><p>其工作原理简单来说就是在模型训练的过程中，以一定的随机概率将卷积神经网络模型的部分参数归零，以达到减少相邻两层神经连接的目的。下图显示了Dropout方法的效果：</p>
-<p><img src="/2020-04-11/image-20200407112822849-1596961168194.png" alt="image-20200407112822849"></p>
+<p><img src="/2020/04/11/%E3%80%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91-pytorch%E5%AE%9E%E6%88%98%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/image-20200407112822849-1596961168194.png" alt="image-20200407112822849"></p>
 <p>在图中打叉的神经节点就是被随机抽中并丢弃的神经连接，正是因为选取方式的随机性，所以在模型的每轮训练中选择丢弃的神经连接也是不同的，<strong>这样做是为了让我们最后训练出来的模型对各部分的权重参数不产生过度依赖，从而防止过拟合。</strong>对于torch.nn.Dropout类，我们可以对随机概率值的大小进行设置，如果不做任何设置，就使用默认的概率值0.5。</p>
 <p>前向传播forward函数中的内容：首先，<strong>经过self.conv1进行卷积处理</strong>；然后<strong>进行x.view(-1, 14<em>14</em>128)，对参数实现扁平化</strong>，因为之后紧接着的就是全连接层，所以如果不进行扁平化，则全连接层的实际输出的参数维度和其定义输入的维度将不匹配，程序会报错；最后，<strong>通过self.dense定义的全连接进行最后的分类</strong>。</p>
 <blockquote>
@@ -197,7 +197,7 @@ Loss is:0.0002, Train Accuracy is:99.0000%, Test Accuracy is:98.0000</code></pre
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Predict Label is: [tensor(3), tensor(6), tensor(2), tensor(1)]</span><br><span class="line">Real Label is: [tensor(3), tensor(6), tensor(2), tensor(1)]</span><br></pre></td></tr></table></figure>
 
 <p>在输出结果中，第1个结果是我们训练好的模型的预测值，第2个结果是这4个测试数据的真实值。对测试数据进行可视化，如下图所示：</p>
-<p><img src="/2020-04-11/Figure_10-1596961168194.png" alt="Figure_10"></p>
+<p><img src="/2020/04/11/%E3%80%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91-pytorch%E5%AE%9E%E6%88%98%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/Figure_10-1596961168194.png" alt="Figure_10"></p>
 <p>可以看到，在图中可视化的这部分测试集图片，模型的预测结果和真实的结果是完全一致的。当然，如果想选取更多的测试集进行可视化，则只需将batch_size的值设置得更大。</p>
 <p>Write by sheen</p>
  
