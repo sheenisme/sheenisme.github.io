@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>2020考研-个人经验分享(持续更新中)</title>
-    <url>/2020-07-07/</url>
+    <url>/2020/07/07/2020%E8%80%83%E7%A0%94-%E4%B8%AA%E4%BA%BA%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD/</url>
     <content><![CDATA[<p>一、前言</p>
 <p>下面都是个人的一些考研经验，给各位读者做个参考，不喜勿喷，谢谢。</p>
 <p>1. 考研期间的心态问题</p>
@@ -85,7 +85,7 @@
   </entry>
   <entry>
     <title>大秦帝国-电视剧个人推荐</title>
-    <url>/2020-07-04/</url>
+    <url>/2020/07/04/%E5%A4%A7%E7%A7%A6%E5%B8%9D%E5%9B%BD-%E4%B8%AA%E4%BA%BA%E7%94%B5%E8%A7%86%E5%89%A7%E6%8E%A8%E8%8D%90/</url>
     <content><![CDATA[<blockquote>
 <p>从3月疫情期间开始，我就开始追这部剧，直到今日21：00才看完前三部，共计100余集，期间无论是远程办公，亦或是准备研究生复试，再或者上班兼职期间，得空仍旧是追这部剧。所以在此郑重和大家推荐这部剧。</p>
 <p>-- sheen</p>
@@ -115,7 +115,7 @@
   </entry>
   <entry>
     <title>[学习笔记]-redis安装小记（windows）</title>
-    <url>/2020-06-29/</url>
+    <url>/2020/06/29/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-redis%E5%AE%89%E8%A3%85%E5%B0%8F%E8%AE%B0%EF%BC%88windows%EF%BC%89/</url>
     <content><![CDATA[<blockquote>
 <p>Redis是有名的NoSql数据库，一般Linux都会默认支持。但在Windows环境中，可能需要手动安装设置才能有效使用。这里就简单介绍一下Windows下Redis服务的安装方法，希望能够帮到你。</p>
 </blockquote>
@@ -183,7 +183,7 @@
   </entry>
   <entry>
     <title>[学习笔记]-Node.js安装及环境配置（win）</title>
-    <url>/2020-06-24/</url>
+    <url>/2020/06/24/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-node-js%E5%AE%89%E8%A3%85%E5%8F%8A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%EF%BC%88win%EF%BC%89/</url>
     <content><![CDATA[<h3 id="Node-js安装及环境配置之Windows篇"><a href="#Node-js安装及环境配置之Windows篇" class="headerlink" title="Node.js安装及环境配置之Windows篇"></a>Node.js安装及环境配置之Windows篇</h3><h5 id="一、安装环境"><a href="#一、安装环境" class="headerlink" title="一、安装环境"></a>一、安装环境</h5><p>1、本机系统：Windows 10 Pro（64位）</p>
 <p>2、Node.js：v6.9.2 LTS（64位）</p>
 <a id="more"></a>
@@ -250,7 +250,7 @@
   </entry>
   <entry>
     <title>[学习笔记]-JavaScript理论学习</title>
-    <url>/2020-06-23/</url>
+    <url>/2020/06/23/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-javascript%E7%90%86%E8%AE%BA%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<blockquote>
 <p>由于这次是直接观看的youtube上国外大佬的英文原视频，虽然通过插件配上了字幕，可是还是要靠理解英文字幕来加以学习，故没来得及做笔记，只记下了代码。</p>
 </blockquote>
@@ -496,7 +496,7 @@ function StopWatch(){
   </entry>
   <entry>
     <title>[学习笔记]-Linux常用命令</title>
-    <url>/2020-06-08/</url>
+    <url>/2020/06/08/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<h5 id="1、说一些你比较常用linux指令"><a href="#1、说一些你比较常用linux指令" class="headerlink" title="1、说一些你比较常用linux指令"></a>1、说一些你比较常用linux指令</h5><p>　　1.1、ls/ll、cd、mkdir、rm-rf、cp、mv、ps -ef | grep xxx、kill、free-m、tar -xvf file.tar、（说那么十几二十来个估计差不多了）</p>
 <h5 id="2、查看进程（例：如何查看所有xx进程）"><a href="#2、查看进程（例：如何查看所有xx进程）" class="headerlink" title="2、查看进程（例：如何查看所有xx进程）"></a>2、查看进程（例：如何查看所有xx进程）</h5><p>　　2.1、ps -ef | grep xxx</p>
 <p>　　2.2、ps -aux | grep xxx（-aux显示所有状态）</p>
@@ -532,7 +532,7 @@ function StopWatch(){
   </entry>
   <entry>
     <title>毕业心语</title>
-    <url>/2020-06-07/</url>
+    <url>/2020/06/07/%E6%AF%95%E4%B8%9A%E5%BF%83%E8%AF%AD/</url>
     <content><![CDATA[<p><strong>毕业心语</strong></p>
 <p>总觉得毕业遥遥无期，</p>
 <p>可是转眼间已无归期。</p>
@@ -553,7 +553,7 @@ function StopWatch(){
   </entry>
   <entry>
     <title>[转载]-论文修改宝典</title>
-    <url>/2020-05-02/</url>
+    <url>/2020/05/02/%E8%BD%AC%E8%BD%BD-%E8%AE%BA%E6%96%87%E4%BF%AE%E6%94%B9%E5%AE%9D%E5%85%B8/</url>
     <content><![CDATA[<p>一句话：修改的核心就是把能改的关键词都替换掉，再变换句式。</p>
 <p>下面演示下如何借用PaperOK系统提供的同义词并按照修改方法进行快速的修改。</p>
 <a id="more"></a>
@@ -632,7 +632,7 @@ function StopWatch(){
   </entry>
   <entry>
     <title>[转载]-使用PyTroch搭建LSTM预测时间序列</title>
-    <url>/2020-04-30/</url>
+    <url>/2020/04/30/%E8%BD%AC%E8%BD%BD%E4%BD%BF%E7%94%A8pytroch%E6%90%AD%E5%BB%BAlstm%E9%A2%84%E6%B5%8B%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/</url>
     <content><![CDATA[<blockquote>
 <p>时间序列就是以时间为自变量的一系列数据。例如, 24小时的温度,各种产品一个月的价格变动, 一个公司一年的股票价格。 现在前沿深度学习模型比如LSTM能够捕捉时间序列的规律，因此可以用来预测数据未来的趋势。在这篇文章中，你可以了解到如何使用LSTM深度学习算法使用时间序列来预测未来。</p>
 </blockquote>
@@ -835,7 +835,7 @@ function StopWatch(){
   </entry>
   <entry>
     <title>[学习笔记]-长短期记忆神经网络(LSTM)基础</title>
-    <url>/2020-04-22/</url>
+    <url>/2020/04/22/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E9%95%BF%E7%9F%AD%E6%9C%9F%E8%AE%B0%E5%BF%86%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9Clstm%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<blockquote>
 <p>RNN是一类用于处理序列数据的神经网络。就像卷积网络是专门用于处理网格化数据X（如一个图像）的神经网络，RNN网络是专门用于处理序列x(1), ···,x(τ)的神经网络。正如卷积网络可以很容易地扩展到具有很大宽度和高度的图像，以及处理大小可变的图像，循环网络可以扩展到更长的序列（比不基于序列的特化网络长得多）。大多数循环网络也能处理可变长度的序列。</p>
 </blockquote>
@@ -975,7 +975,7 @@ function StopWatch(){
   </entry>
   <entry>
     <title>[学习笔记]-Python爬虫实战-爬取农产品数据</title>
-    <url>/2020-04-18/</url>
+    <url>/2020/04/18/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E7%88%AC%E8%99%AB%E5%AE%9E%E6%88%98-%E7%88%AC%E5%8F%96%E5%86%9C%E4%BA%A7%E5%93%81%E6%95%B0%E6%8D%AE/</url>
     <content><![CDATA[<blockquote>
 <p>爬虫的网站：万邦国际集团。其成立于2010年，总部位于河南省郑州市，以“立足三农、保障民生、服务全国”为宗旨，业务涵盖综合性农产品冷链物流、高效生态农业开发、生鲜连锁超市、跨境电子商务、进出口贸易等农业全产业链。荣获重点龙头企业、全国农产品“综合十强市场”、“星创天地”、全国“万企帮万村”精准扶贫先进民营企业等荣誉称号。目前，集团在中牟县建设运营的万邦农产品物流园区，已累计完成投资100亿元，占地5000亩，建筑面积达350万平方米。拥有固定商户6000多家，2017年各类农副产品交易额913亿元，交易量1720万吨，位居全国前列，实现农产品“买全球、卖全国”。</p>
 <p>其价格信息查询为get请求，网页比较规范，且短期内不会有大的变动，很容易分析，故选择之。</p>
@@ -1017,7 +1017,7 @@ function StopWatch(){
   </entry>
   <entry>
     <title>[学习笔记]-Python爬虫进阶（Scrapy)学习</title>
-    <url>/2020-04-16/</url>
+    <url>/2020/04/16/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E7%88%AC%E8%99%AB%E8%BF%9B%E9%98%B6%EF%BC%88scrapy%E5%AD%A6%E4%B9%A0%EF%BC%89/</url>
     <content><![CDATA[<blockquote>
 <p>谈起爬虫必然要提起Scrapy框架，因为它能够帮助提升爬虫的效率，从而更好地实现爬虫。Scrapy是一个为了抓取网页数据、提取结构性数据而编写的应用框架，该框架是封装的，包含request（异步调度和处理）、下载器（多线程的Downloader）、解析器（selector）和twisted（异步处理）等。对于网站的内容爬取，其速度非常快捷。</p>
 </blockquote>
@@ -1192,7 +1192,7 @@ function StopWatch(){
   </entry>
   <entry>
     <title>[学习笔记]-python爬虫基础学习</title>
-    <url>/2020-04-13/</url>
+    <url>/2020/04/13/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<h3 id="一、合法性"><a href="#一、合法性" class="headerlink" title="一、合法性"></a>一、合法性</h3><p>几乎每一个网站都有一个名为robots.txt的文档，当然也有部分网站没有设定robots.txt。对于没有设定robots.txt的网站可以通过网络爬虫获取没有口令加密的数据，也就是该网站所有页面数据都可以爬取。如果网站有robots.txt文档，就要判断是否有禁止访客获取的数据。</p>
 <a id="more"></a>
 
@@ -1286,7 +1286,7 @@ time.sleep(3)  # 设置延迟，防止被封IP</code></pre><p>我们写爬虫的
   </entry>
   <entry>
     <title>[学习笔记]-PyTorch实战手写数字识别</title>
-    <url>/2020-04-11/</url>
+    <url>/2020/04/11/%E3%80%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91-pytorch%E5%AE%9E%E6%88%98%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/</url>
     <content><![CDATA[<blockquote>
 <p>具体过程是：先使用已经提供的训练数据对搭建好的神经网络模型进行训练并完成参数优化；然后使用优化好的模型对测试数据进行预测，对比预测值和真实值之间的损失值，同时计算出结果预测的准确率。另外，在将要搭建的模型中会用到卷积神经网络模型。</p>
 </blockquote>
@@ -1394,7 +1394,7 @@ Loss is:0.0002, Train Accuracy is:99.0000%, Test Accuracy is:98.0000</code></pre
   </entry>
   <entry>
     <title>[学习笔记]-PyTorch进阶学习笔记</title>
-    <url>/2020-04-08/</url>
+    <url>/2020/04/08/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-pytorch%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h4 id="一、PyTorch之torch-nn"><a href="#一、PyTorch之torch-nn" class="headerlink" title="一、PyTorch之torch.nn"></a>一、PyTorch之torch.nn</h4><blockquote>
 <p>PyTorch中的torch.nn包提供了很多与实现神经网络中的具体功能相关的类，这些类涵盖了深度神经网络模型在搭建和参数优化过程中的常用内容，比如神经网络中的卷积层、池化层、全连接层这类层次构造的方法、防止过拟合的参数归一化方法、Dropout方法，还有激活函数部分的线性激活函数、非线性激活函数相关的方法，等等。</p>
 </blockquote>
@@ -1462,7 +1462,7 @@ Loss is:0.0002, Train Accuracy is:99.0000%, Test Accuracy is:98.0000</code></pre
   </entry>
   <entry>
     <title>[学习笔记]-PyTorch基础学习笔记</title>
-    <url>/2020-04-06/</url>
+    <url>/2020/04/06/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-pytorch%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h3 id="PyTorch基础学习笔记"><a href="#PyTorch基础学习笔记" class="headerlink" title="PyTorch基础学习笔记"></a>PyTorch基础学习笔记</h3><blockquote>
 <p>PyTorch是美国互联网巨头Facebook在深度学习框架Torch的基础上使用Python重写的一个全新的深度学习框架，它更像NumPy的替代产物，不仅继承了NumPy的众多优点，还支持GPUs计算，在计算效率上要比NumPy有更明显的优势；不仅如此，PyTorch还有许多高级功能，比如拥有丰富的API，可以快速完成深度神经网络模型的搭建和训练。</p>
 </blockquote>
@@ -1535,7 +1535,7 @@ print(a)</code></pre><p>在运行后，输出的内容如下：</p>
   </entry>
   <entry>
     <title>哀悼英雄们！</title>
-    <url>/2020-04-04/</url>
+    <url>/2020/04/04/%E7%BC%85%E6%80%80%E8%8B%B1%E9%9B%84%E4%BB%AC%EF%BC%81/</url>
     <content><![CDATA[<p>清明</p>
 <p>北宋王禹偁</p>
 <p>无花无酒过清明，兴味萧然似野僧。</p>
@@ -1551,7 +1551,7 @@ print(a)</code></pre><p>在运行后，输出的内容如下：</p>
   </entry>
   <entry>
     <title>[学习笔记]-Python中的Matplotlib基础</title>
-    <url>/2020-04-04/</url>
+    <url>/2020/04/04/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E4%B8%AD%E7%9A%84matplotlib%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<blockquote>
 <p>Matplotlib是Python的绘图库，不仅具备强大的绘图功能，还能够在很多平台上使用，和Jupyter Notebook有极强的兼容性。</p>
 </blockquote>
@@ -1635,7 +1635,7 @@ print(a)</code></pre><p>在运行后，输出的内容如下：</p>
   </entry>
   <entry>
     <title>[学习笔记]-Python中NumPy基础</title>
-    <url>/2020-04-02/</url>
+    <url>/2020/04/02/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E4%B8%ADnumpy%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<blockquote>
 <p>NumPy是一个高性能的科学计算和数据分析基础包，在现在的数据分析领域有很多应用，这得益于NumPy的多维数组对象、线性代数、傅里叶变换和随机数等强大功能。</p>
 </blockquote>
@@ -1744,7 +1744,7 @@ print(a)</code></pre><p>在运行后，输出的内容如下：</p>
   </entry>
   <entry>
     <title>[学习笔记]-Python基础学习笔记</title>
-    <url>/2020-04-02/</url>
+    <url>/2020/04/02/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="Python基础学习笔记"><a href="#Python基础学习笔记" class="headerlink" title="Python基础学习笔记"></a>Python基础学习笔记</h2><h5 id="一、数据类型"><a href="#一、数据类型" class="headerlink" title="一、数据类型"></a>一、数据类型</h5><h6 id="1-列表："><a href="#1-列表：" class="headerlink" title="1.列表："></a>1.列表：</h6><p>列表是一种容器型数据类型，容器型数据类型的最大特点就是可以实现多种数据类型的嵌套，所以我们可以在列表中将数字、字符串等类型的数据嵌套到列表中，甚至能够在列表中嵌套列表。我们之前把变量比作一个盒子，那么可以将具备容器特性的变量比作一个更大的盒子，在这个大盒子里还装了许多不同的小盒子，这些不同的小盒子就是不同数据类型的变量。列表用方括号（[ ]）进行标识，列表的索引值的使用规则和字符串一样。———–（列表类似C语言的结构体，JAVA的list）</p>
 <a id="more"></a>
 
@@ -1840,7 +1840,7 @@ print(a)</code></pre><p>在运行后，输出的内容如下：</p>
   </entry>
   <entry>
     <title>[学习笔记]-PyTorch安装笔记</title>
-    <url>/2020-04-01/</url>
+    <url>/2020/04/01/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-pytorch%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h3 id="安装学到的教训："><a href="#安装学到的教训：" class="headerlink" title="安装学到的教训："></a>安装学到的教训：</h3><h3 id="※安装完anaconda后要先切换镜像源"><a href="#※安装完anaconda后要先切换镜像源" class="headerlink" title="※安装完anaconda后要先切换镜像源"></a>※安装完anaconda后要先切换镜像源</h3><p>切换镜像源的命令：</p>
 <h5 id="1-添加镜像："><a href="#1-添加镜像：" class="headerlink" title="1.添加镜像："></a>1.添加镜像：</h5><p>conda config –add channels <a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</a><br>conda config –add channels <a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/</a><br>conda config –add channels <a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/</a></p>
 <h5 id="2-切换镜像（设置搜索时显示通道地址）："><a href="#2-切换镜像（设置搜索时显示通道地址）：" class="headerlink" title="2.切换镜像（设置搜索时显示通道地址）："></a>2.切换镜像（设置搜索时显示通道地址）：</h5><p>conda config –set show_channel_urls yes</p>
@@ -1869,7 +1869,7 @@ print(a)</code></pre><p>在运行后，输出的内容如下：</p>
   </entry>
   <entry>
     <title>[读书笔记]-哈佛情商提升课–微信读书（更新ing）</title>
-    <url>/2020-03-11/</url>
+    <url>/2020/03/11/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E5%93%88%E4%BD%9B%E6%83%85%E5%95%86%E6%8F%90%E5%8D%87%E8%AF%BE-%E5%BE%AE%E4%BF%A1%E8%AF%BB%E4%B9%A6/</url>
     <content><![CDATA[<p>一、走进情商的世界</p>
 <p>情商是一种能力，是一种准确觉察、评价和表达情绪的能力；一种接近并产生感情，以促进思维的能力；一种调节情绪，以帮助情绪和智力发展的能力。</p>
 <p>《牛津英语词典》上说：“情绪是心灵、感觉、情感的激动或骚动，泛指任何激动或兴奋的心理状态。”简单来说，情绪是一个人对所接触到的世界相应的行为反应，就是快乐、生气、悲伤等心情，它不只会影响我们的想法和决定，还会激起一连串的生理反应。</p>
@@ -1886,7 +1886,7 @@ print(a)</code></pre><p>在运行后，输出的内容如下：</p>
   </entry>
   <entry>
     <title>[学习心得]-神经网络与深度学习–吴岸城</title>
-    <url>/2020-02-25/</url>
+    <url>/2020/02/25/%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%90%B4%E5%B2%B8%E5%9F%8E/</url>
     <content><![CDATA[<p>一、神经网络</p>
 <p>模拟生物神经网络的数学模型统称为人工神经网络模型，简称为人工神经网络或者神经网络。</p>
 <p>感知机是最简单的神经网络，模型为：s=f(s)，例如：s=p1In1+p2In2+p3In3+bx1。p1,p2,p3是权值，In1,In2,In3是输入，b是偏置。</p>
@@ -1931,7 +1931,7 @@ print(a)</code></pre><p>在运行后，输出的内容如下：</p>
   </entry>
   <entry>
     <title>[学习心得]-爱的五种能力–知乎摘录</title>
-    <url>/2020-02-20/</url>
+    <url>/2020/02/20/%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97-%E7%88%B1%E7%9A%84%E4%BA%94%E7%A7%8D%E8%83%BD%E5%8A%9B-%E7%9F%A5%E4%B9%8E%E6%91%98%E5%BD%95/</url>
     <content><![CDATA[<p>百度搜索 爱的五种能力，偶得知乎网友学习心得，随手摘录，以供学习。</p>
 <p>看完这本书，感触蛮大的，如果有一个精准的机器来检测爱的能力，我相信绝对是不合格，并不是自我否定，而是现在有个明确的认知，五种能力除了情绪管理跟影响，述情，共情，允许这三种能力都欠缺，不管是倔强还是脾性不佳，亦或是没有过度的精力与心境，这都是一种不完美的爱，能够自我感知，但说服不了沉默后的倔强。</p>
 <a id="more"></a>
@@ -1965,7 +1965,7 @@ print(a)</code></pre><p>在运行后，输出的内容如下：</p>
   </entry>
   <entry>
     <title>[学习笔记]-爱的五种能力–听书笔记</title>
-    <url>/2020-02-20/</url>
+    <url>/2020/02/20/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%88%B1%E7%9A%84%E4%BA%94%E7%A7%8D%E8%83%BD%E5%8A%9B-%E5%90%AC%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<p>《爱的五种能力》–爱的五种能力，可爱，会爱，容易爱。</p>
 <p><img src="/2020-02-20/20200206-1596957457622.jpg" alt></p>
 <a id="more"></a>
@@ -1999,7 +1999,7 @@ print(a)</code></pre><p>在运行后，输出的内容如下：</p>
   </entry>
   <entry>
     <title>英语口语3</title>
-    <url>/2020-02-11/</url>
+    <url>/2020/02/11/%E8%8B%B1%E8%AF%AD%E5%8F%A3%E8%AF%AD3/</url>
     <content><![CDATA[<p><img src="/2020-02-11/Fallon%20Michael%20%202020-01-11%2004-09-56.jpg" alt></p>
 <a id="more"></a>
 
@@ -2036,7 +2036,7 @@ print(a)</code></pre><p>在运行后，输出的内容如下：</p>
   </entry>
   <entry>
     <title>英语口语2</title>
-    <url>/2020-02-11/</url>
+    <url>/2020/02/11/%E8%8B%B1%E8%AF%AD%E5%8F%A3%E8%AF%AD2/</url>
     <content><![CDATA[<p><img src="/2020-02-11/carolyn-christine-DpWhRaN4gM4-unsplash.jpg" alt></p>
 <a id="more"></a>
 
@@ -2063,7 +2063,7 @@ print(a)</code></pre><p>在运行后，输出的内容如下：</p>
   </entry>
   <entry>
     <title>英语口语1</title>
-    <url>/2020-02-11/</url>
+    <url>/2020/02/11/%E8%8B%B1%E8%AF%AD%E5%8F%A3%E8%AF%AD1/</url>
     <content><![CDATA[<p>第一个问题：</p>
 <p>Tell me something about yourself或者 How would you describe yourself? </p>
 <p>第二个问题：</p>
@@ -2101,7 +2101,7 @@ print(a)</code></pre><p>在运行后，输出的内容如下：</p>
   </entry>
   <entry>
     <title>[学习笔记]-数据库原理与设计：SQL查询语句</title>
-    <url>/2020-02-10/</url>
+    <url>/2020/02/10/%E3%80%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E8%AE%BE%E8%AE%A1%EF%BC%9Asql%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5/</url>
     <content><![CDATA[<p>1.什么是SQL语句？</p>
 <p> 结构化查询语句（structured query language,SQL）是关系数据库的标准语言，现已成为国际标准。它具有以下优点：综合统一、高度非过程化、面向集合的操作方式、同一种语法结构提供两种使用方式、语句简介，易学易用。</p>
 <a id="more"></a>
@@ -2124,7 +2124,7 @@ print(a)</code></pre><p>在运行后，输出的内容如下：</p>
   </entry>
   <entry>
     <title>新年伊始</title>
-    <url>/2020-01-01/</url>
+    <url>/2020/01/01/%E6%96%B0%E5%B9%B4%E4%BC%8A%E5%A7%8B/</url>
     <content><![CDATA[<p>我的 2019年的时光</p>
 <p>消失在了日复一日的学习里</p>
 <p>充实、进步充满了每一天</p>
@@ -2158,7 +2158,7 @@ print(a)</code></pre><p>在运行后，输出的内容如下：</p>
   </entry>
   <entry>
     <title>近期关于卖电脑的心得体会</title>
-    <url>/2018-10-09/</url>
+    <url>/2018/10/09/%E8%BF%91%E6%9C%9F%E5%85%B3%E4%BA%8E%E5%8D%96%E7%94%B5%E8%84%91%E7%9A%84%E5%BF%83%E5%BE%97%E4%BD%93%E4%BC%9A/</url>
     <content><![CDATA[<p>说句实话，自己最近其实挺累的，不仅是因为忙导致的身体上的疲惫，更多的是心理上的劳累。自己对实体店的一些坑蒙拐骗手段深恶痛绝，身边也有一些人确实是被坑的不轻，熟识的某tai姓老板的案例，大一被我们玩了一学期。自己也打心里想避免身边的人被坑，大二在社团那年，我顶着各种压力，完成了自己换届时的“十一之前一定要办购机讲座”的诺言，算是尽了自己最大的努力吧。</p>
 <a id="more"></a>
 
@@ -2172,7 +2172,7 @@ print(a)</code></pre><p>在运行后，输出的内容如下：</p>
   </entry>
   <entry>
     <title>[学习笔记]-数据库系统原理与设计：关系模型与关系代数</title>
-    <url>/2018-09-24/</url>
+    <url>/2018/09/24/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%8E%E8%AE%BE%E8%AE%A1%E3%80%91-%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/</url>
     <content><![CDATA[<p>1.什么是数据模型？ </p>
 <p>数据模型是一个描述数据结构、数据操作以及数据约束的数学形式体系（即概念及其符号表示系统）。其中，数据结构用于刻画数据、数据语义以及数据与数据之间的联系；数据约束是对数据结构和数据操作的一致性、完整性约束，也称为数据完整性约束。–来自课本，现在实在不懂，以作纪念吧。 </p>
 <a id="more"></a>
@@ -2205,7 +2205,7 @@ print(a)</code></pre><p>在运行后，输出的内容如下：</p>
   </entry>
   <entry>
     <title>曾经那些年的时光</title>
-    <url>/2018-07-10/</url>
+    <url>/2018/07/10/%E6%9B%BE%E7%BB%8F%E9%82%A3%E4%BA%9B%E5%B9%B4%E7%9A%84%E6%97%B6%E5%85%89/</url>
     <content><![CDATA[<p>不知不觉，又是一年暑假季。<a id="more"></a>渣渣辉的大学生涯也已悄然逝去一半，即将步入大三的渣渣辉，此刻心里五味杂陈。此刻的他，坐在宿舍电脑前，仿佛突然间又回到了两年前。两年前的那天，他坐着表哥的车，来到了河工大，和大家一样，注册报道，找宿舍，买生活用品。之后为期一个星期讲座，他和身边的小伙伴一样，划划水罢了。但是4220教室的那个讲座，引起了他的一番深思。那个老师也和其他的老师一样，讲了一些听着很无聊的话，但是当他说到部分大学生可能毕不了业的时候，他忽地抖擞了一下精神，认真的对比着学生手册听了起来，讲的依旧是绩点，学分，职业发展啥的。 对于军训他并没有什么特别的记忆，只记得那段时光里自己一度想要放弃，或许是太难忘了吧，以至于那段时光在他记忆只是一闪而过，如流星划过天边一般。十一开学的之后的某天，他突然想起手机里的三条短信，第一条是院学生会科创部二轮面试通知，可惜他错过了面试。第二条是计服社面试的通知，一想到这条短信，他的脸上就露出了笑脸，他至今还能回忆起自己看到短信时的那份温暖，短信的字里行间全是学长学姐的温馨话语，他越发地对这个社团感兴趣了。第三条是家里的短信，上面的字出奇的少，但是确很温馨。他一抬头，刚好看到钟楼楼顶夕阳西下的美景，天空、夕阳和房顶的钟表仿佛融为一体，令人如痴如醉，那个美美得都有一点不真实。 之后的生活也很平淡，每天上课得时候划划水、扣扣手机、看看窗外的景色，不知为何，他还是依旧喜欢坐在教室里前排的靠近窗户或者过路的位置。但是平淡的时光里并不缺乏亮色，他每周二下午都会去计服社的义修摊。那里，有来自各个学院的学长和学姐，还有来自各个学院如他一般的干事；那里有来自海南的，有来自大山的，还有来自皮革厂的，仿佛可以见到全国各地的人；那里还有说话如滔滔江水连绵不绝的学长，有笑声可以带动全场的学姐，还有连绵不短的“推塔”声；在那个只有3米X 6米的空间里，却容纳了那么多乐于奉献的心，每每想起，他心里都特别的甜。每次义修结束后，他们都会去自选餐那里美美地吃上一顿晚饭，饭桌上也总是格外的热闹，多的时候会有将近20人一起吃饭，少的时候也会有67个人。不仅有特别能吃的某邰姓老板、爱吃豆腐脑的豆腐猪、来自温州的某皮革厂厂长，还有每次都不会缺席的能把人萌出血的某欣。（啊哈哈哈哈哈哈，让我先笑一会） 不知不觉之间，寒假过去了，春天也结束了，社团办了最后一次对外的大型活动，义修的次数也所剩不多，进入了一年一度的换届季。不知那里来的勇气，他竟然想竞选社长，那时的他就跟走火入魔了一样，觉得上课没啥意思可以逃，奖学金一次也就够了，成绩只是一个数字，挂科又何惧！但是当换届结果出来之后，他慌了，虽然他成功地成为了新一届的会长，但是他成宿成宿的睡不着觉。这些也没能逃过他的小伙伴的火眼金睛，他们开始安慰他。之后，他们开始开会，逛贴吧，水群，招人等等一系列迎新的活动。这时的他们有一个口号-计服出征，寸草不生。此刻的他，忽地回到了电脑前，瞥了一眼旁边带有粉心的社服，脸上露出满意的面孔后，又陷入了回忆。 可是无论如何，他再也想不起来自己一年来办活动的那些细枝末节了。只觉得一切都是那么的清晰，仿佛都发生在昨天，一切又都是那么的遥远，仿佛自己做的一场梦。梦里的他，情绪变化无常，不仅有无奈无助和失望的哭泣声，还有感动幸福的泪水；梦里的他，出现在那里都在唱，在郑州的街头唱成都，在KTV的房间里唱套马杆，在钟楼的广场唱凉凉；梦里的他，参加了各种会，在没有空调的大教室里开的见面会，在高大上的报告厅里开的总结会，在KTV里开的演唱会。梦里的他 ……… 忽然间，他从睡梦中醒来，看到窗外已经一片漆黑了，拿起手机便向门外走 …… 仅以此篇记录下自己的曾经。</p>
 ]]></content>
       <categories>
@@ -2215,7 +2215,7 @@ print(a)</code></pre><p>在运行后，输出的内容如下：</p>
   </entry>
   <entry>
     <title>大姨夫结束了，哥哥又来发牢骚了</title>
-    <url>/2018-06-27/</url>
+    <url>/2018/06/27/%E5%A4%A7%E5%A7%A8%E5%A4%AB%E7%BB%93%E6%9D%9F%E4%BA%86%EF%BC%8C%E5%93%A5%E5%93%A5%E5%8F%88%E6%9D%A5%E5%8F%91%E7%89%A2%E9%AA%9A%E4%BA%86/</url>
     <content><![CDATA[<p>不知不觉，自己也要步入大三了，大学生活已悄然逝去一半，不经意间，又在思考自己的未来，今天，做了一个决定，自己的博客以后一月至少更新一次，而且不能是牢骚。若做不到，当月胖十斤。</p>
 ]]></content>
       <categories>
@@ -2225,7 +2225,7 @@ print(a)</code></pre><p>在运行后，输出的内容如下：</p>
   </entry>
   <entry>
     <title>第一篇博客</title>
-    <url>/2018-02-02/</url>
+    <url>/2018/02/02/%E7%AC%AC%E4%B8%80%E6%AC%A1/</url>
     <content><![CDATA[<p>我的第一篇博客，终于还是采用了word press来搭建博客。不过，感觉还是蛮不错的。</p>
 ]]></content>
       <categories>

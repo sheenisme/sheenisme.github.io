@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+   
+  <meta name="keywords" content="未央" />
+   
+  <meta name="description" content="欢迎来到IT届文艺小青年未央的博客" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    [学习笔记]-长短期记忆神经网络(LSTM)基础 |  未央de博客
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="未央de博客" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-学习笔记-长短期记忆神经网络lstm基础/学习笔记-长短期记忆神经网络lstm基础"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  [学习笔记]-长短期记忆神经网络(LSTM)基础
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/04/22/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E9%95%BF%E7%9F%AD%E6%9C%9F%E8%AE%B0%E5%BF%86%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9Clstm%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time datetime="2020-04-22T10:08:05.000Z" itemprop="datePublished">2020-04-22</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">4.1k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">15 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <blockquote>
+<p>RNN是一类用于处理序列数据的神经网络。就像卷积网络是专门用于处理网格化数据X（如一个图像）的神经网络，RNN网络是专门用于处理序列x(1), ···,x(τ)的神经网络。正如卷积网络可以很容易地扩展到具有很大宽度和高度的图像，以及处理大小可变的图像，循环网络可以扩展到更长的序列（比不基于序列的特化网络长得多）。大多数循环网络也能处理可变长度的序列。</p>
+</blockquote>
+<a id="more"></a>
+
+<h3 id="一、RNN"><a href="#一、RNN" class="headerlink" title="一、RNN"></a>一、RNN</h3><blockquote>
+<p>首先要分清楚一个概念，RNN是两种神经网络的缩写，一种是递归神经网络（RecursiveNeural Network），一种是循环神经网络（Recurrent Neural Network），虽然这两个概念有千丝万缕的联系，但这里主要讨论的是第二种，也就是循环神经网络及其变种。</p>
+</blockquote>
+<p><strong>循环神经网络是指一个随着时间的推移，重复发生的结构。</strong>例如，如果你有一个序列X = [‘H’,’E’, ‘L’, ‘L’]，该序列被送到一个神经元，而这个神经元的输出连接到它的输入上。在步骤0的这个时刻，字母“H”是作为输入传入的，在步骤2时，字母“E”被作为输入传入。随着时间的推移展开这个网络将变成如下图所示的网络结构：</p>
+<p><img src="/2020-04-22/image-20200418170031883.png" alt></p>
+<p>递归神经网络仅仅是广义化的循环神经网络。<strong>循环神经网络在一个序列的长度上的权重是共享的（并且维度保持不变）</strong>。因为，当遇到一个训练时间和测试时间长度不同的序列时，是不能处理位置独立权重的。递归网络的权重（与维数保持恒定）出于同样的原因在每一个节点被共享。</p>
+<p>这意味着，所有的W_xh权重是相等的（共享），以及W_hh权重也是相等的。它是单个的神经元，并且能够及时展开。</p>
+<p>递归神经网络看起来如下图所示：</p>
+<p><img src="/2020-04-22/image-20200418170128071.png" alt></p>
+<p>为什么被称为递归神经网络呢？因为每个父节点的子节点和另外一个节点类似。</p>
+<blockquote>
+<p>到底使用哪种神经网络取决于实际情况。在Karpathy的博客中可以看到，他的项目是生成一个个字符，而处理中不需要分层，对这种情况来说循环神经网络是不错的选择。</p>
+<p>如果你想生成一个解析树，用递归神经网络会更好些，因为它有助于创造更好的分层表示。</p>
+</blockquote>
+<h4 id="1-什么是循环神经网络？"><a href="#1-什么是循环神经网络？" class="headerlink" title="1. 什么是循环神经网络？"></a>1. 什么是循环神经网络？</h4><p>正式进入循环神经网络之前，来想一下我们的思考步骤，或者叫思考时序。</p>
+<p>我们不会每一秒钟都从头开始思考。比如，当你看一本书时，会根据以往学习的知识理解每一个词。你会从上下文中产生联想，帮助你更好地理解这篇文章。当你冒出来一个想法或问题后，会通过读本书来归纳总结，试着印证你的想法或者回答你的问题。</p>
+<p>人类的这一大特点，无法在传统的神经网络中找到类似的，这也是一般神经网络的一个缺点。例如，假设你要将电影中每个时刻发生的事按时间归类，传统的神经网络目前还无法做到，因为这需要使用之前在电影中出现的事件推理出后面发生的事情，而循环神经网络可以解决这一问题。它们可以在网络中循环，并能够维持信息，如下图所示：</p>
+<p><img src="/2020-04-22/image-20200418170731878.png" alt></p>
+<h6 id="1）循环神经网络有回路"><a href="#1）循环神经网络有回路" class="headerlink" title="1）循环神经网络有回路"></a>1）循环神经网络有回路</h6><p>在上图中，神经网络的单元A，它的输入值是xt，输出值是ht。信息通过回路从网络的目前状态传递到下一个状态。同一个单元不停地处理不同的输入值，而这些值是自己产生的。大家觉得循环神经网络的回路很神秘吗？如果你深入思考会发现，它们与正常的神经网络没什么不同。反复出现的神经网络可以被认为是在同一个网络中的多个副本，每个都传递消息给继承者，也就是下个时态的神经元。</p>
+<p><img src="/2020-04-22/image-20200418171339970.png" alt></p>
+<h6 id="2）已展开的递归神经网络"><a href="#2）已展开的递归神经网络" class="headerlink" title="2）已展开的递归神经网络"></a>2）已展开的递归神经网络</h6><p>这个链式结构揭示了与循环神经网络密切相关的序列。它们是让神经网络能使用这些数据的一种自然结构。这么好的东西肯定会被用在各个方面。</p>
+<p><em>在过去的几年里，RNN已经成功地应用在各种问题上，并取得令人难以置信的成功。例如，语音识别、语言建模、翻译、字幕、图像……不胜枚举。这个结果的关键是使用“LSTMs”（长短期记忆网络，Long Short Term MemoryNetworks），它是一种特殊的循环神经网络的变种，对于许多任务来说，这种方法比标准的RNN好得多。</em></p>
+<h6 id="3）长时间依赖的问题"><a href="#3）长时间依赖的问题" class="headerlink" title="3）长时间依赖的问题"></a>3）长时间依赖的问题</h6><p>RNN的诉求之一是，它也许能将以前的信息连接到当前任务。例如，我们有时需要使用前一个视频帧理解当前帧的内容。如果RNN能做到这一点，它们会非常有用，但它们能做到吗？视情况而定。</p>
+<p>有时候，我们只需要看最近的信息来执行现在的任务。举个例子，考虑一个语言模型试图预测基于当前的下一个词。如果我们试图预测“天空中有 ”这句话的最后一个字，那么我们不需要任何进一步的语境就可以判断下一个字是云或鸟。<strong>在这种情况下，如果相关的信息（这里指的是“天空中有”）和我们需要填词的位置之间的差距较小，那么RNN就能学会利用过去的信息。</strong></p>
+<p>但有时，我们需要更多的上下文。试着预测“我在中国长大……（省略20个字），我讲一口流利的__。”的最后一个词。最近的信息表明，下一个字可能是语言的名字，但如果我们想要缩小语言名字的范围，则需要这个词的上下文。我们发现，<strong>有时相关上下文信息和我们需要得到的词的这个位置相差很大。不幸的是，这种距离的增长将使RNN无法学习到这些信息</strong>。</p>
+<p><img src="/2020-04-22/image-20200418171135591.png" alt></p>
+<p>我们仔细看上图,<strong>ht+1需要x0x1位置的信息，但由于距离较长，x0x1信息无法传导过来。</strong>从模型结构上看，RNN完全能够处理这样的“长期依赖”问题。理论上讲，人们可以仔细挑选参数，为它们解决这种小问题。但在实践中，我们发现RNN似乎并不能处理好这些问题。Hochreiter和Bengio深入探讨了这一问题，发现了普通的RNN结构无法处理好这种问题。</p>
+<p>值得庆幸的是，LSTMs没有这个问题。</p>
+<h3 id="二、LSTM"><a href="#二、LSTM" class="headerlink" title="二、LSTM"></a>二、LSTM</h3><blockquote>
+<p>长短期记忆神经网络（Long Short-Term Memory,LSTM）最早由Hochreiter&amp;Schmidhuber于1997年提出，能够有效解决信息的长期依赖，避免梯度消失或爆炸。事实上，长短时记忆神经网络的设计就是专门用于解决长期依赖问题的。与传统RNN相比，它在结构上的独特之处是它精巧的设计了循环体结构。</p>
+</blockquote>
+<h4 id="1-RNN与LSTM区别"><a href="#1-RNN与LSTM区别" class="headerlink" title="1.RNN与LSTM区别"></a>1.RNN与LSTM区别</h4><p>LSTM可以学习只保留相关信息来进行预测，并忘记不相关的数据。记住长期的信息在实践中是LSTM的默认行为，而非需要付出很大代价才能获得的能力！</p>
+<p>所有RNN都具有一种重复神经网络模块的链式的形式。在标准的RNN中，这个重复的模块只有一个非常简单的结构，例如一个tanh层。</p>
+<p><img src="/2020-04-22/quesbase64155693985278218659-1024x383.png" alt></p>
+<p><strong>激活函数 Tanh 作用在于帮助调节流经网络的值，使得数值始终限制在 -1 和 1 之间</strong>。</p>
+<p><img src="/2020-04-22/quesbase64155697991770304386.gif" alt></p>
+<p>LSTM同样是这样的结构，但是重复的模块拥有一个不同的结构。具体来说，RNN是重复单一的神经网络层，LSTM中的重复模块则包含四个交互的层，三个Sigmoid 和一个tanh层，并以一种非常特殊的方式进行交互。</p>
+<p><img src="/2020-04-22/quesbase64155693990149080320-1024x385.png" alt></p>
+<p>上图中，<strong>σ表示的Sigmoid 激活函数与 tanh 函数类似，不同之处在于 sigmoid 是把值压缩到0<del>1 之间而不是 -1</del>1 之间。这样的设置有助于更新或忘记信息</strong>：</p>
+<ul>
+<li>因为任何数乘以 0 都得 0，这部分信息就会剔除掉；</li>
+<li>同样的，任何数乘以 1 都得到它本身，这部分信息就会完美地保存下来。</li>
+</ul>
+<p>相当于要么是1则记住，要么是0则忘掉，所以原则就是：<strong>因记忆能力有限，记住重要的，忘记无关紧要的</strong>。</p>
+<p>此外，对于图中使用的各种元素的图标中，每一条黑线传输着一整个向量，从一个节点的输出到其他节点的输入。粉色的圈代表pointwise的操作，诸如向量的和，而黄色的矩阵就是学习到的神经网络层。合在一起的线表示向量的连接，分开的线表示内容被复制，然后分发到不同的位置。</p>
+<p><img src="/2020-04-22/quesbase64155693992516615190.png" alt></p>
+<p>LSTM的关键就是细胞状态，水平线在图上方贯穿运行。细胞状态类似于传送带。直接在整个链上运行，只有一些少量的线性交互。信息在上面流传保持不变会很容易。</p>
+<p><img src="/2020-04-22/quesbase64155694016793619292-1024x316.png" alt></p>
+<p><strong>LSTM有通过精心设计的称作为“门”的结构来去除或者增加信息到细胞状态的能力。门是一种让信息选择式通过的方法。他们包含一个sigmoid神经网络层和一个pointwise乘法的非线性操作。</strong></p>
+<p>如此，0代表“不许任何量通过”，1就指“允许任意量通过”！从而使得网络就能了解哪些数据是需要遗忘，哪些数据是需要保存。</p>
+<p><img src="/2020-04-22/quesbase64155694019862092190.png" alt></p>
+<p>LSTM拥有三种类型的门结构：遗忘门/忘记门(forget gate)、输入门(update gate)和输出门(output gate)，来保护和控制细胞状态。在介绍这三个门之前，我们先看一下吴恩达教授关于LSTM的介绍图：</p>
+<p><img src="/2020-04-22/image-20200420122819273-1024x402.png" alt></p>
+<h4 id="2-LSTM详细介绍"><a href="#2-LSTM详细介绍" class="headerlink" title="2.LSTM详细介绍"></a>2.LSTM详细介绍</h4><h5 id="1）遗忘门-forget-gate"><a href="#1）遗忘门-forget-gate" class="headerlink" title="1）遗忘门(forget gate)"></a>1）遗忘门(forget gate)</h5><p>LSTM中的第一步是决定我们会从细胞状态中丢弃什么信息。这个决定通过一个称为“遗忘门”的结构完成。该遗忘门会读取上一个输出和当前输入，做一个Sigmoid 的非线性映射，然后输出一个向量（该向量每一个维度的值都在0到1之间，1表示完全保留，0表示完全舍弃，相当于记住了重要的，忘记了无关紧要的），最后与细胞状态相乘。过程如下图所示：</p>
+<p><img src="/2020-04-22/quesbase64155698137271488143.gif" alt></p>
+<h5 id="2）输入门-update-gate"><a href="#2）输入门-update-gate" class="headerlink" title="2）输入门(update gate)"></a>2）输入门(update gate)</h5><p>LSTM中的下一步就是确定什么样的新信息被存放在细胞状态中。这里包含两个部分：</p>
+<p>第一，sigmoid层称“输入门层”决定什么值我们将要更新；</p>
+<p>第二，一个tanh层创建一个新的候选值向量~Ct，会被加入到状态中。</p>
+<p>这两个信息来产生对状态的更新。过程如下图所示（_红圈表示Sigmoid 激活函数，篮圈表示tanh 函数_）：</p>
+<p><img src="/2020-04-22/quesbase641556981402794253.gif" alt></p>
+<h5 id="3）细胞状态："><a href="#3）细胞状态：" class="headerlink" title="3）细胞状态："></a>3）细胞状态：</h5><p>现在是更新旧细胞状态的时间了，Ct-1更新为Ct。前面的步骤已经决定了将会做什么，我们现在就是实际去完成。我们把旧状态与相乘，丢弃掉我们确定需要丢弃的信息。接着加上。这就是新的候选值，根据我们决定更新每个状态的程度进行变化。 在语言模型的例子中，这就是我们实际根据前面确定的目标，丢弃旧代词的性别信息并添加新的信息的地方，类似更新细胞状态。过程如下图所示：</p>
+<p><img src="/2020-04-22/quesbase64155698143296475738.gif" alt></p>
+<h5 id="4）输出门"><a href="#4）输出门" class="headerlink" title="4）输出门"></a>4）输出门</h5><p>最终，我们需要确定输出什么值。这个输出将会基于我们的细胞状态，但是也是一个过滤后的版本。</p>
+<p>首先，我们运行一个sigmoid层来确定细胞状态的哪个部分将输出出去。接着，我们把细胞状态通过tanh进行处理（得到一个在-1到1之间的值）并将它和sigmoid门的输出相乘，最终我们仅仅会输出我们确定输出的那部分。过程如下图所示：</p>
+<p><img src="/2020-04-22/quesbase6415569814619904217.gif" alt></p>
+<p><strong>小结：LSTM的循环体结构如下图所示：</strong></p>
+<p><img src="/2020-04-22/image-20200418204736145.png" alt></p>
+<h4 id="3-LSTM变体"><a href="#3-LSTM变体" class="headerlink" title="3.LSTM变体"></a>3.LSTM变体</h4><p>一个改动较大的变体是 Gated Recurrent Unit (GRU)，这是由 <a href="https://links.jianshu.com/go?to=http%3A%2F%2Farxiv.org%2Fpdf%2F1406.1078v3.pdf" target="_blank" rel="noopener">Cho, et al. (2014)</a> 提出。它将忘记门和输入门合成了一个单一的 更新门。同样还混合了细胞状态和隐藏状态，和其他一些改动。<strong>最终的模型比标准的 LSTM 模型要简单，也是非常流行的变体</strong>。其他的变体限于篇幅就不再介绍了。</p>
+<p><img src="/2020-04-22/42741-dd3d241fa44a71c0-1024x316.png" alt></p>
+<blockquote>
+<p>比较推荐的博客：<a href="https://blog.csdn.net/v_JULY_v/article/details/89894058" target="_blank" rel="noopener">https://blog.csdn.net/v_JULY_v/article/details/89894058</a></p>
+<p><a href="https://www.julyedu.com/question/big/kp_id/26/ques_id/1851" target="_blank" rel="noopener">https://www.julyedu.com/question/big/kp_id/26/ques_id/1851</a></p>
+<p>吴恩达教授网易云课堂关于深度学习的课程：<a href="https://mooc.study.163.com/smartSpec/detail/1001319001.htm" target="_blank" rel="noopener">https://mooc.study.163.com/smartSpec/detail/1001319001.htm</a></p>
+</blockquote>
+<h3 id="三、LSTM的pytorch实现"><a href="#三、LSTM的pytorch实现" class="headerlink" title="三、LSTM的pytorch实现"></a>三、LSTM的pytorch实现</h3><h4 id="1-相关函数介绍"><a href="#1-相关函数介绍" class="headerlink" title="1.相关函数介绍"></a>1.相关函数介绍</h4><h4 id="class-torch-nn-LSTM-args-kwargs"><a href="#class-torch-nn-LSTM-args-kwargs" class="headerlink" title="class torch.nn.LSTM(args,*kwargs)"></a>class torch.nn.LSTM(args,*kwargs)</h4><p>lstm = nn.LSTM(input_size=10, hidden_size=20,num_layers= 2, bidirectional=False)</p>
+<ul>
+<li>参数说明：<ul>
+<li>input_size: 输入的特征维度</li>
+<li>output_size: 输出的特征维度</li>
+<li>num_layers: 层数（注意与时序展开区分）</li>
+<li>bidirectional: 如果为<code>True</code>，为双向LSTM。默认为<code>False</code></li>
+</ul>
+</li>
+<li>LSTM的输入：input,(h0,c0)<ul>
+<li>input(seq_len,batch,input_size): 包含输入特征的<code>tensor</code>,注意输入是<code>tensor</code>。</li>
+<li>h0(num_layers ⋅ num_directions,batch,hidden_size): 保存初始化隐藏层状态的<code>tensor</code></li>
+<li>c0(num_layers ⋅ num_directions,batch,hidden_size): 保存初始化细胞状态的<code>tensor</code></li>
+</ul>
+</li>
+<li>LSTM的输出： output,(hn,cn)<ul>
+<li>output(seq_len, batch, hidden_size * num_directions): 保存<code>RNN</code>最后一层输出的<code>tensor</code></li>
+<li>hn(num_layers * num_directions,batch,hidden_size): 保存<code>RNN</code>最后一个时间步隐藏状态的<code>tensor</code></li>
+<li>cn(num_layers * num_directions,batch,hidden_size): 保存<code>RNN</code>最后一个时间步细胞状态的<code>tensor</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="class-torch-nn-Linear"><a href="#class-torch-nn-Linear" class="headerlink" title="class torch.nn.Linear()"></a>class torch.nn.Linear()</h4><p>class torch.nn.Linear(in_features,out_features,bias = True)</p>
+<ul>
+<li>作用：对输入数据做线性变换。y=Ax+by=Ax+b</li>
+<li>参数：<ul>
+<li>in_features：每个输入样本的大小</li>
+<li>out_features: 每个输出样本的大小</li>
+<li>bias: 默认值为True。是否学习偏置。</li>
+</ul>
+</li>
+<li>形状：<ul>
+<li>输入： (N,in_features)</li>
+<li>输出： (N,out_features)</li>
+</ul>
+</li>
+<li>变量：<ul>
+<li>weights: 可学习的权重，形状为(in_features,out_features)</li>
+<li>bias: 可学习的偏置，形状为(out_features)</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-简单的小例子"><a href="#2-简单的小例子" class="headerlink" title="2.简单的小例子"></a>2.简单的小例子</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"># _*_ coding:utf-8 _*_</span><br><span class="line"># 开发人员:未央</span><br><span class="line"># 开发时间:2020&#x2F;4&#x2F;21 10:31</span><br><span class="line"># 文件名:lstm_test1.py</span><br><span class="line"># 开发工具:PyCharm</span><br><span class="line"># https:&#x2F;&#x2F;pytorch.org&#x2F;tutorials&#x2F;beginner&#x2F;nlp&#x2F;sequence_models_tutorial.html#lstm-s-in-pytorch</span><br><span class="line"># Author: Robert Guthrie</span><br><span class="line"></span><br><span class="line">import torch</span><br><span class="line">import torch.nn as nn</span><br><span class="line">import torch.nn.functional as F</span><br><span class="line">import torch.optim as optim</span><br><span class="line"></span><br><span class="line">torch.manual_seed(1)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">lstm &#x3D; nn.LSTM(3, 3)  # Input dim is 3, output dim is 3</span><br><span class="line">inputs &#x3D; [torch.randn(1, 3) for _ in range(5)]  # make a sequence of length 5</span><br><span class="line"></span><br><span class="line"># initialize the hidden state.</span><br><span class="line">hidden &#x3D; (torch.randn(1, 1, 3),</span><br><span class="line">          torch.randn(1, 1, 3))</span><br><span class="line">for i in inputs:</span><br><span class="line">    # Step through the sequence one element at a time.</span><br><span class="line">    # after each step, hidden contains the hidden state.</span><br><span class="line">    out, hidden &#x3D; lstm(i.view(1, 1, -1), hidden)</span><br><span class="line"></span><br><span class="line"># alternatively, we can do the entire sequence all at once.</span><br><span class="line"># the first value returned by LSTM is all of the hidden states throughout</span><br><span class="line"># the sequence. the second is just the most recent hidden state</span><br><span class="line"># (compare the last slice of &quot;out&quot; with &quot;hidden&quot; below, they are the same)</span><br><span class="line"># The reason for this is that:</span><br><span class="line"># &quot;out&quot; will give you access to all hidden states in the sequence</span><br><span class="line"># &quot;hidden&quot; will allow you to continue the sequence and backpropagate,</span><br><span class="line"># by passing it as an argument  to the lstm at a later time</span><br><span class="line"># Add the extra 2nd dimension</span><br><span class="line">inputs &#x3D; torch.cat(inputs).view(len(inputs), 1, -1)</span><br><span class="line">hidden &#x3D; (torch.randn(1, 1, 3), torch.randn(1, 1, 3))  # clean out hidden state</span><br><span class="line">out, hidden &#x3D; lstm(inputs, hidden)</span><br><span class="line">print(out)</span><br><span class="line">print(&quot;*&quot;*20)</span><br><span class="line">print(hidden)</span><br></pre></td></tr></table></figure>
+
+<p>运行后输出如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tensor([[[-0.0187,  0.1713, -0.2944]],</span><br><span class="line">        [[-0.3521,  0.1026, -0.2971]],</span><br><span class="line">        [[-0.3191,  0.0781, -0.1957]],</span><br><span class="line">        [[-0.1634,  0.0941, -0.1637]],</span><br><span class="line">        [[-0.3368,  0.0959, -0.0538]]], grad_fn&#x3D;&lt;StackBackward&gt;)</span><br><span class="line">********************</span><br><span class="line">(tensor([[[-0.3368,  0.0959, -0.0538]]], grad_fn&#x3D;&lt;StackBackward&gt;), tensor([[[-0.9825,  0.4715, -0.0633]]], grad_fn&#x3D;&lt;StackBackward&gt;))</span><br></pre></td></tr></table></figure>
+
+
+
+<p>Write by sheen</p>
+ 
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          版权所有属于未央。商业转载，请联系作者（微信：sheenisme）以获取授权。 非商业转载，请注明出处并附上原文链接，谢谢配合。
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://blog.sheensong.top/2020/04/22/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E9%95%BF%E7%9F%AD%E6%9C%9F%E8%AE%B0%E5%BF%86%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9Clstm%E5%9F%BA%E7%A1%80/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LSTM/" rel="tag">LSTM</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020/04/30/%E8%BD%AC%E8%BD%BD%E4%BD%BF%E7%94%A8pytroch%E6%90%AD%E5%BB%BAlstm%E9%A2%84%E6%B5%8B%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            [转载]-使用PyTroch搭建LSTM预测时间序列
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/04/18/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E7%88%AC%E8%99%AB%E5%AE%9E%E6%88%98-%E7%88%AC%E5%8F%96%E5%86%9C%E4%BA%A7%E5%93%81%E6%95%B0%E6%8D%AE/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">[学习笔记]-Python爬虫实战-爬取农产品数据</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "KcIJTNpqW3ezIo8i9fvIFNxw-gzGzoHsz",
+    app_key: "yP7Tv2csrP5SRTJp68Wr7HAv",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "欢迎给我的文章评论，留下您的宝贵意见吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2020
+        <i class="ri-heart-fill heart_icon"></i> sheen
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer.png" alt="未央de博客"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/photos">图床</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/CV">简历</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/%E5%85%B3%E4%BA%8E%E6%88%91">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+
+<script src="/js/clickLove.js"></script>
+
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+    <div id="music">
+    
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="220" height="50"
+        src="//music.163.com/outchain/player?type=2&id=526668900&auto=0&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: absolute;
+        right: 15px;
+        bottom: 10px;
+        z-index: 298;
+    }
+</style>
+    
+  </div>
+</body>
+
+</html>
