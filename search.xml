@@ -1,6 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Python3 多行数据输入中三种重要的用法：</title>
+    <url>/2021/02/10/python%E8%A7%A3%E6%9E%90%E5%A4%9A%E8%A1%8C%E8%BE%93%E5%85%A5%E7%9A%84%E7%94%A8%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="Python3-多行数据输入中三种重要的用法："><a href="#Python3-多行数据输入中三种重要的用法：" class="headerlink" title="Python3 多行数据输入中三种重要的用法："></a>Python3 多行数据输入中三种重要的用法：</h1><p><img src="/2021/02/10/python%E8%A7%A3%E6%9E%90%E5%A4%9A%E8%A1%8C%E8%BE%93%E5%85%A5%E7%9A%84%E7%94%A8%E6%B3%95/20210210.jpg" alt></p>
+<ol>
+<li>input().split()用法</li>
+<li>map()用法</li>
+<li>str.split()用法</li>
+</ol>
+<a id="more"></a>
+
+<h2 id="测试用例："><a href="#测试用例：" class="headerlink" title="测试用例："></a>测试用例：</h2><h3 id="input-split-用法"><a href="#input-split-用法" class="headerlink" title="input().split()用法"></a>input().split()用法</h3><p>input() 接收多个用户输入需要与split()结合使用</p>
+<p>host, port, username, passwd, dbname = input(“请输入服务器地址,端口号,用户名，密码及数据库名，空格隔开：”).split()</p>
+<h5 id="注意input-的返回类型是str"><a href="#注意input-的返回类型是str" class="headerlink" title="注意input()的返回类型是str"></a>注意input()的返回类型是str</h5><p>print(host,port,username,passwd,dbname)</p>
+<p>结果：</p>
+<p>请输入服务器地址,端口号,用户名，密码及数据库名，空格隔开：10.1.1.71 22 root 123456 db_name</p>
+<p>10.1.1.71 22 root 123456 db_name</p>
+<p>注意返回的数据类型是str，如果是整数需要转化为int才可正常使用</p>
+<p>nm = list(map(int,input().split(“ “)))</p>
+<p>N = nm[0]</p>
+<p>M = nm[1]</p>
+<h3 id="map-用法"><a href="#map-用法" class="headerlink" title="map()用法"></a>map()用法</h3><p><strong>map()</strong> 会根据提供的函数对指定序列做映射。第一个参数 function 以参数序列中的每一个元素调用 function 函数，返回包含每次 function 函数返回值的新列表。</p>
+<p>map(function, iterable, …)</p>
+<p>function – 函数</p>
+<p>iterable – 一个或多个序列</p>
+<p>返回值：</p>
+<p>Python 2.x 返回列表。</p>
+<p>Python 3.x 返回迭代器。</p>
+<p>所以Python 3.x要加list()函数将迭代器转化为列表。</p>
+<p><strong>举例：</strong></p>
+<p>def f(x):</p>
+<p>​    return x*x</p>
+<p>print(list(map(f, [1, 2, 3, 4, 5, 6, 7, 8, 9])))</p>
+<p>输出：</p>
+<p>[1, 4, 9, 10, 25, 36, 49, 64, 81]</p>
+<p><strong>用匿名函数</strong>：</p>
+<p>print(list(map(lambda x: x ** 2, [1, 2, 3, 4, 5])))</p>
+<p>输出：</p>
+<p>[1, 4, 9, 16, 25]</p>
+<h3 id="str-split-用法"><a href="#str-split-用法" class="headerlink" title="str.split()用法"></a>str.split()用法</h3><p>说明：</p>
+<p>str.split(str=””, num=string.count(str))</p>
+<p>str是分隔符(默认为所有的空字符，包括空格、换行(\n)、制表符(\t)等)，num是分隔次数，如果参数 num 有指定值，则分隔成num+1 个子字符串</p>
+<p>举例1：</p>
+<p>txt = “Google#Facebook#Runoob#Taobao”</p>
+<p>x = txt.split(“#”, 1)</p>
+<p>print(x)</p>
+<p>输出结果：</p>
+<p>[‘Google’, ‘Facebook#Runoob#Taobao’]</p>
+<p>举例：</p>
+<p>txt = “Google#Facebook#Runoob#Taobao”</p>
+<p>x = txt.split(“#”, 2)</p>
+<p>print(x)</p>
+<p>输出结果：</p>
+<p>[‘Google’, ‘Facebook’, ‘Runoob#Taobao’]</p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>2020考研-个人经验分享(持续更新中)</title>
     <url>/2020/07/07/2020%E8%80%83%E7%A0%94-%E4%B8%AA%E4%BA%BA%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD/</url>
     <content><![CDATA[<p>一、前言</p>
