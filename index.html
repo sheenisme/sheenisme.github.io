@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- 基础信息 -->
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="force-rendering" content="webkit" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content=sheen">
+    <meta name="keywords" content="sheen,主页">
+    <meta name="author" content="sheen">
+    <title>未央的主页</title>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="stylesheet" type="text/css" href="./css/iconfont.css">
+    <link rel="apple-touch-icon" href="./images/logo.png">
+    <link rel="icon" href="./favicon.ico">
+    <!--引入SweetAlert -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert@2.1.2/dist/sweetalert.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.all.min.js"></script>
+    <!--引入izitoast-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/css/iziToast.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/js/iziToast.min.js"></script>
+    <!--引入fontawesome-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/volantis-x/cdn-fontawesome-pro@master/css/all.min.css"
+        media="all">
+    <!--百度站长平台-->
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?14e9f35ff8bc67fd4bcb5f07a6e6655a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <!--IE淘汰计划-->
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href = "https://imsyy.top/upgrade-your-browser/index.html?referrer=" + encodeURIComponent(window.location.href);</script>
+
+
+</head>
+
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false">
+    <span class="mobile btn-mobile-menu">
+        <i class="social iconfont icon-list btn-mobile-menu__icon"></i>
+        <i class="social iconfont icon-ngleup btn-mobile-close__icon hidden"></i>
+    </span>
+    <header id="panel" class="panel-cover">
+        <div class="panel-main">
+            <div class="panel-main__inner panel-inverted">
+                <div class="panel-main__content">
+                    <div class="ih-item circle effect right_to_left">
+                        <a class="blog-button">
+                            <div class="img"><img src="./images/logo.png" alt="img" class="js-avatar iUp profilepic">
+                            </div>
+                            <div class="info iUp">
+                                <div class="info-back">
+                                    <h2>Coding</h2>
+                                    <p>2022 · 加油</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <h1 class="panel-cover__title panel-title iUp">
+                        <br />sheen
+                    </h1>
+                    <p class="panel-cover__subtitle panel-subtitle iUp">欢迎来到我的世界！</p>
+                    <hr class="panel-cover__divider iUp" />
+                    <!--一言无法显示时的文字-->
+                    <p id="description" class="panel-cover__description iUp">人生的意义就在于折腾和一直折腾。
+                        <br />
+                        <strong>-「sheen」</strong>
+                    </p>
+                    <div class="navigation-wrapper iUp">
+                        <div>
+                            <nav class="cover-navigation cover-navigation--primary">
+                                <ul class="navigation">
+                                    <li class="navigation__item">
+                                        <a href="https://weblog.sheensong.top" class="blog-button">
+                                            <div>博客</div>
+                                        </a>
+                                    </li>
+                                    <li class="navigation__item">
+                                        <a href="http://cv.sheensong.top" target="_blank" class="blog-button">
+                                            <div>简历</div>
+                                        </a>
+                                    </li>
+                                    <!-- <li class="navigation__item">
+                                        <a href="https://weblog.sheensong.top/ASUS/" target="_blank"
+                                            class="blog-button">
+                                            <div>CSCA</div>
+                                        </a>
+                                    </li> -->
+                                    <li class="navigation__item">
+                                        <a href="https://mp.weixin.qq.com/mp/homepage?__biz=MzIzNDY1NjcwMQ==&hid=2&sn=e8fe1770d1ee0f3961def1d53507f355&scene=18#wechat_redirect"
+                                            target="_blank" class="blog-button">
+                                            <div>公众号</div>
+                                        </a>
+                                    </li>
+                                    <li class="navigation__item">
+                                        <a href="https://weblog.sheensong.top/%E5%85%B3%E4%BA%8E%E6%88%91/"
+                                            class="blog-button">
+                                            <div>关于我</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="iUp">
+                            <nav class="cover-navigation navigation--social">
+                                <ul class="navigation">
+
+                                    <li class="navigation__item">
+                                        <a href="https://gitee.com/sheenisme" title="Gitee @sheenisme" target="_blank">
+                                            <i class="fab fa-git"></i>
+                                            <span class="label">Gitee</span>
+                                        </a>
+                                    </li>
+                                    <li class="navigation__item">
+                                        <a href="https://github.com/sheenisme" title="GitHub @sheenisme"
+                                            target="_blank">
+                                            <i class="fab fa-github"></i>
+                                            <span class="label">Github</span>
+                                        </a>
+                                    </li>
+                                    <!-- <li class="navigation__item">
+                                        <a href="/" title="Telegram" target="_blank">
+                                            <i class="fab fa-telegram-plane"></i>
+                                            <span class="label">Telegram</span>
+                                        </a>
+                                    </li>
+                                    <li class="navigation__item">
+                                        <a href="/" title="Twitter" target="_blank">
+                                            <i class="fab fa-twitter"></i>
+                                            <span class="label">Twitter</span>
+                                        </a>
+                                    </li> -->
+                                    <!-- <li class="navigation__item">
+                                        <a href="https://qm.qq.com/cgi-bin/qm/qr?k=WDAkCXJcxIeib4TEE-Wbv8fznp6s5YYR&noverify=0&personal_qrcode_source=3"
+                                            title="QQ" target="_blank">
+                                            <i class="fab fa-qq"></i>
+                                            <span class="label">QQ</span>
+                                        </a>
+                                    </li> -->
+                                    <li class="navigation__item">
+                                        <a onclick="weixin()" title="微信 @sheenisme" target="_blank">
+                                            <i class="fab fa-weixin"></i>
+                                            <span class="label">微信</span>
+                                            <script>
+                                                function weixin() {
+                                                    Swal.fire({
+                                                        // title: "请扫码",
+                                                        text: "请使用微信扫一扫, 加我为微信好友。",
+                                                        confirmButtonText: "好的",
+                                                        imageUrl: "./images/weixin.png",
+                                                        imageWidth: 150,
+                                                        imageHeight: 150
+                                                    })
+                                                }
+                                            </script>
+                                        </a>
+                                    </li>
+                                    <!-- <li class="navigation__item">
+                                        <a onclick="weixingongzhonghao()" title="微信公众号 @未央说" target="_blank">
+                                            <i class="fa fa-rss"></i>
+                                            <span class="label">微信公众号</span>
+                                            <script>
+                                                function weixingongzhonghao() {
+                                                    Swal.fire({
+                                                        // title: "请扫码",
+                                                        text: "请使用微信扫一扫, 关注我的微信公众号-未央说。",
+                                                        confirmButtonText: "好的",
+                                                        imageUrl: "./images/weixin-applet.jpg",
+                                                        imageWidth: 150,
+                                                        imageHeight: 150
+                                                    })
+                                                }
+                                            </script>
+                                        </a>
+                                    </li> -->
+                                    <li class="navigation__item">
+                                        <a onclick="send_email()" title="Email sheensong@163.com">
+                                            <i class="fas fa-envelope"></i>
+                                            <span class="label">Email</span>
+                                            <script>
+                                                function send_email() {
+                                                    Swal.fire({
+                                                        // title: "请扫码",
+                                                        text: " 我的邮箱是sheensong@163.com, 欢迎随时发邮件交流。",
+                                                        confirmButtonText: "好的",
+                                                    })
+                                                }
+                                            </script>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-cover--overlay cover-slate"></div>
+        </div>
+        <div class="remark iUp">
+            <p class="power">Copyright © 未央(sheen)
+                <script>document.write('2018 - ' + (new Date()).getFullYear())</script>&nbsp;|&nbsp;
+                <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">豫ICP备17001354号</a>
+            </p>
+        </div>
+        <!-- 客户端信息 -->
+        <div id="fps"
+            style="z-index:5;position:fixed;bottom:3px;left:3px;color:#2196F3;font-size:10px;-webkit-pointer-events: none;    -moz-pointer-events: none;    -ms-pointer-events: none;    -o-pointer-events: none;">
+        </div>
+
+
+
+    </header>
+    <!--izitoast弹窗设置-->
+    <script>
+        iziToast.settings({
+            timeout: 4000,//调试
+            icon: 'Fontawesome',
+            closeOnEscape: 'true',
+            position: 'topRight',
+            transitionOut: 'fadeOutRight',
+            displayMode: '2',
+            layout: '2',
+            transitionIn: 'bounceInLeft',
+        });
+    </script>
+    <!--izitoast内容-->
+    <script>
+        function update() {
+            iziToast.info({
+                icon: 'fad fa-times-octagon',
+                backgroundColor: '#efefef',
+                title: '站点暂时关闭',
+                message: '只是出现了一点小问题 ~'
+            });
+        }
+    </script>
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/fetch.min.js"></script>
+    <script type="text/javascript" src="./js/main.js"></script>
+
+</body>
+
+</html>
