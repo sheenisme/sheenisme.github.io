@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="未央" />
+       
+      <meta name="description" content="欢迎来到IT届文艺小青年未央的博客" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>[学习笔记]-Python中的Matplotlib基础 |  未央de博客</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    <link rel="alternate" href="/atom.xml" title="未央de博客" type="application/atom+xml">
+</head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-学习笔记-python中的matplotlib基础/学习笔记-python中的matplotlib基础"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  [学习笔记]-Python中的Matplotlib基础
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/04/04/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E4%B8%AD%E7%9A%84matplotlib%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time datetime="2020-04-04T00:58:25.000Z" itemprop="datePublished">2020-04-04</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.1k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">8 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <blockquote>
+<p>Matplotlib是Python的绘图库，不仅具备强大的绘图功能，还能够在很多平台上使用，和Jupyter Notebook有极强的兼容性。</p>
+</blockquote>
+<a id="more"></a>
+
+<h5 id="1-创建图"><a href="#1-创建图" class="headerlink" title="1.  创建图"></a>1.  创建图</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">np.random.seed(42)</span><br><span class="line">x &#x3D; np.random.randn(30)</span><br><span class="line">plt.plot(x, &quot;r--o&quot;)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>在运行后，输出的内容如下：</p>
+<p><img src="/2020/04/04/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E4%B8%AD%E7%9A%84matplotlib%E5%9F%BA%E7%A1%80/Figure_1.png" alt="Figure_1"></p>
+<p>这段代码通过np.random.seed(42)设置了随机种子，以方便我们之后的结果复现；接着通过np.random.randn(30)生成30个随机参数并赋值给变量x；最后，绘图的核心代码通过plt.plot(x,”r–o”)将这30个随机参数以点的方式绘制出来并用线条进行连接，传递给plot的参数r–o用于在线型图中标记每个参数点使用的形状、连接参数点使用的线条颜色和线型，而且线型图的横轴和纵轴也是有区别的，纵轴生成的是30个随机数的值，横轴生成的是这30个点的索引值，同样是30个。</p>
+<h5 id="2．线条颜色、标记形状和线型"><a href="#2．线条颜色、标记形状和线型" class="headerlink" title="2．线条颜色、标记形状和线型"></a>2．线条颜色、标记形状和线型</h5><h6 id="用于设置线型图中线条颜色的常用参数如下。"><a href="#用于设置线型图中线条颜色的常用参数如下。" class="headerlink" title="用于设置线型图中线条颜色的常用参数如下。"></a>用于设置线型图中线条颜色的常用参数如下。</h6><p>（1）“b”：指定绘制的线条颜色为蓝色。</p>
+<p>（2）“g”：指定绘制的线条颜色为绿色。</p>
+<p>（3）“r”：指定绘制的线条颜色为红色。</p>
+<p>（4）“c”：指定绘制的线条颜色为蓝绿色。</p>
+<p>（5）“m”：指定绘制的线条颜色为洋红色。</p>
+<p>（6）“y”：指定绘制的线条颜色为黄色。</p>
+<p>（7）“k”：指定绘制的线条颜色为黑色。</p>
+<p>（8）“w”：指定绘制的线条颜色为白色。</p>
+<h6 id="用于设置线型图中标记参数点形状的常用参数如下。"><a href="#用于设置线型图中标记参数点形状的常用参数如下。" class="headerlink" title="用于设置线型图中标记参数点形状的常用参数如下。"></a>用于设置线型图中标记参数点形状的常用参数如下。</h6><p>（1）“o”：指定标记实际点使用的形状为圆形。</p>
+<p>（2）“＊”：指定标记实际点使用“＊”符号。</p>
+<p>（3）“+”：指定标记实际点使用“+”符号。</p>
+<p>（4）“x”：指定标记实际点使用“x”符号。</p>
+<h6 id="用于设置线型图中连接参数点线条形状的常用参数如下。"><a href="#用于设置线型图中连接参数点线条形状的常用参数如下。" class="headerlink" title="用于设置线型图中连接参数点线条形状的常用参数如下。"></a>用于设置线型图中连接参数点线条形状的常用参数如下。</h6><p>（1）“-”：指定线条形状为实线。</p>
+<p>（2）“–”：指定线条形状为虚线。</p>
+<p>（3）“-.”：指定线条形状为点实线。</p>
+<p>（4）“:”：指定线条形状为点线。</p>
+<p>下面来看一个使用不同的线条颜色、形状和标记参数点形状的实例。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">a &#x3D; np.random.randn(30)</span><br><span class="line">b &#x3D; np.random.randn(30)</span><br><span class="line">c &#x3D; np.random.randn(30)</span><br><span class="line">d &#x3D; np.random.randn(30)</span><br><span class="line">plt.plot(a, &quot;r--o&quot;, b, &quot;b-*&quot;, c, &quot;g-.+&quot;, d, &quot;m:x&quot;)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>在运行后，输出的内容如图：</p>
+<p><img src="/2020/04/04/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E4%B8%AD%E7%9A%84matplotlib%E5%9F%BA%E7%A1%80/Figure_2.png" alt="Figure_2"></p>
+<h5 id="3．标签和图例"><a href="#3．标签和图例" class="headerlink" title="3．标签和图例"></a>3．标签和图例</h5><p>为了让我们绘制的图像更易理解，我们可以增加一些绘制图像的说明，一般是添加图像的轴标签和图例，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">np.random.seed(42)</span><br><span class="line">x &#x3D; np.random.randn(30)</span><br><span class="line">y &#x3D; np.random.randn(30)</span><br><span class="line"></span><br><span class="line">plt.title(&quot;Example&quot;)</span><br><span class="line">plt.xlabel(&quot;X&quot;)</span><br><span class="line">plt.ylabel(&quot;Y&quot;)</span><br><span class="line">X, &#x3D; plt.plot(x, &quot;r--o&quot;)</span><br><span class="line">Y, &#x3D; plt.plot(y, &quot;b-*&quot;)</span><br><span class="line">plt.legend([X, Y], [&quot;X&quot;, &quot;Y&quot;])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>在运行后，输出的内容如图：</p>
+<p><img src="/2020/04/04/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E4%B8%AD%E7%9A%84matplotlib%E5%9F%BA%E7%A1%80/Figure_3.png" alt="Figure_3"></p>
+<p>我们在图中看到了图标签和图例，这是因为在以上代码中增加了标签的显示代码plt.xlabel(“Y”)、plt.ylabel(“Y”)和图例的显示代码plt.legend([X, Y], [“X”, “Y”])，传递给plt.legend的是两个列表参数，第1个列表参数是在图中实际使用的标记和线形，第2个列表参数是对应图例的文字描述。</p>
+<h5 id="4．子图"><a href="#4．子图" class="headerlink" title="4．子图"></a>4．子图</h5><p>若我们需要将多个图像同时在不同的位置显示，则需要用到子图（Subplot）的功能。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">a &#x3D; np.random.randn(30)</span><br><span class="line">b &#x3D; np.random.randn(30)</span><br><span class="line">c &#x3D; np.random.randn(30)</span><br><span class="line">d &#x3D; np.random.randn(30)</span><br><span class="line"></span><br><span class="line">fig &#x3D; plt.figure()</span><br><span class="line">ax1 &#x3D; fig.add_subplot(2, 2, 1)</span><br><span class="line">ax2 &#x3D; fig.add_subplot(2, 2, 2)</span><br><span class="line">ax3 &#x3D; fig.add_subplot(2, 2, 3)</span><br><span class="line">ax4 &#x3D; fig.add_subplot(2, 2, 4)</span><br><span class="line"></span><br><span class="line">A, &#x3D; ax1.plot(a, &quot;r--o&quot;)</span><br><span class="line">ax1.legend([A], [&quot;A&quot;])</span><br><span class="line">B, &#x3D; ax2.plot(b, &quot;b-*&quot;)</span><br><span class="line">ax2.legend([B], [&quot;B&quot;])</span><br><span class="line">C, &#x3D; ax3.plot(c, &quot;g-.+&quot;)</span><br><span class="line">ax3.legend([C], [&quot;C&quot;])</span><br><span class="line">D, &#x3D; ax4.plot(d, &quot;m:x&quot;)</span><br><span class="line">ax4.legend([D], [&quot;D&quot;])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>在运行后，输出的内容如图：</p>
+<p><img src="/2020/04/04/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E4%B8%AD%E7%9A%84matplotlib%E5%9F%BA%E7%A1%80/Figure_4.png" alt="Figure_4"></p>
+<p>在绘制子图时，我们首先需要通过fig =plt.figure()定义一个实例，然后通过fig.add_subplot方法向fig实例中添加我们需要的子图。在代码中传递给fig.add_subplot方法的参数是1组数字，拿第1组数字（2,2,1）来说，前两个数字表示把整块图划分成了两行两列，一共4张子图，最后1个数字表示具体使用哪一张子图进行绘制。</p>
+<h5 id="5．散点图"><a href="#5．散点图" class="headerlink" title="5．散点图"></a>5．散点图</h5><p>如果我们获取的是一些散点数据，则可以通过绘制散点图（Scatter）更清晰地展示所有数据的分布和布局。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">np.random.seed(42)</span><br><span class="line">x &#x3D; np.random.randn(30)</span><br><span class="line">y &#x3D; np.random.randn(30)</span><br><span class="line"></span><br><span class="line">plt.scatter(x, y, c&#x3D;&quot;g&quot;, marker&#x3D;&quot;o&quot;, label&#x3D;&quot;(X, Y)&quot;)</span><br><span class="line">plt.title(&quot;Example&quot;)</span><br><span class="line">plt.xlabel(&quot;X&quot;)</span><br><span class="line">plt.ylabel(&quot;Y&quot;)</span><br><span class="line">plt.legend(loc&#x3D;1)</span><br><span class="line">plt.show()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>在运行后，输出的内容如图：</p>
+<p><img src="/2020/04/04/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E4%B8%AD%E7%9A%84matplotlib%E5%9F%BA%E7%A1%80/Figure_5.png" alt="Figure_5"></p>
+<p>绘制散点图的核心代码是plt.scatter(x, y, c=”g”, marker=”o”, label=”(X,Y)”)，其中有三个我们需要特别留意的参数，如下所述。</p>
+<p>（1）“c”：指定散点图中绘制的参数点使用哪种颜色，可设置的颜色参数可参考之前绘制线型图时对线条颜色选择的参数范围，这里使用“g”表示设置为绿色。</p>
+<p>（2）“marker”：指定散点图中绘制的参数点使用哪种形状，和之前线型图中的设置一样，这里使用“o”表示设置为圆形。</p>
+<p>（3）“label”：<strong>指定在散点图中绘制的参数点使用的图例，与线型图中的图例不同。</strong></p>
+<p>我们还可以通过plt.legend(loc=1)对图例的位置进行强制设定，对图例位置的参数设置一般有以下几种：</p>
+<p>（1）“loc=0”：图例使用最好的位置。</p>
+<p>（2）“loc=1”：强制图例使用图中右上角的位置。</p>
+<p>（3）“loc=2”：强制图例使用图中左上角的位置。</p>
+<p>（4）“loc=3”：强制图例使用图中左下角的位置。</p>
+<p>（5）“loc=4”：强制图例使用图中右上角的位置。</p>
+<p>当然还有其他位置可供选择。</p>
+<h5 id="6．直方图"><a href="#6．直方图" class="headerlink" title="6．直方图"></a>6．直方图</h5><p>直方图（Histogram）又称质量分布图，是一种统计报告图，通过使用一系列高度不等的纵向条纹或直方表示数据分布的情况，一般用横轴表示数据类型，用纵轴表示分布情况，下面看看具体的实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">np.random.seed(42)</span><br><span class="line">x &#x3D; np.random.randn(1000)</span><br><span class="line">plt.hist(x, bins&#x3D;20, color&#x3D;&quot;g&quot;)</span><br><span class="line">plt.title(&quot;Example&quot;)</span><br><span class="line">plt.xlabel(&quot;X&quot;)</span><br><span class="line">plt.ylabel(&quot;Y&quot;)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>在运行后，输出的内容如图：</p>
+<p><img src="/2020/04/04/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E4%B8%AD%E7%9A%84matplotlib%E5%9F%BA%E7%A1%80/Figure_6.png" alt="Figure_6"></p>
+<p>绘制直方图的核心代码是plt.hist(x, bins=20, color=”g”)，其中color的功能和散点图中的c是一样的，bins用于指定我们绘制的直方图条纹的数量。</p>
+<h5 id="7．饼图"><a href="#7．饼图" class="headerlink" title="7．饼图"></a>7．饼图</h5><p>饼图用于显示一个数据系列，我们可以将一个数据系列理解为一类数据，而每个数据系列都应当拥有自己唯一的颜色。在同一个饼图中可以绘制多个系列的数据，并根据每个系列的数据量的不同来分配它们在饼图中的占比。下面看看具体的实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"></span><br><span class="line">labels &#x3D;[&#39;Dos&#39;, &#39;Cats&#39;, &#39;Birds&#39;]</span><br><span class="line">sizes &#x3D;[15, 50, 35]</span><br><span class="line">plt.pie(sizes, explode&#x3D;(0, 0, 0.1), labels&#x3D;labels, autopct&#x3D;&#39;%1.1f%%&#39;,startangle&#x3D;90)</span><br><span class="line">plt.axis(&#39;equal&#39;)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>在运行后，输出的内容如图：</p>
+<p><img src="/2020/04/04/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E4%B8%AD%E7%9A%84matplotlib%E5%9F%BA%E7%A1%80/Figure_7.png" alt="Figure_7"></p>
+<p>绘制饼图的核心代码为plt.pie(sizes, explode=(0, 0, 0.1), labels=labels,autopct=’%1.1f%%’, startangle=60)，<strong>其中sizes=[15, 50, 35]的三个数字确定了每部分数据系列在整个圆形中的占比；explode定义每部分数据系列之间的间隔，如果设置两个0和一个0.1，就能突出第3部分；autopct其实就是将sizes中的数据以所定义的浮点精度进行显示；startangle是绘制第1块饼图时该饼图与X轴正方向的夹角度数，这里设置为90，默认为0</strong>;plt.axis(‘equal’)是必不可少的，用于使X轴和Y轴的刻度保持一致，只有这样，最后得到饼图才是圆形的。</p>
+<p>Write by sheen</p>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          版权所有属于未央。商业转载，请联系作者（微信：sheenisme）以获取授权。 非商业转载，请注明出处并附上原文链接，谢谢配合。
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://blog.sheensong.top/2020/04/04/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E4%B8%AD%E7%9A%84matplotlib%E5%9F%BA%E7%A1%80/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Matplotlib/" rel="tag">Matplotlib</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020/04/04/%E7%BC%85%E6%80%80%E8%8B%B1%E9%9B%84%E4%BB%AC%EF%BC%81/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            哀悼英雄们！
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/04/02/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E4%B8%ADnumpy%E5%9F%BA%E7%A1%80/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">[学习笔记]-Python中NumPy基础</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.staticfile.org/valine/1.4.16/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "KcIJTNpqW3ezIo8i9fvIFNxw-gzGzoHsz",
+    app_key: "yP7Tv2csrP5SRTJp68Wr7HAv",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "欢迎给我的文章评论，留下您的宝贵意见吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2018-2022
+        <i class="ri-heart-fill heart_icon"></i> sheen
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+        <li>
+          <a href="https://beian.miit.gov.cn/" target="_black" rel="nofollow">豫ICP备17001354号</a>
+        </li>
+        
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer.png" alt="未央de博客"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">首页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://cv.sheensong.top" target="_blank" rel="noopener">简历</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/photos">Pictures</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/%E5%85%B3%E4%BA%8E%E6%88%91">About me</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://sheensong.top" target="_blank" rel="noopener">HomePage</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/mathjax/2.7.7/MathJax.js"></script>
+<script src="https://cdn.staticfile.org/mathjax/2.7.7/config/TeX-AMS-MML_HTMLorMML-full.js"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+ 
+<script src="/js/clickLove.js"></script>
+ 
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    <div id="music">
+    
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="220" height="50"
+        src="//music.163.com/outchain/player?type=2&id=526668900&auto=0&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: absolute;
+        right: 15px;
+        bottom: 10px;
+        z-index: 298;
+    }
+</style>
+    
+    
+
+  </div>
+</body>
+
+</html>

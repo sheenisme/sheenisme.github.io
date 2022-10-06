@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="未央" />
+       
+      <meta name="description" content="欢迎来到IT届文艺小青年未央的博客" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>Advanced Fruits问题 |  未央de博客</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    <link rel="alternate" href="/atom.xml" title="未央de博客" type="application/atom+xml">
+</head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-算法-Advanced Fruits问题/Advanced Fruits问题"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Advanced Fruits问题
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/02/11/Advanced%20Fruits%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2021-02-11T09:39:00.000Z" itemprop="datePublished">2021-02-11</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">3.2k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">14 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="Advanced-Fruits（hdu-1503）问题"><a href="#Advanced-Fruits（hdu-1503）问题" class="headerlink" title="Advanced Fruits（hdu 1503）问题"></a>Advanced Fruits（hdu 1503）问题</h1><h4 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a><strong>问题描述：</strong></h4><p>The company “21st Century Fruits” has specialized in creating new sorts of fruits by transferring genes from one fruit into the genome of another one. Most times this method doesn’t work, but sometimes, in very rare cases, a new fruit emerges that tastes like a mixture between both of them. </p>
+<p>A big topic of discussion inside the company is “How should the new creations be called?” A mixture between an apple and a pear could be called an apple-pear, of course, but this doesn’t sound very interesting. The boss finally decides to use the shortest string that contains both names of the original fruits as sub-strings as the new name. For instance, “applear” contains “apple” and “pear” (APPLEar and apPlEAR), and there is no shorter string that has the same property. </p>
+<p>A combination of a cranberry and a boysenberry would therefore be called a “boysecranberry” or a “craboysenberry”, for example. </p>
+<p>Your job is to write a program that computes such a shortest name for a combination of two given fruits. Your algorithm should be efficient, otherwise it is unlikely that it will execute in the alloted time for long fruit names. </p>
+<a id="more"></a>
+
+<p>这家名为“21世纪水果”的公司专门致力于将基因从一种水果转移到另一种水果的基因组中，从而创造出新的水果种类。大多数情况下，这种方法不起作用，但有时，在非常罕见的情况下，会出现一种新的水果，尝起来像是两者的混合物。</p>
+<p>公司内部讨论的一个大话题是\“这些新发明应该如何命名？\”苹果和梨的混合物当然可以被称为苹果梨，但这听起来并不是很有趣。老板最终决定使用包含两个原始水果名称的最短字符串作为新名称的子字符串。例如，\“applear\”包含\“apple\”和\“pear\”(APPLEar和apPlEAR)，并且没有更短的字符串具有相同的属性。例如，蔓越莓和波尔森莓的组合就会被称为\“波西兰莓\”或\“克雷伯森莓\”。您的工作是编写一个程序，为两个给定水果的组合计算这样一个最短的名称。您的算法应该是高效的，否则，对于长水果名称，它不太可能在分配的时间内执行。</p>
+<h4 id="输入数据："><a href="#输入数据：" class="headerlink" title="输入数据："></a><strong>输入数据：</strong></h4><p>Each line of the input contains two strings that represent the names of the fruits that should be combined. All names have a maximum length of 100 and only consist of alphabetic characters.</p>
+<p>Input is terminated by end of file.</p>
+<p>输入的每一行都包含两个字符串，表示应该组合的水果的名称。所有名称的最大长度为100，并且仅由字母字符组成。<br>输入在文件结束时终止。</p>
+<h4 id="输出数据："><a href="#输出数据：" class="headerlink" title="输出数据："></a><strong>输出数据：</strong></h4><p>For each test case, output the shortest name of the resulting fruit on one line. If more than one shortest name is possible, any one is acceptable.</p>
+<p>对于每个测试用例，在一行中输出结果水果的最短名称。如果可能有多个最短名称，则任何一个都是可以接受的。</p>
+<h4 id="输入输出样例："><a href="#输入输出样例：" class="headerlink" title="输入输出样例："></a><strong>输入输出样例：</strong></h4><h5 id="输入："><a href="#输入：" class="headerlink" title="输入："></a><strong>输入：</strong></h5><p>apple peach</p>
+<p>ananas banana</p>
+<p>pear peach</p>
+<h5 id="输出："><a href="#输出：" class="headerlink" title="输出："></a><strong>输出：</strong></h5><p>appleach</p>
+<p>bananas</p>
+<p>pearch</p>
+<h4 id="解题思路和算法思想："><a href="#解题思路和算法思想：" class="headerlink" title="解题思路和算法思想："></a>解题思路和算法思想：</h4><p>Advanced Fruits（hdu 1503）问题属于LCS(Longest Common Subsequence,最长公共子序列)问题的一个变形。其定义是，一个序列 S ，如果分别是两个或多个已知序列的子序列，且是所有符合此条件序列中最长的，则 S 称为已知序列的最长公共子序列。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">动态规划的一个计算两个序列的最长公共子序列的方法如下:</span><br><span class="line">以两个序列 X、Y 为例子，设有二维[数组](user_cancel)f[i,j] 表示 X 的 i 位和 Y 的 j 位之前的最长公共子序列的长度，则有:</span><br><span class="line">f[1][1] &#x3D; same(1,1);</span><br><span class="line">f[i,j] &#x3D; max&#123;f[i-1][j -1] + same(i,j),f[i-1,j],f[i,j-1]&#125;</span><br><span class="line">其中，same(a,b)当 X 的第 a 位与 Y 的第 b 位相同时为&quot;1&quot;，否则为&quot;0&quot;或者&quot;-1&quot;分别用来表示X或Y私有。此时，二维数组中最大的数便是 X 和 Y 的最长公共子序列的长度，依据该[数组](user_cancel)回溯，便可找出最长公共子序列。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">这个题就是让找出这两个串的最长公共子序列，然后加上这两个串中减去公共子序列的字符，输出就行；这道题就是给你两个单词，然后你要把两个单词拼接成一个新单词，使得新单词的子序列中包含两个单词，并且要使这个新单词最短。所以这道题就是求最长公共子序列，并且要记录下子序列的字母，以及他们在主串和副串中的原始位置，之后进行拼接输出。</span><br><span class="line"></span><br><span class="line">题解:这题很容易推出待求字串的长度和两串的最长公共子序列有关，公共部分输出一次，两字符串各私有的各个输 出；而私有不私有在求解最长公共子序列的时候，每个子问题都可以得出；</span><br><span class="line">例如两个字符串str1和str2，dp[i][j]表示str1的前i个字符和str2的前j个字符的最长公共子序列。</span><br><span class="line">1):</span><br><span class="line">dp[i][j] &#x3D; dp[i - 1][j - 1]+1;str1[i-1]和str2[j-1]视为两字符串共有；vis[x][y] &#x3D; 1;</span><br><span class="line">2):</span><br><span class="line">dp[i][j] &#x3D; dp[i - 1][j];str1[i-1]为str1私有； vis[x][y] &#x3D; 0;</span><br><span class="line">3):   </span><br><span class="line">dp[i][j] &#x3D; dp[i][j - 1];str2[j-1]为str2私有； vis[x][y] &#x3D; -1;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/02/11/Advanced%20Fruits%E9%97%AE%E9%A2%98/clip_image002.jpg" alt="img"></p>
+<h4 id="解题过程形象化表示："><a href="#解题过程形象化表示：" class="headerlink" title="解题过程形象化表示："></a>解题过程形象化表示：</h4><p>此题重点在于对LCS求解过程的理解，以X=abcbdab，Y=bdcaba为例，递归回溯的形象化表示如下图所示：</p>
+<p><img src="/2021/02/11/Advanced%20Fruits%E9%97%AE%E9%A2%98/clip_image004.jpg" alt="img"></p>
+<h4 id="源代码："><a href="#源代码：" class="headerlink" title="源代码："></a>源代码：</h4><p>C语言：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 参考链接：</span></span><br><span class="line"><span class="comment">https://www.cnblogs.com/handsomecui/p/4726261.html</span></span><br><span class="line"><span class="comment">https://www.xuebuyuan.com/2858528.html</span></span><br><span class="line"><span class="comment">https://www.cnblogs.com/ranjiewen/p/5559490.html</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="keyword">int</span> <span class="built_in">map</span>[<span class="number">1010</span>][<span class="number">1010</span>],dp[<span class="number">1010</span>][<span class="number">1010</span>];</span><br><span class="line"><span class="keyword">char</span> s1[<span class="number">1010</span>],s2[<span class="number">1010</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Lcs</span><span class="params">(<span class="keyword">int</span> len1,<span class="keyword">int</span> len2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,j;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=len1;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">map</span>[i][<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;=len2;j++)</span><br><span class="line">		<span class="built_in">map</span>[<span class="number">0</span>][j]=<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=len1;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=len2;j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(s1[i<span class="number">-1</span>]==s2[j<span class="number">-1</span>])</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">map</span>[i][j]=<span class="number">1</span>;</span><br><span class="line">				dp[i][j]=dp[i<span class="number">-1</span>][j<span class="number">-1</span>]+<span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span>(dp[i<span class="number">-1</span>][j]&gt;=dp[i][j<span class="number">-1</span>])</span><br><span class="line">				&#123;</span><br><span class="line">					dp[i][j]=dp[i<span class="number">-1</span>][j];</span><br><span class="line">					<span class="built_in">map</span>[i][j]=<span class="number">0</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">				&#123;</span><br><span class="line">					dp[i][j]=dp[i][j<span class="number">-1</span>];</span><br><span class="line">					<span class="built_in">map</span>[i][j]=<span class="number">-1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printfl</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> j)</span></span></span><br><span class="line"><span class="function"></span>&#123;	</span><br><span class="line">	<span class="keyword">if</span>(i==<span class="number">0</span>&amp;&amp;j==<span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">map</span>[i][j]==<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		printfl(i<span class="number">-1</span>,j<span class="number">-1</span>);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%c"</span>,s1[i<span class="number">-1</span>]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">if</span>(<span class="built_in">map</span>[i][j]==<span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			printfl(i<span class="number">-1</span>,j);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%c"</span>,s1[i<span class="number">-1</span>]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="keyword">if</span>(<span class="built_in">map</span>[i][j]==<span class="number">-1</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				printfl(i,j<span class="number">-1</span>);</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"%c"</span>,s2[j<span class="number">-1</span>]);</span><br><span class="line">			&#125;			</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//char s1[1001],s2[1001];</span></span><br><span class="line">	<span class="keyword">int</span> len1,len2;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%s%s"</span>,s1,s2)!=EOF)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//	memset(map,0,sizeof(map));</span></span><br><span class="line">		len1=<span class="built_in">strlen</span>(s1);</span><br><span class="line">		len2=<span class="built_in">strlen</span>(s2);</span><br><span class="line">		<span class="built_in">memset</span>(dp,<span class="number">0</span>,<span class="keyword">sizeof</span>(dp));</span><br><span class="line">		Lcs(len1,len2);</span><br><span class="line">		printfl(len1,len2);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Python语言：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-#</span></span><br><span class="line"><span class="comment"># File_Name:     sgh-alg-4.py</span></span><br><span class="line"><span class="comment"># Description: </span></span><br><span class="line"><span class="comment"># Author:        sheen song(未央)</span></span><br><span class="line"><span class="comment"># Date:          2021/2/7</span></span><br><span class="line"><span class="comment"># mathlib_pwd:   /home/mathlib/sheen/remote_pycharm_sources/pycharm_sync_sources</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">LCS</span><span class="params">(len1, len2)</span>:</span></span><br><span class="line">    <span class="keyword">global</span> map, s1, s2</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len1 + <span class="number">1</span>):</span><br><span class="line">        map[i][<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(len2 + <span class="number">1</span>):</span><br><span class="line">        map[<span class="number">0</span>][j] = <span class="number">-1</span></span><br><span class="line">    <span class="comment"># print(map)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len1 + <span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, len2 + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> s1[i - <span class="number">1</span>] == s2[j - <span class="number">1</span>]:</span><br><span class="line">                map[i][j] = <span class="number">1</span></span><br><span class="line">                dp[i][j] = dp[i - <span class="number">1</span>][j - <span class="number">1</span>] + <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">if</span> dp[i - <span class="number">1</span>][j] &gt;= dp[i][j - <span class="number">1</span>]:</span><br><span class="line">                    dp[i][j] = dp[i - <span class="number">1</span>][j]</span><br><span class="line">                    map[i][j] = <span class="number">0</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    dp[i][j] = dp[i][j - <span class="number">1</span>]</span><br><span class="line">                    map[i][j] = <span class="number">-1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_f1</span><span class="params">(i, j)</span>:</span></span><br><span class="line">    <span class="keyword">global</span> map, s1, s2</span><br><span class="line">    <span class="keyword">if</span> i == <span class="number">0</span> <span class="keyword">and</span> j == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">if</span> map[i][j] == <span class="number">1</span>:</span><br><span class="line">        print_f1(i - <span class="number">1</span>, j - <span class="number">1</span>)</span><br><span class="line">        print(s1[i - <span class="number">1</span>], end=<span class="string">""</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">if</span> map[i][j] == <span class="number">0</span>:</span><br><span class="line">            print_f1(i - <span class="number">1</span>, j)</span><br><span class="line">            print(s1[i - <span class="number">1</span>], end=<span class="string">""</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> map[i][j] == <span class="number">-1</span>:</span><br><span class="line">                print_f1(i, j - <span class="number">1</span>)</span><br><span class="line">                print(s2[j - <span class="number">1</span>], end=<span class="string">""</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        map = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1010</span>)] <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1010</span>)]</span><br><span class="line">        dp = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1010</span>)] <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1010</span>)]</span><br><span class="line">        lst = input().split(<span class="string">" "</span>)</span><br><span class="line">        <span class="comment"># print(lst)</span></span><br><span class="line">        s1 = lst[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># print(s1)</span></span><br><span class="line">        s2 = lst[<span class="number">1</span>]</span><br><span class="line">        <span class="comment"># print(s2)</span></span><br><span class="line">        len1 = len(s1)</span><br><span class="line">        <span class="comment"># print(len1)</span></span><br><span class="line">        len2 = len(s2)</span><br><span class="line">        <span class="comment"># print(len2)</span></span><br><span class="line">        LCS(len1, len2)</span><br><span class="line">        print_f1(len1, len2)</span><br><span class="line">        print(<span class="string">'\n'</span>)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="附录："><a href="#附录：" class="headerlink" title="附录："></a>附录：</h4><hr>
+<h5 id="最长公共子序列（LCS）"><a href="#最长公共子序列（LCS）" class="headerlink" title="最长公共子序列（LCS）"></a><a href="https://www.cnblogs.com/ranjiewen/p/5559490.html" target="_blank" rel="noopener">最长公共子序列（LCS）</a></h5><p>   最长公共子序列，英文缩写为LCS(Longest Common Subsequence)。其定义是，一个序列 S ，如果分别是两个或多个已知序列的子序列，且是所有符合此条件序列中最长的，则 S 称为已知序列的最长公共子序列。<strong>而最长公共子串(要求连续)和最长公共子序列是不同的.</strong></p>
+<p>   最长公共子序列是一个十分实用的问题，它可以描述两段文字之间的”相似度”，即它们的雷同程度，从而能够用来辨别抄袭。对一段文字进行修改之后，计算改动前后文字的最长公共子序列，将除此子序列外的部分提取出来，这种方法判断修改的部分，往往十分准确。 </p>
+<p><strong>动态规划法</strong></p>
+<p>   经常会遇到复杂问题不能简单地分解成几个子问题，而会分解出一系列的子问题。简单地采用把大问题分解成子问题，并综合子问题的解导出大问题的解的方法，问题求解耗时会按问题规模呈幂级数增加。为了节约重复求相同子问题的时间，引入一个数组，不管它们是否对最终解有用，把所有子问题的解存于该数组中，这就是动态规划法所采用的基本方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">动态规划的一个计算两个序列的最长公共子序列的方法如下:</span><br><span class="line">以两个序列 X、Y 为例子:</span><br><span class="line">设有二维[数组](http:&#x2F;&#x2F;baike.so.com&#x2F;doc&#x2F;5545345-5760453.html)f[i,j] 表示 X 的 i 位和 Y 的 j 位之前的最长公共子序列的长度，则有:</span><br><span class="line">f[1][1] &#x3D; same(1,1);</span><br><span class="line">f[i,j] &#x3D; max&#123;f[i-1][j -1] + same(i,j),f[i-1,j],f[i,j-1]&#125;</span><br><span class="line">其中，same(a,b)当 X 的第 a 位与 Y 的第 b 位相同时为&quot;1&quot;，否则为&quot;0&quot;。</span><br><span class="line">此时，二维数组中最大的数便是 X 和 Y 的最长公共子序列的长度，依据该数组回溯，便可找出最长公共子序列。该算法的空间、时间复杂度均为O(n^2)，经过优化后，空间复杂度可为O(n)。</span><br></pre></td></tr></table></figure>
+
+<p>什么是最长公共子序列呢?好比一个数列 <em>S</em>，如果分别是两个或多个已知数列的子序列，且是所有符合此条件序列中最长的，则<em>S</em> 称为已知序列的最长公共子序列。</p>
+<p>  举个例子，如：有两条随机序列，如 1 3 4 5 5 ，and 2 4 5 5 7 6，则它们的最长公共子序列便是：4 5 5。</p>
+<p>  注意最长公共子串（Longest CommonSubstring）和最长公共子序列（LongestCommon Subsequence, LCS）的区别：子串（Substring）是串的一个连续的部分，子序列（Subsequence）则是从不改变序列的顺序，而从序列中去掉任意的元素而获得的新序列；更简略地说，前者（子串）的字符的位置必须连续，后者（子序列LCS）则不必。比如字符串acdfg同akdfc的最长公共子串为df，而他们的最长公共子序列是adf。LCS可以使用动态规划法解决。</p>
+<p>事实上，最长公共子序列问题也有最优子结构性质。</p>
+<p>记:</p>
+<blockquote>
+<p>Xi=﹤x1，⋯，xi﹥即X序列的前i个字符 (1≤i≤m)（前缀）</p>
+<p>Yj=﹤y1，⋯，yj﹥即Y序列的前j个字符 (1≤j≤n)（前缀）</p>
+</blockquote>
+<p>假定Z=﹤z1，⋯，zk﹥∈LCS(X , Y)。</p>
+<ul>
+<li><p>若<strong>xm=yn</strong>（最后一个字符相同），则不难用反证法证明：该字符必是X与Y的任一最长公共子序列Z（设长度为k）的最后一个字符，即有zk = xm = yn 且显然有Zk-1∈LCS(Xm-1 , Yn-1)即Z的前缀<strong>Zk-1是Xm-1与Yn-1的最长公共子序列</strong>。此时，问题化归成求Xm-1与Yn-1的LCS（<em>LCS(X , Y)的长度等于LCS(Xm-1 , Yn-1</em>)的长度加1）。</p>
+</li>
+<li><p>若<strong>xm≠yn</strong>，则亦不难用反证法证明：要么Z∈LCS(Xm-1, Y)，要么Z∈LCS(X , Yn-1)。由于zk≠xm与zk≠yn其中至少有一个必成立，若zk≠xm则有Z∈LCS(Xm-1 , Y)，类似的，若zk≠yn 则有Z∈LCS(X , Yn-1)。此时，问题化归成求Xm-1与Y的LCS及X与Yn-1的LCS。LCS(X , Y)的长度为：max{LCS(Xm-1 , Y)的长度, LCS(X , Yn-1)的长度}。</p>
+<p>由于上述当<strong>xm≠yn</strong>的情况中，求LCS(Xm-1 , Y)的长度与LCS(X , Yn-1)的长度，这两个问题不是相互独立的：两者都需要求LCS(Xm-1，Yn-1)的长度。另外两个序列的LCS中包含了两个序列的前缀的LCS，故问题具有最优子结构性质考虑用动态规划法。</p>
+<p>也就是说，解决这个LCS问题，你要求三个方面的东西：<strong>1</strong>、LCS（Xm-1，Yn-1）+1；<strong>2</strong>、LCS（Xm-1，Y），LCS（X，Yn-1）；<strong>3</strong>、max{LCS（Xm-1，Y），LCS（X，Yn-1）}。</p>
+<p>行文至此，其实对这个LCS的动态规划解法已叙述殆尽。</p>
+</li>
+</ul>
+<p>PS:附录摘自网络</p>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          版权所有属于未央。商业转载，请联系作者（微信：sheenisme）以获取授权。 非商业转载，请注明出处并附上原文链接，谢谢配合。
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://blog.sheensong.top/2021/02/11/Advanced%20Fruits%E9%97%AE%E9%A2%98/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2021/05/09/SSE%E6%8C%87%E4%BB%A4%E9%9B%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            SSE指令集学习笔记
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2021/02/11/Dire%20wolves%E9%97%AE%E9%A2%98/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Dire wolves问题</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.staticfile.org/valine/1.4.16/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "KcIJTNpqW3ezIo8i9fvIFNxw-gzGzoHsz",
+    app_key: "yP7Tv2csrP5SRTJp68Wr7HAv",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "欢迎给我的文章评论，留下您的宝贵意见吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2018-2022
+        <i class="ri-heart-fill heart_icon"></i> sheen
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+        <li>
+          <a href="https://beian.miit.gov.cn/" target="_black" rel="nofollow">豫ICP备17001354号</a>
+        </li>
+        
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer.png" alt="未央de博客"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">首页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://cv.sheensong.top" target="_blank" rel="noopener">简历</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/photos">Pictures</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/%E5%85%B3%E4%BA%8E%E6%88%91">About me</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://sheensong.top" target="_blank" rel="noopener">HomePage</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/mathjax/2.7.7/MathJax.js"></script>
+<script src="https://cdn.staticfile.org/mathjax/2.7.7/config/TeX-AMS-MML_HTMLorMML-full.js"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+ 
+<script src="/js/clickLove.js"></script>
+ 
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    <div id="music">
+    
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="220" height="50"
+        src="//music.163.com/outchain/player?type=2&id=526668900&auto=0&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: absolute;
+        right: 15px;
+        bottom: 10px;
+        z-index: 298;
+    }
+</style>
+    
+    
+
+  </div>
+</body>
+
+</html>

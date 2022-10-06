@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="未央" />
+       
+      <meta name="description" content="欢迎来到IT届文艺小青年未央的博客" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>SSE指令集学习笔记 |  未央de博客</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    <link rel="alternate" href="/atom.xml" title="未央de博客" type="application/atom+xml">
+</head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-SSE指令集学习笔记/SSE指令集学习笔记"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  SSE指令集学习笔记
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/05/09/SSE%E6%8C%87%E4%BB%A4%E9%9B%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time datetime="2021-05-09T07:15:15.000Z" itemprop="datePublished">2021-05-09</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a> / <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%8C%87%E4%BB%A4%E9%9B%86/">指令集</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">9.3k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">37 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="SSE指令集学习笔记"><a href="#SSE指令集学习笔记" class="headerlink" title="SSE指令集学习笔记"></a>SSE指令集学习笔记</h2><h4 id="一、移动指令"><a href="#一、移动指令" class="headerlink" title="一、移动指令:"></a>一、移动指令:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">1. Movaps</span><br><span class="line">   movaps XMM,XMM&#x2F;m128 movaps XMM&#x2F;128,XMM</span><br><span class="line">   把源存储器内容值送入目的寄存器,当有m128时,必须对齐内存16字节,也就是内存地址低4位为0.</span><br><span class="line"></span><br><span class="line">2. Movups</span><br><span class="line">   movups XMM,XMM&#x2F;m128 movaps XMM&#x2F;128,XMM</span><br><span class="line">   把源存储器内容值送入目的寄存器,但不必对齐内存16字节</span><br><span class="line"></span><br><span class="line">3. Movlps</span><br><span class="line">   movlps XMM,m64</span><br><span class="line">   把源存储器64位内容送入目的寄存器低64位,高64位不变,内存变量不必对齐内存16字节</span><br><span class="line"></span><br><span class="line">4. Movhps</span><br><span class="line">   movhps XMM,m64</span><br><span class="line">   把源存储器64位内容送入目的寄存器高64位,低64位不变,内存变量不必对齐内存16字节.</span><br><span class="line"></span><br><span class="line">5. Movhlps</span><br><span class="line">   movhlps XMM,XMM</span><br><span class="line">   把源寄存器高64位送入目的寄存器低64位,高64位不变.</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>    
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">6. Movlhps</span><br><span class="line">   movlhps XMM,XMM</span><br><span class="line">   把源寄存器低64位送入目的寄存器高64位,低64位不变.</span><br><span class="line"></span><br><span class="line">7. movss</span><br><span class="line">   movss XMM,m32&#x2F;XMM</span><br><span class="line">   原操作数为m32时：dest[31-00] &lt;&#x3D;&#x3D; m32      dest[127-32] &lt;&#x3D;&#x3D; 0</span><br><span class="line">   原操作数为XMM时: dest[31-00] &lt;&#x3D;&#x3D; src[31-00] dest[127-32]不变</span><br><span class="line"></span><br><span class="line">8. movmskpd</span><br><span class="line">   movmskpd r32,XMM</span><br><span class="line">   取64位操作数符号位</span><br><span class="line">   r32[0] &lt;&#x3D;&#x3D; XMM[63] r32[1] &lt;&#x3D;&#x3D; XMM[127] r32[31-2] &lt;&#x3D;&#x3D; 0</span><br><span class="line"></span><br><span class="line">9. movmskps</span><br><span class="line">   movmskps r32,XMM</span><br><span class="line">   取32位操作数符号位</span><br><span class="line">   r32[0] &lt;&#x3D;&#x3D; XMM[31] r32[1] &lt;&#x3D;&#x3D; XMM[63] r32[2] &lt;&#x3D;&#x3D; XMM[95] r32[3] &lt;&#x3D;&#x3D; XMM[127] r32[31-4] &lt;&#x3D;&#x3D; 0</span><br><span class="line"></span><br><span class="line">10. pmovmskb</span><br><span class="line">    pmovmskb r32,XMM</span><br><span class="line">    取16位操作数符号位 具体操作同前</span><br><span class="line">    r[0] &lt;&#x3D;&#x3D; XMM[7]　　 r[1] &lt;&#x3D;&#x3D; XMM[15]　　 r[2] &lt;&#x3D;&#x3D; XMM[23]　　 r[3] &lt;&#x3D;&#x3D; XMM[31]</span><br><span class="line">    r[4] &lt;&#x3D;&#x3D; XMM[39]　　 r[5] &lt;&#x3D;&#x3D; XMM[47]　　 r[6] &lt;&#x3D;&#x3D; XMM[55]　　 r[7] &lt;&#x3D;&#x3D; XMM[63]</span><br><span class="line">    r[8] &lt;&#x3D;&#x3D; XMM[71]　 　r[9] &lt;&#x3D;&#x3D; XMM[79]　 　r[10] &lt;&#x3D;&#x3D; XMM[87]　 　r[11] &lt;&#x3D;&#x3D; XMM[95]</span><br><span class="line">    r[12] &lt;&#x3D;&#x3D; XMM[103]　r[13] &lt;&#x3D;&#x3D; XMM[111]　　r[14] &lt;&#x3D;&#x3D; XMM[119]　　r[15] &lt;&#x3D;&#x3D; XMM[127]　　r[31-16] &lt;&#x3D;&#x3D; 0</span><br><span class="line"></span><br><span class="line">11. movntps</span><br><span class="line">    movntps m128,XMM</span><br><span class="line">    m128 &lt;&#x3D;&#x3D; XMM 直接把XMM中的值送入m128，不经过cache,必须对齐16字节.</span><br><span class="line"></span><br><span class="line">12. Movntpd</span><br><span class="line">    movntpd m128,XMM</span><br><span class="line">    m128 &lt;&#x3D;&#x3D; XMM 直接把XMM中的值送入m128，不经过cache,必须对齐16字节.</span><br><span class="line"></span><br><span class="line">13. Movnti</span><br><span class="line">    movnti m32,r32</span><br><span class="line">    m32 &lt;&#x3D;&#x3D; r32 把32寄存器的值送入m32，不经过cache.</span><br><span class="line"></span><br><span class="line">14. Movapd</span><br><span class="line">    movapd XMM,XMM&#x2F;m128 movapd XMM&#x2F;m128,XMM</span><br><span class="line">    把源存储器内容值送入目的寄存器,当有m128时,必须对齐内存16字节</span><br><span class="line"></span><br><span class="line">15. Movupd</span><br><span class="line">    movupd XMM,XMM&#x2F;m128 movapd XMM&#x2F;m128,XMM</span><br><span class="line">    把源存储器内容值送入目的寄存器,但不必对齐内存16字节.</span><br><span class="line">    我感觉这两条指令同movaps 和 movups 指令一样,不过又不确定.</span><br><span class="line"></span><br><span class="line">16. Movlpd</span><br><span class="line">    movlpd XMM,m64 movlpd m64,XMM</span><br><span class="line">    把源存储器64位内容送入目的寄存器低64位,高64位不变,内存变量不必对齐内存16字节</span><br><span class="line"></span><br><span class="line">17. Movhpd</span><br><span class="line">    movhpd XMM,m64 movhpd m64,XMM</span><br><span class="line">    把源存储器64位内容送入目的寄存器高64位,低64位不变,内存变量不必对齐内存16字节.</span><br><span class="line"></span><br><span class="line">18. Movdqa</span><br><span class="line">    movdqa XMM,XMM&#x2F;m128 movdqa XMM&#x2F;m128,XMM</span><br><span class="line">    把源存储器内容值送入目的寄存器,当有m128时,必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">19. Movdqu</span><br><span class="line">    movdqu XMM,XMM&#x2F;m128 movdqu XMM&#x2F;m128,XMM</span><br><span class="line">    把源存储器内容值送入目的寄存器,但不必对齐内存16字节.</span><br><span class="line"></span><br><span class="line">20. movq2dq</span><br><span class="line">    movq2dq XMM,MM</span><br><span class="line">    把源寄存器内容送入目的寄存器的低64位,高64位清零.</span><br><span class="line"></span><br><span class="line">21. movdq2q</span><br><span class="line">    movdq2q MM,XMM</span><br><span class="line">    把源寄存器低64位内容送入目的寄存器.</span><br><span class="line"></span><br><span class="line">22. Movd</span><br><span class="line">    movd XMM,r32&#x2F;m32 movd MM,r32&#x2F;m32</span><br><span class="line">    把源存储器32位内容送入目的寄存器的低32位,高96位清零.</span><br><span class="line">    movd r32&#x2F;m32,XMM movd r32&#x2F;m32,MM</span><br><span class="line">    把源寄存器的低32位内容送入目的存储器32位.</span><br><span class="line"></span><br><span class="line">23. Movq</span><br><span class="line">    movq XMM,XMM&#x2F;m64 movq MM,MM&#x2F;m64</span><br><span class="line">    把源存储器低64位内容送入目的寄存器的低64位,高64位清零.</span><br><span class="line">    movq m64,XMM</span><br><span class="line">    把源寄存器的低64位内容送入目的存储器.</span><br></pre></td></tr></table></figure>
+
+<h4 id="二、加法操作"><a href="#二、加法操作" class="headerlink" title="二、加法操作"></a>二、加法操作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">1.       addps</span><br><span class="line">addps XMM,XMM&#x2F;m128</span><br><span class="line">源存储器内容按双字对齐,共4个单精度浮点数与目的寄存器相加,结果送入目的寄存器,内存变量必须对齐内存16字节</span><br><span class="line"></span><br><span class="line">2.       adds</span><br><span class="line">addss XMM,XMM&#x2F;m32</span><br><span class="line">源存储器的低32位1个单精度浮点数与目的寄存器的低32位1个单精度浮点数相加,结果送入目的寄存器的低32位高96位不变,内存变量不必对齐内存16字节</span><br><span class="line"></span><br><span class="line">3.       addpd</span><br><span class="line">addpd XMM,XMM&#x2F;m128</span><br><span class="line">源存储器内容按四字对齐,共两个双精度浮点数与目的寄存器相加,结果送入目的寄存器,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">4.       addsd</span><br><span class="line">addsd XMM,XMM&#x2F;m64</span><br><span class="line">源存储器的低64位1个双精度浮点数与目的寄存器的低64位1个双精度浮点数相加,结果送入目的寄存器的低64位,高64位不变,内存变量不必对齐内存16字节</span><br><span class="line"></span><br><span class="line">5.       paddd</span><br><span class="line">paddd XMM,XMM&#x2F;m128</span><br><span class="line">把源存储器与目的寄存器按双字对齐无符号整数普通相加,结果送入目的寄存器,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">6.       Paddq</span><br><span class="line">paddq XMM,XMM&#x2F;m128</span><br><span class="line">把源存储器与目的寄存器按四字对齐无符号整数普通相加,结果送入目的寄存器,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">7.       Paddq</span><br><span class="line">paddq MM,MM&#x2F;m64</span><br><span class="line">把源存储器与目的寄存器四字无符号整数普通相加,结果送入目的寄存器.</span><br><span class="line"></span><br><span class="line">8.       Pmaddwd</span><br><span class="line">pmaddwd XMM,XMM&#x2F;m128</span><br><span class="line">把源存储器与目的寄存器分4组进行向量点乘(有符号补码操作),内存变量必须对齐内存16字节..</span><br><span class="line">高64位 | 低64位</span><br><span class="line">目的寄存器: a0 | a1 | a2 | a3 | a4 | a5 | a6 | a7</span><br><span class="line">源存储器: b0 | b1 | b2 | b3 | b4 | b5 | b6 | b7</span><br><span class="line">目的寄存器结果: a0*b0+a1*b1 | a2*b2+a3*b3 | a4*b4+a5*b5 | a6*b6+a7*b7</span><br><span class="line"></span><br><span class="line">9.       Paddsb</span><br><span class="line">paddsb XMM,XMM&#x2F;m128 paddsb MM,MM&#x2F;m64</span><br><span class="line">源存储器与目的寄存器按字节对齐有符号补码饱和相加,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">10.   paddsw </span><br><span class="line">paddsw XMM,XMM&#x2F;m128</span><br><span class="line">源存储器与目的寄存器按字对齐有符号补码饱和相加,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">11.   paddusb</span><br><span class="line">paddusb XMM,XMM&#x2F;m128</span><br><span class="line">源存储器与目的寄存器按字节对齐无符号饱和相加,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">12.   Paddusw</span><br><span class="line">paddusw XMM,XMM&#x2F;m128</span><br><span class="line">源存储器与目的寄存器按字对齐无符号饱和相加,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">13.   Paddb</span><br><span class="line">paddb XMM,XMM&#x2F;m128</span><br><span class="line">源存储器与目的寄存器按字节对齐无符号普通相加,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">14.   Paddw</span><br><span class="line">paddw XMM,XMM&#x2F;m128</span><br><span class="line">源存储器与目的寄存器按字对齐无符号普通相加,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">15.   Paddd</span><br><span class="line">paddd XMM,XMM&#x2F;m128</span><br><span class="line">源存储器与目的寄存器按双字对齐无符号普通相加,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">16.   Paddq</span><br><span class="line">paddq XMM,XMM&#x2F;m128</span><br><span class="line">源存储器与目的寄存器按四字对齐无符号普通相加,内存变量必须对齐内存16字节.</span><br></pre></td></tr></table></figure>
+
+<h4 id="三、减法操作"><a href="#三、减法操作" class="headerlink" title="三、减法操作"></a>三、减法操作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">1.       subps</span><br><span class="line">subps XMM,XMM&#x2F;m128</span><br><span class="line">源存储器内容按双字对齐,共4个单精度浮点数与目的寄存器相减(目的减去源),结果送入目的寄存器, 内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">2.       Subss</span><br><span class="line">subss XMM,XMM&#x2F;m32</span><br><span class="line">源存储器的低32位1个单精度浮点数与目的寄存器的低32位1个单精度浮点数相减(目的减去源), 结果送入目的寄存器的低32位,高96位不变,内存变量不必对齐内存16字节</span><br><span class="line"></span><br><span class="line">3.       Subpd</span><br><span class="line">subpd XMM,XMM&#x2F;m128</span><br><span class="line">把目的寄存器内容按四字对齐,两个双精度浮点数,减去源存储器两个双精度浮点数, 结果送入目的寄存器,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">4.       subsd </span><br><span class="line">subsd XMM,XMM&#x2F;m128</span><br><span class="line">把目的寄存器的低64位1个双精度浮点数,减去源存储器低64位1个双精度浮点数,结果送入目的寄存器的低64位,高64位不变,内存变量不必对齐内存16字节</span><br><span class="line"></span><br><span class="line">5.       Psubd</span><br><span class="line">psubd XMM,XMM&#x2F;m128</span><br><span class="line">把目的寄存器与源存储器按双字对齐无符号整数普通相减,结果送入目的寄存器, 内存变量必须对齐内存16字节.(目的减去源)</span><br><span class="line"></span><br><span class="line">6.       Psubq</span><br><span class="line">psubq XMM,XMM&#x2F;m128</span><br><span class="line">把目的寄存器与源存储器按四字对齐无符号整数普通相减,结果送入目的寄存器, 内存变量必须对齐内存16字节.(目的减去源)</span><br><span class="line"></span><br><span class="line">7.       Psubq</span><br><span class="line">psubq MM,MM&#x2F;m64</span><br><span class="line">把目的寄存器与源存储器四字无符号整数普通相减,结果送入目的寄存器.(目的减去源)</span><br><span class="line"></span><br><span class="line">8.       psubsb </span><br><span class="line">psubsb XMM,XMM&#x2F;m128</span><br><span class="line">源存储器与目的寄存器按字节对齐有符号补码饱和相减(目的减去源),内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">9.       Psubsw</span><br><span class="line">psubsw XMM,XMM&#x2F;m128</span><br><span class="line">源存储器与目的寄存器按字对齐有符号补码饱和相减(目的减去源),内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">10.   Psubusb</span><br><span class="line">psubusb XMM,XMM&#x2F;m128</span><br><span class="line">源存储器与目的寄存器按字节对齐无符号饱和相减(目的减去源),内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">11.   Psubusw</span><br><span class="line">psubusw XMM,XMM&#x2F;m128</span><br><span class="line">源存储器与目的寄存器按字对齐无符号饱和相减(目的减去源),内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">12.   psubb </span><br><span class="line">psubb XMM,XMM&#x2F;m128</span><br><span class="line">源存储器与目的寄存器按字节对齐无符号普通相减(目的减去源),内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">13.   Psubw</span><br><span class="line">psubw XMM,XMM&#x2F;m128</span><br><span class="line">源存储器与目的寄存器按字对齐无符号普通相减(目的减去源),内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">14.   Psubd</span><br><span class="line">psubd XMM,XMM&#x2F;m128</span><br><span class="line">源存储器与目的寄存器按双字对齐无符号普通相减(目的减去源),内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">15.   Psubq</span><br><span class="line">psubq XMM,XMM&#x2F;m128</span><br><span class="line">源存储器与目的寄存器按四字对齐无符号普通相减(目的减去源),内存变量必须对齐内存16字节.</span><br></pre></td></tr></table></figure>
+
+<h4 id="四、比较操作"><a href="#四、比较操作" class="headerlink" title="四、比较操作"></a>四、比较操作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">1.       Maxps</span><br><span class="line">maxps XMM,XMM&#x2F;m128</span><br><span class="line">源存储器4个单精度浮点数与目的寄存器4个单精度浮点数比较,较大数放入对应目的寄存器,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">2.       Maxss</span><br><span class="line">maxss XMM,XMM&#x2F;m32</span><br><span class="line">源存储器低32位1个单精度浮点数与目的寄存器低32位1个单精度浮点数比较,较大数放入目的寄存器低32位,高96位不变内存变量不必对齐内存16字节</span><br><span class="line"></span><br><span class="line">3.       Minps</span><br><span class="line">minps XMM,XMM&#x2F;m128</span><br><span class="line">源存储器4个单精度浮点数与目的寄存器4个单精度浮点数比较,较小数放入对应目的寄存器,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">4.       minss</span><br><span class="line">minss XMM,XMM&#x2F;m32</span><br><span class="line">源存储器低32位1个单精度浮点数与目的寄存器低32位1个单精度浮点数比较,较小数放入目的寄存器低32位,高96位不变内存变量不必对齐内存16字节</span><br><span class="line"></span><br><span class="line">5.       cmpps</span><br><span class="line">cmpps XMM0,XMM1,imm8 imm8是立即数范围是0~7</span><br><span class="line">根据imm8的值进行4对单精度浮点数的比较，符合imm8的就置目的寄存器对应的32位全1,否则全0</span><br><span class="line">当imm8 &#x3D; 0时,目的寄存器等于原寄存器数时，置目的寄存器对应的32位全1,否则全0</span><br><span class="line">imm8 &#x3D; 1 时,目的寄存器小于原寄存器数时，置目的寄存器对应的32位全1,否则全0</span><br><span class="line">imm8 &#x3D; 2 时,目的寄存器小于等于原寄存器数时，置目的寄存器对应的32位全1,否则全0</span><br><span class="line">imm8 &#x3D; 4 时,目的寄存器不等于原寄存器数时，置目的寄存器对应的32位全1,否则全0</span><br><span class="line">imm8 &#x3D; 5 时,目的寄存器大于等于原寄存器数时，置目的寄存器对应的32位全1,否则全0</span><br><span class="line">imm8 &#x3D; 6 时,目的寄存器大于原寄存器数时，置目的寄存器对应的32位全1,否则全0</span><br><span class="line"></span><br><span class="line">6.       pcmpeqb </span><br><span class="line">pcmpeqb XMM,XMM&#x2F;m128</span><br><span class="line">目的寄存器与源存储器按字节比较,如果对应字节相等,就置目的寄存器对应字节为0ffh,否则为00h内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">7.       Pcmpeqw</span><br><span class="line">pcmpeqw XMM,XMM&#x2F;m128</span><br><span class="line">目的寄存器与源存储器按字比较,如果对应字相等,就置目的寄存器对应字为0ffffh,否则为0000h, 内存变量必须对齐内存16字节</span><br><span class="line"></span><br><span class="line">8.       Pcmpeqd</span><br><span class="line">pcmpeqd XMM,XMM&#x2F;m128</span><br><span class="line">目的寄存器与源存储器按双字比较,如果对应双字相等,就置目的寄存器对应双字为0ffffffffh,否则为00000000h内存变量必须对齐内存16字节</span><br><span class="line"></span><br><span class="line">9.       Pcmpgtb</span><br><span class="line">pcmpgtb XMM,XMM&#x2F;m128</span><br><span class="line">目的寄存器与源存储器按字节(有符号补码)比较,如果目的寄存器对应字节大于源存储器,就置目的寄存器对应字节为0ffh, 否则为00h,内存变量必须对齐内存16字节</span><br><span class="line"></span><br><span class="line">10.   Pcmpgtw</span><br><span class="line">pcmpgtw XMM,XMM&#x2F;m128</span><br><span class="line">目的寄存器与源存储器按字(有符号补码)比较,如果目的寄存器对应字大于源存储器,就置目的寄存器对应字为0ffffh, 否则为0000h,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">11.   Pcmpgtd</span><br><span class="line">pcmpgtd XMM,XMM&#x2F;m128</span><br><span class="line">目的寄存器与源存储器按双字(有符号补码)比较,如果目的寄存器对应双字大于源存储器, 就置目的寄存器对应双字为0ffffffffh,否则为00000000h,内存变量必须对齐内存16字节.</span><br></pre></td></tr></table></figure>
+
+<h4 id="五、计算操作"><a href="#五、计算操作" class="headerlink" title="五、计算操作"></a>五、计算操作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">1.       rcpps </span><br><span class="line">rcpps XMM,XMM&#x2F;m128</span><br><span class="line">源存储器4个单精度浮点数的倒数放入对应目的寄存器,内存变量必须对齐内存16字节</span><br><span class="line">注:比如2.0E0的倒数为1÷2.0E0 &#x3D; 5.0E-1, 这操作只有12bit的精度</span><br><span class="line"></span><br><span class="line">2.       rcpss </span><br><span class="line">rcpss XMM,XMM&#x2F;32</span><br><span class="line">源存储器低32位1个单精度浮点数的倒数放入目的寄存器低32位,高96位不变</span><br><span class="line"></span><br><span class="line">3.       rsqrtps</span><br><span class="line">rsqrtps XMM,XMM&#x2F;m128</span><br><span class="line">源存储器4个单精度浮点数的开方的倒数放入对应目的寄存器,内存变量必须对齐内存16字节. 比如2.0E0的开方的倒数为1÷√2.0E0 ≈ 7.0711E-1, 这操作只有12bit的精度.</span><br><span class="line"></span><br><span class="line">4.       Rsqrtss</span><br><span class="line">rsqrtss XMM,XMM&#x2F;32</span><br><span class="line">源存储器低32位1个单精度浮点数的开方的倒数放入目的寄存器低32位,高96位不变,内存变量不必对齐内存16字节.</span><br><span class="line"></span><br><span class="line">5.    Pavgb</span><br><span class="line">pavgb MM,MM&#x2F;m64 pavgb XMM,XMM&#x2F;m128</span><br><span class="line">把源存储器与目的寄存器按字节无符号整数相加,再除以2,结果四舍五入为整数放入目的寄存器, 源存储器为m128时,内存变量必须对齐内存16字节. 注:此运算不会产生溢出.</span><br><span class="line"></span><br><span class="line">6.    Pavgw</span><br><span class="line">pavgw MM,MM&#x2F;m64 pavgw XMM,XMM&#x2F;m128</span><br><span class="line">把源存储器与目的寄存器按字无符号整数相加,再除以2,结果四舍五入为整数放入目的寄存器, 源存储器为m128时,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">7.       Sqrtpd</span><br><span class="line">sqrtpd XMM,XMM&#x2F;m128</span><br><span class="line">源存储器两个双精度浮点数的开方放入对应目的寄存器,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">8.       Sqrtsd</span><br><span class="line">sqrtsd XMM,XMM&#x2F;m128</span><br><span class="line">源存储器低64位1个双精度浮点数的开方放入目的寄存器低64位,高64位不变,内存变量不必对齐内存16字节</span><br></pre></td></tr></table></figure>
+
+<h4 id="六、乘法操作"><a href="#六、乘法操作" class="headerlink" title="六、乘法操作"></a>六、乘法操作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">1.       Mulps</span><br><span class="line">mulps XMM,XMM&#x2F;m128</span><br><span class="line">源存储器内容按双字对齐,共4个单精度浮点数与目的寄存器相乘,结果送入目的寄存器,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">2.       Mulss</span><br><span class="line">mulss XMM,XMM&#x2F;32</span><br><span class="line">源存储器的低32位1个单精度浮点数与目的寄存器的低32位1个单精度浮点数相乘,结果送入目的寄存器的低32位,高96位不变,内存变量不必对齐内存16字节</span><br><span class="line"></span><br><span class="line">3.       Mulpd</span><br><span class="line">mulpd XMM,XMM&#x2F;m128 </span><br><span class="line">源存储器内容按四字对齐,共两个双精度浮点数与目的寄存器相乘,结果送入目的寄存器,内存变量必须对齐内存16字节</span><br><span class="line"></span><br><span class="line">4.       Mulsd</span><br><span class="line">mulsd XMM,XMM&#x2F;m128</span><br><span class="line">源存储器的低64位1个双精度浮点数与目的寄存器的低64位1个双精度浮点数相乘,结果送入目的寄存器的低64位,高64位不变,内存变量不必对齐内存16字节</span><br><span class="line"></span><br><span class="line">5.       Pmuludq</span><br><span class="line">pmuludq XMM,XMM&#x2F;m128</span><br><span class="line">把源存储器与目的寄存器的低32位无符号整数相乘,结果变为64位,送入目的寄存器低64位, 把源存储器与目的寄存器的高64位的低32位无符号整数相乘,结果变为64位,送入目的寄存器高64位内存变量必须对齐内存16字节.</span><br><span class="line">高64位 | 低64位</span><br><span class="line">目的寄存器: a0 | a1 | a2 | a3</span><br><span class="line">源存储器: b0 | b1 | b2 | b3</span><br><span class="line">目的寄存器结果: b1*a1 | b3*a3</span><br><span class="line"></span><br><span class="line">6.       Pmuludq</span><br><span class="line">pmuludq MM,MM&#x2F;m64</span><br><span class="line">把源存储器与目的寄存器的低32位无符号整数相乘,结果变为64位,送入目的寄存器.</span><br><span class="line"></span><br><span class="line">7.       pmulhw </span><br><span class="line">pmulhw XMM,XMM&#x2F;m128</span><br><span class="line">源存储器与目的寄存器按字对齐有符号补码饱和相乘,取结果的高16位放入目的寄存器对应字中. 内存变量必须对齐内存16字节</span><br><span class="line"></span><br><span class="line">8.       pmullw</span><br><span class="line">pmullw XMM,XMM&#x2F;m128</span><br><span class="line">源存储器与目的寄存器按字对齐有符号补码饱和相乘,取结果的低16位放入目的寄存器对应字中. 内存变量必须对齐内存16字节.</span><br></pre></td></tr></table></figure>
+
+<h4 id="七、-除法操作"><a href="#七、-除法操作" class="headerlink" title="七、 除法操作"></a>七、 除法操作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">1.    Divps</span><br><span class="line">divps XMM,XMM&#x2F;m128</span><br><span class="line">目的寄存器共4个单精度浮点数除以源存储器4个单精度浮点数,结果送入目的寄存器,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">2.    Divss</span><br><span class="line">divss XMM,XMM&#x2F;32</span><br><span class="line">目的寄存器低32位1个单精度浮点数除以源存储器低32位1个单精度浮点数,结果送入目的寄存器的低32位, 高96位不变,内存变量不必对齐内存16字节</span><br><span class="line"></span><br><span class="line">3.    Divpd</span><br><span class="line">divpd XMM,XMM&#x2F;m128</span><br><span class="line">目的寄存器共两个双精度浮点数除以源存储器两个双精度浮点数,结果送入目的寄存器,内存变量必须对齐内存16字节</span><br><span class="line"></span><br><span class="line">4.    Divsd</span><br><span class="line">divsd XMM,XMM&#x2F;m128</span><br><span class="line">目的寄存器低64位1个双精度浮点数除以源存储器低64位1个双精度浮点数,结果送入目的寄存器的低64位, 高64位不变,内存变量不必对齐内存16字节.</span><br></pre></td></tr></table></figure>
+
+<h4 id="八、位操作"><a href="#八、位操作" class="headerlink" title="八、位操作"></a>八、位操作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br></pre></td><td class="code"><pre><span class="line">1.       Andps</span><br><span class="line">andps XMM,XMM&#x2F;m128</span><br><span class="line">源存储器128个二进制位&#39;与&#39;目的寄存器128个二进制位,结果送入目的寄存器,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">2.       Orps</span><br><span class="line">orps XMM,XMM&#x2F;m128</span><br><span class="line">源存储器128个二进制位&#39;或&#39;目的寄存器128个二进制位,结果送入目的寄存器,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">3.       Xorps</span><br><span class="line">xorps XMM,XMM&#x2F;m128</span><br><span class="line">源存储器128个二进制位&#39;异或&#39;目的寄存器128个二进制位,结果送入目的寄存器,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">4.    Unpckhps</span><br><span class="line">unpckhps XMM,XMM&#x2F;m128</span><br><span class="line">源存储器与目的寄存器高64位按双字交错排列,结果送入目的寄存器,内存变量必须对齐内存16字节.</span><br><span class="line">高64位 | 低64位　</span><br><span class="line">目的寄存器: a0 | a1 | a2 | a3　</span><br><span class="line">源存储器:  b0 | b1 | b2 | b3　</span><br><span class="line">目的寄存器结果: b0 | a0 | b1 | a1</span><br><span class="line"></span><br><span class="line">5.    Unpcklps</span><br><span class="line"> unpcklps XMM,XMM&#x2F;m128</span><br><span class="line">源存储器与目的寄存器低64位按双字交错排列,结果送入目的寄存器,内存变量必须对齐内存16字节</span><br><span class="line">高64位 | 低64位</span><br><span class="line">目的寄存器: a0 | a1 | a2 | a3　</span><br><span class="line">源存储器:  b0 | b1 | b2 | b3　</span><br><span class="line">目的寄存器结果: b2 | a2 | b3 | a3</span><br><span class="line"></span><br><span class="line">6.    Pextrw</span><br><span class="line">pextrw r32,MM,imm8 pextrw r32,XMM,imm8 imm8为8位立即数(无符号)</span><br><span class="line">从源寄存器中选第imm8(0~3 或 0~7)个字送入目的寄存器的低16位,高16位清零.</span><br><span class="line">注:imm8范围为 0~255,当源寄存器为&#39;MM&#39;时,有效值&#x3D; imm8 mod 4,当目的寄存器为&#39;XMM&#39;时,有效值&#x3D; imm8 mod 8</span><br><span class="line"></span><br><span class="line">7.    Pinsrw</span><br><span class="line">pinsrw MM,r32&#x2F;m32,imm8 pinsrw XMM,r32&#x2F;m32,imm8</span><br><span class="line">把源存储器的低16位内容送入目的寄存器第imm8(0~3 或 0~7)个字,其余字不变</span><br><span class="line">注:imm8范围为 0~255,当目的寄存器为&#39;MM&#39;时,有效值&#x3D; imm8 mod 4,当目的寄存器为&#39;XMM&#39;时,有效值&#x3D; imm8 mod 8</span><br><span class="line"></span><br><span class="line">8.    Pmaxsw</span><br><span class="line">pmaxsw MM,MM&#x2F;m64 pmaxsw XMM,XMM&#x2F;m128</span><br><span class="line">把源存储器与目的寄存器按字有符号(补码)整数比较,大数放入目的寄存器对应字, 源存储器为m128时,内存变量必须对齐内存16字节</span><br><span class="line"></span><br><span class="line">9.    Pmaxub</span><br><span class="line"> pmaxub MM,MM&#x2F;m64 pmaxsw XMM,XMM&#x2F;m128</span><br><span class="line">把源存储器与目的寄存器按字节无符号整数比较,大数放入目的寄存器对应字节, 源存储器为m128时,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">10. pminsw</span><br><span class="line">pminsw MM,MM&#x2F;m64 pmaxsw XMM,XMM&#x2F;m128</span><br><span class="line">把源存储器与目的寄存器按字有符号(补码)整数比较,较小数放入目的寄存器对应字, 源存储器为m128时,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">11. Pminub</span><br><span class="line">pminub MM,MM&#x2F;m64 pmaxsw XMM,XMM&#x2F;m128</span><br><span class="line">把源存储器与目的寄存器按字节无符号整数比较,较小数放入目的寄存器对应字节, 源存储器为m128时,内存变量必须对齐内存16字节</span><br><span class="line"></span><br><span class="line">12. Maxpd</span><br><span class="line">maxpd XMM,XMM&#x2F;m128</span><br><span class="line">源存储器两个双精度浮点数与目的寄存器两个双精度浮点数比较,较大数放入对应目的寄存器,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">13. Maxsd</span><br><span class="line">maxsd XMM,XMM&#x2F;m128</span><br><span class="line">源存储器低64位1个双精度浮点数与目的寄存器低64位1个双精度浮点数比较,较大数放入目的寄存器低64位,高64位不变内存变量不必对齐内存16字节.</span><br><span class="line"></span><br><span class="line">14. Minpd</span><br><span class="line">minpd XMM,XMM&#x2F;m128</span><br><span class="line">源存储器两个双精度浮点数与目的寄存器两个双精度浮点数比较,较小数放入对应目的寄存器,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">15. Minsd</span><br><span class="line">minsd XMM,XMM&#x2F;m128</span><br><span class="line">源存储器低64位1个双精度浮点数与目的寄存器低64位1个双精度浮点数比较,较小数放入目的寄存器低64位,高64位不变内存变量不必对齐内存16字节.</span><br><span class="line"></span><br><span class="line">16. Andpd</span><br><span class="line">andpd XMM,XMM&#x2F;m128</span><br><span class="line">源存储器128个二进制位&#39;与&#39;目的寄存器128个二进制位,结果送入目的寄存器,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">17. Andnpd</span><br><span class="line">andnpd XMM,XMM&#x2F;m128</span><br><span class="line">目的寄存器128个二进制位先取&#39;非&#39;,再&#39;与&#39;源存储器128个二进制位,结果送入目的寄存器,内存变量必须对齐内存16字节</span><br><span class="line"></span><br><span class="line">18. Orpd</span><br><span class="line">orpd XMM,XMM&#x2F;m128</span><br><span class="line">源存储器128个二进制位&#39;或&#39;目的寄存器128个二进制位,结果送入目的寄存器,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">19. Xorpd</span><br><span class="line">xorpd XMM,XMM&#x2F;m128</span><br><span class="line">源存储器128个二进制位&#39;异或&#39;目的寄存器128个二进制位,结果送入目的寄存器,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">20. Pslldq</span><br><span class="line">pslldq XMM,imm8</span><br><span class="line">把目的寄存器128位按imm8(立即数)指定字节数逻辑左移,移出的字节丢失.</span><br><span class="line">imm8 &#x3D;&#x3D; 1时,代表左移8位,imm8 &#x3D;&#x3D; 2时,代表左移16位.</span><br><span class="line"></span><br><span class="line">21. Psrldq</span><br><span class="line">psrldq XMM,imm8</span><br><span class="line">把目的寄存器128位按imm8(立即数)指定字节数逻辑右移,移出的字节丢失.</span><br><span class="line">imm8 &#x3D;&#x3D; 1时,代表右移8位,imm8 &#x3D;&#x3D; 2时,代表右移16位.</span><br><span class="line"></span><br><span class="line">22. Psllw</span><br><span class="line">psllw XMM,XMM&#x2F;m128 psllw XMM,imm8</span><br><span class="line">把目的寄存器按字由源存储器(或imm8 立即数)指定位数逻辑左移,移出的位丢失. 低字移出的位不会移入高字,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">23. Psrlw</span><br><span class="line">psrlw XMM,XMM&#x2F;m128 psrlw XMM,imm8</span><br><span class="line">把目的寄存器按字由源存储器(或imm8 立即数)指定位数逻辑右移,移出的位丢失.</span><br><span class="line">高字移出的位不会移入低字,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">24. Pslld</span><br><span class="line">pslld XMM,XMM&#x2F;m128 pslld XMM,XMM imm8</span><br><span class="line">把目的寄存器按双字由源存储器(或imm8 立即数)指定位数逻辑左移,移出的位丢失. 低双字移出的位不会移入高双字,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">25. Psrld</span><br><span class="line">psrld XMM,XMM&#x2F;m128 psrld XMM,imm8</span><br><span class="line">把目的寄存器按双字由源存储器(或imm8 立即数)指定位数逻辑右移,移出的位丢失.</span><br><span class="line">高双字移出的位不会移入低双字,内存变量必须对齐内存16字节.</span><br><span class="line">pand </span><br><span class="line">pand XMM,XMM&#x2F;m128</span><br><span class="line">源存储器128个二进制位&#39;与&#39;目的寄存器128个二进制位,结果送入目的寄存器,内存变量必须对齐内存16字节. 我发现与andpd功能差不多,就不知其它特性是否一样</span><br><span class="line"></span><br><span class="line">26. Pandn</span><br><span class="line">pandn XMM,XMM&#x2F;m128</span><br><span class="line">目的寄存器128个二进制位先取&#39;非&#39;,再&#39;与&#39;源存储器128个二进制位,结果送入目的寄存器,内存变量必须对齐内存16字节</span><br><span class="line"></span><br><span class="line">27. Por</span><br><span class="line">por XMM,XMM&#x2F;m128</span><br><span class="line">源存储器128个二进制位&#39;或&#39;目的寄存器128个二进制位,结果送入目的寄存器,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">28. Pxor</span><br><span class="line">pxor XMM,XMM&#x2F;m128</span><br><span class="line">源存储器128个二进制位&#39;异或&#39;目的寄存器128个二进制位,结果送入目的寄存器,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">29. packuswb </span><br><span class="line">packuswb XMM,XMM&#x2F;m128 packuswb MM,MM&#x2F;m64</span><br><span class="line">把目的寄存器按字有符号数压缩为字节无符号数放入目的寄存器低64位</span><br><span class="line">把源寄存器按字有符号数压缩为字节无符号数放入目的寄存器高64位</span><br><span class="line">压缩时负数变为00h,大于255的正数变为0ffh,内存变量必须对齐内存16字节.</span><br><span class="line">高64位 | 低64位</span><br><span class="line">目的寄存器: a0 | a1 | a2 | a3 | a4 | a5 | a6 | a7</span><br><span class="line">源寄存器: b0 | b1 | b2 | b3 | b4 | b5 | b6 | b7</span><br><span class="line">目的寄存器压缩结果: b0|b1| b2| b3| b4|b5| b6|b7| a0|a1| a2|a3| a4|a5| a6| a7</span><br><span class="line"></span><br><span class="line">30. packsswb </span><br><span class="line">packsswb XMM,XMM&#x2F;m128 packsswb MM,MM&#x2F;m64</span><br><span class="line">把目的寄存器按字有符号数压缩为字节有符号数放入目的寄存器低64位</span><br><span class="line">把源寄存器按字有符号数压缩为字节有符号数放入目的寄存器高64位</span><br><span class="line">压缩时小于-128负数变为80h,大于127的正数变为7fh,内存变量必须对齐内存16字节.</span><br><span class="line">高64位 | 低64位</span><br><span class="line">目的寄存器: a0 | a1 | a2 | a3 | a4 | a5 | a6 | a7</span><br><span class="line">源寄存器: b0 | b1 | b2 | b3 | b4 | b5 | b6 | b7</span><br><span class="line">目的寄存器压缩结果: b0|b1| b2| b3| b4|b5| b6|b7| a0|a1| a2|a3| a4|a5| a6| a7</span><br><span class="line"></span><br><span class="line">31. packssdw</span><br><span class="line">packssdw XMM,XMM&#x2F;m128</span><br><span class="line">把目的寄存器按双字有符号数压缩为字有符号数放入目的寄存器低64位</span><br><span class="line">把源寄存器按双字有符号数压缩为字有符号数放入目的寄存器高64位</span><br><span class="line">压缩时小于-32768负数变为8000h,大于32767的正数变为7fffh,内存变量必须对齐内存16字节.</span><br><span class="line">高64位 | 低64位</span><br><span class="line">目的寄存器: a0 | a1 | a2 | a3</span><br><span class="line">源寄存器: b0 | b1 | b2 | b3</span><br><span class="line">目的寄存器压缩结果: b0 | b1 | b2 | b3 | a0 | a1 | a2 | a3</span><br><span class="line"></span><br><span class="line">32. punpckldq</span><br><span class="line">punpckldq XMM,XMM&#x2F;m128</span><br><span class="line">把源存储器与目的寄存器低64位按双字交错排列,内存变量必须对齐内存16字节.</span><br><span class="line">高64位 | 低64位</span><br><span class="line">目的寄存器: a0 | a1 | a2 | a3</span><br><span class="line">源寄存器: b0 | b1 | b2 | b3</span><br><span class="line">目的寄存器排列结果: b2 | a2 | b3 | a3</span><br><span class="line"></span><br><span class="line">33. punpckhdq </span><br><span class="line">把源存储器与目的寄存器高64位按双字交错排列,内存变量必须对齐内存16字节.</span><br><span class="line">高64位 | 低64位</span><br><span class="line">目的寄存器: a0 | a1 | a2 | a3</span><br><span class="line">源寄存器: b0 | b1 | b2 | b3</span><br><span class="line">目的寄存器排列结果: b0 | a0 | b1 | a1</span><br><span class="line"></span><br><span class="line">34. punpcklwd</span><br><span class="line">把源存储器与目的寄存器低64位按字交错排列,内存变量必须对齐内存16字节.</span><br><span class="line">高64位 | 低64位</span><br><span class="line">目的寄存器: a0 | a1 | a2 | a3 | a4 | a5 | a6 | a7</span><br><span class="line">源寄存器: b0 | b1 | b2 | b3 | b4 | b5 | b6 | b7</span><br><span class="line">目的寄存器排列结果: b4 | a4 | b5 | a5 | b6 | a6 | b7 | a7</span><br><span class="line"></span><br><span class="line">35. punpckhwd </span><br><span class="line">punpckhwd XMM,XMM&#x2F;m128</span><br><span class="line">把源存储器与目的寄存器高64位按字交错排列,内存变量必须对齐内存16字节.</span><br><span class="line">高64位 | 低64位</span><br><span class="line">目的寄存器: a0 | a1 | a2 | a3 | a4 | a5 | a6 | a7</span><br><span class="line">源寄存器: b0 | b1 | b2 | b3 | b4 | b5 | b6 | b7</span><br><span class="line">目的寄存器排列结果: b0 | a0 | b1 | a1 | b2 | a2 | b3 | a3</span><br><span class="line"></span><br><span class="line">36. punpcklbw</span><br><span class="line">punpcklbw XMM,XMM&#x2F;m128</span><br><span class="line">把源存储器与目的寄存器低64位按字节交错排列,内存变量必须对齐内存16字节.</span><br><span class="line">高64位 | 低64位</span><br><span class="line">目的寄存器: a0|a1| a2| a3| a4|a5| a6|a7| a8|a9| aA|aB| aC|aD| aE| aF</span><br><span class="line">源寄存器: b0|b1| b2| b3| b4|b5| b6|b7| b8|b9| bA|bB| bC|bD| bE| bF</span><br><span class="line">目的寄存器排列结果: b8|a8| b9| a9| bA|aA| bB|aB| bC|aC| bD|aD| bE|aE| bF| aF</span><br><span class="line"></span><br><span class="line">37. punpckhbw</span><br><span class="line">把源存储器与目的寄存器高64位按字节交错排列,内存变量必须对齐内存16字节.</span><br><span class="line">高64位 | 低64位</span><br><span class="line">目的寄存器: a0|a1| a2| a3| a4|a5| a6|a7| a8|a9| aA|aB| aC|aD| aE| aF</span><br><span class="line">源寄存器: b0|b1| b2| b3| b4|b5| b6|b7| b8|b9| bA|bB| bC|bD| bE| bF</span><br><span class="line">目的寄存器排列结果: b0|a0| b1| a1| b2|a2| b3|a3| b4|a4| b5|a5| b6|a6| b7| a7</span><br><span class="line"></span><br><span class="line">38. shufps</span><br><span class="line">shufps XMM,XMM&#x2F;m128,imm8</span><br><span class="line">把源存储器与目的寄存器按双字划分,由imm8(立即数)八个二进制位(00~11,00^11,00~11,00~11)指定排列, 内存变量必须对齐内存16字节.目的寄存器高64位放源存储器被指定数,目的寄存器低64位放目的寄存器被指定数. &#39;( )&#39;中的都是二进制数</span><br><span class="line">目的寄存器: a(11) | a(10) | a(01) | a(00)</span><br><span class="line">源寄存器: b(11) | b(10) | b(01) | b(00)</span><br><span class="line">目的寄存器排列结果: b(00~11) | b(00~11) | a(00~11) | a(00~11)</span><br><span class="line">目的寄存器压缩结果&#39;( )&#39;中的值由imm8对应的两位二进制位指定.</span><br><span class="line">例: ( 11 ) ( 10 ) ( 01 ) ( 00 ) ( 11 ) ( 10 ) ( 01 ) ( 00 )</span><br><span class="line">当XMM0 &#x3D; 090a0b0c 0d0e0f11 01020304 05060708 h,XMM1 &#x3D; 0aabbccdd eeff1234 22334455 66778899 h, imm8 ══&gt; (XMM1 10) (XMM1 01) (XMM0 11) (XMM0 00)</span><br><span class="line">执行shufps XMM0,XMM1,10 01 11 00 b(二进制),则XMM0 &#x3D; 0eeff1234 22334455 090a0b0c 05060708 h</span><br><span class="line"></span><br><span class="line">39. shufpd</span><br><span class="line">shufpd XMM,XMM&#x2F;m128,imm8(0~255) imm8(操作值) &#x3D; imm8(输入值) mod 4</span><br><span class="line">把源存储器与目的寄存器按四字划分,由imm8(立即数)4个二进制位(0~1,0^1,0~1,0~1)指定排列, 内存变量必须对齐内存16字节.目的寄存器高64位放源存储器被指定数,目的寄存器低64位放目的寄存器被指定数.</span><br><span class="line">当XMM0 &#x3D; 1111111122222222 3333333344444444 h</span><br><span class="line">XMM1 &#x3D; 5555555566666666 aaaaaaaacccccccc h,执行shufpd XMM0,XMM1,101001 1 0 b</span><br><span class="line">则XMM0 &#x3D; 5555555566666666 3333333344444444 h</span><br><span class="line"></span><br><span class="line">40. pshuflw</span><br><span class="line">pshuflw XMM,XMM&#x2F;m128,imm8(0~255)</span><br><span class="line">先把源存储器的高64位内容送入目的寄存器的高64位,然后用imm8将源存储器的低64位4个字选入目的寄存器的低64位,内存变量必须对齐内存16字节.</span><br><span class="line">源寄存器低64位: b(11) | b(10) | b(01) | b(00)</span><br><span class="line">目的寄存器低64位排列结果: b(00~11) | b(00~11) | b(00~11) | b(00~11)</span><br><span class="line">当XMM0 &#x3D; 1111111122222222 3333 4444 5555 6666 h</span><br><span class="line">XMM1 &#x3D; 5555555566666666 7777 8888 9999 cccc h,执行pshuflw XMM0,XMM1,10 10 01 10 b</span><br><span class="line">则XMM0 &#x3D; 5555555566666666 8888 8888 9999 8888 h</span><br><span class="line"></span><br><span class="line">41. pshufhw</span><br><span class="line">pshufhw XMM,XMM&#x2F;m128,imm8(0~255)</span><br><span class="line">先把源存储器的低64位内容送入目的寄存器的低64位,然后用imm8将源存储器的高64位4个字选入目的寄存器的高64位,内存变量必须对齐内存16字节.</span><br><span class="line">源寄存器高64位: b(11) | b(10) | b(01) | b(00)</span><br><span class="line">目的寄存器高64位排列结果: b(00~11) | b(00~11) | b(00~11) | b(00~11)</span><br><span class="line">当XMM0 &#x3D; 3333 4444 5555 6666 1111111122222222 h</span><br><span class="line">XMM1 &#x3D; 7777 8888 9999 cccc 5555555566666666 h,执行pshufhw XMM0,XMM1,10 10 01 10 b</span><br><span class="line">则XMM0 &#x3D; 8888 8888 9999 8888 5555555566666666 h</span><br><span class="line"></span><br><span class="line">42. pshufd</span><br><span class="line">pshufd XMM,XMM&#x2F;m128,imm8(0~255)</span><br><span class="line">将源存储器的4个双字由imm8指定选入目的寄存器,内存变量必须对齐内存16字节.</span><br><span class="line">源寄存器: b(11) | b(10) | b(01) | b(00)</span><br><span class="line">目的寄存器排列结果: b(00~11) | b(00~11) | b(00~11) | b(00~11)</span><br><span class="line">当XMM1 &#x3D; 11111111 22222222 33333333 44444444 h,执行pshufd XMM0,XMM1,11 01 01 10b</span><br><span class="line">则XMM0 &#x3D; 11111111 33333333 33333333 22222222 h</span><br><span class="line">9 数据类型操作</span><br><span class="line"></span><br><span class="line">43. cvtpi2ps</span><br><span class="line">cvtpi2ps XMM,MM&#x2F;m64</span><br><span class="line">源存储器64位两个32位有符号(补码)整数转为两个单精度浮点数,放入目的寄存器低64中,高64位不变.</span><br><span class="line"></span><br><span class="line">44. cvtsi2ss</span><br><span class="line">cvtsi2ss XMM,r32&#x2F;m32</span><br><span class="line">源存储器1个32位有符号(补码)整数转为1个单精度浮点数,放入目的寄存器低32中,高96位不变.</span><br><span class="line"></span><br><span class="line">45. cvtps2pi</span><br><span class="line">cvtps2pi MM,XMM&#x2F;m64</span><br><span class="line">把源存储器低64位两个32位单精度浮点数转为两个32位有符号(补码)整数,放入目的寄存器</span><br><span class="line"></span><br><span class="line">46. cvttps2pi</span><br><span class="line">cvttps2pi MM,XMM&#x2F;m64</span><br><span class="line">类似于cvtps2pi，截断取整.</span><br><span class="line"></span><br><span class="line">47. cvtss2si</span><br><span class="line">cvtss2si r32,XMM&#x2F;m32</span><br><span class="line">把源存储器低32位1个单精度浮点数转为1个32位有符号(补码)整数,放入目的寄存器.</span><br><span class="line"></span><br><span class="line">48. cvttss2si</span><br><span class="line"> cvttss2si r32,XMM&#x2F;m32</span><br><span class="line">类似cvtss2si,截断取整.</span><br><span class="line"></span><br><span class="line">49. cvtps2pd</span><br><span class="line">cvtps2pd XMM,XMM&#x2F;m64</span><br><span class="line">把源存储器低64位两个单精度浮点数变成两个双精度浮点数,结果送入目的寄存器.</span><br><span class="line"></span><br><span class="line">50. cvtss2sd</span><br><span class="line">cvtss2sd XMM,XMM&#x2F;m32</span><br><span class="line">把源存储器低32位1个单精度浮点数变成1个双精度浮点数,结果送入目的寄存器的低64位,高64位不变.</span><br><span class="line"></span><br><span class="line">51. cvtpd2ps</span><br><span class="line">把源存储器两个双精度浮点数变成两个单精度浮点数,结果送入目的寄存器的低64位,高64位清零, 内存变量必须对齐内存16字节.</span><br><span class="line">＾特殊状态 ＾3.14E5 (表示负无穷大)</span><br><span class="line"></span><br><span class="line">52. cvtsd2ss</span><br><span class="line">cvtsd2ss XMM,XMM&#x2F;m64</span><br><span class="line">把源存储器低64位1个双精度浮点数变成1个单精度浮点数,结果送入目的寄存器的低32位,高96位不变.</span><br><span class="line"></span><br><span class="line">53. cvtpd2pi</span><br><span class="line">cvtpd2pi MM,XMM&#x2F;m128</span><br><span class="line">把源存储器两个双精度浮点数变成两个双字有符号整数,结果送入目的寄存器,内存变量必须对齐内存16字节. 如果结果大于所能表示的范围,那么转化为80000000h(正数也转为此值).</span><br><span class="line"></span><br><span class="line">54. cvttpd2pi</span><br><span class="line">cvttpd2pi MM,XMM&#x2F;m128</span><br><span class="line">类似于cvtpd2pi,截断取整.</span><br><span class="line"></span><br><span class="line">55. cvtpi2pd</span><br><span class="line">cvtpi2pd XMM,MM&#x2F;m64</span><br><span class="line">把源存储器两个双字有符号整数变成两个双精度浮点数,结果送入目的寄存器.</span><br><span class="line"></span><br><span class="line">56. cvtpd2dq</span><br><span class="line">cvtpd2dq XMM,XMM&#x2F;m128</span><br><span class="line">把源存储器两个双精度浮点数变成两个双字有符号整数(此运算与cvtpd2pi类似但目的寄存器变为XMM), 结果送入目的寄存器的低64位,高64位清零,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">57. cvttpd2dq</span><br><span class="line">cvttpd2dq XMM,XMM&#x2F;m128</span><br><span class="line">类似于cvtpd2dq，为截断取整.</span><br><span class="line"></span><br><span class="line">58. cvtdq2pd</span><br><span class="line">cvtdq2pd XMM,XMM&#x2F;m128</span><br><span class="line">把源存储器低64位两个双字有符号整数变成两个双精度浮点数,结果送入目的寄存器,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">59. cvtsd2si</span><br><span class="line">cvtsd2si r32,XMM&#x2F;m64</span><br><span class="line">把源存储器低64位1个双精度浮点数变成1个双字有符号整数,结果送入目的寄存器.</span><br><span class="line"></span><br><span class="line">60. cvttsd2si</span><br><span class="line">cvttsd2si r32,XMM&#x2F;m64</span><br><span class="line">类似于cvtsd2si，截断取整.</span><br><span class="line"></span><br><span class="line">61. cvtsi2sd</span><br><span class="line">cvtsi2sd XMM,r32&#x2F;m32</span><br><span class="line">把源存储器1个双字有符号整数变成1个双精度浮点数,结果送入目的寄存器的低64位,高64位不变.</span><br><span class="line"></span><br><span class="line">62. cvtps2dq</span><br><span class="line">cvtps2dq XMM,XMM&#x2F;m128</span><br><span class="line">把源存储器4个单精度浮点数变成4个双字有符号整数,结果送入目的寄存器,内存变量必须对齐内存16字节.</span><br><span class="line"></span><br><span class="line">63. cvttps2dq</span><br><span class="line">cvttps2dq XMM,XMM&#x2F;m128</span><br><span class="line">类似于cvtps2dq，截断取整.</span><br><span class="line"></span><br><span class="line">64. cvtdq2ps</span><br><span class="line">cvtdq2ps XMM,XMM&#x2F;m128</span><br><span class="line">把源存储器4个双字有符号整数变成4个单精度浮点数,结果送入目的寄存器,内存变量必须对齐内存16字节.</span><br></pre></td></tr></table></figure>
+
+<h4 id="九、备注"><a href="#九、备注" class="headerlink" title="九、备注"></a>九、备注</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1. MMX指令有8个64位寄存器(MM0~MM7),不过可惜都是借的FPU的, FPU原来有8个80位寄存器(st(0)~st(7)),现在用在了MMX上,所以用之后要加上一条EMMS指令,用以复位。</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>内容摘自网络，如有侵权，请联系删除。</p>
+</blockquote>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          版权所有属于未央。商业转载，请联系作者（微信：sheenisme）以获取授权。 非商业转载，请注明出处并附上原文链接，谢谢配合。
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://blog.sheensong.top/2021/05/09/SSE%E6%8C%87%E4%BB%A4%E9%9B%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SSE/" rel="tag">SSE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8C%87%E4%BB%A4%E9%9B%86/" rel="tag">指令集</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2021/06/26/C%E8%AF%AD%E8%A8%80%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            C语言函数指针
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2021/02/11/Advanced%20Fruits%E9%97%AE%E9%A2%98/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Advanced Fruits问题</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.staticfile.org/valine/1.4.16/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "KcIJTNpqW3ezIo8i9fvIFNxw-gzGzoHsz",
+    app_key: "yP7Tv2csrP5SRTJp68Wr7HAv",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "欢迎给我的文章评论，留下您的宝贵意见吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2018-2022
+        <i class="ri-heart-fill heart_icon"></i> sheen
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+        <li>
+          <a href="https://beian.miit.gov.cn/" target="_black" rel="nofollow">豫ICP备17001354号</a>
+        </li>
+        
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer.png" alt="未央de博客"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">首页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://cv.sheensong.top" target="_blank" rel="noopener">简历</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/photos">Pictures</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/%E5%85%B3%E4%BA%8E%E6%88%91">About me</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://sheensong.top" target="_blank" rel="noopener">HomePage</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/mathjax/2.7.7/MathJax.js"></script>
+<script src="https://cdn.staticfile.org/mathjax/2.7.7/config/TeX-AMS-MML_HTMLorMML-full.js"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+ 
+<script src="/js/clickLove.js"></script>
+ 
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    <div id="music">
+    
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="220" height="50"
+        src="//music.163.com/outchain/player?type=2&id=526668900&auto=0&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: absolute;
+        right: 15px;
+        bottom: 10px;
+        z-index: 298;
+    }
+</style>
+    
+    
+
+  </div>
+</body>
+
+</html>

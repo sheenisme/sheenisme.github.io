@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="未央" />
+       
+      <meta name="description" content="欢迎来到IT届文艺小青年未央的博客" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>[转载]-使用PyTroch搭建LSTM预测时间序列 |  未央de博客</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    <link rel="alternate" href="/atom.xml" title="未央de博客" type="application/atom+xml">
+</head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-转载-使用pytroch搭建lstm预测时间序列/转载使用pytroch搭建lstm预测时间序列"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  [转载]-使用PyTroch搭建LSTM预测时间序列
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/04/30/%E8%BD%AC%E8%BD%BD%E4%BD%BF%E7%94%A8pytroch%E6%90%AD%E5%BB%BAlstm%E9%A2%84%E6%B5%8B%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/" class="article-date">
+  <time datetime="2020-04-30T00:32:06.000Z" itemprop="datePublished">2020-04-30</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">3.6k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">16 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <blockquote>
+<p>时间序列就是以时间为自变量的一系列数据。例如, 24小时的温度,各种产品一个月的价格变动, 一个公司一年的股票价格。 现在前沿深度学习模型比如LSTM能够捕捉时间序列的规律，因此可以用来预测数据未来的趋势。在这篇文章中，你可以了解到如何使用LSTM深度学习算法使用时间序列来预测未来。</p>
+</blockquote>
+<a id="more"></a>
+
+<p><strong>数据集</strong></p>
+<p>我们将会使用的数据来自Python Seaborn包。首先，我们先导入必要的包：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line">import torch.nn as nn</span><br><span class="line">import warnings</span><br><span class="line">warnings.filterwarnings(&quot;ignore&quot;)</span><br><span class="line">import seaborn as sns</span><br><span class="line">import numpy as np</span><br><span class="line">import pandas as pd</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">%matplotlib inline</span><br></pre></td></tr></table></figure>
+
+<p>我们先print出Seaborn的所有内置数据集列表：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.get_dataset_names()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[&#39;anscombe&#39;,</span><br><span class="line"> &#39;attention&#39;,</span><br><span class="line"> &#39;brain_networks&#39;,</span><br><span class="line"> &#39;car_crashes&#39;,</span><br><span class="line"> &#39;diamonds&#39;,</span><br><span class="line"> &#39;dots&#39;,</span><br><span class="line"> &#39;exercise&#39;,</span><br><span class="line"> &#39;flights&#39;,</span><br><span class="line"> &#39;fmri&#39;,</span><br><span class="line"> &#39;gammas&#39;,</span><br><span class="line"> &#39;iris&#39;,</span><br><span class="line"> &#39;mpg&#39;,</span><br><span class="line"> &#39;planets&#39;,</span><br><span class="line"> &#39;tips&#39;,</span><br><span class="line"> &#39;titanic&#39;]</span><br></pre></td></tr></table></figure>
+
+<p>我们将要使用的数据集是Seaborn中的航班数据集，在jupyter notebook中加载：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">flight_data &#x3D; sns.load_dataset(&quot;flights&quot;)</span><br><span class="line">flight_data.head()</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>year</strong></th>
+<th><strong>month</strong></th>
+<th><strong>passengers</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>1949</td>
+<td>January</td>
+<td>112</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1949</td>
+<td>February</td>
+<td>118</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1949</td>
+<td>March</td>
+<td>132</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1949</td>
+<td>April</td>
+<td>129</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1949</td>
+<td>May</td>
+<td>121</td>
+</tr>
+</tbody></table>
+<p>这个数据集有个属性，分别是时间（年、月）和乘客数量。乘客数量这列包含了在一个月中乘客的总量。我们来看看数据集的大小：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flight_data.shape</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(144, 3)</span><br></pre></td></tr></table></figure>
+
+<p>你可以看到这个数据集有144行3列意味着它包含了十二年的乘客记录。</p>
+<p>我们的任务是基于十二年的132个月中旅行乘客的数量来预测往后乘客的数量。由上面的输出可以知道，我们有144个的记录，所以我们将把一开始的132个月当成训练集，最后的十二个月当成测试集。</p>
+<p>我们先画出每个月旅行乘客数量的直方图。第一步是调整图像大小：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fig_size &#x3D; plt.rcParams[&quot;figure.figsize&quot;]</span><br><span class="line">fig_size[0]&#x3D;15</span><br><span class="line">fig_size[1]&#x3D;5</span><br><span class="line">plt.rcParams[&quot;figure.figsize&quot;]&#x3D; fig_size</span><br></pre></td></tr></table></figure>
+
+<p>下一步是画图：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">plt.title(&#39;Month vs Passenger&#39;)</span><br><span class="line">plt.ylabel(&#39;Total Passengers&#39;)</span><br><span class="line">plt.xlabel(&#39;Months&#39;)</span><br><span class="line">plt.grid(True)</span><br><span class="line">plt.autoscale(axis&#x3D;&#39;x&#39;,tight&#x3D;True)</span><br><span class="line">plt.plot(flight_data[&#39;passengers&#39;])</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/04/30/%E8%BD%AC%E8%BD%BD%E4%BD%BF%E7%94%A8pytroch%E6%90%AD%E5%BB%BAlstm%E9%A2%84%E6%B5%8B%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/F39DA562F9984E838B6C424054E6E868-1596724594139.png" alt="F39DA562F9984E838B6C424054E6E868"></p>
+<p>从这个输出中可以看出，这十二年的乘机旅行乘客人数在增加。还可以看出乘客数量一年中有波动，可能的原因是暑假和寒假的乘客数量相对别的时期较多。</p>
+<p><strong>数据预处理</strong></p>
+<p>我们数据集属性的类型用下面这段代码来展示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">flight_data.columns</span><br><span class="line"></span><br><span class="line">Index([&#39;year&#39;, &#39;month&#39;, &#39;passengers&#39;], dtype&#x3D;&#39;object&#39;)</span><br></pre></td></tr></table></figure>
+
+<p>第一步我们应该把乘客数改成浮点类型：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">all_data &#x3D; flight_data[&#39;passengers&#39;].values.astype(float)</span><br></pre></td></tr></table></figure>
+
+<p>现在如果你printall_data，你会发现下面的浮点类型值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(all_data)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[112. 118. 132. 129. 121. 135. 148. 148. 136. 119. 104. 118. 115. 126.</span><br><span class="line"> 141. 135. 125. 149. 170. 170. 158. 133. 114. 140. 145. 150. 178. 163.</span><br><span class="line"> 172. 178. 199. 199. 184. 162. 146. 166. 171. 180. 193. 181. 183. 218.</span><br><span class="line"> 230. 242. 209. 191. 172. 194. 196. 196. 236. 235. 229. 243. 264. 272.</span><br><span class="line"> 237. 211. 180. 201. 204. 188. 235. 227. 234. 264. 302. 293. 259. 229.</span><br><span class="line"> 203. 229. 242. 233. 267. 269. 270. 315. 364. 347. 312. 274. 237. 278.</span><br><span class="line"> 284. 277. 317. 313. 318. 374. 413. 405. 355. 306. 271. 306. 315. 301.</span><br><span class="line"> 356. 348. 355. 422. 465. 467. 404. 347. 305. 336. 340. 318. 362. 348.</span><br><span class="line"> 363. 435. 491. 505. 404. 359. 310. 337. 360. 342. 406. 396. 420. 472.</span><br><span class="line"> 548. 559. 463. 407. 362. 405. 417. 391. 419. 461. 472. 535. 622. 606.</span><br><span class="line"> 508. 461. 390. 432.]</span><br></pre></td></tr></table></figure>
+
+<p>下一步，我们将要把数据集分为训练集和测试集。LSTM算法将会在训练集上训练。训练出的模型将会使用在测试集上，用来预测未来。预测结果将会和实际结果作比较。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">test_data_size &#x3D;12</span><br><span class="line"></span><br><span class="line">train_data &#x3D; all_data[:-test_data_size]</span><br><span class="line">test_data &#x3D; all_data[-test_data_size:]</span><br></pre></td></tr></table></figure>
+
+<p>现在我们pirnt出训练集和测试集的长度：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(len(train_data))</span><br><span class="line">print(len(test_data))</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">132</span><br><span class="line">12</span><br></pre></td></tr></table></figure>
+
+<p>我们的数据集还没有标准化。乘客初始的总量远少于最后几年的数量。我们将使用线性函数归一化（min/max scaling）来使所有数据的范围在0~1之间</p>
+<p><img src="/2020/04/30/%E8%BD%AC%E8%BD%BD%E4%BD%BF%E7%94%A8pytroch%E6%90%AD%E5%BB%BAlstm%E9%A2%84%E6%B5%8B%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/gongshi.png" alt="gongshi"></p>
+<p>即x′=x−min(x)/max(x)−min(x)∗(feature_range[1]−feature_range[0])+feature_range[0]</p>
+<p>我们会使用sklearn.preprocessing模块中的MinMxaScaler类来归一化数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.preprocessing import MinMaxScaler</span><br><span class="line"></span><br><span class="line">scaler &#x3D; MinMaxScaler(feature_range&#x3D;(-1,1))</span><br><span class="line">train_data_normalized &#x3D; scaler.fit_transform(train_data .reshape(-1,1))</span><br></pre></td></tr></table></figure>
+
+<p>我们print出归一化的前五个元素和后五个元素：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(train_data_normalized[:5])</span><br><span class="line">print(train_data_normalized[-5:])</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[[-0.96483516]</span><br><span class="line"> [-0.93846154]</span><br><span class="line"> [-0.87692308]</span><br><span class="line"> [-0.89010989]</span><br><span class="line"> [-0.92527473]]</span><br><span class="line">[[1.        ]</span><br><span class="line"> [0.57802198]</span><br><span class="line"> [0.33186813]</span><br><span class="line"> [0.13406593]</span><br><span class="line"> [0.32307692]]</span><br></pre></td></tr></table></figure>
+
+<p>你可以看到数据集的值在-1和1之间，值得注意的是归一化只能用在数据集而不能用在测试集。<del>如果归一化用在测试集，会有信息从训练集泄露到测试集中。</del>（个人认为此处不对）</p>
+<p>下一步是把我们的数据集转换为PyTorch的张量（tensor）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">train_data_normalized &#x3D; torch.FloatTensor(train_data_normalized).view(-1)</span><br><span class="line">train_data_normalized</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">tensor([-0.9648, -0.9385, -0.8769, -0.8901, -0.9253, -0.8637, -0.8066, -0.8066,</span><br><span class="line">        -0.8593, -0.9341, -1.0000, -0.9385, -0.9516, -0.9033, -0.8374, -0.8637,</span><br><span class="line">        -0.9077, -0.8022, -0.7099, -0.7099, -0.7626, -0.8725, -0.9560, -0.8418,</span><br><span class="line">        -0.8198, -0.7978, -0.6747, -0.7407, -0.7011, -0.6747, -0.5824, -0.5824,</span><br><span class="line">        -0.6484, -0.7451, -0.8154, -0.7275, -0.7055, -0.6659, -0.6088, -0.6615,</span><br><span class="line">        -0.6527, -0.4989, -0.4462, -0.3934, -0.5385, -0.6176, -0.7011, -0.6044,</span><br><span class="line">        -0.5956, -0.5956, -0.4198, -0.4242, -0.4505, -0.3890, -0.2967, -0.2615,</span><br><span class="line">        -0.4154, -0.5297, -0.6659, -0.5736, -0.5604, -0.6308, -0.4242, -0.4593,</span><br><span class="line">        -0.4286, -0.2967, -0.1297, -0.1692, -0.3187, -0.4505, -0.5648, -0.4505,</span><br><span class="line">        -0.3934, -0.4330, -0.2835, -0.2747, -0.2703, -0.0725,  0.1429,  0.0681,</span><br><span class="line">        -0.0857, -0.2527, -0.4154, -0.2352, -0.2088, -0.2396, -0.0637, -0.0813,</span><br><span class="line">        -0.0593,  0.1868,  0.3582,  0.3231,  0.1033, -0.1121, -0.2659, -0.1121,</span><br><span class="line">        -0.0725, -0.1341,  0.1077,  0.0725,  0.1033,  0.3978,  0.5868,  0.5956,</span><br><span class="line">         0.3187,  0.0681, -0.1165,  0.0198,  0.0374, -0.0593,  0.1341,  0.0725,</span><br><span class="line">         0.1385,  0.4549,  0.7011,  0.7626,  0.3187,  0.1209, -0.0945,  0.0242,</span><br><span class="line">         0.1253,  0.0462,  0.3275,  0.2835,  0.3890,  0.6176,  0.9516,  1.0000,</span><br><span class="line">         0.5780,  0.3319,  0.1341,  0.3231])</span><br></pre></td></tr></table></figure>
+
+<p>最后一步是制作我们的训练集的对用的标签</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train_window &#x3D;12</span><br></pre></td></tr></table></figure>
+
+<p>接下来，我们要定义一个叫create_inout_sequences的函数。这个函数将会接收数据输入的行，然后将会return一个包含元组的列表。</p>
+<p>在每一个元组中，第一个元素将会包含十二个月所对应的乘客数，第二个元素包含下一个十二月所对应的乘客数量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">defcreate_inout_sequences(input_data, tw):  </span><br><span class="line">    inout_seq &#x3D;[]    </span><br><span class="line">    L &#x3D;len(input_data)</span><br><span class="line">    for i inrange(L-tw):        </span><br><span class="line">        train_seq &#x3D; input_data[i:i+tw]        </span><br><span class="line">        train_label &#x3D; input_data[i+tw:i+tw+1]        </span><br><span class="line">        inout_seq.append((train_seq ,train_label))</span><br><span class="line">    return inout_seq</span><br></pre></td></tr></table></figure>
+
+<p>执行下面代码来创建数据集序列和对应的标签</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train_inout_seq &#x3D; create_inout_sequences(train_data_normalized, train_window)</span><br></pre></td></tr></table></figure>
+
+<p>如果你print train_inout_seq 列表，你会发现他包含120项。这是因为虽然训练集有132个元素，但是这个序列的长度是12，意味着第一个序列由一开始的12项和第13项组成，其中第十三项就是标签。同样，第二个序列由第二项到第十三项组成，第十四项为他的标签。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train_inout_seq[:5]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[(tensor([-0.9648, -0.9385, -0.8769, -0.8901, -0.9253, -0.8637, -0.8066, -0.8066,</span><br><span class="line">          -0.8593, -0.9341, -1.0000, -0.9385]), tensor([-0.9516])),</span><br><span class="line"> (tensor([-0.9385, -0.8769, -0.8901, -0.9253, -0.8637, -0.8066, -0.8066, -0.8593,</span><br><span class="line">          -0.9341, -1.0000, -0.9385, -0.9516]),</span><br><span class="line">  tensor([-0.9033])),</span><br><span class="line"> (tensor([-0.8769, -0.8901, -0.9253, -0.8637, -0.8066, -0.8066, -0.8593, -0.9341,</span><br><span class="line">          -1.0000, -0.9385, -0.9516, -0.9033]), tensor([-0.8374])),</span><br><span class="line"> (tensor([-0.8901, -0.9253, -0.8637, -0.8066, -0.8066, -0.8593, -0.9341, -1.0000,</span><br><span class="line">          -0.9385, -0.9516, -0.9033, -0.8374]), tensor([-0.8637])),</span><br><span class="line"> (tensor([-0.9253, -0.8637, -0.8066, -0.8066, -0.8593, -0.9341, -1.0000, -0.9385,</span><br><span class="line">          -0.9516, -0.9033, -0.8374, -0.8637]), tensor([-0.9077]))]</span><br></pre></td></tr></table></figure>
+
+<p><strong>PS：这个切分不好理解，可以画图演示便于理解。</strong></p>
+<p><strong>搭建LSTM模型</strong></p>
+<p>我们已经做完数据预处理，接下来来训练我们的模型。我们首先定义一个LSTM类，他继承PyTorch的nn.Moudule类。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class LSTM(nn.Module):</span><br><span class="line">    def __init__(self, input_size&#x3D;1, hidden_layer_size&#x3D;100, output_size&#x3D;1):</span><br><span class="line">        super().__init__()</span><br><span class="line">        self.hidden_layer_size &#x3D; hidden_layer_size</span><br><span class="line"></span><br><span class="line">        self.lstm &#x3D; nn.LSTM(input_size, hidden_layer_size)</span><br><span class="line"></span><br><span class="line">        self.linear &#x3D; nn.Linear(hidden_layer_size, output_size)</span><br><span class="line"></span><br><span class="line">        self.hidden_cell &#x3D; (torch.zeros(1,1,self.hidden_layer_size),</span><br><span class="line">                            torch.zeros(1,1,self.hidden_layer_size)) # (num_layers * num_directions, batch_size, hidden_size)</span><br><span class="line"></span><br><span class="line">    def forward(self, input_seq):</span><br><span class="line">        lstm_out, self.hidden_cell &#x3D; self.lstm(input_seq.view(len(input_seq) ,1, -1), self.hidden_cell)</span><br><span class="line">        predictions &#x3D; self.linear(lstm_out.view(len(input_seq), -1))</span><br><span class="line">        return predictions[-1]</span><br></pre></td></tr></table></figure>
+
+<p>我们总结一下上面代码。LSTM的结构包括三个参数：</p>
+<p>input_size：类似于输入特征的数量。虽然我们的序列长度是12，但是对于每个月来说，我们仅仅有一个值就是每个月的总乘客量。</p>
+<p>hidden_layer_size：隐藏层单元的个数</p>
+<p>output_size：输出项的数量，由于我们想预测未来一个月的乘客数量，所以outputsize是1。</p>
+<p>接下来我们创建hidden_layer_size, lstm, linear, hidden_cell变量。LSTM算法接收三个输入：上一个隐藏状态，上一个记忆细胞状态和当前输入。hidden_cell这个变量包括上一个隐藏单元和记忆细胞的状态。lstm变量和linear layer变量是用来创建LSTM和线性层的，其中线性层是用来输出的。</p>
+<p>在forward方法里，input_seq参数是我们输入的长度为12的序列，lstm的输出结果是隐层和记忆细胞的在当前时间点的状态。lstm层的输出结果经过线性层计算出最后的结果。</p>
+<p>下一个阶段就是创建一个LSTM()类的示例，定义损失函数和优化函数。这里我们用的是交叉熵损失函数和adam优化方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">model &#x3D; LSTM()</span><br><span class="line">loss_function &#x3D; nn.MSELoss()</span><br><span class="line">optimizer &#x3D; torch.optim.Adam(model.parameters(), lr&#x3D;0.001)</span><br></pre></td></tr></table></figure>
+
+<p>print出我们的模型！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(model)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">LSTM(</span><br><span class="line">  (lstm): LSTM(1, 100)</span><br><span class="line">  (linear): Linear(in_features&#x3D;100, out_features&#x3D;1, bias&#x3D;True)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p><strong>训练模型</strong></p>
+<p>我们训练150轮。你可以尝试更多的epochs。每25轮输出一次loss</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">epochs &#x3D; 150</span><br><span class="line"></span><br><span class="line">for i in range(epochs):</span><br><span class="line">    for seq, labels in train_inout_seq:</span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">        model.hidden_cell &#x3D; (torch.zeros(1, 1, model.hidden_layer_size),</span><br><span class="line">                        torch.zeros(1, 1, model.hidden_layer_size))</span><br><span class="line"></span><br><span class="line">        y_pred &#x3D; model(seq)</span><br><span class="line"></span><br><span class="line">        single_loss &#x3D; loss_function(y_pred, labels)</span><br><span class="line">        single_loss.backward()</span><br><span class="line">        optimizer.step()</span><br><span class="line"></span><br><span class="line">    if i%25 &#x3D;&#x3D; 1:</span><br><span class="line">        print(f&#39;epoch: &#123;i:3&#125; loss: &#123;single_loss.item():10.8f&#125;&#39;)</span><br><span class="line"></span><br><span class="line">print(f&#39;epoch: &#123;i:3&#125; loss: &#123;single_loss.item():10.10f&#125;&#39;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">epoch:   1 loss: 0.01516276</span><br><span class="line">epoch:  26 loss: 0.00965644</span><br><span class="line">epoch:  51 loss: 0.00252884</span><br><span class="line">epoch:  76 loss: 0.01772214</span><br><span class="line">epoch: 101 loss: 0.00010952</span><br><span class="line">epoch: 126 loss: 0.00532575</span><br><span class="line">epoch: 149 loss: 0.0000004581</span><br></pre></td></tr></table></figure>
+
+<p>你可能得到不同的值因为PyTorch神经网络的默认权重是随机的。</p>
+<p><strong>PS：此处的loss并不是本轮的平均loss，而是本轮的最后一个序列的loss，函数里的平均意思是指y_pred和labels里面所有元素的平均值！！！所有loss曲线波动很大</strong>、</p>
+<p><strong>做出预测</strong></p>
+<p>现在我们的模型已经训练完了，我们可以开始做预测。由于我们的测试集包含最后十二个月的乘客数，并且我们的模型每次训练的序列长度为12，所以我们首先筛选出训练集的最后12个值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fut_pred &#x3D; 12</span><br><span class="line"></span><br><span class="line">test_inputs &#x3D; train_data_normalized[-train_window:].tolist()</span><br><span class="line">print(test_inputs)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[0.12527473270893097, 0.04615384712815285, 0.3274725377559662, 0.2835164964199066, 0.3890109956264496, 0.6175824403762817, 0.9516483545303345, 1.0, 0.5780220031738281, 0.33186814188957214, 0.13406594097614288, 0.32307693362236023]</span><br></pre></td></tr></table></figure>
+
+<p>初始的测试集包含12项。这12项将会预测测试集的第一项，测试集第一项的数字是133.预测出的值接下来会加入到test_inputs列表的末尾。在第二次循环中，最后的12项又作为输入，一个新的预测值又会加入到test_inputs列表的末尾。这个循环将会执行12次。在循环的最后，test_inputs将会包含24项。最后的12项就是测试集的预测结果。</p>
+<p>下面的代码是用来预测的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">model.eval()</span><br><span class="line"></span><br><span class="line">for i in range(fut_pred):</span><br><span class="line">    seq &#x3D; torch.FloatTensor(test_inputs[-train_window:])</span><br><span class="line">    with torch.no_grad():</span><br><span class="line">        model.hidden &#x3D; (torch.zeros(1, 1, model.hidden_layer_size),</span><br><span class="line">                        torch.zeros(1, 1, model.hidden_layer_size))</span><br><span class="line">        test_inputs.append(model(seq).item())</span><br></pre></td></tr></table></figure>
+
+<p>如果你print test_inputs 列表，你会发现它包含24个元素。最后12个预测结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test_inputs[fut_pred:]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[0.8146875500679016,</span><br><span class="line"> 0.7292792201042175,</span><br><span class="line"> 0.9062390923500061,</span><br><span class="line"> 1.2367297410964966,</span><br><span class="line"> 1.3315496444702148,</span><br><span class="line"> 1.2219644784927368,</span><br><span class="line"> 1.519028663635254,</span><br><span class="line"> 1.2008862495422363,</span><br><span class="line"> 1.5351794958114624,</span><br><span class="line"> 1.496110200881958,</span><br><span class="line"> 1.5902581214904785,</span><br><span class="line"> 1.5625801086425781]</span><br></pre></td></tr></table></figure>
+
+<p>由于我们一开始将数据集标准化了，所以预测值也是标准化后的数据。我们需要将标准化后的数据转换成实际预测值。我们可以使用min/max scaler实例的inverse_transform 方法来将预测值转化为实际值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">actual_predictions &#x3D; scaler.inverse_transform(np.array(test_inputs[train_window:] ).reshape(-1, 1))</span><br><span class="line">print(actual_predictions)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[[516.84141764]</span><br><span class="line"> [497.41102257]</span><br><span class="line"> [537.66939351]</span><br><span class="line"> [612.8560161 ]</span><br><span class="line"> [634.42754412]</span><br><span class="line"> [609.49691886]</span><br><span class="line"> [677.07902098]</span><br><span class="line"> [604.70162177]</span><br><span class="line"> [680.7533353 ]</span><br><span class="line"> [671.8650707 ]</span><br><span class="line"> [693.28372264]</span><br><span class="line"> [686.98697472]]</span><br></pre></td></tr></table></figure>
+
+<p>现在我们画出图像：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x &#x3D; np.arange(132, 144, 1)</span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[132 133 134 135 136 137 138 139 140 141 142 143]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">plt.title(&#39;Month vs Passenger&#39;)</span><br><span class="line">plt.ylabel(&#39;Total Passengers&#39;)</span><br><span class="line">plt.grid(True)</span><br><span class="line">plt.autoscale(axis&#x3D;&#39;x&#39;, tight&#x3D;True)</span><br><span class="line">plt.plot(flight_data[&#39;passengers&#39;])</span><br><span class="line">plt.plot(x,actual_predictions)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/04/30/%E8%BD%AC%E8%BD%BD%E4%BD%BF%E7%94%A8pytroch%E6%90%AD%E5%BB%BAlstm%E9%A2%84%E6%B5%8B%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/20200302221915882-1596724594141.png" alt="20200302221915882"></p>
+<p>LSTM预测结果是橘色的曲线。你可以发现我们的算法不是很准确，很大的原因是数据集太小，但是它仍然可以捕捉到全部乘客数据最后十二个月的趋势。你可以尝试更多的epochs使结果更好。</p>
+<p>为了更好的观察输出结果，你可以用下面代码画出最后十二个月的图像：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">plt.title(&#39;Month vs Passenger&#39;)</span><br><span class="line">plt.ylabel(&#39;Total Passengers&#39;)</span><br><span class="line">plt.grid(True)</span><br><span class="line">plt.autoscale(axis&#x3D;&#39;x&#39;, tight&#x3D;True)</span><br><span class="line"></span><br><span class="line">plt.plot(flight_data[&#39;passengers&#39;][-train_window:])</span><br><span class="line">plt.plot(x,actual_predictions)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/04/30/%E8%BD%AC%E8%BD%BD%E4%BD%BF%E7%94%A8pytroch%E6%90%AD%E5%BB%BAlstm%E9%A2%84%E6%B5%8B%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/20200302221925163-1596724594141.png" alt="20200302221925163"></p>
+<p><strong>原作者总结</strong></p>
+<p>LSTM使解决序列问题用处最广的算法之一，在这篇文章中，我们可以知道怎么使用LSTM来预测时间序列。当然，这个算法还有很多提升空间，由于循环神经网络容易出现梯度爆炸的情况，我们可以加入梯度裁剪；为了减少泛化误差，我们可以使用k折交叉验证等等方法来优化模型。</p>
+<p>原文链接：<a href="https://blog.csdn.net/qq_44315987/article/details/104621632" target="_blank" rel="noopener">https://blog.csdn.net/qq_44315987/article/details/104621632</a></p>
+<p><strong>个人总结：</strong></p>
+<p><strong>作者的整个实验流程除了少一个用训练集预测模型进行调参、动态调整学习率，其他的各个方面都很值得借鉴，一是数据的切分和处理，二是整个模型的设计，都很值得借鉴，当然这两部分也都有改进的地方；三是整个流程特别适合初学者进行实际操作，同时便于明白原理。另外他的loss处理有点问题，为了查找和排查问题，个人建议输出loss曲线，直观地观察！</strong></p>
+<p>Write by sheen</p>
+<p>©原作者文章链接：<a href="https://blog.csdn.net/qq_44315987/article/details/104621632" target="_blank" rel="noopener">https://blog.csdn.net/qq_44315987/article/details/104621632</a></p>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          版权所有属于未央。商业转载，请联系作者（微信：sheenisme）以获取授权。 非商业转载，请注明出处并附上原文链接，谢谢配合。
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://blog.sheensong.top/2020/04/30/%E8%BD%AC%E8%BD%BD%E4%BD%BF%E7%94%A8pytroch%E6%90%AD%E5%BB%BAlstm%E9%A2%84%E6%B5%8B%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LSTM/" rel="tag">LSTM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PyTorch/" rel="tag">PyTorch</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020/06/07/%E6%AF%95%E4%B8%9A%E5%BF%83%E8%AF%AD/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            毕业心语
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/04/22/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E9%95%BF%E7%9F%AD%E6%9C%9F%E8%AE%B0%E5%BF%86%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9Clstm%E5%9F%BA%E7%A1%80/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">[学习笔记]-长短期记忆神经网络(LSTM)基础</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.staticfile.org/valine/1.4.16/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "KcIJTNpqW3ezIo8i9fvIFNxw-gzGzoHsz",
+    app_key: "yP7Tv2csrP5SRTJp68Wr7HAv",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "欢迎给我的文章评论，留下您的宝贵意见吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2018-2022
+        <i class="ri-heart-fill heart_icon"></i> sheen
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+        <li>
+          <a href="https://beian.miit.gov.cn/" target="_black" rel="nofollow">豫ICP备17001354号</a>
+        </li>
+        
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer.png" alt="未央de博客"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">首页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://cv.sheensong.top" target="_blank" rel="noopener">简历</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/photos">Pictures</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/%E5%85%B3%E4%BA%8E%E6%88%91">About me</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://sheensong.top" target="_blank" rel="noopener">HomePage</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/mathjax/2.7.7/MathJax.js"></script>
+<script src="https://cdn.staticfile.org/mathjax/2.7.7/config/TeX-AMS-MML_HTMLorMML-full.js"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+ 
+<script src="/js/clickLove.js"></script>
+ 
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    <div id="music">
+    
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="220" height="50"
+        src="//music.163.com/outchain/player?type=2&id=526668900&auto=0&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: absolute;
+        right: 15px;
+        bottom: 10px;
+        z-index: 298;
+    }
+</style>
+    
+    
+
+  </div>
+</body>
+
+</html>

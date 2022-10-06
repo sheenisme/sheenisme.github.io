@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="未央" />
+       
+      <meta name="description" content="欢迎来到IT届文艺小青年未央的博客" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>[学习笔记]-Python中NumPy基础 |  未央de博客</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    <link rel="alternate" href="/atom.xml" title="未央de博客" type="application/atom+xml">
+</head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-学习笔记-python中numpy基础/学习笔记-python中numpy基础"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  [学习笔记]-Python中NumPy基础
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/04/02/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E4%B8%ADnumpy%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time datetime="2020-04-02T12:43:46.000Z" itemprop="datePublished">2020-04-02</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.8k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">11 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <blockquote>
+<p>NumPy是一个高性能的科学计算和数据分析基础包，在现在的数据分析领域有很多应用，这得益于NumPy的多维数组对象、线性代数、傅里叶变换和随机数等强大功能。</p>
+</blockquote>
+<a id="more"></a>
+
+<h4 id="一、多维数组"><a href="#一、多维数组" class="headerlink" title="一、多维数组"></a>一、多维数组</h4><h5 id="1-创建多维数组"><a href="#1-创建多维数组" class="headerlink" title="1.  创建多维数组"></a>1.  创建多维数组</h5><h6 id="使用NumPy中的array"><a href="#使用NumPy中的array" class="headerlink" title="使用NumPy中的array"></a>使用NumPy中的array</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">print(np.array([[1,2,3], [4,5,6]]))</span><br></pre></td></tr></table></figure>
+
+<p>在运行后，输出的内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[[1, 2, 3]</span><br><span class="line"> [4, 5, 6]]</span><br></pre></td></tr></table></figure>
+
+<p>其方法是直接在array中传入一个带有参数的列表，这个列表会被转换成数组，创建更高维数组的方法和一维数组差不多，只不过变成了把一个嵌套的列表作为参数传递给array。</p>
+<p>当然，创建高维数组还有很多其他方式，并不局限于在以上实例中使用的方法。但是，直接将一串数字作为参数传递给array来创建一个数组是不合法的，如果我们传递给array的参数是列表，则列表会被array当作一个不定长参数进行处理，但若传递给array的参数是一串数字，则会被array当作多个参数而不能处理。</p>
+<p>有时我们需要创建一个临时的数组，以方便之后对数据进行存储。对于这种情况，在NumPy中有多种方法可以创建维度指定的临时数组，如下所示。</p>
+<h6 id="（1）使用NumPy中的onse可以创建维度指定且元素全为1的数组。"><a href="#（1）使用NumPy中的onse可以创建维度指定且元素全为1的数组。" class="headerlink" title="（1）使用NumPy中的onse可以创建维度指定且元素全为1的数组。"></a>（1）使用NumPy中的onse可以创建维度指定且元素全为1的数组。</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">print(np.ones([2,3]) )#创建全1的数组</span><br></pre></td></tr></table></figure>
+
+<p>在运行后，输出的内容如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[[ 1.,  1.,  1.]</span><br><span class="line"> [ 1.,  1.,  1.]]</span><br></pre></td></tr></table></figure>
+
+<p>使用onse生成了一个元素全为1且维度为（2,3）的数组，传递给onse的参数是一个列表，如果使用元组，则也能够达到一样的效果。这样，一个可用来进行临时数据存放的数组就创建完成了，之后若要更新这个数组中的元素，则直接进行覆盖就可以了。</p>
+<h6 id="（2）使用NumPy中的zeros可以创建维度指定且元素全为0的数组。"><a href="#（2）使用NumPy中的zeros可以创建维度指定且元素全为0的数组。" class="headerlink" title="（2）使用NumPy中的zeros可以创建维度指定且元素全为0的数组。"></a>（2）使用NumPy中的zeros可以创建维度指定且元素全为0的数组。</h6><h6 id="（3）使用NumPy中的empty可以创建维度指定且元素全为随机数的数组。"><a href="#（3）使用NumPy中的empty可以创建维度指定且元素全为随机数的数组。" class="headerlink" title="（3）使用NumPy中的empty可以创建维度指定且元素全为随机数的数组。"></a>（3）使用NumPy中的empty可以创建维度指定且元素全为随机数的数组。</h6><h5 id="2．多维数组的常用属性"><a href="#2．多维数组的常用属性" class="headerlink" title="2．多维数组的常用属性"></a>2．多维数组的常用属性</h5><h6 id="（1）ndim：返回统计的数组维数，即维度的数量。"><a href="#（1）ndim：返回统计的数组维数，即维度的数量。" class="headerlink" title="（1）ndim：返回统计的数组维数，即维度的数量。"></a>（1）ndim：返回统计的数组维数，即维度的数量。</h6><h6 id="（2）shape：返回数组的维度值。"><a href="#（2）shape：返回数组的维度值。" class="headerlink" title="（2）shape：返回数组的维度值。"></a>（2）shape：返回数组的维度值。</h6><p>对返回的结果使用一个数据类型为整型的元组来表示，比如一个二维数组返回的结果为（n,m），那么n和m表示数组中对应维度的数据的长度。如果使用shape输出的是矩阵的维度，那么在输出的（n,m）中，n表示矩阵的行，m表示矩阵的列。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">a &#x3D;np.matrix([[2,3], [3,4]]) #创建矩阵</span><br><span class="line">print(a)</span><br><span class="line">print(a.shape)</span><br></pre></td></tr></table></figure>
+
+<p>在运行后，输出的内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[[2 3]</span><br><span class="line"> [3 4]]</span><br><span class="line">(2, 2)</span><br></pre></td></tr></table></figure>
+
+<p>以上代码中使用了np.matrix来搭建矩阵，搭建矩阵需要传递的参数和使用array搭建数组时传递参数的方法一样</p>
+<h6 id="（3）size：返回要统计的数组中的元素的总数量。"><a href="#（3）size：返回要统计的数组中的元素的总数量。" class="headerlink" title="（3）size：返回要统计的数组中的元素的总数量。"></a>（3）size：返回要统计的数组中的元素的总数量。</h6><h6 id="（4）dtype：返回数组中的元素的数据类型。"><a href="#（4）dtype：返回数组中的元素的数据类型。" class="headerlink" title="（4）dtype：返回数组中的元素的数据类型。"></a>（4）dtype：返回数组中的元素的数据类型。</h6><p>不过其显示的数据类型和我们之前定义的变量的数据类型名有所区别，因为这些数据类型都是使用NumPy进行定义的，而在NumPy中表示数据类型使用的是numpy.int32、numpy.int16和numpy.float64这类格式的名字。</p>
+<h6 id="（5）itemsize：返回数组中每个元素的字节大小。"><a href="#（5）itemsize：返回数组中每个元素的字节大小。" class="headerlink" title="（5）itemsize：返回数组中每个元素的字节大小。"></a>（5）itemsize：返回数组中每个元素的字节大小。</h6><p>比如元素的dtype是float64，那么其itemsize是8，计算方法为8=64/8；如果元素的dtype是complex32，那么其itemsize是4，计算方法为4=32/8，其他dtype的计算方法以此类推。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">a &#x3D;np.ones([2,3], dtype&#x3D;np.int32) #创建全1的数组</span><br><span class="line">print(a.itemsize)</span><br></pre></td></tr></table></figure>
+
+<p>在运行后，输出的内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4</span><br></pre></td></tr></table></figure>
+
+<h5 id="3．数组的打印"><a href="#3．数组的打印" class="headerlink" title="3．数组的打印"></a>3．数组的打印</h5><p>数组可以通过print进行打印输出，打印出的数组和嵌套的列表很相似。还有一种情况，在数组中的元素太多时，若全部进行打印输出，则会占用大面积的显示空间，而且不易查看，所以在打印输出元素过多的数组时，输出显示的内容会自动跳过中间的部分，只打印首尾的一小部分，对中间的部分用省略号（…）来代替。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">a &#x3D;np.arange(2000) #创建有2000个元素的数组</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
+
+<p>在运行后，输出的内容如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[   0    1    2 ... 1997 1998 1999]</span><br></pre></td></tr></table></figure>
+
+<h4 id="二、-数组的算术运算"><a href="#二、-数组的算术运算" class="headerlink" title="二、  数组的算术运算"></a>二、  数组的算术运算</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">a &#x3D;np.array([1,2,3])</span><br><span class="line">b &#x3D;np.array([4,5,6])</span><br><span class="line"></span><br><span class="line">print(&quot;a - b &#x3D;&quot;, a-b) #打印a-b的结果</span><br><span class="line">print(&quot;a + b &#x3D;&quot;, a+b) #打印a+b的结果</span><br><span class="line">print(&quot;a &#x2F; b &#x3D;&quot;, a&#x2F;b) #打印a&#x2F;b的结果</span><br><span class="line">print(&quot;a ＊ b &#x3D;&quot;, a＊b) #打印a*b的结果</span><br></pre></td></tr></table></figure>
+
+<p>在运行后，输出的内容如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a - b &#x3D;[-3-3-3]</span><br><span class="line">a + b &#x3D;[5 7 9]</span><br><span class="line">a &#x2F; b &#x3D;[ 0.25  0.4   0.5 ]</span><br><span class="line">a ＊ b &#x3D;[ 4 10 18]</span><br></pre></td></tr></table></figure>
+
+<p>虽然数组在构造上类似于矩阵，但是其运算和矩阵运算存在诸多不同：首先，矩阵是不存在除法运算的，但是数组能够进行除法运算；其次，数组的乘法运算机制是通过将位置对应的元素相乘来完成的，和矩阵的乘法运算机制不同。</p>
+<p>下面来看看如何通过数组实现矩阵乘法运算:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">a &#x3D;np.array([1,2,3])</span><br><span class="line">b &#x3D;np.array([4,5,6])</span><br><span class="line"></span><br><span class="line">print(&quot;a ＊ b &#x3D;&quot;, a＊b) #打印a＊b的结果</span><br><span class="line"></span><br><span class="line">c &#x3D;a.dot(b)</span><br><span class="line">print(&quot;Matrix1: a ＊ b &#x3D;&quot;, c) #打印a＊b的结果</span><br><span class="line"></span><br><span class="line">d &#x3D;np.dot(a, b)</span><br><span class="line">print(&quot;Matrix2: a ＊ b &#x3D;&quot;, c) #打印a＊b的结果</span><br></pre></td></tr></table></figure>
+
+<p>以上代码中使用了两种方法来实现矩阵的乘法运算，其计算结果是一样的。数组和矩阵的算术运算还有一个较大的不同点，就是数组可以直接和标量进行算术运算，但是在矩阵运算中是不可以的。</p>
+<h4 id="三、数组自身的运算"><a href="#三、数组自身的运算" class="headerlink" title="三、数组自身的运算"></a>三、数组自身的运算</h4><p>（1）min：默认找出数组的所有元素中值最小的元素，可以通过设置axis的值来按行或者列查找元素中的最小值。</p>
+<p>（2）max：默认找出数组的所有元素中值最大的元素，可以通过设置axis的值来按行或者列查找元素中的最大值。</p>
+<p>（3）sum：默认对数组中的所有元素进行求和运算，并返回运算结果，同样可以通过设置axis的值来按行或者列对元素进行求和运算。</p>
+<p>（4）exp：对数组中的所有元素进行指数运算。</p>
+<p>（5）sqrt：对数组中的所有元素进行平方根运算。</p>
+<p>（6）square：对数组中的所有元素进行平方运算。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">a &#x3D;np.array([[1,2,3],</span><br><span class="line">            [3,2,1]])</span><br><span class="line"></span><br><span class="line">print(&quot;min of array:&quot;, a.min())</span><br><span class="line">print(&quot;min of array:&quot;, a.min(axis&#x3D;0))</span><br><span class="line">print(&quot;min of array:&quot;, a.min(axis&#x3D;1))</span><br><span class="line"></span><br><span class="line">print(&quot;max of array:&quot;, a.max())</span><br><span class="line">print(&quot;max of array:&quot;, a.max(axis&#x3D;0))</span><br><span class="line">print(&quot;max of array:&quot;, a.max(axis&#x3D;1))</span><br><span class="line"></span><br><span class="line">print(&quot;sum of array:&quot;, a.sum())</span><br><span class="line">print(&quot;sum of array:&quot;, a.sum(axis&#x3D;0))</span><br><span class="line">print(&quot;sum of array:&quot;, a.sum(axis&#x3D;1))</span><br></pre></td></tr></table></figure>
+
+<p>在运行后，输出的内容如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">min of array: 1</span><br><span class="line">min of array: [1 2 1]</span><br><span class="line">min of array: [1 1]</span><br><span class="line">max of array: 3</span><br><span class="line">max of array: [3 2 3]</span><br><span class="line">max of array: [3 3]</span><br><span class="line">sum of array: 12</span><br><span class="line">sum of array: [4 4 4]</span><br><span class="line">sum of array: [6 6]</span><br></pre></td></tr></table></figure>
+
+<p>在复杂的多维数组中，我们通过对axis参数进行不同的设置，来得到不同的运算结果：当axis为0时，计算方向是针对数组的列的；当axis为1时，计算方向是针对数组的行的。</p>
+<h4 id="四、随机数组"><a href="#四、随机数组" class="headerlink" title="四、随机数组"></a>四、随机数组</h4><p>在NumPy中有许多方法可以生成不同属性的随机数，以满足在计算中使用随机数字的需求。</p>
+<p>（1）seed：随机因子，在随机数生成器的随机因子被确定后，无论我们运行多少次随机程序，最后生成的数字都是一样的，随机因子更像把随机的过程变成一种伪随机的机制，不过这有利于结果的复现。</p>
+<p>（2）rand：生成一个在[0,1)范围内满足均匀分布的随机样本数。</p>
+<p>（3）randn：生成一个满足平均值为0且方差为1的正态分布随机样本数。</p>
+<p>（4）randint：在给定的范围内生成类型为整数的随机样本数。</p>
+<p>（5）binomial：生成一个维度指定且满足二项分布的随机样本数。</p>
+<p>（6）beta：生成一个指定维度且满足beta分布的随机样本数。</p>
+<p>（7）normal：生成一个指定维度且满足高斯正太分布的随机样本数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">np.random.seed(42)</span><br><span class="line"></span><br><span class="line">print(np.random.rand(2,3))</span><br><span class="line">print(np.random.randn(2,3))</span><br><span class="line">print(np.random.randint(1,10))</span><br><span class="line">print(np.random.binomial(6,1))</span><br><span class="line">print(np.random.beta(2,3))</span><br><span class="line">print(np.random.normal(2,3))</span><br></pre></td></tr></table></figure>
+
+<p>在运行后，输出的内容如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[[ 0.37454012  0.95071431  0.73199394]</span><br><span class="line"> [ 0.59865848  0.15601864  0.15599452]]</span><br><span class="line">[[ 1.57921282  0.76743473-0.46947439]</span><br><span class="line"> [ 0.54256004-0.46341769-0.46572975]]</span><br><span class="line">6</span><br><span class="line">6</span><br><span class="line">0.45543839870822056</span><br><span class="line">2.666236704694229</span><br></pre></td></tr></table></figure>
+
+<p>我们在以上代码中确定了随机因子，所以不论运行几次，最后得到的随机结果都是一样的。</p>
+<h4 id="五、索引、切片和迭代"><a href="#五、索引、切片和迭代" class="headerlink" title="五、索引、切片和迭代"></a>五、索引、切片和迭代</h4><p>在数组中也有索引、切片和迭代，其操作过程和列表类似，不过多维数组相较于一维数组，在索引、切片和迭代等操作上会更复杂。来看一个一维数组的实例。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">a &#x3D;np.arange(10)</span><br><span class="line"></span><br><span class="line">print(a) #输出整个数组</span><br><span class="line">print(a[:5]) #输出数组的前五个元素</span><br><span class="line"></span><br><span class="line">for i in a:  #迭代输出数组的全部元素</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure>
+
+<p>在运行后，输出的内容如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[0 1 2 3 4 5 6 7 8 9]</span><br><span class="line">[0 1 2 3 4]</span><br><span class="line">0</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td></tr></table></figure>
+
+<p>对于多维数组而言，在每个维度上都可以通过索引值进行切片，这些索引值构成的是一个用逗号分隔的元组。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">a &#x3D;np.array([[1,2,3],</span><br><span class="line">            [4,5,6],</span><br><span class="line">            [7,8,9]])</span><br><span class="line"></span><br><span class="line">print(a) #输出整个数组</span><br><span class="line">print(&quot;-&quot;＊10)</span><br><span class="line">print(a[1]) #输出指定维度的数据</span><br><span class="line">print(&quot;-&quot;＊10)</span><br><span class="line">print(a[0:2, 1:3]) #输出指定维度的数据</span><br></pre></td></tr></table></figure>
+
+<p>在运行后，输出的内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[[1 2 3]</span><br><span class="line"> [4 5 6]</span><br><span class="line"> [7 8 9]]</span><br><span class="line">----------</span><br><span class="line">[4 5 6]</span><br><span class="line">----------</span><br><span class="line">[[2 3]</span><br><span class="line"> [5 6]]</span><br></pre></td></tr></table></figure>
+
+<p>从以上实例的输出结果中可以看到，多维数组的切片可以分别针对多个维度进行操作，而且多维数组可以针对不同的维度进行迭代，具体的实例如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">a &#x3D;np.array([[1,2,3],</span><br><span class="line">            [4,5,6],</span><br><span class="line">            [7,8,9]])</span><br><span class="line"></span><br><span class="line">for i in a:</span><br><span class="line">    print(i)</span><br><span class="line"></span><br><span class="line">print(&quot;-&quot;＊10)</span><br><span class="line">for i in a:</span><br><span class="line">    for j in i:</span><br><span class="line">      print(j)</span><br></pre></td></tr></table></figure>
+
+<p>在运行后，输出的内容如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[1 2 3]</span><br><span class="line">[4 5 6]</span><br><span class="line">[7 8 9]</span><br><span class="line">----------</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td></tr></table></figure>
+
+<p>将代码中的第2种迭代方法写成如下形式，也可以达到同样的效果，这相当于将多维数组进行了扁平化处理，将其转变成了一维数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for i in a.flat:</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure>
+
+<p>Write by sheen</p>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          版权所有属于未央。商业转载，请联系作者（微信：sheenisme）以获取授权。 非商业转载，请注明出处并附上原文链接，谢谢配合。
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://blog.sheensong.top/2020/04/02/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E4%B8%ADnumpy%E5%9F%BA%E7%A1%80/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Numpy/" rel="tag">Numpy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020/04/04/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E4%B8%AD%E7%9A%84matplotlib%E5%9F%BA%E7%A1%80/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            [学习笔记]-Python中的Matplotlib基础
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/04/02/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-python%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">[学习笔记]-Python基础学习笔记</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.staticfile.org/valine/1.4.16/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "KcIJTNpqW3ezIo8i9fvIFNxw-gzGzoHsz",
+    app_key: "yP7Tv2csrP5SRTJp68Wr7HAv",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "欢迎给我的文章评论，留下您的宝贵意见吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2018-2022
+        <i class="ri-heart-fill heart_icon"></i> sheen
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+        <li>
+          <a href="https://beian.miit.gov.cn/" target="_black" rel="nofollow">豫ICP备17001354号</a>
+        </li>
+        
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer.png" alt="未央de博客"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">首页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://cv.sheensong.top" target="_blank" rel="noopener">简历</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/photos">Pictures</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/%E5%85%B3%E4%BA%8E%E6%88%91">About me</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://sheensong.top" target="_blank" rel="noopener">HomePage</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/mathjax/2.7.7/MathJax.js"></script>
+<script src="https://cdn.staticfile.org/mathjax/2.7.7/config/TeX-AMS-MML_HTMLorMML-full.js"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+ 
+<script src="/js/clickLove.js"></script>
+ 
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    <div id="music">
+    
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="220" height="50"
+        src="//music.163.com/outchain/player?type=2&id=526668900&auto=0&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: absolute;
+        right: 15px;
+        bottom: 10px;
+        z-index: 298;
+    }
+</style>
+    
+    
+
+  </div>
+</body>
+
+</html>
