@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://blog.sheensong.top/2020/01/01/%E6%96%B0%E5%B9%B4%E4%BC%8A%E5%A7%8B/</loc>
+    <lastmod>2022-10-09</lastmod>
+  </url>
+  <url>
     <loc>https://blog.sheensong.top/2020/11/03/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB03-Effective%20automatic%20parallelization%20of%20stencil%20computations/</loc>
     <lastmod>2022-10-06</lastmod>
   </url>
@@ -58,10 +62,6 @@
   </url>
   <url>
     <loc>https://blog.sheensong.top/2018/02/02/%E7%AC%AC%E4%B8%80%E6%AC%A1/</loc>
-    <lastmod>2022-10-04</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.sheensong.top/2020/01/01/%E6%96%B0%E5%B9%B4%E4%BC%8A%E5%A7%8B/</loc>
     <lastmod>2022-10-04</lastmod>
   </url>
   <url>
