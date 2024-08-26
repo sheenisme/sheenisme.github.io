@@ -38,70 +38,67 @@ $(document).ready(function () {
 		console.error(err);
 	})
 
-
-	// var url = 'https://query.yahooapis.com/v1/public/yql' + 
-	// '?q=' + encodeURIComponent('select * from json where url=@url') +
-	// '&url=' + encodeURIComponent('https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=8') +
-	// '&format=json&callback=?';
-
-	/**
-	 * 获取Bing壁纸
-	 * 
-	 */
-	// URL被设置为需要请求的新Bing图片地址
-	var url = 'https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=8';
-	
-	// 从 sessionStorage 中取出储存的图片URLs
-	var imgUrls = JSON.parse(sessionStorage.getItem("imgUrls")) || [];
-	
-	// 从 sessionStorage 中取出当前所在的图片索引
-	var index = parseInt(sessionStorage.getItem("index"));
-	
-	if (isNaN(index)) {
-	    index = 0;
-	}
-	
-	// 获取面板的jQuery对象
 	var $panel = $('#panel');
-	
-	// 从服务器获取数据
-	$.get(url, function (result) {
-	    var images = result.images;
-	
-	    if (images && images.length > 0) {
-	        for (let i = 0; i < images.length; i++) {
-	            // 记录每一张图片的URL
-	            const item = images[i];
-	            imgUrls.push(item.url);
-	        }
-	
-	        var imgUrl = imgUrls[index];
-	        var url = "https://www.bing.com" + imgUrl;
-	
-	        // 设置面板背景样式
-	        $panel.css("background", "url('" + url + "') center center no-repeat #666");
-	        $panel.css("background-size", "cover");  
-	    }
-	
-	    // 设置图片URLs和当前索引到sessionStorage
-	    sessionStorage.setItem("imgUrls", JSON.stringify(imgUrls));
-	});
-	
-	// 如果存在图片URLs，检查索引，循环使用
-	if (imgUrls.length > 0){
-	    index = (index >= imgUrls.length) ? 0 : index + 1;
-	
-	    // 获取当前索引对应的图片URL
-	    var imgUrl = imgUrls[index];
-	    var url = "https://www.bing.com" + imgUrl;
-	
-	    // 设置面板背景样式
-	    $panel.css("background", "url('" + url + "') center center no-repeat #666");
-	    $panel.css("background-size", "cover");
-	
-	    // 设置当前索引到sessionStorage
-	    sessionStorage.setItem("index", index);
-	}
+	// /**
+	//  * 获取Bing壁纸(2种方式均已经弃用)
+	//  * 原先 YQL 已经无法提供服务了
+	//  * 改用 JsonBird：https://bird.ioliu.cn/
+	//  * 
+	//  */
+	// // var url = 'https://query.yahooapis.com/v1/public/yql' + 
+	// // '?q=' + encodeURIComponent('select * from json where url=@url') +
+	// // '&url=' + encodeURIComponent('https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=8') +
+	// // '&format=json&callback=?';
+	// var url = 'https://bird.ioliu.cn/v1/?url=https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=8';
+	// var imgUrls = JSON.parse(sessionStorage.getItem("imgUrls"));
+	// var index = sessionStorage.getItem("index");
+	// if (imgUrls == null) {
+	// 	imgUrls = new Array();
+	// 	index = 0;
+	// 	$.get(url, function (result) {
+	// 		images = result.images;
+	// 		for (let i = 0; i < images.length; i++) {
+	// 			const item = images[i];
+	// 			imgUrls.push(item.url);
+	// 		}
+	// 		var imgUrl = imgUrls[index];
+	// 		var url = "https://www.bing.com" + imgUrl;
+	// 		$panel.css("background", "url('" + url + "') center center no-repeat #666");
+	// 		$panel.css("background-size", "cover");
+	// 		sessionStorage.setItem("imgUrls", JSON.stringify(imgUrls));
+	// 		sessionStorage.setItem("index", index);
+	// 	});
+	// } else {
+	// 	if (index == 7)
+	// 		index = 0;
+	// 	else
+	// 		index++;
+	// 	var imgUrl = imgUrls[index];
+	// 	var url = "https://www.bing.com" + imgUrl;
+	// 	$panel.css("background", "url('" + url + "') center center no-repeat #666");
+	// 	$panel.css("background-size", "cover");
+	// 	sessionStorage.setItem("index", index);
+	// }
+
+	// // 切换成从Unsplash中获取（弃用）
+    // // 假设这是你的 Unsplash API 访问密钥（实际使用时请替换）  
+    // var unsplashApiKey = 'YOUR_UNSPLASH_ACCESS_KEY';  
+    // var unsplashUrl = `https://api.unsplash.com/photos/random?client_id=${unsplashApiKey}`;  
+
+    // $.get(unsplashUrl, function (data) {  
+    //     var imgUrl = data.urls.regular; // 使用 regular 分辨率的图片  
+    //     $panel.css("background", "url('" + imgUrl + "') center center no-repeat #666");  
+    //     $panel.css("background-size", "cover");  
+    // }).fail(function (error) {  
+    //     console.error('Failed to fetch image:', error);  
+    //     // 可以设置一个默认背景图片或错误处理  
+    //     $panel.css("background", "url('default-background.jpg') center center no-repeat #666");  
+    //     $panel.css("background-size", "cover");  
+    // });
+
+	// 修改成从https://bing.img.run/api.html中的链接中直接获取图片，站在巨人的肩膀上
+	$panel.css("background", "url(https://bing.img.run/rand_uhd.php) center center no-repeat #666");  
+    $panel.css("background-size", "cover");  
 
 	$(".iUp").each(function (i, e) {
 		iUp.up(e);
