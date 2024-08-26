@@ -1,5 +1,5 @@
-## HomePage
-访问地址： [未央的主页](https://sheensong.top)
+## 网站首页
+访问地址： [网站首页](https://sheensong.top)
 
 ### 更新记录
 
