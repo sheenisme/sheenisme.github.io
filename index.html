@@ -40,6 +40,42 @@
     <!--IE淘汰计划-->
     <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href = "https://imsyy.top/upgrade-your-browser/index.html?referrer=" + encodeURIComponent(window.location.href);</script>
 
+    <script>
+        // 添加语言配置
+        const LANGUAGES = {
+            'zh': {
+                title: '欢迎来到我的世界！',
+                description: '人生的意义就在于折腾和一直折腾。',
+                academic: '学术主页',
+                blog: '个人博客',
+                about: '关于我',
+                emailText: '我的邮箱是sheensong@163.com, 欢迎随时发邮件交流。',
+                weixinText: '请使用微信扫一扫, 关注我的微信公众号-未央说。',
+                confirmBtn: '好的'
+            },
+            'en': {
+                title: 'Welcome to My World!',
+                description: 'Life is about exploring and keeping exploring.',
+                academic: 'Academic',
+                blog: 'Blog',
+                about: 'About',
+                emailText: 'My email is sheensong@163.com, feel free to contact me.',
+                weixinText: 'Please scan the QR code to follow my WeChat public account - 未央说.',
+                confirmBtn: 'OK'
+            }
+        };
+
+        // 获取浏览器语言
+        function getLanguage() {
+            let lang = navigator.language || navigator.userLanguage;
+            lang = lang.toLowerCase().substring(0, 2);
+            return lang === 'zh' ? 'zh' : 'en';
+        }
+
+        // 设置当前语言
+        const currentLang = getLanguage();
+        const text = LANGUAGES[currentLang];
+    </script>
 
 </head>
 
@@ -67,10 +103,13 @@
                     <h1 class="panel-cover__title panel-title iUp">
                         <br />sheen
                     </h1>
-                    <p class="panel-cover__subtitle panel-subtitle iUp">欢迎来到我的世界！</p>
+                    <p class="panel-cover__subtitle panel-subtitle iUp">
+                        <script>document.write(text.title)</script>
+                    </p>
                     <hr class="panel-cover__divider iUp" />
                     <!--一言无法显示时的文字-->
-                    <p id="description" class="panel-cover__description iUp">人生的意义就在于折腾和一直折腾。
+                    <p id="description" class="panel-cover__description iUp">
+                        <script>document.write(text.description)</script>
                         <br />
                         <strong>-「sheen」</strong>
                     </p>
@@ -80,19 +119,19 @@
                                 <ul class="navigation">
                                     <li class="navigation__item">
                                         <a href="https://sheensong.top/academic" class="blog-button">
-                                            <div>学术主页</div>
+                                            <div><script>document.write(text.academic)</script></div>
                                         </a>
                                     </li>
                                     <li class="navigation__item">
                                         <a href="https://sheensong.top/blog" class="blog-button">
-                                            <div>博客</div>
+                                            <div><script>document.write(text.blog)</script></div>
                                         </a>
                                     </li>
-                                    <li class="navigation__item">
+                                    <!-- <li class="navigation__item">
                                         <a href="https://sheensong.top/blog/CV" target="_blank" class="blog-button">
                                             <div>简历</div>
                                         </a>
-                                    </li>
+                                    </li> -->
                                     <!-- <li class="navigation__item">
                                         <a href="https://weblog.sheensong.top/ASUS/" target="_blank"
                                             class="blog-button">
@@ -157,8 +196,8 @@
                                                 function weixin() {
                                                     Swal.fire({
                                                         title: "请扫码",
-                                                        text: "请使用微信扫一扫, 关注我的微信公众号-未央说。",
-                                                        confirmButtonText: "好的",
+                                                        text: text.weixinText,
+                                                        confirmButtonText: text.confirmBtn,
                                                         imageUrl: "./images/weixin-applet.jpg",
                                                         imageWidth: 150,
                                                         imageHeight: 150
@@ -174,9 +213,8 @@
                                             <script>
                                                 function send_email() {
                                                     Swal.fire({
-                                                        // title: "请扫码",
-                                                        text: " 我的邮箱是sheensong@163.com, 欢迎随时发邮件交流。",
-                                                        confirmButtonText: "好的",
+                                                        text: text.emailText,
+                                                        confirmButtonText: text.confirmBtn,
                                                     })
                                                 }
                                             </script>
