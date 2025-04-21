@@ -80,34 +80,9 @@ $(document).ready(function () {
 	// 	sessionStorage.setItem("index", index);
 	// }
 
-	// // 修改成从https://bing.img.run/api.html中的链接中直接获取图片，站在巨人的肩膀上
-	// $panel.css("background", "url(https://bing.img.run/rand_uhd.php) center center no-repeat #666");
-    // $panel.css("background-size", "cover");
-
-	// 再次尝试使用必应官方API获取壁纸 或者 用
-	var bingUrl = 'https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=8';
-
-	fetch(bingUrl)
-		.then(function(res) {
-			return res.json();
-		})
-		.then(function(data) {
-			if (data && data.images && data.images.length > 0) {
-				var imgUrl = 'https://www.bing.com' + data.images[0].url;
-				$panel.css("background", "url('" + imgUrl + "') center center no-repeat #666");
-				$panel.css("background-size", "cover");
-			} else {
-				// 使用备用图片
-				$panel.css("background", "url('https://picsum.photos/1920/1080') center center no-repeat #666");
-				$panel.css("background-size", "cover");
-			}
-		})
-		.catch(function(err) {
-			console.error('获取必应壁纸失败:', err);
-			// 使用备用图片服务
-			$panel.css("background", "url('https://picsum.photos/1920/1080') center center no-repeat #666");
-			$panel.css("background-size", "cover");
-		});
+	// 修改成从第三方链接中直接获取图片，站在巨人的肩膀上
+	$panel.css("background", "url('https://picsum.photos/1920/1080?random=1') center center no-repeat #666");
+	$panel.css("background-size", "cover");
 
 	$(".iUp").each(function (i, e) {
 		iUp.up(e);
